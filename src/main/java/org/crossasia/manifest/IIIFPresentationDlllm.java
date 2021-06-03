@@ -33,7 +33,7 @@ public class IIIFPresentationDlllm {
     private static final String LOGO_LINK= "https://ngcs-beta.staatsbibliothek-berlin.de/dc/logo-small";
 
     public static void main(String[] args) throws IOException {
-        //SpringApplication.run(IIIFPresentationDlllm.class, args);
+
 
         String quote = "\u005c\u0022";
         File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/raw/");
@@ -48,77 +48,38 @@ public class IIIFPresentationDlllm {
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 
-            titleRoman(dllmAttributes, jsonObj);
-            languageRoman(dllmAttributes, jsonObj);
-
             Manifestor manifestor = new Manifestor();
-            Manifest manifest = new Manifest(String.valueOf(file), new Label(new I18n("en", dllmAttributes.getTitle_roman().get(0).toString())));
-            staticFields(counter, manifest);
+
+            titleRoman(dllmAttributes, jsonObj);
+            titleThai(dllmAttributes, jsonObj);
+            languageRoman(dllmAttributes, jsonObj);
+            languageThai(dllmAttributes, jsonObj);
+            getDllmID(dllmAttributes, jsonObj);
+
+            I18n i18n_title_Roman = getStringsLabel(dllmAttributes); // get Label
+            Manifest manifest = new Manifest(String.valueOf(file), new Label(i18n_title_Roman));
+            staticFields(counter, manifest); //all static fields
             counter++;
 
+            Metadata metadata_title = getMetadataTitleRomanThai(dllmAttributes);
+            Metadata metadata_language = getMetadataLanguageRomanThai(dllmAttributes);
 
+            manifest.setMetadata(metadata_title, metadata_language);
 
-            manifest.setProviders();
-            manifest.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
-                    new Label("en","Crossasia Madoc Page")));
+            String book_ID=dllmAttributes.getId();
 
-            manifest.setPartOfs(new PartOf("https://iiif.corossasia.org/collections","Collection"));
+            manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"/canvas/1"));
 
-            Metadata metadata = new Metadata(new Label("en","Author") ,
-                    new Value(new I18n("en","Author1"),
-                    new I18n("lo", "Author2")));
-
-            ArrayList<I18n> valueArrayList = new ArrayList<>();
-            ArrayList<String> languagesArrayList = new ArrayList<>();
-            Metadata metadata_language = new Metadata(new Label("en",""), new Value("en",""));
-
-            for (int i = 0; i< dllmAttributes.getLanguages().length(); i++) {
-
-                languagesArrayList.add(dllmAttributes.getLanguages().get(i).toString());
-                I18n i18n_language_Roman = new I18n("en", languagesArrayList);
-
-                valueArrayList.add(i18n_language_Roman);
-                metadata_language = new Metadata(new Label("en","Language") ,
-                        new Value(new I18n []{i18n_language_Roman}));
-
-
-
-            }
-
-
-
-            manifest.setMetadata(metadata,metadata_language);
-
-            String book_ID="0001";
             String page_ID="484597";
 
             String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +page_ID  + "/manifest";
-
             String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
 
             ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ page_ID);
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-            OtherService otherService;
-            final RequiredStatement reqStmt;
-            reqStmt = new RequiredStatement(new Label("en","Attribution"),
-                    new Value(new I18n("en","Provided courtesy of Example Institution")));
 
-            otherService = new OtherService("https://example.org/service/example", "example")
-                    .setProfile("https://example.org/docs/example-service.html");
-
-            manifest.setRights("http://creativecommons.org/licenses/by/4.0/").setBehaviors(ManifestBehavior.PAGED)
-                    .setRequiredStatement(reqStmt).setServices(otherService);
-
-
-            SeeAlso seeAlso = new SeeAlso("https://example.org/library/catalog/book1.xml", ResourceTypes.DATASET);
-            seeAlso.setFormat("text/xml");
-            seeAlso.setProfile("https//schema.org");
-            manifest.setSeeAlsoRefs(seeAlso);
-
-            manifest.setStart(new Start("https://example.org/iiif/book1/canvas/p2"));
 
             //start adding images
-
             JSONArray pages = null;
             if (jsonObj.has("pages")) {
                 pages = (jsonObj.getJSONArray("pages"));
@@ -137,10 +98,10 @@ public class IIIFPresentationDlllm {
             PaintingAnnotation anno = new PaintingAnnotation("",canvas);
             ImageContent imageContent = new ImageContent("");
 
-
-
             for (int j = 0; j < pages.length(); j++) {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
+
+
 
                 String pages_position="";
                 String pages_image_file="";
@@ -178,34 +139,61 @@ public class IIIFPresentationDlllm {
                 //manifest.setCanvases(canvas.setPaintingPages(annoPage));
                 manifest.setCanvases(canvases);
             }
-
-
-
-
-
             //end adding images
 
             Provider provider = new Provider("https://example.org/about",
                     String.valueOf(new Label("en", String.valueOf(new Value(new I18n("en", "Test"))))));
 
-
             provider.setLogos(new ImageContent(LOGO_LINK).setServices(manifestThumbService));
-
             manifest.setProviders(provider);
-
-
-
-
 
             File newFile = new File(created +"/" +file.getName());
             manifestor.write(manifest, newFile);
 
-
-
         }
+    }
 
-        //File file = new File("/opt/IdeaProjects/manifest/src/main/resources/json/test.json");
+    private static Metadata getMetadataTitleRomanThai(DllmAttributes dllmAttributes) {
+        ArrayList<String> titleRomanArrayList = new ArrayList<>();
+        ArrayList<String> titleThaiArrayList = new ArrayList<>();
+        Metadata metadata_title = new Metadata(new Label("en",""), new Value("en",""));
 
+        for (int i = 0; i< dllmAttributes.getTitle_roman().length(); i++) {
+            titleRomanArrayList.add(dllmAttributes.getTitle_roman().get(i).toString());
+            titleThaiArrayList.add(dllmAttributes.getTitle_lao().get(i).toString());
+            I18n i18n_title_Roman = new I18n("en", titleRomanArrayList);
+            I18n i18n_title_Thai = new I18n("lo", titleThaiArrayList);
+            metadata_title = new Metadata(new Label("en","Title") ,
+                    new Value(new I18n []{i18n_title_Roman, i18n_title_Thai}));
+        }
+        return metadata_title;
+
+    }
+
+    private static Metadata getMetadataLanguageRomanThai(DllmAttributes dllmAttributes) {
+        ArrayList<String> languagesRomanArrayList = new ArrayList<>();
+        ArrayList<String> languagesThaiArrayList = new ArrayList<>();
+        Metadata metadata_language = new Metadata(new Label("en",""), new Value("en",""));
+
+        for (int i = 0; i< dllmAttributes.getLanguages().length(); i++) {
+            languagesRomanArrayList.add(dllmAttributes.getLanguages().get(i).toString());
+            languagesThaiArrayList.add(dllmAttributes.getLanguages_lao().get(i).toString());
+            I18n i18n_language_Roman = new I18n("en", languagesRomanArrayList);
+            I18n i18n_language_Thai = new I18n("lo", languagesThaiArrayList);
+            metadata_language = new Metadata(new Label("en","Language") ,
+                    new Value(new I18n []{i18n_language_Roman, i18n_language_Thai}));
+        }
+        return metadata_language;
+    }
+
+    private static I18n getStringsLabel(DllmAttributes dllmAttributes) {
+        ArrayList<String> titlesArrayList = new ArrayList<>();
+        I18n i18n_title_Roman = new I18n("en", "");
+        for (int i = 0; i< dllmAttributes.getTitle_roman().length(); i++) {
+            titlesArrayList.add(dllmAttributes.getTitle_roman().get(i).toString());
+            i18n_title_Roman = new I18n("en", titlesArrayList);
+        }
+        return i18n_title_Roman;
     }
 
     private static void staticFields(int counter, Manifest manifest) {
@@ -215,17 +203,55 @@ public class IIIFPresentationDlllm {
         manifest.setSummary(summary);
         manifest.setRights("http://creativecommons.org/licenses/by/4.0/");
         manifest.setViewingDirection(RIGHT_TO_LEFT);
+        manifest.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
+                new Label("en","Crossasia Madoc Page")));
+        manifest.setPartOfs(new PartOf("https://iiif.corossasia.org/collections","Collection"));
+        OtherService otherService;
+        final RequiredStatement reqStmt;
+        reqStmt = new RequiredStatement(new Label("en","Attribution"),
+                new Value(new I18n("en","Provided courtesy of Example Institution")));
+
+        otherService = new OtherService("https://example.org/service/example", "example")
+                .setProfile("https://example.org/docs/example-service.html");
+
+        manifest.setRights("http://creativecommons.org/licenses/by/4.0/").setBehaviors(ManifestBehavior.PAGED)
+                .setRequiredStatement(reqStmt).setServices(otherService);
+
+        SeeAlso seeAlso = new SeeAlso("https://example.org/library/catalog/book1.xml", ResourceTypes.DATASET);
+        seeAlso.setFormat("text/xml");
+        seeAlso.setProfile("https//schema.org");
+        manifest.setSeeAlsoRefs(seeAlso);
     }
+
+
 
     private static void titleRoman(DllmAttributes dllmAttributes, JSONObject jsonObj) {
         if (jsonObj.has("titles")) {
             dllmAttributes.setTitle_roman((JSONArray) jsonObj.get("titles"));
         }
     }
+    private static void titleThai(DllmAttributes dllmAttributes, JSONObject jsonObj) {
+        if (jsonObj.has("titles_lao")) {
+            dllmAttributes.setTitle_lao((JSONArray) jsonObj.get("titles_lao"));
+        }
+    }
+
+    private static void getDllmID(DllmAttributes dllmAttributes, JSONObject jsonObj) {
+        if (jsonObj.has("id")) {
+            dllmAttributes.setId((String) jsonObj.get("id").toString());
+        }
+    }
+
 
     private static void languageRoman(DllmAttributes dllmAttributes, JSONObject jsonObj) {
         if (jsonObj.has("languages")) {
             dllmAttributes.setLanguages((JSONArray) jsonObj.get("languages"));
+        }
+    }
+
+    private static void languageThai(DllmAttributes dllmAttributes, JSONObject jsonObj) {
+        if (jsonObj.has("languages_lao")) {
+            dllmAttributes.setLanguages_lao((JSONArray) jsonObj.get("languages_lao"));
         }
     }
 }
