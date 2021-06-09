@@ -140,22 +140,47 @@ public class IIIFPresentationDlllm {
             Metadata metadata_place = getMetadataPlaces(dllmAttributes);
             Metadata metadata_full_location_name = getMetadataFullLocationName(dllmAttributes);
 
+            Metadata metadata_has_colophon = getMetadataHasColophon(dllmAttributes);
+            Metadata metadata_is_illustrated = getMetadataIsIllustrated(dllmAttributes);
+            Metadata metadata_is_color= getMetadataIsColor(dllmAttributes);
+            Metadata metadata_bundle_id= getMetadataBundleID(dllmAttributes);
 
+            Metadata metadata_is_complete= getMetadataIsComplete(dllmAttributes);
+            Metadata metadata_pages_count= getMetadataPagesCount(dllmAttributes);
+            Metadata metadata_material= getMetadataMaterial(dllmAttributes);
+            Metadata metadata_location_types_name= getMetadataLocationTypesName(dllmAttributes);
+
+            Metadata metadata_latitude= getMetadataLatitude(dllmAttributes);
+            Metadata metadata_longitude= getMetadataLongitude(dllmAttributes);
 
             ArrayList<Metadata> metadataArrayList = new ArrayList<>();
+
             metadataArrayList.add(metadata_title);
             metadataArrayList.add(metadata_language);
             metadataArrayList.add(metadata_documentsID);
+
             metadataArrayList.add(metadata_documentsCodeNumber);
             metadataArrayList.add(metadata_documents_roll);
             metadataArrayList.add(metadata_extent);
             metadataArrayList.add(metadata_place);
+
             metadataArrayList.add(metadata_full_location_name);
             metadataArrayList.add(metadataDllmOriginal);
             metadataArrayList.add(metadata_description);
+            metadataArrayList.add(metadata_has_colophon);
 
+            metadataArrayList.add(metadata_is_illustrated);
+            metadataArrayList.add(metadata_is_color);
+            metadataArrayList.add(metadata_bundle_id);
+            metadataArrayList.add(metadata_is_complete);
 
+            metadataArrayList.add(metadata_pages_count);
+            metadataArrayList.add(metadata_material);
+            metadataArrayList.add(metadata_location_types_name);
+            metadataArrayList.add(metadata_location_types_name);
 
+            metadataArrayList.add(metadata_latitude);
+            metadataArrayList.add(metadata_longitude);
 
             Iterator<Metadata> iter = metadataArrayList.iterator();
 
@@ -264,9 +289,59 @@ public class IIIFPresentationDlllm {
     }
 
     @NotNull
+    private static Metadata getMetadataLatitude(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "schema:latitude")),
+                new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lat()))));
+    }
+
+    @NotNull
+    private static Metadata getMetadataLongitude(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "schema:longitude")),
+                new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lon()))));
+    }
+
+    @NotNull
+    private static Metadata getMetadataLocationTypesName(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "location_type")),
+                new Value(new I18n("en",dllmAttributes.getLocation_types_name()),
+                        new I18n("lo", dllmAttributes.getLocation_types_name_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataMaterial(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "material")),
+                new Value(new I18n("en",dllmAttributes.getMaterials_name()),
+                        new I18n("lo", dllmAttributes.getMaterials_name_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataPagesCount(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "pages_count")),
+                new Value(new I18n("en", String.valueOf(dllmAttributes.getDocuments_pages_count()))));
+    }
+
+    @NotNull
+    private static Metadata getMetadataIsComplete(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "is_complete")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_is_complete())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataBundleID(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "otherIdentifier.bundle_id")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_bundle_id())));
+    }
+
+    @NotNull
     private static Metadata getMetadataDocumentsRoll(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "otherIdentifier.roll")),
                 new Value(new I18n("en",dllmAttributes.getDocuments_roll())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataIsColor(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "is_color")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_is_color())));
     }
 
     @NotNull
@@ -288,6 +363,18 @@ public class IIIFPresentationDlllm {
     }
 
     @NotNull
+    private static Metadata getMetadataHasColophon(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "has_colophon")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_has_colophon())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataIsIllustrated(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "is_illustrated")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_is_illustrated())));
+    }
+
+    @NotNull
     private static Metadata getMetadataDescription(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "dc:description")),
                 new Value(new I18n("en",dllmAttributes.getDescription())));
@@ -298,87 +385,91 @@ public class IIIFPresentationDlllm {
         ArrayList<String> dllmArrayList = new ArrayList<>();
 
         dllmArrayList.add("documents_id : " + dllmAttributes.getDocuments_id());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_code_number());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_roll());
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_number_of_fascicles()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_number_of_folios()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_is_top_level()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_parent_parent_id()));
-        dllmArrayList.add("documents_id : " +dllmAttributes.getFull_location_name());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getFull_location_name_lao());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_has_colophon());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_is_illustrated());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_is_color());
+        dllmArrayList.add("documents_code_number : " +dllmAttributes.getDocuments_code_number());
+        dllmArrayList.add("documents_roll : " +dllmAttributes.getDocuments_roll());
+        dllmArrayList.add("documents_number_of_fascicles : " +String.valueOf(dllmAttributes.getDocuments_number_of_fascicles()));
+        dllmArrayList.add("documents_number_of_folios : " +String.valueOf(dllmAttributes.getDocuments_number_of_folios()));
+        dllmArrayList.add("locations_is_top_level : " +String.valueOf(dllmAttributes.getLocations_is_top_level()));
+        dllmArrayList.add("locations_parent_parent_id : " +String.valueOf(dllmAttributes.getLocations_parent_parent_id()));
+        dllmArrayList.add("full_location_name : " +dllmAttributes.getFull_location_name());
+        dllmArrayList.add("full_location_name_lao : " +dllmAttributes.getFull_location_name_lao());
+        dllmArrayList.add("documents_has_colophon : " +dllmAttributes.getDocuments_has_colophon());
+        dllmArrayList.add("documents_is_illustrated : " +dllmAttributes.getDocuments_is_illustrated());
+        dllmArrayList.add("documents_is_color : " +dllmAttributes.getDocuments_is_color());
 
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_bundle_id());
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_id()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_parent_id()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_position_in_bundle()));
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_is_complete());
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_pages_count()));
-        dllmArrayList.add("documents_id : " +dllmAttributes.getMaterials_name());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getMaterials_name_lao());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getLocation_types_name());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getLocation_types_name_lao());
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_rgt()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_lft()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_gps_lat()));
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_gps_lon()));
+        dllmArrayList.add("documents_bundle_id : " +dllmAttributes.getDocuments_bundle_id());
+        dllmArrayList.add("locations_id : " +String.valueOf(dllmAttributes.getLocations_id()));
+        dllmArrayList.add("locations_parent_id : " +String.valueOf(dllmAttributes.getLocations_parent_id()));
+        dllmArrayList.add("documents_position_in_bundle : "+String.valueOf(dllmAttributes.getDocuments_position_in_bundle()));
+        dllmArrayList.add("documents_is_complete : " +dllmAttributes.getDocuments_is_complete());
+        dllmArrayList.add("documents_pages_count : " +String.valueOf(dllmAttributes.getDocuments_pages_count()));
+
+        dllmArrayList.add("materials_name : " +dllmAttributes.getMaterials_name());
+        dllmArrayList.add("materials_name_lao : " +dllmAttributes.getMaterials_name_lao());
+
+        dllmArrayList.add("location_types_name : " +dllmAttributes.getLocation_types_name());
+        dllmArrayList.add("location_types_name_lao : " +dllmAttributes.getLocation_types_name_lao());
+        dllmArrayList.add("locations_rgt : " +String.valueOf(dllmAttributes.getLocations_rgt()));
+        dllmArrayList.add("locations_lft : " +String.valueOf(dllmAttributes.getLocations_lft()));
+        dllmArrayList.add("locations_dllm_loc_code : " +String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
+        dllmArrayList.add("locations_gps_lat : " +String.valueOf(dllmAttributes.getLocations_gps_lat()));
+        dllmArrayList.add("locations_gps_lon : " +String.valueOf(dllmAttributes.getLocations_gps_lon()));
 
         if (dllmAttributes.getAncillary_terms_roman()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getAncillary_terms_roman())); //ARRAY
+            dllmArrayList.add("ancillary_terms_roman : " +String.valueOf(dllmAttributes.getAncillary_terms_roman())); //ARRAY
 
         if (dllmAttributes.getAncillary_terms_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getAncillary_terms_lao())); //ARRAY
+            dllmArrayList.add("ancillary_terms_lao : " +String.valueOf(dllmAttributes.getAncillary_terms_lao())); //ARRAY
 
         if (dllmAttributes.getPublic_remarks_english()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_english()));  //ARRAY
+            dllmArrayList.add("public_remarks_english : " +String.valueOf(dllmAttributes.getPublic_remarks_english()));  //ARRAY
 
         if (dllmAttributes.getPublic_remarks_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
+            dllmArrayList.add("public_remarks_lao : " +String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
 
         if (dllmAttributes.getPublic_remarks_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_lao())); //ARRAY
+            dllmArrayList.add("categories_name : " +String.valueOf(dllmAttributes.getPublic_remarks_lao())); //ARRAY
 
         if (dllmAttributes.getCategories_name_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
+            dllmArrayList.add("categories_name_lao : " +String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
 
         if (dllmAttributes.getLanguages()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLanguages())); //ARRAY
+            dllmArrayList.add("languages : " +String.valueOf(dllmAttributes.getLanguages())); //ARRAY
 
         if (dllmAttributes.getLanguages_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
+            dllmArrayList.add("languages_lao : " +String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
 
         if (dllmAttributes.getScripts()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getScripts())); //ARRAY
+            dllmArrayList.add("scripts : " +String.valueOf(dllmAttributes.getScripts())); //ARRAY
 
         if (dllmAttributes.getScripts_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
+            dllmArrayList.add("scripts_lao : " +String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
 
         if (dllmAttributes.getTitle_search_roman()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
+            dllmArrayList.add("title_search_roman : " +String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
 
         if (dllmAttributes.getTitle_search_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getTitle_search_lao())); //ARRAY
+            dllmArrayList.add("title_search_lao : " +String.valueOf(dllmAttributes.getTitle_search_lao())); //ARRAY
 
         if (dllmAttributes.getDllm_title_roman()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDllm_title_roman())); //ARRAY
+            dllmArrayList.add("dllm_title_roman : " +String.valueOf(dllmAttributes.getDllm_title_roman())); //ARRAY
 
         if (dllmAttributes.getDllm_title_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDllm_title_lao())); //ARRAY
+            dllmArrayList.add("dllm_title_lao : " +String.valueOf(dllmAttributes.getDllm_title_lao())); //ARRAY
 
         if (dllmAttributes.getPlmp_title_lao()!= null)
-            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPlmp_title_lao())); //ARRAY
+            dllmArrayList.add("plmp_title_lao : " +String.valueOf(dllmAttributes.getPlmp_title_lao())); //ARRAY
 
-        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocation_documents_count()));
-        dllmArrayList.add("documents_id : " +dllmAttributes.getLegibilities_name());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getLegibilities_name_lao());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getConditions_name());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getConditions_name_lao());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_preferred_date_system());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_preferred_date_system_lao());
-        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_date_written());
+        dllmArrayList.add("location_documents_count : " +String.valueOf(dllmAttributes.getLocation_documents_count()));
+        dllmArrayList.add("legibilities_name : " +dllmAttributes.getLegibilities_name());
+        dllmArrayList.add("legibilities_name_lao : " +dllmAttributes.getLegibilities_name_lao());
+        dllmArrayList.add("conditions_name : " +dllmAttributes.getConditions_name());
+        dllmArrayList.add("conditions_name_lao : " +dllmAttributes.getConditions_name_lao());
+        dllmArrayList.add("documents_preferred_date_system : " +dllmAttributes.getDocuments_preferred_date_system());
+        dllmArrayList.add("documents_preferred_date_system_lao : " +dllmAttributes.getDocuments_preferred_date_system_lao());
+
+        if (dllmAttributes.getDocuments_date_written()!= null)
+            dllmArrayList.add("documents_date_written : " +dllmAttributes.getDocuments_date_written());
 
         Iterator<String> iterDllm_original = dllmArrayList.iterator();
 
