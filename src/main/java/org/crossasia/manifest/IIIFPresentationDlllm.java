@@ -4,10 +4,11 @@ import info.freelibrary.iiif.presentation.v3.*;
 import info.freelibrary.iiif.presentation.v3.io.Manifestor;
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.properties.behaviors.ManifestBehavior;
-import info.freelibrary.iiif.presentation.v3.services.Service;
 import info.freelibrary.iiif.presentation.v3.services.image.ImageService3;
 import info.freelibrary.iiif.presentation.v3.services.OtherService;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.json.JsonConnecter;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -15,11 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.*;
-import java.util.Collection;
 
 import static info.freelibrary.iiif.presentation.v3.properties.ViewingDirection.RIGHT_TO_LEFT;
 import static org.crossasia.manifest.ManifestDllmCollection.readJsonFromUrl;
@@ -36,7 +35,7 @@ public class IIIFPresentationDlllm {
 
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/raw/");
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter2/");
 
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -44,40 +43,137 @@ public class IIIFPresentationDlllm {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/created/");
+            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 
             Manifestor manifestor = new Manifestor();
 
-            titleRoman(dllmAttributes, jsonObj);
-            titleThai(dllmAttributes, jsonObj);
-            languageRoman(dllmAttributes, jsonObj);
-            languageThai(dllmAttributes, jsonObj);
-            getDllmID(dllmAttributes, jsonObj);
+            JsonConnecter.titleRoman(dllmAttributes, jsonObj);
+            JsonConnecter.titleThai(dllmAttributes, jsonObj);
+            JsonConnecter.languageRoman(dllmAttributes, jsonObj);
+            JsonConnecter.languageThai(dllmAttributes, jsonObj);
+            JsonConnecter.documentsID(dllmAttributes,jsonObj);
+            JsonConnecter.documentsCodeNumber(dllmAttributes,jsonObj);
+            JsonConnecter.documentsRoll(dllmAttributes,jsonObj);
+            JsonConnecter.documentsExtent(dllmAttributes,jsonObj);
+            JsonConnecter.documentsNumberOfFascicles(dllmAttributes,jsonObj);
+            JsonConnecter.documentsNumberOfFolios(dllmAttributes,jsonObj);
+            JsonConnecter.fullLocationName(dllmAttributes,jsonObj);
+            JsonConnecter.fullLocationNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentParentName(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentParentNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentName(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationsIsTopLevel(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentParentID(dllmAttributes,jsonObj);
+            JsonConnecter.documentsHasColophon(dllmAttributes,jsonObj);
+            JsonConnecter.documentsIsIllustrated(dllmAttributes,jsonObj);
+            JsonConnecter.documentsIsColor(dllmAttributes,jsonObj);
+            JsonConnecter.documentsIsComplete(dllmAttributes,jsonObj);
+            JsonConnecter.documentsPagesCount(dllmAttributes,jsonObj);
+            JsonConnecter.documentsPositionInBundle(dllmAttributes,jsonObj);
+            JsonConnecter.locationsParentID(dllmAttributes,jsonObj);
+            JsonConnecter.locationsID(dllmAttributes,jsonObj);
+            JsonConnecter.documentsBundleID(dllmAttributes,jsonObj);
+            JsonConnecter.description(dllmAttributes,jsonObj);
+
+            JsonConnecter.materialsName(dllmAttributes,jsonObj);
+            JsonConnecter.materialsNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationTypesName(dllmAttributes,jsonObj);
+
+            JsonConnecter.locationTypesNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationsLft(dllmAttributes,jsonObj);
+            JsonConnecter.locationsRgt(dllmAttributes,jsonObj);
+
+            JsonConnecter.locationsDllmLocCode(dllmAttributes,jsonObj);
+            JsonConnecter.locationsGpsLat(dllmAttributes,jsonObj);
+            JsonConnecter.locationsGpsLon(dllmAttributes,jsonObj);
+
+            JsonConnecter.ancillaryTermsRoman(dllmAttributes,jsonObj);
+            JsonConnecter.ancillaryTermsLao(dllmAttributes,jsonObj);
+            JsonConnecter.publicRemarksEnglish(dllmAttributes,jsonObj);
+
+            JsonConnecter.publicRemarksLao(dllmAttributes,jsonObj);
+            JsonConnecter.categoriesName(dllmAttributes,jsonObj);
+            JsonConnecter.categoriesNameLao(dllmAttributes,jsonObj);
+
+            JsonConnecter.scripts(dllmAttributes,jsonObj);
+            JsonConnecter.scriptsLao(dllmAttributes,jsonObj);
+            JsonConnecter.titleSearchRoman(dllmAttributes,jsonObj);
+
+            JsonConnecter.titleSearchLao(dllmAttributes,jsonObj);
+            JsonConnecter.dllmTitleRoman(dllmAttributes,jsonObj);
+            JsonConnecter.dllmTitleLao(dllmAttributes,jsonObj);
+
+            JsonConnecter.plmpTitleLao(dllmAttributes,jsonObj);
+            JsonConnecter.locationDocumentsCount(dllmAttributes,jsonObj);
+            JsonConnecter.legibilitiesName(dllmAttributes,jsonObj);
+
+            JsonConnecter.legibilitiesNameLao(dllmAttributes,jsonObj);
+            JsonConnecter.conditionsName(dllmAttributes,jsonObj);
+            JsonConnecter.conditionsNameLao(dllmAttributes,jsonObj);
+
+            JsonConnecter.documentsPreferredDateSystem(dllmAttributes,jsonObj);
+            JsonConnecter.documentsPreferredDateSystemLao(dllmAttributes,jsonObj);
+            JsonConnecter.documentsDateWritten(dllmAttributes,jsonObj);
+            JsonConnecter.dateOriginal(dllmAttributes,jsonObj);
+            JsonConnecter.dateOriginalLao(dllmAttributes,jsonObj);
 
             I18n i18n_title_Roman = getStringsLabel(dllmAttributes); // get Label
             Manifest manifest = new Manifest(String.valueOf(file), new Label(i18n_title_Roman));
+
             staticFields(counter, manifest); //all static fields
             counter++;
 
-            Metadata metadata_title = getMetadataTitleRomanThai(dllmAttributes);
+            Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
             Metadata metadata_language = getMetadataLanguageRomanThai(dllmAttributes);
 
-            manifest.setMetadata(metadata_title, metadata_language);
+            Metadata metadata_documentsID = getMetadataDocumentsID(dllmAttributes);
+            Metadata metadata_documentsCodeNumber = getMetadataDocumentsCodeNumber(dllmAttributes);
+            Metadata metadata_documents_roll = getMetadataDocumentsRoll(dllmAttributes);
 
-            String book_ID=dllmAttributes.getId();
+            Metadata metadata_extent = getMetadataExtentMethod(dllmAttributes);
+            Metadata metadata_description = getMetadataDescription(dllmAttributes);
 
-            manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"/canvas/1"));
+            Metadata metadataDllmOriginal = getMetadataDllmOriginal(dllmAttributes);
+            Metadata metadata_place = getMetadataPlaces(dllmAttributes);
+            Metadata metadata_full_location_name = getMetadataFullLocationName(dllmAttributes);
 
+
+
+            ArrayList<Metadata> metadataArrayList = new ArrayList<>();
+            metadataArrayList.add(metadata_title);
+            metadataArrayList.add(metadata_language);
+            metadataArrayList.add(metadata_documentsID);
+            metadataArrayList.add(metadata_documentsCodeNumber);
+            metadataArrayList.add(metadata_documents_roll);
+            metadataArrayList.add(metadata_extent);
+            metadataArrayList.add(metadata_place);
+            metadataArrayList.add(metadata_full_location_name);
+            metadataArrayList.add(metadataDllmOriginal);
+            metadataArrayList.add(metadata_description);
+
+
+
+
+            Iterator<Metadata> iter = metadataArrayList.iterator();
+
+            while (iter.hasNext()) {
+                Metadata md = iter.next();
+                if (md==null)
+                    iter.remove();
+            }
+            manifest.setMetadata(metadataArrayList);
+
+            String book_ID=dllmAttributes.getDocuments_id();
             String page_ID="484597";
 
             String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +page_ID  + "/manifest";
             String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
 
             ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ page_ID);
-            manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-
+            //manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
             //start adding images
             JSONArray pages = null;
@@ -101,11 +197,10 @@ public class IIIFPresentationDlllm {
             for (int j = 0; j < pages.length(); j++) {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
 
-
-
                 String pages_position="";
                 String pages_image_file="";
                 String pages_id="";
+                String first_pages_id="";
                 String pages_document_id="";
                 int number_of_pages = pages.length();
 
@@ -115,8 +210,11 @@ public class IIIFPresentationDlllm {
                 if (pagesObj.has("pages_image_file"))
                     pages_image_file = (String) pagesObj.get("pages_image_file").toString();
 
-                if (pagesObj.has("pages_id"))
+                if (pagesObj.has("pages_id")) {
                     pages_id = (String) pagesObj.get("pages_id").toString();
+                    //first_pages_id = pagesObj.get("pages_id").toString();
+                    first_pages_id = dllmAttributes.getDocuments_id();
+                }
 
                 if (pagesObj.has("pages_document_id"))
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
@@ -129,7 +227,11 @@ public class IIIFPresentationDlllm {
                 annoID = manifestID+"/annotation";
                 annoPageID = manifestID;
 
-                canvas = new Canvas(canvasID).setWidthHeight((Integer) json.get("width"), (Integer) json.get("height"));
+                int weight = (int) json.get("width");
+                int height = (int) json.get("height");
+                canvas = new Canvas(canvasID).setWidthHeight(weight, height);
+
+                System.out.println(file.getName());
 
                 imageContent = new ImageContent(imageID).setWidthHeight((Integer) json.get("width"), (Integer) json.get("height"));
                 annoPage = new AnnotationPage<>(annoPageID);
@@ -138,6 +240,14 @@ public class IIIFPresentationDlllm {
                 canvases.add(canvas.setPaintingPages(annoPage));
                 //manifest.setCanvases(canvas.setPaintingPages(annoPage));
                 manifest.setCanvases(canvases);
+
+                MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +pages_id  + "/manifest";
+                MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
+
+                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ pages_id);
+                manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
+                manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"+"+pages_id + "/canvas/"+pages_id));
+
             }
             //end adding images
 
@@ -153,22 +263,151 @@ public class IIIFPresentationDlllm {
         }
     }
 
-    private static Metadata getMetadataTitleRomanThai(DllmAttributes dllmAttributes) {
-        ArrayList<String> titleRomanArrayList = new ArrayList<>();
-        ArrayList<String> titleThaiArrayList = new ArrayList<>();
-        Metadata metadata_title = new Metadata(new Label("en",""), new Value("en",""));
-
-        for (int i = 0; i< dllmAttributes.getTitle_roman().length(); i++) {
-            titleRomanArrayList.add(dllmAttributes.getTitle_roman().get(i).toString());
-            titleThaiArrayList.add(dllmAttributes.getTitle_lao().get(i).toString());
-            I18n i18n_title_Roman = new I18n("en", titleRomanArrayList);
-            I18n i18n_title_Thai = new I18n("lo", titleThaiArrayList);
-            metadata_title = new Metadata(new Label("en","Title") ,
-                    new Value(new I18n []{i18n_title_Roman, i18n_title_Thai}));
-        }
-        return metadata_title;
-
+    @NotNull
+    private static Metadata getMetadataDocumentsRoll(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "otherIdentifier.roll")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_roll())));
     }
+
+    @NotNull
+    private static Metadata getMetadataDocumentsID(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "dc:identifier")),
+                        new Value(new I18n("en",dllmAttributes.getDocuments_id())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataDocumentsCodeNumber(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "otherIdentifier.code_number")),
+        new Value(new I18n("en",dllmAttributes.getDocuments_code_number())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataExtentMethod(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "dc:extent")),
+                new Value(new I18n("en",dllmAttributes.getExtent())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataDescription(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "dc:description")),
+                new Value(new I18n("en",dllmAttributes.getDescription())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataDllmOriginal(DllmAttributes dllmAttributes) {
+        ArrayList<String> dllmArrayList = new ArrayList<>();
+
+        dllmArrayList.add(dllmAttributes.getDocuments_id());
+        dllmArrayList.add(dllmAttributes.getDocuments_code_number());
+        dllmArrayList.add(dllmAttributes.getDocuments_roll());
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDocuments_number_of_fascicles()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDocuments_number_of_folios()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_is_top_level()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_parent_parent_id()));
+        dllmArrayList.add(dllmAttributes.getFull_location_name());
+        dllmArrayList.add(dllmAttributes.getFull_location_name_lao());
+        dllmArrayList.add(dllmAttributes.getDocuments_has_colophon());
+        dllmArrayList.add(dllmAttributes.getDocuments_is_illustrated());
+        dllmArrayList.add(dllmAttributes.getDocuments_is_color());
+
+        dllmArrayList.add(dllmAttributes.getDocuments_bundle_id());
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_id()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_parent_id()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDocuments_position_in_bundle()));
+        dllmArrayList.add(dllmAttributes.getDocuments_is_complete());
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDocuments_pages_count()));
+        dllmArrayList.add(dllmAttributes.getMaterials_name());
+        dllmArrayList.add(dllmAttributes.getMaterials_name_lao());
+        dllmArrayList.add(dllmAttributes.getLocation_types_name());
+        dllmArrayList.add(dllmAttributes.getLocation_types_name_lao());
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_rgt()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_lft()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_gps_lat()));
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_gps_lon()));
+        dllmArrayList.add(dllmAttributes.getAncillary_terms_roman());
+        dllmArrayList.add(dllmAttributes.getAncillary_terms_lao());
+        dllmArrayList.add(String.valueOf(dllmAttributes.getPublic_remarks_english()));  //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getCategories_name())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLanguages())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getScripts())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getTitle_search_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDllm_title_roman())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getDllm_title_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getPlmp_title_lao())); //ARRAY
+        dllmArrayList.add(String.valueOf(dllmAttributes.getLocation_documents_count()));
+        dllmArrayList.add(dllmAttributes.getLegibilities_name());
+        dllmArrayList.add(dllmAttributes.getLegibilities_name_lao());
+        dllmArrayList.add(dllmAttributes.getConditions_name());
+        dllmArrayList.add(dllmAttributes.getConditions_name_lao());
+        dllmArrayList.add(dllmAttributes.getDocuments_preferred_date_system());
+        dllmArrayList.add(dllmAttributes.getDocuments_preferred_date_system_lao());
+        dllmArrayList.add(dllmAttributes.getDocuments_date_written());
+
+
+
+        I18n dllm_org = new I18n("en", dllmArrayList);
+
+        return new Metadata(new Label(new I18n("en", "dllm_original")),
+                new Value(new I18n []{ dllm_org }));
+    }
+
+    @NotNull
+    private static Metadata getMetadataFullLocationName(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "full_location_name")),
+                new Value(new I18n("en",dllmAttributes.getFull_location_name()),
+                        new I18n("lo", dllmAttributes.getFull_location_name_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataPlaces(DllmAttributes dllmAttributes) {
+        ArrayList<String> placesArrayList = new ArrayList<>();
+        ArrayList<String> placesArrayListLao = new ArrayList<>();
+        placesArrayList.add(dllmAttributes.getLocations_parent_parent_name());
+        placesArrayList.add(dllmAttributes.getLocations_parent_name());
+        placesArrayListLao.add(dllmAttributes.getLocations_parent_parent_name_lao());
+        placesArrayListLao.add(dllmAttributes.getLocations_parent_name_lao());
+
+        I18n places_roman = new I18n("en", placesArrayList);
+        I18n places_lao = new I18n("lo", placesArrayListLao);
+
+        return new Metadata(new Label(new I18n("en", "dc:place")),
+                new Value(new I18n [] {places_roman, places_lao}));
+    }
+
+    private static Metadata getMetadataTitlesRomanThai(DllmAttributes dllmAttributes, Manifest manifest) {
+        if (dllmAttributes.getDllm_title_roman()!=null) {
+            Metadata  metadata_title = getMetadataTitleRomanThai(dllmAttributes);
+            manifest.setMetadata(metadata_title);
+            return metadata_title;
+        }
+        return null;
+    }
+
+    private static Metadata getMetadataTitleRomanThai(DllmAttributes dllmAttributes) {
+        Metadata metadata_title = new Metadata(new Label("en", ""), new Value("en", ""));
+        if (dllmAttributes.getDllm_title_roman()!=null || dllmAttributes.getDllm_title_lao()!=null) {
+            ArrayList<String> titleRomanArrayList = new ArrayList<>();
+            ArrayList<String> titleThaiArrayList = new ArrayList<>();
+
+            for (int i = 0; i < dllmAttributes.getDllm_title_roman().length(); i++) {
+                titleRomanArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
+                titleThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
+                I18n i18n_title_Roman = new I18n("en", titleRomanArrayList);
+                I18n i18n_title_Thai = new I18n("lo", titleThaiArrayList);
+                metadata_title = new Metadata(new Label("en", "Title"),
+                        new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
+            }
+            return metadata_title;
+        } else
+            return metadata_title;
+    }
+
 
     private static Metadata getMetadataLanguageRomanThai(DllmAttributes dllmAttributes) {
         ArrayList<String> languagesRomanArrayList = new ArrayList<>();
@@ -180,7 +419,7 @@ public class IIIFPresentationDlllm {
             languagesThaiArrayList.add(dllmAttributes.getLanguages_lao().get(i).toString());
             I18n i18n_language_Roman = new I18n("en", languagesRomanArrayList);
             I18n i18n_language_Thai = new I18n("lo", languagesThaiArrayList);
-            metadata_language = new Metadata(new Label("en","Language") ,
+            metadata_language = new Metadata(new Label("en","dc:language") ,
                     new Value(new I18n []{i18n_language_Roman, i18n_language_Thai}));
         }
         return metadata_language;
@@ -189,11 +428,14 @@ public class IIIFPresentationDlllm {
     private static I18n getStringsLabel(DllmAttributes dllmAttributes) {
         ArrayList<String> titlesArrayList = new ArrayList<>();
         I18n i18n_title_Roman = new I18n("en", "");
-        for (int i = 0; i< dllmAttributes.getTitle_roman().length(); i++) {
-            titlesArrayList.add(dllmAttributes.getTitle_roman().get(i).toString());
-            i18n_title_Roman = new I18n("en", titlesArrayList);
-        }
-        return i18n_title_Roman;
+        if (dllmAttributes.getDllm_title_roman()!=null) {
+            for (int i = 0; i < dllmAttributes.getDllm_title_roman().length(); i++) {
+                titlesArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
+                i18n_title_Roman = new I18n("en", titlesArrayList);
+            }
+            return i18n_title_Roman;
+        } else
+            return i18n_title_Roman;
     }
 
     private static void staticFields(int counter, Manifest manifest) {
@@ -221,37 +463,5 @@ public class IIIFPresentationDlllm {
         seeAlso.setFormat("text/xml");
         seeAlso.setProfile("https//schema.org");
         manifest.setSeeAlsoRefs(seeAlso);
-    }
-
-
-
-    private static void titleRoman(DllmAttributes dllmAttributes, JSONObject jsonObj) {
-        if (jsonObj.has("titles")) {
-            dllmAttributes.setTitle_roman((JSONArray) jsonObj.get("titles"));
-        }
-    }
-    private static void titleThai(DllmAttributes dllmAttributes, JSONObject jsonObj) {
-        if (jsonObj.has("titles_lao")) {
-            dllmAttributes.setTitle_lao((JSONArray) jsonObj.get("titles_lao"));
-        }
-    }
-
-    private static void getDllmID(DllmAttributes dllmAttributes, JSONObject jsonObj) {
-        if (jsonObj.has("id")) {
-            dllmAttributes.setId((String) jsonObj.get("id").toString());
-        }
-    }
-
-
-    private static void languageRoman(DllmAttributes dllmAttributes, JSONObject jsonObj) {
-        if (jsonObj.has("languages")) {
-            dllmAttributes.setLanguages((JSONArray) jsonObj.get("languages"));
-        }
-    }
-
-    private static void languageThai(DllmAttributes dllmAttributes, JSONObject jsonObj) {
-        if (jsonObj.has("languages_lao")) {
-            dllmAttributes.setLanguages_lao((JSONArray) jsonObj.get("languages_lao"));
-        }
     }
 }

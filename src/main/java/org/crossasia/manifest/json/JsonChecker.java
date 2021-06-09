@@ -24,7 +24,7 @@ public class JsonChecker {
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 
             if (jsonObj.has("titles")) {
-                dllmAttributes.setTitle_roman((JSONArray) jsonObj.get("titles"));
+                //dllmAttributes.getDllm_title_roman( jsonObj.get("titles"));
             }
         }
     }

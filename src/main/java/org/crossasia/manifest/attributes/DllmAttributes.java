@@ -3,87 +3,69 @@ package org.crossasia.manifest.attributes;
 import org.json.JSONArray;
 
 public class DllmAttributes {
-    private String  id;
-    private String  code_number;
-    private String  roll;
-    private String  date_written ;
-    private int date_written_right;
-    private String  temporal_date;
-    private String  temporal_date_lao;
 
-    private int number_of_fascicles;
-    private int number_of_folios;
-    private int has_colophon;
-    private String  has_colophon_str;
-    private int is_illustrated;
-    private String  is_illustrated_str;
-
-    private String  bundle_id;
-
-    private int position_in_bundle;
-    private int pages_count;
+    private String  documents_id;
+    private String  documents_code_number;
+    private String  documents_roll;
+    private int documents_number_of_fascicles;
+    private int documents_number_of_folios;
+    private String extent;
+    private int locations_is_top_level;
+    private int locations_parent_parent_id;
+    private String locations_parent_parent_name;
+    private String full_location_name_lao;
+    private  String locations_parent_parent_name_lao;
+    private String locations_parent_name_lao;
+    private String locations_parent_name;
+    private String full_location_name;
+    private String location_name;
+    private String location_name_lao;
+    private String documents_has_colophon;
+    private String documents_is_illustrated;
+    private String documents_is_color;
+    private String documents_bundle_id;
     private int locations_id;
     private int locations_parent_id;
-
-    private String  public_remarks_en;
-    private String  public_remarks_lo ;
-
-    private String  private_remarks_en;
-    private String  private_remarks_lo ;
-
-    private int is_color;
-    private String  is_color_str ;
-    private int is_complete;
-    private String  is_complete_str;
-
-    private String  materials ;
-    private String  materials_lao;
-
-    private String  name_location;
-    private String  name_location_lao;
-
-    private String  location ;
-    private String  location_place ;
-    private String  location_place_lao;
-
-    private int location_lft;
-    private int location_rgt;
-    private int location_code;
-    private double location_lat;
-    private double location_lon;
-    private int location_documents_count;
-
-    private String  legibilities;
-    private String  legibilities_lao;
-    private String  additional_date_infos_roman;
-    private String  additional_date_infos_lao;
-    private String  conditions;
-    private String  conditions_lao ;
-    private String  preferred_date_systems;
-    private String  preferred_date_systems_lao;
-
-    private JSONArray languages;
+    private int documents_position_in_bundle;
+    private String documents_is_complete;
+    private int documents_pages_count;
+    private String description;
+    private String materials_name;
+    private String materials_name_lao;
+    private String documents_private_remarks_en;
+    private  String documents_private_remark_lo;
+    private String location_types_name;
+    private String location_types_name_lao;
+    private int locations_lft;
+    private  int  locations_rgt;
+    private int locations_dllm_loc_code;
+    private double locations_gps_lat;
+    private double locations_gps_lon;
+    private String ancillary_terms_roman;
+    private String ancillary_terms_lao;
+    private  JSONArray     public_remarks_english;
+    private JSONArray public_remarks_lao;
+    private  JSONArray     categories_name;
+    private JSONArray categories_name_lao;
+    private  JSONArray languages;
     private JSONArray languages_lao;
-
-    private JSONArray remark_lao;
-    private JSONArray remark_english;
-
-    private JSONArray term_roman;
-    private JSONArray term_leo;
-
-    private JSONArray categories;
-    private JSONArray categories_lao;
-
     private JSONArray scripts;
     private JSONArray scripts_lao;
-
-    private JSONArray title_roman;
-    private JSONArray title_lao;
-
     private JSONArray title_search_roman;
     private JSONArray title_search_lao;
-
-    private JSONArray plmp_title_lao;
+    private JSONArray dllm_title_roman;
+    private JSONArray dllm_title_lao;
+    private  JSONArray plmp_title_lao;
+    private int location_documents_count;
+    private String legibilities_name;
+    private String legibilities_name_lao;
+    private String conditions_name;
+    private String conditions_name_lao;
+    private String documents_preferred_date_system;
+    private  String     documents_preferred_date_system_lao;
+    private String documents_date_written;
+    private  String date_original;
+    private String date_original_lao;
 
     private JSONArray pages;
 
@@ -91,198 +73,295 @@ public class DllmAttributes {
 
     }
 
-    public DllmAttributes(String id, String code_number, String roll, String date_written, int date_written_right, String temporal_date, String temporal_date_lao, int number_of_fascicles, int number_of_folios, int has_colophon, String has_colophon_str, int is_illustrated, String is_illustrated_str, String bundle_id, int position_in_bundle, int pages_count, int locations_id, int locations_parent_id, String public_remarks_en, String public_remarks_lo, String private_remarks_en, String private_remarks_lo, int is_color, String is_color_str, int is_complete, String is_complete_str, String materials, String materials_lao, String name_location, String name_location_lao, String location, String location_place, String location_place_lao, int location_lft, int location_rgt, int location_code, double location_lat, double location_lon, int location_documents_count, String legibilities, String legibilities_lao, String additional_date_infos_roman, String additional_date_infos_lao, String conditions, String conditions_lao, String preferred_date_systems, String preferred_date_systems_lao, JSONArray languages, JSONArray languages_lao, JSONArray remark_lao, JSONArray remark_english, JSONArray term_roman, JSONArray term_leo, JSONArray categories, JSONArray categories_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_roman, JSONArray title_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray plmp_title_lao, JSONArray pages) {
-        this.id = id;
-        this.code_number = code_number;
-        this.roll = roll;
-        this.date_written = date_written;
-        this.date_written_right = date_written_right;
-        this.temporal_date = temporal_date;
-        this.temporal_date_lao = temporal_date_lao;
-        this.number_of_fascicles = number_of_fascicles;
-        this.number_of_folios = number_of_folios;
-        this.has_colophon = has_colophon;
-        this.has_colophon_str = has_colophon_str;
-        this.is_illustrated = is_illustrated;
-        this.is_illustrated_str = is_illustrated_str;
-        this.bundle_id = bundle_id;
-        this.position_in_bundle = position_in_bundle;
-        this.pages_count = pages_count;
+    public String getLocations_parent_name() {
+        return locations_parent_name;
+    }
+
+    public void setLocations_parent_name(String locations_parent_name) {
+        this.locations_parent_name = locations_parent_name;
+    }
+
+    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String locations_parent_name, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, String ancillary_terms_roman, String ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
+        this.documents_id = documents_id;
+        this.documents_code_number = documents_code_number;
+        this.documents_roll = documents_roll;
+        this.documents_number_of_fascicles = documents_number_of_fascicles;
+        this.documents_number_of_folios = documents_number_of_folios;
+        this.extent = extent;
+        this.locations_is_top_level = locations_is_top_level;
+        this.locations_parent_parent_id = locations_parent_parent_id;
+        this.locations_parent_parent_name = locations_parent_parent_name;
+        this.full_location_name_lao = full_location_name_lao;
+        this.locations_parent_parent_name_lao = locations_parent_parent_name_lao;
+        this.locations_parent_name_lao = locations_parent_name_lao;
+        this.locations_parent_name = locations_parent_name;
+        this.full_location_name = full_location_name;
+        this.location_name = location_name;
+        this.location_name_lao = location_name_lao;
+        this.documents_has_colophon = documents_has_colophon;
+        this.documents_is_illustrated = documents_is_illustrated;
+        this.documents_is_color = documents_is_color;
+        this.documents_bundle_id = documents_bundle_id;
         this.locations_id = locations_id;
         this.locations_parent_id = locations_parent_id;
-        this.public_remarks_en = public_remarks_en;
-        this.public_remarks_lo = public_remarks_lo;
-        this.private_remarks_en = private_remarks_en;
-        this.private_remarks_lo = private_remarks_lo;
-        this.is_color = is_color;
-        this.is_color_str = is_color_str;
-        this.is_complete = is_complete;
-        this.is_complete_str = is_complete_str;
-        this.materials = materials;
-        this.materials_lao = materials_lao;
-        this.name_location = name_location;
-        this.name_location_lao = name_location_lao;
-        this.location = location;
-        this.location_place = location_place;
-        this.location_place_lao = location_place_lao;
-        this.location_lft = location_lft;
-        this.location_rgt = location_rgt;
-        this.location_code = location_code;
-        this.location_lat = location_lat;
-        this.location_lon = location_lon;
-        this.location_documents_count = location_documents_count;
-        this.legibilities = legibilities;
-        this.legibilities_lao = legibilities_lao;
-        this.additional_date_infos_roman = additional_date_infos_roman;
-        this.additional_date_infos_lao = additional_date_infos_lao;
-        this.conditions = conditions;
-        this.conditions_lao = conditions_lao;
-        this.preferred_date_systems = preferred_date_systems;
-        this.preferred_date_systems_lao = preferred_date_systems_lao;
+        this.documents_position_in_bundle = documents_position_in_bundle;
+        this.documents_is_complete = documents_is_complete;
+        this.documents_pages_count = documents_pages_count;
+        this.description = description;
+        this.materials_name = materials_name;
+        this.materials_name_lao = materials_name_lao;
+        this.documents_private_remarks_en = documents_private_remarks_en;
+        this.documents_private_remark_lo = documents_private_remark_lo;
+        this.location_types_name = location_types_name;
+        this.location_types_name_lao = location_types_name_lao;
+        this.locations_lft = locations_lft;
+        this.locations_rgt = locations_rgt;
+        this.locations_dllm_loc_code = locations_dllm_loc_code;
+        this.locations_gps_lat = locations_gps_lat;
+        this.locations_gps_lon = locations_gps_lon;
+        this.ancillary_terms_roman = ancillary_terms_roman;
+        this.ancillary_terms_lao = ancillary_terms_lao;
+        this.public_remarks_english = public_remarks_english;
+        this.public_remarks_lao = public_remarks_lao;
+        this.categories_name = categories_name;
+        this.categories_name_lao = categories_name_lao;
         this.languages = languages;
         this.languages_lao = languages_lao;
-        this.remark_lao = remark_lao;
-        this.remark_english = remark_english;
-        this.term_roman = term_roman;
-        this.term_leo = term_leo;
-        this.categories = categories;
-        this.categories_lao = categories_lao;
         this.scripts = scripts;
         this.scripts_lao = scripts_lao;
-        this.title_roman = title_roman;
-        this.title_lao = title_lao;
         this.title_search_roman = title_search_roman;
         this.title_search_lao = title_search_lao;
+        this.dllm_title_roman = dllm_title_roman;
+        this.dllm_title_lao = dllm_title_lao;
         this.plmp_title_lao = plmp_title_lao;
+        this.location_documents_count = location_documents_count;
+        this.legibilities_name = legibilities_name;
+        this.legibilities_name_lao = legibilities_name_lao;
+        this.conditions_name = conditions_name;
+        this.conditions_name_lao = conditions_name_lao;
+        this.documents_preferred_date_system = documents_preferred_date_system;
+        this.documents_preferred_date_system_lao = documents_preferred_date_system_lao;
+        this.documents_date_written = documents_date_written;
+        this.date_original = date_original;
+        this.date_original_lao = date_original_lao;
         this.pages = pages;
     }
 
-    public String getId() {
-        return id;
+    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, String ancillary_terms_roman, String ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
+        this.documents_id = documents_id;
+        this.documents_code_number = documents_code_number;
+        this.documents_roll = documents_roll;
+        this.documents_number_of_fascicles = documents_number_of_fascicles;
+        this.documents_number_of_folios = documents_number_of_folios;
+        this.extent = extent;
+        this.locations_is_top_level = locations_is_top_level;
+        this.locations_parent_parent_id = locations_parent_parent_id;
+        this.locations_parent_parent_name = locations_parent_parent_name;
+        this.full_location_name_lao = full_location_name_lao;
+        this.locations_parent_parent_name_lao = locations_parent_parent_name_lao;
+        this.locations_parent_name_lao = locations_parent_name_lao;
+        this.full_location_name = full_location_name;
+        this.location_name = location_name;
+        this.location_name_lao = location_name_lao;
+        this.documents_has_colophon = documents_has_colophon;
+        this.documents_is_illustrated = documents_is_illustrated;
+        this.documents_is_color = documents_is_color;
+        this.documents_bundle_id = documents_bundle_id;
+        this.locations_id = locations_id;
+        this.locations_parent_id = locations_parent_id;
+        this.documents_position_in_bundle = documents_position_in_bundle;
+        this.documents_is_complete = documents_is_complete;
+        this.documents_pages_count = documents_pages_count;
+        this.description = description;
+        this.materials_name = materials_name;
+        this.materials_name_lao = materials_name_lao;
+        this.documents_private_remarks_en = documents_private_remarks_en;
+        this.documents_private_remark_lo = documents_private_remark_lo;
+        this.location_types_name = location_types_name;
+        this.location_types_name_lao = location_types_name_lao;
+        this.locations_lft = locations_lft;
+        this.locations_rgt = locations_rgt;
+        this.locations_dllm_loc_code = locations_dllm_loc_code;
+        this.locations_gps_lat = locations_gps_lat;
+        this.locations_gps_lon = locations_gps_lon;
+        this.ancillary_terms_roman = ancillary_terms_roman;
+        this.ancillary_terms_lao = ancillary_terms_lao;
+        this.public_remarks_english = public_remarks_english;
+        this.public_remarks_lao = public_remarks_lao;
+        this.categories_name = categories_name;
+        this.categories_name_lao = categories_name_lao;
+        this.languages = languages;
+        this.languages_lao = languages_lao;
+        this.scripts = scripts;
+        this.scripts_lao = scripts_lao;
+        this.title_search_roman = title_search_roman;
+        this.title_search_lao = title_search_lao;
+        this.dllm_title_roman = dllm_title_roman;
+        this.dllm_title_lao = dllm_title_lao;
+        this.plmp_title_lao = plmp_title_lao;
+        this.location_documents_count = location_documents_count;
+        this.legibilities_name = legibilities_name;
+        this.legibilities_name_lao = legibilities_name_lao;
+        this.conditions_name = conditions_name;
+        this.conditions_name_lao = conditions_name_lao;
+        this.documents_preferred_date_system = documents_preferred_date_system;
+        this.documents_preferred_date_system_lao = documents_preferred_date_system_lao;
+        this.documents_date_written = documents_date_written;
+        this.date_original = date_original;
+        this.date_original_lao = date_original_lao;
+        this.pages = pages;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getDocuments_id() {
+        return documents_id;
     }
 
-    public String getCode_number() {
-        return code_number;
+    public void setDocuments_id(String documents_id) {
+        this.documents_id = documents_id;
     }
 
-    public void setCode_number(String code_number) {
-        this.code_number = code_number;
+    public String getDocuments_code_number() {
+        return documents_code_number;
     }
 
-    public String getRoll() {
-        return roll;
+    public void setDocuments_code_number(String documents_code_number) {
+        this.documents_code_number = documents_code_number;
     }
 
-    public void setRoll(String roll) {
-        this.roll = roll;
+    public String getDocuments_roll() {
+        return documents_roll;
     }
 
-    public String getDate_written() {
-        return date_written;
+    public void setDocuments_roll(String documents_roll) {
+        this.documents_roll = documents_roll;
     }
 
-    public void setDate_written(String date_written) {
-        this.date_written = date_written;
+    public int getDocuments_number_of_fascicles() {
+        return documents_number_of_fascicles;
     }
 
-    public int getDate_written_right() {
-        return date_written_right;
+    public void setDocuments_number_of_fascicles(int documents_number_of_fascicles) {
+        this.documents_number_of_fascicles = documents_number_of_fascicles;
     }
 
-    public void setDate_written_right(int date_written_right) {
-        this.date_written_right = date_written_right;
+    public int getDocuments_number_of_folios() {
+        return documents_number_of_folios;
     }
 
-    public String getTemporal_date() {
-        return temporal_date;
+    public void setDocuments_number_of_folios(int documents_number_of_folios) {
+        this.documents_number_of_folios = documents_number_of_folios;
     }
 
-    public void setTemporal_date(String temporal_date) {
-        this.temporal_date = temporal_date;
+    public String getExtent() {
+        return extent;
     }
 
-    public String getTemporal_date_lao() {
-        return temporal_date_lao;
+    public void setExtent(String extent) {
+        this.extent = extent;
     }
 
-    public void setTemporal_date_lao(String temporal_date_lao) {
-        this.temporal_date_lao = temporal_date_lao;
+    public int getLocations_is_top_level() {
+        return locations_is_top_level;
     }
 
-    public int getNumber_of_fascicles() {
-        return number_of_fascicles;
+    public void setLocations_is_top_level(int locations_is_top_level) {
+        this.locations_is_top_level = locations_is_top_level;
     }
 
-    public void setNumber_of_fascicles(int number_of_fascicles) {
-        this.number_of_fascicles = number_of_fascicles;
+    public int getLocations_parent_parent_id() {
+        return locations_parent_parent_id;
     }
 
-    public int getNumber_of_folios() {
-        return number_of_folios;
+    public void setLocations_parent_parent_id(int locations_parent_parent_id) {
+        this.locations_parent_parent_id = locations_parent_parent_id;
     }
 
-    public void setNumber_of_folios(int number_of_folios) {
-        this.number_of_folios = number_of_folios;
+    public String getLocations_parent_parent_name() {
+        return locations_parent_parent_name;
     }
 
-    public int getHas_colophon() {
-        return has_colophon;
+    public void setLocations_parent_parent_name(String locations_parent_parent_name) {
+        this.locations_parent_parent_name = locations_parent_parent_name;
     }
 
-    public void setHas_colophon(int has_colophon) {
-        this.has_colophon = has_colophon;
+    public String getFull_location_name_lao() {
+        return full_location_name_lao;
     }
 
-    public String getHas_colophon_str() {
-        return has_colophon_str;
+    public void setFull_location_name_lao(String full_location_name_lao) {
+        this.full_location_name_lao = full_location_name_lao;
     }
 
-    public void setHas_colophon_str(String has_colophon_str) {
-        this.has_colophon_str = has_colophon_str;
+    public String getLocations_parent_parent_name_lao() {
+        return locations_parent_parent_name_lao;
     }
 
-    public int getIs_illustrated() {
-        return is_illustrated;
+    public void setLocations_parent_parent_name_lao(String locations_parent_parent_name_lao) {
+        this.locations_parent_parent_name_lao = locations_parent_parent_name_lao;
     }
 
-    public void setIs_illustrated(int is_illustrated) {
-        this.is_illustrated = is_illustrated;
+    public String getLocations_parent_name_lao() {
+        return locations_parent_name_lao;
     }
 
-    public String getIs_illustrated_str() {
-        return is_illustrated_str;
+    public void setLocations_parent_name_lao(String locations_parent_name_lao) {
+        this.locations_parent_name_lao = locations_parent_name_lao;
     }
 
-    public void setIs_illustrated_str(String is_illustrated_str) {
-        this.is_illustrated_str = is_illustrated_str;
+    public String getFull_location_name() {
+        return full_location_name;
     }
 
-    public String getBundle_id() {
-        return bundle_id;
+    public void setFull_location_name(String full_location_name) {
+        this.full_location_name = full_location_name;
     }
 
-    public void setBundle_id(String bundle_id) {
-        this.bundle_id = bundle_id;
+    public String getLocation_name() {
+        return location_name;
     }
 
-    public int getPosition_in_bundle() {
-        return position_in_bundle;
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
     }
 
-    public void setPosition_in_bundle(int position_in_bundle) {
-        this.position_in_bundle = position_in_bundle;
+    public String getLocation_name_lao() {
+        return location_name_lao;
     }
 
-    public int getPages_count() {
-        return pages_count;
+    public void setLocation_name_lao(String location_name_lao) {
+        this.location_name_lao = location_name_lao;
     }
 
-    public void setPages_count(int pages_count) {
-        this.pages_count = pages_count;
+    public String getDocuments_has_colophon() {
+        return documents_has_colophon;
+    }
+
+    public void setDocuments_has_colophon(String documents_has_colophon) {
+        this.documents_has_colophon = documents_has_colophon;
+    }
+
+    public String getDocuments_is_illustrated() {
+        return documents_is_illustrated;
+    }
+
+    public void setDocuments_is_illustrated(String documents_is_illustrated) {
+        this.documents_is_illustrated = documents_is_illustrated;
+    }
+
+    public String getDocuments_is_color() {
+        return documents_is_color;
+    }
+
+    public void setDocuments_is_color(String documents_is_color) {
+        this.documents_is_color = documents_is_color;
+    }
+
+    public String getDocuments_bundle_id() {
+        return documents_bundle_id;
+    }
+
+    public void setDocuments_bundle_id(String documents_bundle_id) {
+        this.documents_bundle_id = documents_bundle_id;
     }
 
     public int getLocations_id() {
@@ -301,236 +380,172 @@ public class DllmAttributes {
         this.locations_parent_id = locations_parent_id;
     }
 
-    public String getPublic_remarks_en() {
-        return public_remarks_en;
+    public int getDocuments_position_in_bundle() {
+        return documents_position_in_bundle;
     }
 
-    public void setPublic_remarks_en(String public_remarks_en) {
-        this.public_remarks_en = public_remarks_en;
+    public void setDocuments_position_in_bundle(int documents_position_in_bundle) {
+        this.documents_position_in_bundle = documents_position_in_bundle;
     }
 
-    public String getPublic_remarks_lo() {
-        return public_remarks_lo;
+    public String getDocuments_is_complete() {
+        return documents_is_complete;
     }
 
-    public void setPublic_remarks_lo(String public_remarks_lo) {
-        this.public_remarks_lo = public_remarks_lo;
+    public void setDocuments_is_complete(String documents_is_complete) {
+        this.documents_is_complete = documents_is_complete;
     }
 
-    public String getPrivate_remarks_en() {
-        return private_remarks_en;
+    public int getDocuments_pages_count() {
+        return documents_pages_count;
     }
 
-    public void setPrivate_remarks_en(String private_remarks_en) {
-        this.private_remarks_en = private_remarks_en;
+    public void setDocuments_pages_count(int documents_pages_count) {
+        this.documents_pages_count = documents_pages_count;
     }
 
-    public String getPrivate_remarks_lo() {
-        return private_remarks_lo;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPrivate_remarks_lo(String private_remarks_lo) {
-        this.private_remarks_lo = private_remarks_lo;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getIs_color() {
-        return is_color;
+    public String getMaterials_name() {
+        return materials_name;
     }
 
-    public void setIs_color(int is_color) {
-        this.is_color = is_color;
+    public void setMaterials_name(String materials_name) {
+        this.materials_name = materials_name;
     }
 
-    public String getIs_color_str() {
-        return is_color_str;
+    public String getMaterials_name_lao() {
+        return materials_name_lao;
     }
 
-    public void setIs_color_str(String is_color_str) {
-        this.is_color_str = is_color_str;
+    public void setMaterials_name_lao(String materials_name_lao) {
+        this.materials_name_lao = materials_name_lao;
     }
 
-    public int getIs_complete() {
-        return is_complete;
+    public String getDocuments_private_remarks_en() {
+        return documents_private_remarks_en;
     }
 
-    public void setIs_complete(int is_complete) {
-        this.is_complete = is_complete;
+    public void setDocuments_private_remarks_en(String documents_private_remarks_en) {
+        this.documents_private_remarks_en = documents_private_remarks_en;
     }
 
-    public String getIs_complete_str() {
-        return is_complete_str;
+    public String getDocuments_private_remark_lo() {
+        return documents_private_remark_lo;
     }
 
-    public void setIs_complete_str(String is_complete_str) {
-        this.is_complete_str = is_complete_str;
+    public void setDocuments_private_remark_lo(String documents_private_remark_lo) {
+        this.documents_private_remark_lo = documents_private_remark_lo;
     }
 
-    public String getMaterials() {
-        return materials;
+    public String getLocation_types_name() {
+        return location_types_name;
     }
 
-    public void setMaterials(String materials) {
-        this.materials = materials;
+    public void setLocation_types_name(String location_types_name) {
+        this.location_types_name = location_types_name;
     }
 
-    public String getMaterials_lao() {
-        return materials_lao;
+    public String getLocation_types_name_lao() {
+        return location_types_name_lao;
     }
 
-    public void setMaterials_lao(String materials_lao) {
-        this.materials_lao = materials_lao;
+    public void setLocation_types_name_lao(String location_types_name_lao) {
+        this.location_types_name_lao = location_types_name_lao;
     }
 
-    public String getName_location() {
-        return name_location;
+    public int getLocations_lft() {
+        return locations_lft;
     }
 
-    public void setName_location(String name_location) {
-        this.name_location = name_location;
+    public void setLocations_lft(int locations_lft) {
+        this.locations_lft = locations_lft;
     }
 
-    public String getName_location_lao() {
-        return name_location_lao;
+    public int getLocations_rgt() {
+        return locations_rgt;
     }
 
-    public void setName_location_lao(String name_location_lao) {
-        this.name_location_lao = name_location_lao;
+    public void setLocations_rgt(int locations_rgt) {
+        this.locations_rgt = locations_rgt;
     }
 
-    public String getLocation() {
-        return location;
+    public int getLocations_dllm_loc_code() {
+        return locations_dllm_loc_code;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocations_dllm_loc_code(int locations_dllm_loc_code) {
+        this.locations_dllm_loc_code = locations_dllm_loc_code;
     }
 
-    public String getLocation_place() {
-        return location_place;
+    public double getLocations_gps_lat() {
+        return locations_gps_lat;
     }
 
-    public void setLocation_place(String location_place) {
-        this.location_place = location_place;
+    public void setLocations_gps_lat(double locations_gps_lat) {
+        this.locations_gps_lat = locations_gps_lat;
     }
 
-    public String getLocation_place_lao() {
-        return location_place_lao;
+    public double getLocations_gps_lon() {
+        return locations_gps_lon;
     }
 
-    public void setLocation_place_lao(String location_place_lao) {
-        this.location_place_lao = location_place_lao;
+    public void setLocations_gps_lon(double locations_gps_lon) {
+        this.locations_gps_lon = locations_gps_lon;
     }
 
-    public int getLocation_lft() {
-        return location_lft;
+    public String getAncillary_terms_roman() {
+        return ancillary_terms_roman;
     }
 
-    public void setLocation_lft(int location_lft) {
-        this.location_lft = location_lft;
+    public void setAncillary_terms_roman(String ancillary_terms_roman) {
+        this.ancillary_terms_roman = ancillary_terms_roman;
     }
 
-    public int getLocation_rgt() {
-        return location_rgt;
+    public String getAncillary_terms_lao() {
+        return ancillary_terms_lao;
     }
 
-    public void setLocation_rgt(int location_rgt) {
-        this.location_rgt = location_rgt;
+    public void setAncillary_terms_lao(String ancillary_terms_lao) {
+        this.ancillary_terms_lao = ancillary_terms_lao;
     }
 
-    public int getLocation_code() {
-        return location_code;
+    public JSONArray getPublic_remarks_english() {
+        return public_remarks_english;
     }
 
-    public void setLocation_code(int location_code) {
-        this.location_code = location_code;
+    public void setPublic_remarks_english(JSONArray public_remarks_english) {
+        this.public_remarks_english = public_remarks_english;
     }
 
-    public double getLocation_lat() {
-        return location_lat;
+    public JSONArray getPublic_remarks_lao() {
+        return public_remarks_lao;
     }
 
-    public void setLocation_lat(double location_lat) {
-        this.location_lat = location_lat;
+    public void setPublic_remarks_lao(JSONArray public_remarks_lao) {
+        this.public_remarks_lao = public_remarks_lao;
     }
 
-    public double getLocation_lon() {
-        return location_lon;
+    public JSONArray getCategories_name() {
+        return categories_name;
     }
 
-    public void setLocation_lon(double location_lon) {
-        this.location_lon = location_lon;
+    public void setCategories_name(JSONArray categories_name) {
+        this.categories_name = categories_name;
     }
 
-    public int getLocation_documents_count() {
-        return location_documents_count;
+    public JSONArray getCategories_name_lao() {
+        return categories_name_lao;
     }
 
-    public void setLocation_documents_count(int location_documents_count) {
-        this.location_documents_count = location_documents_count;
-    }
-
-    public String getLegibilities() {
-        return legibilities;
-    }
-
-    public void setLegibilities(String legibilities) {
-        this.legibilities = legibilities;
-    }
-
-    public String getLegibilities_lao() {
-        return legibilities_lao;
-    }
-
-    public void setLegibilities_lao(String legibilities_lao) {
-        this.legibilities_lao = legibilities_lao;
-    }
-
-    public String getAdditional_date_infos_roman() {
-        return additional_date_infos_roman;
-    }
-
-    public void setAdditional_date_infos_roman(String additional_date_infos_roman) {
-        this.additional_date_infos_roman = additional_date_infos_roman;
-    }
-
-    public String getAdditional_date_infos_lao() {
-        return additional_date_infos_lao;
-    }
-
-    public void setAdditional_date_infos_lao(String additional_date_infos_lao) {
-        this.additional_date_infos_lao = additional_date_infos_lao;
-    }
-
-    public String getConditions() {
-        return conditions;
-    }
-
-    public void setConditions(String conditions) {
-        this.conditions = conditions;
-    }
-
-    public String getConditions_lao() {
-        return conditions_lao;
-    }
-
-    public void setConditions_lao(String conditions_lao) {
-        this.conditions_lao = conditions_lao;
-    }
-
-    public String getPreferred_date_systems() {
-        return preferred_date_systems;
-    }
-
-    public void setPreferred_date_systems(String preferred_date_systems) {
-        this.preferred_date_systems = preferred_date_systems;
-    }
-
-    public String getPreferred_date_systems_lao() {
-        return preferred_date_systems_lao;
-    }
-
-    public void setPreferred_date_systems_lao(String preferred_date_systems_lao) {
-        this.preferred_date_systems_lao = preferred_date_systems_lao;
+    public void setCategories_name_lao(JSONArray categories_name_lao) {
+        this.categories_name_lao = categories_name_lao;
     }
 
     public JSONArray getLanguages() {
@@ -549,54 +564,6 @@ public class DllmAttributes {
         this.languages_lao = languages_lao;
     }
 
-    public JSONArray getRemark_lao() {
-        return remark_lao;
-    }
-
-    public void setRemark_lao(JSONArray remark_lao) {
-        this.remark_lao = remark_lao;
-    }
-
-    public JSONArray getRemark_english() {
-        return remark_english;
-    }
-
-    public void setRemark_english(JSONArray remark_english) {
-        this.remark_english = remark_english;
-    }
-
-    public JSONArray getTerm_roman() {
-        return term_roman;
-    }
-
-    public void setTerm_roman(JSONArray term_roman) {
-        this.term_roman = term_roman;
-    }
-
-    public JSONArray getTerm_leo() {
-        return term_leo;
-    }
-
-    public void setTerm_leo(JSONArray term_leo) {
-        this.term_leo = term_leo;
-    }
-
-    public JSONArray getCategories() {
-        return categories;
-    }
-
-    public void setCategories(JSONArray categories) {
-        this.categories = categories;
-    }
-
-    public JSONArray getCategories_lao() {
-        return categories_lao;
-    }
-
-    public void setCategories_lao(JSONArray categories_lao) {
-        this.categories_lao = categories_lao;
-    }
-
     public JSONArray getScripts() {
         return scripts;
     }
@@ -611,22 +578,6 @@ public class DllmAttributes {
 
     public void setScripts_lao(JSONArray scripts_lao) {
         this.scripts_lao = scripts_lao;
-    }
-
-    public JSONArray getTitle_roman() {
-        return title_roman;
-    }
-
-    public void setTitle_roman(JSONArray title_roman) {
-        this.title_roman = title_roman;
-    }
-
-    public JSONArray getTitle_lao() {
-        return title_lao;
-    }
-
-    public void setTitle_lao(JSONArray title_lao) {
-        this.title_lao = title_lao;
     }
 
     public JSONArray getTitle_search_roman() {
@@ -645,12 +596,108 @@ public class DllmAttributes {
         this.title_search_lao = title_search_lao;
     }
 
+    public JSONArray getDllm_title_roman() {
+        return dllm_title_roman;
+    }
+
+    public void setDllm_title_roman(JSONArray dllm_title_roman) {
+        this.dllm_title_roman = dllm_title_roman;
+    }
+
+    public JSONArray getDllm_title_lao() {
+        return dllm_title_lao;
+    }
+
+    public void setDllm_title_lao(JSONArray dllm_title_lao) {
+        this.dllm_title_lao = dllm_title_lao;
+    }
+
     public JSONArray getPlmp_title_lao() {
         return plmp_title_lao;
     }
 
     public void setPlmp_title_lao(JSONArray plmp_title_lao) {
         this.plmp_title_lao = plmp_title_lao;
+    }
+
+    public int getLocation_documents_count() {
+        return location_documents_count;
+    }
+
+    public void setLocation_documents_count(int location_documents_count) {
+        this.location_documents_count = location_documents_count;
+    }
+
+    public String getLegibilities_name() {
+        return legibilities_name;
+    }
+
+    public void setLegibilities_name(String legibilities_name) {
+        this.legibilities_name = legibilities_name;
+    }
+
+    public String getLegibilities_name_lao() {
+        return legibilities_name_lao;
+    }
+
+    public void setLegibilities_name_lao(String legibilities_name_lao) {
+        this.legibilities_name_lao = legibilities_name_lao;
+    }
+
+    public String getConditions_name() {
+        return conditions_name;
+    }
+
+    public void setConditions_name(String conditions_name) {
+        this.conditions_name = conditions_name;
+    }
+
+    public String getConditions_name_lao() {
+        return conditions_name_lao;
+    }
+
+    public void setConditions_name_lao(String conditions_name_lao) {
+        this.conditions_name_lao = conditions_name_lao;
+    }
+
+    public String getDocuments_preferred_date_system() {
+        return documents_preferred_date_system;
+    }
+
+    public void setDocuments_preferred_date_system(String documents_preferred_date_system) {
+        this.documents_preferred_date_system = documents_preferred_date_system;
+    }
+
+    public String getDocuments_preferred_date_system_lao() {
+        return documents_preferred_date_system_lao;
+    }
+
+    public void setDocuments_preferred_date_system_lao(String documents_preferred_date_system_lao) {
+        this.documents_preferred_date_system_lao = documents_preferred_date_system_lao;
+    }
+
+    public String getDocuments_date_written() {
+        return documents_date_written;
+    }
+
+    public void setDocuments_date_written(String documents_date_written) {
+        this.documents_date_written = documents_date_written;
+    }
+
+    public String getDate_original() {
+        return date_original;
+    }
+
+    public void setDate_original(String date_original) {
+        this.date_original = date_original;
+    }
+
+    public String getDate_original_lao() {
+        return date_original_lao;
+    }
+
+    public void setDate_original_lao(String date_original_lao) {
+        this.date_original_lao = date_original_lao;
     }
 
     public JSONArray getPages() {
