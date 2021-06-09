@@ -41,8 +41,8 @@ public class DllmAttributes {
     private int locations_dllm_loc_code;
     private double locations_gps_lat;
     private double locations_gps_lon;
-    private String ancillary_terms_roman;
-    private String ancillary_terms_lao;
+    private JSONArray ancillary_terms_roman;
+    private JSONArray ancillary_terms_lao;
     private  JSONArray     public_remarks_english;
     private JSONArray public_remarks_lao;
     private  JSONArray     categories_name;
@@ -81,7 +81,7 @@ public class DllmAttributes {
         this.locations_parent_name = locations_parent_name;
     }
 
-    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String locations_parent_name, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, String ancillary_terms_roman, String ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
+    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String locations_parent_name, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, JSONArray ancillary_terms_roman, JSONArray ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
         this.documents_id = documents_id;
         this.documents_code_number = documents_code_number;
         this.documents_roll = documents_roll;
@@ -147,7 +147,7 @@ public class DllmAttributes {
         this.pages = pages;
     }
 
-    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, String ancillary_terms_roman, String ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
+    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String documents_private_remarks_en, String documents_private_remark_lo, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, JSONArray ancillary_terms_roman, JSONArray ancillary_terms_lao, JSONArray public_remarks_english, JSONArray public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages) {
         this.documents_id = documents_id;
         this.documents_code_number = documents_code_number;
         this.documents_roll = documents_roll;
@@ -500,19 +500,19 @@ public class DllmAttributes {
         this.locations_gps_lon = locations_gps_lon;
     }
 
-    public String getAncillary_terms_roman() {
+    public JSONArray getAncillary_terms_roman() {
         return ancillary_terms_roman;
     }
 
-    public void setAncillary_terms_roman(String ancillary_terms_roman) {
+    public void setAncillary_terms_roman(JSONArray ancillary_terms_roman) {
         this.ancillary_terms_roman = ancillary_terms_roman;
     }
 
-    public String getAncillary_terms_lao() {
+    public JSONArray getAncillary_terms_lao() {
         return ancillary_terms_lao;
     }
 
-    public void setAncillary_terms_lao(String ancillary_terms_lao) {
+    public void setAncillary_terms_lao(JSONArray ancillary_terms_lao) {
         this.ancillary_terms_lao = ancillary_terms_lao;
     }
 

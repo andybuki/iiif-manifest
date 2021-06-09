@@ -234,13 +234,13 @@ public class JsonConnecter {
 
     public static void ancillaryTermsRoman(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("ancillary_terms_roman")) {
-            dllmAttributes.setAncillary_terms_roman((String) jsonObj.get("ancillary_terms_roman"));
+            dllmAttributes.setAncillary_terms_roman((JSONArray) jsonObj.get("ancillary_terms_roman"));
         }
     }
 
     public static void ancillaryTermsLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("ancillary_terms_lao")) {
-            dllmAttributes.setAncillary_terms_lao((String) jsonObj.get("ancillary_terms_lao"));
+            dllmAttributes.setAncillary_terms_lao((JSONArray) jsonObj.get("ancillary_terms_lao"));
         }
     }
 
