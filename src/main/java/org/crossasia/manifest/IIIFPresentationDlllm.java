@@ -314,71 +314,71 @@ public class IIIFPresentationDlllm {
         dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_id()));
         dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_parent_id()));
         dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_position_in_bundle()));
-        dllmArrayList.add(dllmAttributes.getDocuments_is_complete());
-        dllmArrayList.add(String.valueOf(dllmAttributes.getDocuments_pages_count()));
-        dllmArrayList.add(dllmAttributes.getMaterials_name());
-        dllmArrayList.add(dllmAttributes.getMaterials_name_lao());
-        dllmArrayList.add(dllmAttributes.getLocation_types_name());
-        dllmArrayList.add(dllmAttributes.getLocation_types_name_lao());
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_rgt()));
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_lft()));
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_gps_lat()));
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocations_gps_lon()));
+        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_is_complete());
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDocuments_pages_count()));
+        dllmArrayList.add("documents_id : " +dllmAttributes.getMaterials_name());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getMaterials_name_lao());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getLocation_types_name());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getLocation_types_name_lao());
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_rgt()));
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_lft()));
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_gps_lat()));
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocations_gps_lon()));
 
         if (dllmAttributes.getAncillary_terms_roman()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getAncillary_terms_roman())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getAncillary_terms_roman())); //ARRAY
 
         if (dllmAttributes.getAncillary_terms_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getAncillary_terms_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getAncillary_terms_lao())); //ARRAY
 
         if (dllmAttributes.getPublic_remarks_english()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getPublic_remarks_english()));  //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_english()));  //ARRAY
 
         if (dllmAttributes.getPublic_remarks_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
 
         if (dllmAttributes.getPublic_remarks_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getPublic_remarks_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPublic_remarks_lao())); //ARRAY
 
         if (dllmAttributes.getCategories_name_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
 
         if (dllmAttributes.getLanguages()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getLanguages())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLanguages())); //ARRAY
 
         if (dllmAttributes.getLanguages_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
 
         if (dllmAttributes.getScripts()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getScripts())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getScripts())); //ARRAY
 
         if (dllmAttributes.getScripts_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
 
         if (dllmAttributes.getTitle_search_roman()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
 
         if (dllmAttributes.getTitle_search_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getTitle_search_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getTitle_search_lao())); //ARRAY
 
         if (dllmAttributes.getDllm_title_roman()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getDllm_title_roman())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDllm_title_roman())); //ARRAY
 
         if (dllmAttributes.getDllm_title_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getDllm_title_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getDllm_title_lao())); //ARRAY
 
         if (dllmAttributes.getPlmp_title_lao()!= null)
-            dllmArrayList.add(String.valueOf(dllmAttributes.getPlmp_title_lao())); //ARRAY
+            dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getPlmp_title_lao())); //ARRAY
 
-        dllmArrayList.add(String.valueOf(dllmAttributes.getLocation_documents_count()));
-        dllmArrayList.add(dllmAttributes.getLegibilities_name());
-        dllmArrayList.add(dllmAttributes.getLegibilities_name_lao());
-        dllmArrayList.add(dllmAttributes.getConditions_name());
-        dllmArrayList.add(dllmAttributes.getConditions_name_lao());
-        dllmArrayList.add(dllmAttributes.getDocuments_preferred_date_system());
-        dllmArrayList.add(dllmAttributes.getDocuments_preferred_date_system_lao());
-        dllmArrayList.add(dllmAttributes.getDocuments_date_written());
+        dllmArrayList.add("documents_id : " +String.valueOf(dllmAttributes.getLocation_documents_count()));
+        dllmArrayList.add("documents_id : " +dllmAttributes.getLegibilities_name());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getLegibilities_name_lao());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getConditions_name());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getConditions_name_lao());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_preferred_date_system());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_preferred_date_system_lao());
+        dllmArrayList.add("documents_id : " +dllmAttributes.getDocuments_date_written());
 
         Iterator<String> iterDllm_original = dllmArrayList.iterator();
 
