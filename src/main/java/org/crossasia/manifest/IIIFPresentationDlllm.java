@@ -188,7 +188,6 @@ public class IIIFPresentationDlllm {
             metadataArrayList.add(metadata_pages_count);
             metadataArrayList.add(metadata_material);
             metadataArrayList.add(metadata_location_types_name);
-            metadataArrayList.add(metadata_location_types_name);
 
             metadataArrayList.add(metadata_latitude);
             metadataArrayList.add(metadata_longitude);
@@ -303,11 +302,35 @@ public class IIIFPresentationDlllm {
             provider.setLogos(new ImageContent(LOGO_LINK).setServices(manifestThumbService));
             manifest.setProviders(provider);
 
-            File newFile = new File(created +"/" +file.getName());
+            File newFile = new File(created +"/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
-
         }
     }
+
+
+
+    private static Metadata getMetadataDescription(DllmAttributes dllmAttributes) {
+
+        ArrayList<String> descriptionRomanArrayList = new ArrayList<>();
+        ArrayList<String> descriptionThaiArrayList = new ArrayList<>();
+        Metadata metadata_description = null;
+
+        if (dllmAttributes.getPublic_remarks_english()!=null) {
+
+            for (int i = 0; i < dllmAttributes.getTitle_search_roman().length(); i++) {
+                descriptionRomanArrayList.add(dllmAttributes.getDescription().toString());
+                descriptionRomanArrayList.add(dllmAttributes.getPublic_remarks_english().get(i).toString());
+                descriptionThaiArrayList.add(dllmAttributes.getPublic_remarks_lao().get(i).toString());
+                I18n i18n_description_Roman = new I18n("en", descriptionRomanArrayList);
+                I18n i18n_description_Thai = new I18n("lo", descriptionThaiArrayList);
+                metadata_description = new Metadata(new Label("en", "dc:description"),
+                        new Value(new I18n[]{i18n_description_Roman, i18n_description_Thai}));
+            }
+        }
+
+        return metadata_description;
+    }
+
 
     @NotNull
     private static Metadata getMetadataDateOriginal(DllmAttributes dllmAttributes) {
@@ -336,12 +359,11 @@ public class IIIFPresentationDlllm {
                         new I18n("lo", dllmAttributes.getLegibilities_name_lao())));
     }
 
-    @NotNull
     private static Metadata getMetadataIndex(DllmAttributes dllmAttributes) {
 
         ArrayList<String> indexRomanArrayList = new ArrayList<>();
         ArrayList<String> indexThaiArrayList = new ArrayList<>();
-        Metadata metadata_index = new Metadata(new Label("en",""), new Value("en",""));
+        Metadata metadata_index = null;
 
         if (dllmAttributes.getTitle_search_roman()!=null) {
 
@@ -350,21 +372,20 @@ public class IIIFPresentationDlllm {
                 indexThaiArrayList.add(dllmAttributes.getTitle_search_lao().get(i).toString());
                 indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
                 I18n i18n_index_Roman = new I18n("en", indexRomanArrayList);
-                I18n i18n_index__Thai = new I18n("lo", indexThaiArrayList);
+                I18n i18n_index_Thai = new I18n("lo", indexThaiArrayList);
                 metadata_index = new Metadata(new Label("en", "index"),
-                        new Value(new I18n[]{i18n_index_Roman, i18n_index__Thai}));
+                        new Value(new I18n[]{i18n_index_Roman, i18n_index_Thai}));
             }
         }
 
         return metadata_index;
     }
 
-    @NotNull
     private static Metadata getMetadataScript(DllmAttributes dllmAttributes) {
 
         ArrayList<String> scriptRomanArrayList = new ArrayList<>();
         ArrayList<String> scriptThaiArrayList = new ArrayList<>();
-        Metadata metadata_script = new Metadata(new Label("en",""), new Value("en",""));
+        Metadata metadata_script = null;
 
         if (dllmAttributes.getScripts()!=null) {
 
@@ -382,12 +403,11 @@ public class IIIFPresentationDlllm {
     }
 
 
-    @NotNull
     private static Metadata getMetadataCategories(DllmAttributes dllmAttributes) {
 
         ArrayList<String> categoriesRomanArrayList = new ArrayList<>();
         ArrayList<String> categoriesThaiArrayList = new ArrayList<>();
-        Metadata metadata_categories = new Metadata(new Label("en",""), new Value("en",""));
+        Metadata metadata_categories = null;
 
         if (dllmAttributes.getAncillary_terms_roman()!=null) {
 
@@ -404,13 +424,13 @@ public class IIIFPresentationDlllm {
         return metadata_categories;
     }
 
-    @NotNull
+
     private static Metadata getMetadataKeywords(DllmAttributes dllmAttributes) {
 
         ArrayList<String> keywordsRomanArrayList = new ArrayList<>();
         ArrayList<String> keywordsThaiArrayList = new ArrayList<>();
-        Metadata metadata_keywords = new Metadata(new Label("en",""), new Value("en",""));
-
+        Metadata metadata_keywords = null;
+        //Metadata metadata_keywords = new Metadata(new Label("en",""), new Value("en",""));
         if (dllmAttributes.getAncillary_terms_roman()!=null) {
 
             for (int i = 0; i < dllmAttributes.getAncillary_terms_roman().length(); i++) {
@@ -512,11 +532,6 @@ public class IIIFPresentationDlllm {
                 new Value(new I18n("en",dllmAttributes.getDocuments_is_illustrated())));
     }
 
-    @NotNull
-    private static Metadata getMetadataDescription(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "dc:description")),
-                new Value(new I18n("en",dllmAttributes.getDescription())));
-    }
 
     @NotNull
     private static Metadata getMetadataDllmOriginal(DllmAttributes dllmAttributes) {
@@ -656,7 +671,7 @@ public class IIIFPresentationDlllm {
     }
 
     private static Metadata getMetadataTitleRomanThai(DllmAttributes dllmAttributes) {
-        Metadata metadata_title = new Metadata(new Label("en", ""), new Value("en", ""));
+        Metadata metadata_title = null;
         if (dllmAttributes.getDllm_title_roman()!=null || dllmAttributes.getDllm_title_lao()!=null) {
             ArrayList<String> titleRomanArrayList = new ArrayList<>();
             ArrayList<String> titleThaiArrayList = new ArrayList<>();
@@ -678,7 +693,7 @@ public class IIIFPresentationDlllm {
     private static Metadata getMetadataLanguageRomanThai(DllmAttributes dllmAttributes) {
         ArrayList<String> languagesRomanArrayList = new ArrayList<>();
         ArrayList<String> languagesThaiArrayList = new ArrayList<>();
-        Metadata metadata_language = new Metadata(new Label("en",""), new Value("en",""));
+        Metadata metadata_language = null;
 
         for (int i = 0; i< dllmAttributes.getLanguages().length(); i++) {
             languagesRomanArrayList.add(dllmAttributes.getLanguages().get(i).toString());
