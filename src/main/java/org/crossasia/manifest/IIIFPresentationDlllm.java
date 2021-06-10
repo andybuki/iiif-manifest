@@ -152,6 +152,17 @@ public class IIIFPresentationDlllm {
 
             Metadata metadata_latitude= getMetadataLatitude(dllmAttributes);
             Metadata metadata_longitude= getMetadataLongitude(dllmAttributes);
+            Metadata metadata_keywords= getMetadataKeywords(dllmAttributes);
+            Metadata metadata_categories= getMetadataCategories(dllmAttributes);
+
+            Metadata metadata_script= getMetadataScript(dllmAttributes);
+            Metadata metadata_index= getMetadataIndex(dllmAttributes);
+            Metadata metadata_legibilities= getMetadataLegibilities(dllmAttributes);
+            Metadata metadata_conditions= getMetadataConditions(dllmAttributes);
+
+            Metadata metadata_date= getMetadataDate(dllmAttributes);
+            Metadata metadata_date_original= getMetadataDateOriginal(dllmAttributes);
+
 
             ArrayList<Metadata> metadataArrayList = new ArrayList<>();
 
@@ -181,6 +192,16 @@ public class IIIFPresentationDlllm {
 
             metadataArrayList.add(metadata_latitude);
             metadataArrayList.add(metadata_longitude);
+            metadataArrayList.add(metadata_keywords);
+            metadataArrayList.add(metadata_categories);
+
+            metadataArrayList.add(metadata_script);
+            metadataArrayList.add(metadata_index);
+            metadataArrayList.add(metadata_legibilities);
+            metadataArrayList.add(metadata_conditions);
+
+            metadataArrayList.add(metadata_date);
+            metadataArrayList.add(metadata_date_original);
 
             Iterator<Metadata> iter = metadataArrayList.iterator();
 
@@ -286,6 +307,123 @@ public class IIIFPresentationDlllm {
             manifestor.write(manifest, newFile);
 
         }
+    }
+
+    @NotNull
+    private static Metadata getMetadataDateOriginal(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "date_original")),
+                new Value(new I18n("en",dllmAttributes.getDate_original()),
+                        new I18n("lo", dllmAttributes.getDate_original_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataDate(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "dc:date")),
+                new Value(new I18n("en", String.valueOf(dllmAttributes.getDocuments_date_written()))));
+    }
+
+    @NotNull
+    private static Metadata getMetadataConditions(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "conditions")),
+                new Value(new I18n("en",dllmAttributes.getConditions_name()),
+                        new I18n("lo", dllmAttributes.getConditions_name_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataLegibilities(DllmAttributes dllmAttributes) {
+        return new Metadata(new Label(new I18n("en", "legibilities")),
+                new Value(new I18n("en",dllmAttributes.getLegibilities_name()),
+                        new I18n("lo", dllmAttributes.getLegibilities_name_lao())));
+    }
+
+    @NotNull
+    private static Metadata getMetadataIndex(DllmAttributes dllmAttributes) {
+
+        ArrayList<String> indexRomanArrayList = new ArrayList<>();
+        ArrayList<String> indexThaiArrayList = new ArrayList<>();
+        Metadata metadata_index = new Metadata(new Label("en",""), new Value("en",""));
+
+        if (dllmAttributes.getTitle_search_roman()!=null) {
+
+            for (int i = 0; i < dllmAttributes.getTitle_search_roman().length(); i++) {
+                indexRomanArrayList.add(dllmAttributes.getTitle_search_roman().get(i).toString());
+                indexThaiArrayList.add(dllmAttributes.getTitle_search_lao().get(i).toString());
+                indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
+                I18n i18n_index_Roman = new I18n("en", indexRomanArrayList);
+                I18n i18n_index__Thai = new I18n("lo", indexThaiArrayList);
+                metadata_index = new Metadata(new Label("en", "index"),
+                        new Value(new I18n[]{i18n_index_Roman, i18n_index__Thai}));
+            }
+        }
+
+        return metadata_index;
+    }
+
+    @NotNull
+    private static Metadata getMetadataScript(DllmAttributes dllmAttributes) {
+
+        ArrayList<String> scriptRomanArrayList = new ArrayList<>();
+        ArrayList<String> scriptThaiArrayList = new ArrayList<>();
+        Metadata metadata_script = new Metadata(new Label("en",""), new Value("en",""));
+
+        if (dllmAttributes.getScripts()!=null) {
+
+            for (int i = 0; i < dllmAttributes.getScripts().length(); i++) {
+                scriptRomanArrayList.add(dllmAttributes.getScripts().get(i).toString());
+                scriptThaiArrayList.add(dllmAttributes.getScripts_lao().get(i).toString());
+                I18n i18n_script_Roman = new I18n("en", scriptRomanArrayList);
+                I18n i18n_script_Thai = new I18n("lo", scriptThaiArrayList);
+                metadata_script = new Metadata(new Label("en", "dc:subject"),
+                        new Value(new I18n[]{i18n_script_Roman, i18n_script_Thai}));
+            }
+        }
+
+        return metadata_script;
+    }
+
+
+    @NotNull
+    private static Metadata getMetadataCategories(DllmAttributes dllmAttributes) {
+
+        ArrayList<String> categoriesRomanArrayList = new ArrayList<>();
+        ArrayList<String> categoriesThaiArrayList = new ArrayList<>();
+        Metadata metadata_categories = new Metadata(new Label("en",""), new Value("en",""));
+
+        if (dllmAttributes.getAncillary_terms_roman()!=null) {
+
+            for (int i = 0; i < dllmAttributes.getAncillary_terms_roman().length(); i++) {
+                categoriesRomanArrayList.add(dllmAttributes.getCategories_name().get(i).toString());
+                categoriesThaiArrayList.add(dllmAttributes.getCategories_name_lao().get(i).toString());
+                I18n i18n_categories_Roman = new I18n("en", categoriesRomanArrayList);
+                I18n i18n_categories_Thai = new I18n("lo", categoriesThaiArrayList);
+                metadata_categories = new Metadata(new Label("en", "dc:subject"),
+                        new Value(new I18n[]{i18n_categories_Roman, i18n_categories_Thai}));
+            }
+        }
+
+        return metadata_categories;
+    }
+
+    @NotNull
+    private static Metadata getMetadataKeywords(DllmAttributes dllmAttributes) {
+
+        ArrayList<String> keywordsRomanArrayList = new ArrayList<>();
+        ArrayList<String> keywordsThaiArrayList = new ArrayList<>();
+        Metadata metadata_keywords = new Metadata(new Label("en",""), new Value("en",""));
+
+        if (dllmAttributes.getAncillary_terms_roman()!=null) {
+
+            for (int i = 0; i < dllmAttributes.getAncillary_terms_roman().length(); i++) {
+                keywordsRomanArrayList.add(dllmAttributes.getAncillary_terms_roman().get(i).toString());
+                keywordsThaiArrayList.add(dllmAttributes.getAncillary_terms_lao().get(i).toString());
+                I18n i18n_keywords_Roman = new I18n("en", keywordsRomanArrayList);
+                I18n i18n_keywords_Thai = new I18n("lo", keywordsThaiArrayList);
+                metadata_keywords = new Metadata(new Label("en", "schema:keywords"),
+                        new Value(new I18n[]{i18n_keywords_Roman, i18n_keywords_Thai}));
+            }
+        }
+
+        return metadata_keywords;
     }
 
     @NotNull
@@ -528,7 +666,7 @@ public class IIIFPresentationDlllm {
                 titleThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
                 I18n i18n_title_Roman = new I18n("en", titleRomanArrayList);
                 I18n i18n_title_Thai = new I18n("lo", titleThaiArrayList);
-                metadata_title = new Metadata(new Label("en", "Title"),
+                metadata_title = new Metadata(new Label("en", "title"),
                         new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
             }
             return metadata_title;
