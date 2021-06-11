@@ -191,9 +191,12 @@ public class IIIFPresentationDlllm  {
 
                 if (pagesObj.has("pages_document_id"))
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
-
-                JSONObject json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm"+"+dllm_000"+pages_document_id+"+"+pages_id+"/info.json");
-
+                JSONObject json = null;
+                try {
+                    json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
+                } catch (IOException e) {
+                    System.out.println("help"+ file.getName());
+                }
                 manifestID = SERVER + MANIFEST_COLLECTION + "000" + pages_document_id +"+"+ pages_id;
                 canvasID = manifestID +"/canvas";
                 imageID = manifestID+"/full/full/0/default.jpg";
@@ -208,16 +211,22 @@ public class IIIFPresentationDlllm  {
                         weight = (int) json.get("width");
                         height = (int) json.get("height");
                     }
-                } catch (NullPointerException e) {
+                    Thread.sleep(10);
+
+                } catch (NullPointerException | InterruptedException e) {
                     System.out.println("help"+ file.getName());
                 }
-
+                https://iiif-content.crossasia.org/xasia/dllm+dllm_00012659+575582/info.json
 
                 canvas = new Canvas(canvasID).setWidthHeight(weight, height);
 
                 System.out.println(file.getName());
-
-                imageContent = new ImageContent(imageID).setWidthHeight((Integer) json.get("width"), (Integer) json.get("height"));
+                try {
+                    imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
+                    Thread.sleep(10);
+                } catch (NullPointerException | InterruptedException e) {
+                    System.out.println("help"+ file.getName());
+                }
                 annoPage = new AnnotationPage<>(annoPageID);
                 anno = new PaintingAnnotation(annoID, canvas);
                 annoPage.addAnnotations(anno.setBody(imageContent).setTarget(canvasID));
