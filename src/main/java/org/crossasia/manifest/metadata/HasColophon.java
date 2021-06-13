@@ -10,7 +10,13 @@ import org.jetbrains.annotations.NotNull;
 public class HasColophon {
     @NotNull
     public static Metadata getMetadataHasColophon(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "has_colophon")),
+        return new Metadata(new Label( "has_colophon"),
+                new Value(dllmAttributes.getDocuments_has_colophon()));
+
+        /*
+        *
+        * return new Metadata(new Label(new I18n("en", "has_colophon")),
                 new Value(new I18n("en",dllmAttributes.getDocuments_has_colophon())));
+        * */
     }
 }

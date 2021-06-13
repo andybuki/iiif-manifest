@@ -85,7 +85,13 @@ public class StaticJsonCaller {
 
     @NotNull
     public static Metadata getMetadataIsComplete(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "is_complete")),
+        return new Metadata(new Label( "is_complete"),
+                new Value(dllmAttributes.getDocuments_is_complete()));
+
+        /*
+        * return new Metadata(new Label(new I18n("en", "is_complete")),
                 new Value(new I18n("en",dllmAttributes.getDocuments_is_complete())));
+        *
+        * */
     }
 }

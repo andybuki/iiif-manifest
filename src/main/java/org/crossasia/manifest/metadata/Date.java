@@ -10,7 +10,12 @@ import org.jetbrains.annotations.NotNull;
 public class Date {
     @NotNull
     public static Metadata getMetadataDate(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "dc:date")),
+        return new Metadata(new Label( "dc:date"),
+                new Value( String.valueOf(dllmAttributes.getDocuments_date_written())));
+
+        /*
+        * return new Metadata(new Label(new I18n("en", "dc:date")),
                 new Value(new I18n("en", String.valueOf(dllmAttributes.getDocuments_date_written()))));
+        * */
     }
 }

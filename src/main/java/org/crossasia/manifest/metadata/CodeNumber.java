@@ -10,7 +10,10 @@ import org.jetbrains.annotations.NotNull;
 public class CodeNumber {
     @NotNull
     public static Metadata getMetadataDocumentsCodeNumber(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "otherIdentifier.code_number")),
-        new Value(new I18n("en",dllmAttributes.getDocuments_code_number())));
+        return new Metadata(new Label( "otherIdentifier.code_number"),
+        new Value(dllmAttributes.getDocuments_code_number()));
+
+        /*return new Metadata(new Label(new I18n("en", "otherIdentifier.code_number")),
+                new Value(new I18n("en",dllmAttributes.getDocuments_code_number())));*/
     }
 }

@@ -10,13 +10,24 @@ import org.jetbrains.annotations.NotNull;
 public class LatLon {
     @NotNull
     public static Metadata getMetadataLatitude(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "schema:latitude")),
+        return new Metadata(new Label( "schema:latitude"),
+                new Value(String.valueOf(dllmAttributes.getLocations_gps_lat())));
+
+        /*
+        * return new Metadata(new Label(new I18n("en", "schema:latitude")),
                 new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lat()))));
+        * */
     }
 
     @NotNull
     public static Metadata getMetadataLongitude(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "schema:longitude")),
+        return new Metadata(new Label("schema:longitude"),
+                new Value(String.valueOf(dllmAttributes.getLocations_gps_lon())));
+
+        /*
+        * return new Metadata(new Label(new I18n("en", "schema:longitude")),
                 new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lon()))));
+        *
+        * */
     }
 }

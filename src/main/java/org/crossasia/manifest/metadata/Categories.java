@@ -21,14 +21,13 @@ public class Categories {
             for (int i = 0; i < dllmAttributes.getCategories_name().length(); i++) {
                 categoriesRomanArrayList.add(dllmAttributes.getCategories_name().get(i).toString());
                 i18n_categories_Roman = new I18n("en", categoriesRomanArrayList);
-
                 metadata_categories = new Metadata(new Label("en", "dc:subject"),
                         new Value(new I18n[]{i18n_categories_Roman}));
             }
         }
         if (dllmAttributes.getCategories_name_lao()!=null) {
-            for (int i = 0; i < dllmAttributes.getCategories_name_lao().length(); i++) {
-                categoriesThaiArrayList.add(dllmAttributes.getCategories_name_lao().get(i).toString());
+            for (int j = 0; j < dllmAttributes.getCategories_name_lao().length(); j++) {
+                categoriesThaiArrayList.add(dllmAttributes.getCategories_name_lao().get(j).toString());
                 i18n_categories_Thai = new I18n("lo", categoriesThaiArrayList);
                 metadata_categories = new Metadata(new Label("en", "dc:subject"),
                         new Value(new I18n[]{i18n_categories_Roman, i18n_categories_Thai}));

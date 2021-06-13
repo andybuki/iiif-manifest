@@ -10,7 +10,12 @@ import org.jetbrains.annotations.NotNull;
 public class PagesCount {
     @NotNull
     public static Metadata getMetadataPagesCount(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "pages_count")),
+        return new Metadata(new Label("pages_count"),
+                new Value(String.valueOf(dllmAttributes.getDocuments_pages_count())));
+
+        /*
+        * return new Metadata(new Label(new I18n("en", "pages_count")),
                 new Value(new I18n("en", String.valueOf(dllmAttributes.getDocuments_pages_count()))));
+        * */
     }
 }

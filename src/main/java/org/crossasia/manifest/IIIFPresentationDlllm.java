@@ -146,7 +146,6 @@ public class IIIFPresentationDlllm  {
             String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
 
             ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ page_ID);
-            //manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
             //start adding images
             JSONArray pages = null;
@@ -170,11 +169,11 @@ public class IIIFPresentationDlllm  {
             for (int j = 0; j < pages.length(); j++) {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
 
-                String pages_position="";
-                String pages_image_file="";
-                String pages_id="";
-                String first_pages_id="";
-                String pages_document_id="";
+                String pages_position = "";
+                String pages_image_file = "";
+                String pages_id = "";
+                String first_pages_id = "";
+                String pages_document_id = "";
                 int number_of_pages = pages.length();
 
                 if (pagesObj.has("pages_position"))
@@ -185,7 +184,6 @@ public class IIIFPresentationDlllm  {
 
                 if (pagesObj.has("pages_id")) {
                     pages_id = (String) pagesObj.get("pages_id").toString();
-                    //first_pages_id = pagesObj.get("pages_id").toString();
                     first_pages_id = dllmAttributes.getDocuments_id();
                 }
 
@@ -194,44 +192,27 @@ public class IIIFPresentationDlllm  {
                 JSONObject json = null;
                 try {
                     json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
-                } catch (IOException e) {
-                    System.out.println("help"+ file.getName());
-                }
-                manifestID = SERVER + MANIFEST_COLLECTION + "000" + pages_document_id +"+"+ pages_id;
-                canvasID = manifestID +"/canvas";
-                imageID = manifestID+"/full/full/0/default.jpg";
-                annoID = manifestID+"/annotation";
-                annoPageID = manifestID;
-                int weight = 2500;
-                int height = 1800;
-                try {
-                    if (json.get("width")==null) {
 
-                    } else {
-                        weight = (int) json.get("width");
-                        height = (int) json.get("height");
-                    }
-                    Thread.sleep(10);
+                    manifestID = SERVER + MANIFEST_COLLECTION + "000" + pages_document_id + "+" + pages_id;
+                    canvasID = manifestID + "/canvas";
+                    imageID = manifestID + "/full/full/0/default.jpg";
+                    annoID = manifestID + "/annotation";
+                    annoPageID = manifestID;
 
-                } catch (NullPointerException | InterruptedException e) {
-                    System.out.println("help"+ file.getName());
-                }
-                https://iiif-content.crossasia.org/xasia/dllm+dllm_00012659+575582/info.json
+                    int weight = (int) json.get("width");
+                    int height = (int) json.get("height");
 
-                canvas = new Canvas(canvasID).setWidthHeight(weight, height);
-
-                System.out.println(file.getName());
-                try {
+                    canvas = new Canvas(canvasID).setWidthHeight(weight, height);
                     imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
-                    Thread.sleep(10);
-                } catch (NullPointerException | InterruptedException e) {
-                    System.out.println("help"+ file.getName());
+
+                }catch (IOException e) {
+                    System.out.println(e +" - "+ file.getName());
                 }
+
                 annoPage = new AnnotationPage<>(annoPageID);
                 anno = new PaintingAnnotation(annoID, canvas);
                 annoPage.addAnnotations(anno.setBody(imageContent).setTarget(canvasID));
                 canvases.add(canvas.setPaintingPages(annoPage));
-                //manifest.setCanvases(canvas.setPaintingPages(annoPage));
                 manifest.setCanvases(canvases);
 
                 MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +pages_id  + "/manifest";
@@ -249,42 +230,12 @@ public class IIIFPresentationDlllm  {
 
             provider.setLogos(new ImageContent(LOGO_LINK).setServices(manifestThumbService));
             manifest.setProviders(provider);
-
-            File newFile = new File(created +"/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
+            File newFile = null;
+            newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
+
         }
     }
-
-
-    /*private static Metadata getMetadataTitlesRomanThai(DllmAttributes dllmAttributes, Manifest manifest) {
-        if (dllmAttributes.getDllm_title_roman()!=null) {
-            Metadata  metadata_title = getMetadataTitleRomanThai(dllmAttributes);
-            manifest.setMetadata(metadata_title);
-            return metadata_title;
-        }
-        return null;
-    }
-
-    private static Metadata getMetadataTitleRomanThai(DllmAttributes dllmAttributes) {
-        Metadata metadata_title = null;
-        if (dllmAttributes.getDllm_title_roman()!=null || dllmAttributes.getDllm_title_lao()!=null) {
-            ArrayList<String> titleRomanArrayList = new ArrayList<>();
-            ArrayList<String> titleThaiArrayList = new ArrayList<>();
-
-            for (int i = 0; i < dllmAttributes.getDllm_title_roman().length(); i++) {
-                titleRomanArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
-                titleThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
-                I18n i18n_title_Roman = new I18n("en", titleRomanArrayList);
-                I18n i18n_title_Thai = new I18n("lo", titleThaiArrayList);
-                metadata_title = new Metadata(new Label("en", "title"),
-                        new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
-            }
-            return metadata_title;
-        } else
-            return metadata_title;
-    }*/
-
-
     private static I18n getStringsLabel(DllmAttributes dllmAttributes) {
         ArrayList<String> titlesArrayList = new ArrayList<>();
         I18n i18n_title_Roman = new I18n("en", "");

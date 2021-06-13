@@ -22,7 +22,7 @@ public class Script {
                 scriptThaiArrayList.add(dllmAttributes.getScripts_lao().get(i).toString());
                 I18n i18n_script_Roman = new I18n("en", scriptRomanArrayList);
                 I18n i18n_script_Thai = new I18n("lo", scriptThaiArrayList);
-                metadata_script = new Metadata(new Label("en", "dc:subject"),
+                metadata_script = new Metadata(new Label("en", "script"),
                         new Value(new I18n[]{i18n_script_Roman, i18n_script_Thai}));
             }
         }
