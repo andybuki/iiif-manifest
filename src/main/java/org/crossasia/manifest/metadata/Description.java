@@ -30,6 +30,9 @@ public class Description {
             for (int i = 0; i < dllmAttributes.getPublic_remarks_lao().length(); i++) {
                 descriptionThaiArrayList.add(dllmAttributes.getPublic_remarks_lao().get(i).toString());
                 i18n_description_Thai = new I18n("lo", descriptionThaiArrayList);
+                if(i18n_description_Thai==null) {
+                    System.out.println("check");
+                }
                 metadata_description = new Metadata(new Label("en", "dc:description"),
                         new Value(new I18n[]{i18n_description_Roman, i18n_description_Thai}));
             }

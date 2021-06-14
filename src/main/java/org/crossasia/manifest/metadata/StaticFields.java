@@ -20,7 +20,7 @@ public class StaticFields {
         manifest.setViewingDirection(RIGHT_TO_LEFT);
         manifest.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
                 new Label("en","Crossasia Madoc Page")));
-        manifest.setPartOfs(new PartOf("https://iiif.corossasia.org/collections","Collection"));
+        manifest.setPartOfs(new PartOf("https://iiif.crossasia.org/s/dllm","Collection"));
         OtherService otherService;
         final RequiredStatement reqStmt;
         reqStmt = new RequiredStatement(new Label("en","Attribution"),

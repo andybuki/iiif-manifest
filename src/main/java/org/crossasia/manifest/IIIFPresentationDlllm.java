@@ -13,9 +13,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static org.crossasia.manifest.ManifestDllmCollection.readJsonFromUrl;
@@ -31,113 +29,27 @@ public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter/");
-
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter2/");
+        //PrintStream out = new PrintStream(new FileOutputStream("resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
         int counter = 1;
-
+        final Manifestor manifestor = new Manifestor();
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
             File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result2/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
-
-            Manifestor manifestor = new Manifestor();
-
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
 
-            I18n i18n_title_Roman = getStringsLabel(dllmAttributes); // get Label
+            I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes); // get Label
+
             Manifest manifest = new Manifest(String.valueOf(file), new Label(i18n_title_Roman));
 
             StaticFields.staticFields(counter, manifest); //all static fields
             counter++;
 
-            //Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
-            Metadata metadata_title = Title.getMetadataTitle(dllmAttributes);
-            Metadata metadata_language = Language.getMetadataLanguageRomanThai(dllmAttributes);
-
-            Metadata metadata_documentsID = DocumentsID.getMetadataDocumentsID(dllmAttributes);
-            Metadata metadata_documentsCodeNumber = CodeNumber.getMetadataDocumentsCodeNumber(dllmAttributes);
-            Metadata metadata_documents_roll = DocumentsRoll.getMetadataDocumentsRoll(dllmAttributes);
-
-            Metadata metadata_extent = ExtentMethod.getMetadataExtentMethod(dllmAttributes);
-            Metadata metadata_description = Description.getMetadataDescription(dllmAttributes);
-
-            Metadata metadataDllmOriginal = OriginalDllm.getMetadataDllmOriginal(dllmAttributes);
-            Metadata metadata_place = Places.getMetadataPlaces(dllmAttributes);
-            Metadata metadata_full_location_name = FullLocationName.getMetadataFullLocationName(dllmAttributes);
-
-            Metadata metadata_has_colophon = HasColophon.getMetadataHasColophon(dllmAttributes);
-            Metadata metadata_is_illustrated = IsIllustrated.getMetadataIsIllustrated(dllmAttributes);
-            Metadata metadata_is_color= IsColor.getMetadataIsColor(dllmAttributes);
-            Metadata metadata_bundle_id= BundleID.getMetadataBundleID(dllmAttributes);
-
-            Metadata metadata_is_complete= StaticJsonCaller.getMetadataIsComplete(dllmAttributes);
-            Metadata metadata_pages_count= PagesCount.getMetadataPagesCount(dllmAttributes);
-            Metadata metadata_material= Material.getMetadataMaterial(dllmAttributes);
-            Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);
-
-            Metadata metadata_latitude= LatLon.getMetadataLatitude(dllmAttributes);
-            Metadata metadata_longitude= LatLon.getMetadataLongitude(dllmAttributes);
-            Metadata metadata_keywords= Keywords.getMetadataKeywords(dllmAttributes);
-            Metadata metadata_categories= Categories.getMetadataCategories(dllmAttributes);
-
-            Metadata metadata_script= Script.getMetadataScript(dllmAttributes);
-            Metadata metadata_index= Index.getMetadataIndex(dllmAttributes);
-            Metadata metadata_legibilities= Legibilities.getMetadataLegibilities(dllmAttributes);
-            Metadata metadata_conditions= Conditions.getMetadataConditions(dllmAttributes);
-
-            Metadata metadata_date= Date.getMetadataDate(dllmAttributes);
-            Metadata metadata_date_original= DateOriginal.getMetadataDateOriginal(dllmAttributes);
-
-
-            ArrayList<Metadata> metadataArrayList = new ArrayList<>();
-
-            metadataArrayList.add(metadata_title);
-            metadataArrayList.add(metadata_language);
-            metadataArrayList.add(metadata_documentsID);
-
-            metadataArrayList.add(metadata_documentsCodeNumber);
-            metadataArrayList.add(metadata_documents_roll);
-            metadataArrayList.add(metadata_extent);
-            metadataArrayList.add(metadata_place);
-
-            metadataArrayList.add(metadata_full_location_name);
-            metadataArrayList.add(metadataDllmOriginal);
-            metadataArrayList.add(metadata_description);
-            metadataArrayList.add(metadata_has_colophon);
-
-            metadataArrayList.add(metadata_is_illustrated);
-            metadataArrayList.add(metadata_is_color);
-            metadataArrayList.add(metadata_bundle_id);
-            metadataArrayList.add(metadata_is_complete);
-
-            metadataArrayList.add(metadata_pages_count);
-            metadataArrayList.add(metadata_material);
-            metadataArrayList.add(metadata_location_types_name);
-
-            metadataArrayList.add(metadata_latitude);
-            metadataArrayList.add(metadata_longitude);
-            metadataArrayList.add(metadata_keywords);
-            metadataArrayList.add(metadata_categories);
-
-            metadataArrayList.add(metadata_script);
-            metadataArrayList.add(metadata_index);
-            metadataArrayList.add(metadata_legibilities);
-            metadataArrayList.add(metadata_conditions);
-
-            metadataArrayList.add(metadata_date);
-            metadataArrayList.add(metadata_date_original);
-
-            Iterator<Metadata> iter = metadataArrayList.iterator();
-
-            while (iter.hasNext()) {
-                Metadata md = iter.next();
-                if (md==null)
-                    iter.remove();
-            }
-            manifest.setMetadata(metadataArrayList);
+            metadataMembers(dllmAttributes, manifest);
 
             String book_ID=dllmAttributes.getDocuments_id();
             String page_ID="484597";
@@ -205,7 +117,7 @@ public class IIIFPresentationDlllm  {
                     canvas = new Canvas(canvasID).setWidthHeight(weight, height);
                     imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
 
-                }catch (IOException e) {
+                }catch (Exception e) {
                     System.out.println(e +" - "+ file.getName());
                 }
 
@@ -234,19 +146,97 @@ public class IIIFPresentationDlllm  {
             newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
 
+            //Logger.log("Send manifests logs to file"+ newFile);
+
         }
     }
-    private static I18n getStringsLabel(DllmAttributes dllmAttributes) {
-        ArrayList<String> titlesArrayList = new ArrayList<>();
-        I18n i18n_title_Roman = new I18n("en", "");
-        if (dllmAttributes.getDllm_title_roman()!=null) {
-            for (int i = 0; i < dllmAttributes.getDllm_title_roman().length(); i++) {
-                titlesArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
-                i18n_title_Roman = new I18n("en", titlesArrayList);
-            }
-            return i18n_title_Roman;
-        } else
-            return i18n_title_Roman;
+
+    private static void metadataMembers(DllmAttributes dllmAttributes, Manifest manifest) {
+        //Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
+        Metadata metadata_title = Title.getMetadataTitle(dllmAttributes);
+        Metadata metadata_language = Language.getMetadataLanguageRomanThai(dllmAttributes);
+
+        Metadata metadata_documentsID = DocumentsID.getMetadataDocumentsID(dllmAttributes);
+        Metadata metadata_documentsCodeNumber = CodeNumber.getMetadataDocumentsCodeNumber(dllmAttributes);
+        Metadata metadata_documents_roll = DocumentsRoll.getMetadataDocumentsRoll(dllmAttributes);
+
+        Metadata metadata_extent = ExtentMethod.getMetadataExtentMethod(dllmAttributes);
+        Metadata metadata_description = Description.getMetadataDescription(dllmAttributes);
+
+        Metadata metadataDllmOriginal = OriginalDllm.getMetadataDllmOriginal(dllmAttributes);
+        Metadata metadata_place = Places.getMetadataPlaces(dllmAttributes);
+        Metadata metadata_full_location_name = FullLocationName.getMetadataFullLocationName(dllmAttributes);
+
+        Metadata metadata_has_colophon = HasColophon.getMetadataHasColophon(dllmAttributes);
+        Metadata metadata_is_illustrated = IsIllustrated.getMetadataIsIllustrated(dllmAttributes);
+        Metadata metadata_is_color= IsColor.getMetadataIsColor(dllmAttributes);
+        Metadata metadata_bundle_id= BundleID.getMetadataBundleID(dllmAttributes);
+
+        Metadata metadata_is_complete= StaticJsonCaller.getMetadataIsComplete(dllmAttributes);
+        Metadata metadata_pages_count= PagesCount.getMetadataPagesCount(dllmAttributes);
+        Metadata metadata_material= Material.getMetadataMaterial(dllmAttributes);
+        Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);
+
+        Metadata metadata_latitude= LatLon.getMetadataLatitude(dllmAttributes);
+        Metadata metadata_longitude= LatLon.getMetadataLongitude(dllmAttributes);
+        Metadata metadata_keywords= Keywords.getMetadataKeywords(dllmAttributes);
+        Metadata metadata_categories= Categories.getMetadataCategories(dllmAttributes);
+
+        Metadata metadata_script= Script.getMetadataScript(dllmAttributes);
+        Metadata metadata_index= Index.getMetadataIndex(dllmAttributes);
+        Metadata metadata_legibilities= Legibilities.getMetadataLegibilities(dllmAttributes);
+        Metadata metadata_conditions= Conditions.getMetadataConditions(dllmAttributes);
+
+        Metadata metadata_date= Date.getMetadataDate(dllmAttributes);
+        Metadata metadata_date_original= DateOriginal.getMetadataDateOriginal(dllmAttributes);
+
+
+        ArrayList<Metadata> metadataArrayList = new ArrayList<>();
+
+        metadataArrayList.add(metadata_title);
+        metadataArrayList.add(metadata_language);
+        metadataArrayList.add(metadata_documentsID);
+
+        metadataArrayList.add(metadata_documentsCodeNumber);
+        metadataArrayList.add(metadata_documents_roll);
+        metadataArrayList.add(metadata_extent);
+        metadataArrayList.add(metadata_place);
+
+        metadataArrayList.add(metadata_full_location_name);
+        metadataArrayList.add(metadataDllmOriginal);
+        metadataArrayList.add(metadata_description);
+        metadataArrayList.add(metadata_has_colophon);
+
+        metadataArrayList.add(metadata_is_illustrated);
+        metadataArrayList.add(metadata_is_color);
+        metadataArrayList.add(metadata_bundle_id);
+        metadataArrayList.add(metadata_is_complete);
+
+        metadataArrayList.add(metadata_pages_count);
+        metadataArrayList.add(metadata_material);
+        metadataArrayList.add(metadata_location_types_name);
+
+        metadataArrayList.add(metadata_latitude);
+        metadataArrayList.add(metadata_longitude);
+        metadataArrayList.add(metadata_keywords);
+        metadataArrayList.add(metadata_categories);
+
+        metadataArrayList.add(metadata_script);
+        metadataArrayList.add(metadata_index);
+        metadataArrayList.add(metadata_legibilities);
+        metadataArrayList.add(metadata_conditions);
+
+        metadataArrayList.add(metadata_date);
+        metadataArrayList.add(metadata_date_original);
+
+        Iterator<Metadata> iter = metadataArrayList.iterator();
+
+        while (iter.hasNext()) {
+            Metadata md = iter.next();
+            if (md==null)
+                iter.remove();
+        }
+        manifest.setMetadata(metadataArrayList);
     }
 
 }
