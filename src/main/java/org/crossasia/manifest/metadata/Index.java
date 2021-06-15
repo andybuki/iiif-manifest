@@ -13,7 +13,8 @@ public class Index {
 
         ArrayList<String> indexRomanArrayList = new ArrayList<>();
         ArrayList<String> indexThaiArrayList = new ArrayList<>();
-        Metadata metadata_index = null;
+
+        Metadata metadata_index = new Metadata(new Label(""), new Value(""));
         I18n i18n_index_Roman = null;
         I18n i18n_index_Thai = null;
         if (dllmAttributes.getTitle_search_roman()!=null) {
@@ -50,6 +51,12 @@ public class Index {
                 }
             }
         }
+
+        if (dllmAttributes.getTitle_search_roman()==null && dllmAttributes.getTitle_search_lao()==null &&
+                dllmAttributes.getPlmp_title_lao()==null ) {
+            metadata_index = null;
+        }
+
         return metadata_index;
     }
 }

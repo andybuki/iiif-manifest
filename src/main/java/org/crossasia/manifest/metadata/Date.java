@@ -18,7 +18,9 @@ public class Date {
                     new Value( dllmAttributes.getDocuments_date_written()));
             return metadata_date;
         }
-        else return metadata_date;
-
+        else {
+            metadata_date = null;
+            return metadata_date;
+        }
     }
 }

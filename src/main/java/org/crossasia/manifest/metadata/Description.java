@@ -63,9 +63,6 @@ public class Description {
             metadata_description = null;
         }
 
-
-
-
         return metadata_description;
     }
 }

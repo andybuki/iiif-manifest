@@ -43,8 +43,8 @@ public class IIIFPresentationDlllm  {
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
 
             I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes); // get Label
-
-            Manifest manifest = new Manifest(String.valueOf(file), new Label(i18n_title_Roman));
+            I18n i18n_title_Lao = LabelMetadata.getStringsLabel(dllmAttributes);
+            Manifest manifest = new Manifest(String.valueOf(file), new Label( new I18n[]{i18n_title_Roman, i18n_title_Lao}));
 
             StaticFields.staticFields(counter, manifest); //all static fields
             counter++;
@@ -52,11 +52,11 @@ public class IIIFPresentationDlllm  {
             metadataMembers(dllmAttributes, manifest);
 
             String [] book_IDs=dllmAttributes.getDocuments_id().split("_");
-            String book_ID = book_IDs[0]+"_"+"00"+book_IDs[1];
+            String book_ID = book_IDs[0]+"_"+"000"+book_IDs[1];
             String page_ID="484597";
 
-            String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +page_ID  + "/manifest";
-            String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
+            String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID + "/manifest";
+            String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
 
             ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ page_ID);
 
@@ -118,8 +118,10 @@ public class IIIFPresentationDlllm  {
                     canvas = new Canvas(canvasID).setWidthHeight(weight, height);
                     imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
 
+                }catch (NullPointerException e) {
+                    System.out.println(e +"NullPointerException - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
                 }catch (Exception e) {
-                    System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
+                    System.out.println(e +"Exception - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
                 }
 
                 annoPage = new AnnotationPage<>(annoPageID);

@@ -32,8 +32,8 @@ public class DllmAttributes {
     private String description;
     private String materials_name;
     private String materials_name_lao;
-    private String documents_private_remarks_en;
-    private  String documents_private_remark_lo;
+    //private String documents_private_remarks_en;
+    //private  String documents_private_remark_lo;
     private String location_types_name;
     private String location_types_name_lao;
     private int locations_lft;
@@ -110,8 +110,8 @@ public class DllmAttributes {
         this.description = description;
         this.materials_name = materials_name;
         this.materials_name_lao = materials_name_lao;
-        this.documents_private_remarks_en = documents_private_remarks_en;
-        this.documents_private_remark_lo = documents_private_remark_lo;
+        //this.documents_private_remarks_en = documents_private_remarks_en;
+        //this.documents_private_remark_lo = documents_private_remark_lo;
         this.location_types_name = location_types_name;
         this.location_types_name_lao = location_types_name_lao;
         this.locations_lft = locations_lft;
@@ -175,8 +175,8 @@ public class DllmAttributes {
         this.description = description;
         this.materials_name = materials_name;
         this.materials_name_lao = materials_name_lao;
-        this.documents_private_remarks_en = documents_private_remarks_en;
-        this.documents_private_remark_lo = documents_private_remark_lo;
+        //this.documents_private_remarks_en = documents_private_remarks_en;
+        //this.documents_private_remark_lo = documents_private_remark_lo;
         this.location_types_name = location_types_name;
         this.location_types_name_lao = location_types_name_lao;
         this.locations_lft = locations_lft;
@@ -428,7 +428,7 @@ public class DllmAttributes {
         this.materials_name_lao = materials_name_lao;
     }
 
-    public String getDocuments_private_remarks_en() {
+    /*public String getDocuments_private_remarks_en() {
         return documents_private_remarks_en;
     }
 
@@ -442,7 +442,7 @@ public class DllmAttributes {
 
     public void setDocuments_private_remark_lo(String documents_private_remark_lo) {
         this.documents_private_remark_lo = documents_private_remark_lo;
-    }
+    }*/
 
     public String getLocation_types_name() {
         return location_types_name;

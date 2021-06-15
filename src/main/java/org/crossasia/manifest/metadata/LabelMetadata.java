@@ -12,9 +12,10 @@ public class LabelMetadata {
         if (dllmAttributes.getDllm_title_roman()!=null) {
             for (int i = 0; i < dllmAttributes.getDllm_title_roman().length(); i++) {
                 titlesArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
-                titlesArrayList.add("  (" + dllmAttributes.getDocuments_id() + ")");
+                //titlesArrayList.add("  (" + dllmAttributes.getDocuments_id() + ")");
                 i18n_title_Roman = new I18n("en", titlesArrayList);
             }
+            titlesArrayList.add("  (" + dllmAttributes.getDocuments_id() + ")");
             return i18n_title_Roman;
         } else
             return i18n_title_Roman;

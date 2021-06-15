@@ -12,7 +12,7 @@ public class Title {
     public static Metadata getMetadataTitle(DllmAttributes dllmAttributes) {
         ArrayList<String> titlesRomanArrayList = new ArrayList<>();
         ArrayList<String> titlesThaiArrayList = new ArrayList<>();
-        Metadata metadata_titles = null;
+        Metadata metadata_titles = new Metadata(new Label(""), new Value(""));
 
         if (dllmAttributes.getDllm_title_roman()!=null || dllmAttributes.getDllm_title_lao()!=null) {
             I18n i18n_title_Roman = null;
@@ -29,6 +29,12 @@ public class Title {
             metadata_titles = new Metadata(new Label("en", "title"),
                     new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
         }
+
+        if (dllmAttributes.getDllm_title_lao()==null &&
+                dllmAttributes.getDllm_title_roman()==null ) {
+            metadata_titles = null;
+        }
+
         return metadata_titles;
     }
 }

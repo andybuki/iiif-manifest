@@ -13,7 +13,7 @@ public class Keywords {
 
         ArrayList<String> keywordsRomanArrayList = new ArrayList<>();
         ArrayList<String> keywordsThaiArrayList = new ArrayList<>();
-        Metadata metadata_keywords = null;
+        Metadata metadata_keywords =new Metadata(new Label(""), new Value(""));
         I18n i18n_keywords_Roman = null;
         I18n i18n_keywords_Thai = null;
         //Metadata metadata_keywords = new Metadata(new Label("en",""), new Value("en",""));
@@ -32,6 +32,11 @@ public class Keywords {
                 metadata_keywords = new Metadata(new Label("en", "schema:keywords"),
                         new Value(new I18n[]{ i18n_keywords_Roman,i18n_keywords_Thai}));
             }
+        }
+
+        if (dllmAttributes.getAncillary_terms_roman()==null &&
+                dllmAttributes.getAncillary_terms_lao()==null) {
+            metadata_keywords = null;
         }
 
         return metadata_keywords;
