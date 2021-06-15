@@ -23,7 +23,7 @@ public class IIIFPresentationDlllm  {
 
     private static final String SERVER = "https://iiif-content.crossasia.org/xasia/";
     private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
-    private static final String MANIFEST_COLLECTION="dllm+dllm_";
+    private static final String MANIFEST_COLLECTION="dllm+";
     private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
 
     public static void main(String[] args) throws IOException {
@@ -51,7 +51,8 @@ public class IIIFPresentationDlllm  {
 
             metadataMembers(dllmAttributes, manifest);
 
-            String book_ID=dllmAttributes.getDocuments_id();
+            String [] book_IDs=dllmAttributes.getDocuments_id().split("_");
+            String book_ID = book_IDs[0]+"_"+"00"+book_IDs[1];
             String page_ID="484597";
 
             String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +page_ID  + "/manifest";
@@ -105,7 +106,7 @@ public class IIIFPresentationDlllm  {
                 try {
                     json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
 
-                    manifestID = SERVER + MANIFEST_COLLECTION + "000" + pages_document_id + "+" + pages_id;
+                    manifestID = SERVER + MANIFEST_COLLECTION + "dllm_000" + pages_document_id + "+" + pages_id;
                     canvasID = manifestID + "/canvas";
                     imageID = manifestID + "/full/full/0/default.jpg";
                     annoID = manifestID + "/annotation";
@@ -127,12 +128,13 @@ public class IIIFPresentationDlllm  {
                 canvases.add(canvas.setPaintingPages(annoPage));
                 manifest.setCanvases(canvases);
 
-                MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +pages_id  + "/manifest";
+                MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +"+"+pages_id  + "/manifest";
                 MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
 
                 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ pages_id);
                 manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-                manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"+"+pages_id + "/canvas/"+pages_id));
+                //manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"+"+pages_id + "/canvas/"+pages_id));
+                manifest.setStart(new Start(MANIFEST_URI.replace("manifest", "canvas/")+ pages_id));
 
             }
             //end adding images
