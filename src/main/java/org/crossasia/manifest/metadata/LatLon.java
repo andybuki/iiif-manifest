@@ -8,26 +8,31 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class LatLon {
-    @NotNull
-    public static Metadata getMetadataLatitude(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label( "schema:latitude"),
-                new Value(String.valueOf(dllmAttributes.getLocations_gps_lat())));
 
-        /*
-        * return new Metadata(new Label(new I18n("en", "schema:latitude")),
-                new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lat()))));
-        * */
+    public static Metadata getMetadataLatitude(DllmAttributes dllmAttributes) {
+
+        Metadata metadata_is_latitude= null;
+
+        if(dllmAttributes.getLocations_gps_lat()!=0) {
+            metadata_is_latitude = new Metadata(new Label( "schema:latitude"),
+                    new Value(String.valueOf(dllmAttributes.getLocations_gps_lat())));
+            return metadata_is_latitude;
+        }
+        else return metadata_is_latitude;
+
     }
 
-    @NotNull
-    public static Metadata getMetadataLongitude(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label("schema:longitude"),
-                new Value(String.valueOf(dllmAttributes.getLocations_gps_lon())));
 
-        /*
-        * return new Metadata(new Label(new I18n("en", "schema:longitude")),
-                new Value(new I18n("en", String.valueOf(dllmAttributes.getLocations_gps_lon()))));
-        *
-        * */
+    public static Metadata getMetadataLongitude(DllmAttributes dllmAttributes) {
+
+        Metadata metadata_is_longitude= null;
+
+        if(dllmAttributes.getLocations_gps_lon()!=0) {
+            metadata_is_longitude = new Metadata(new Label("schema:longitude"),
+                    new Value(String.valueOf(dllmAttributes.getLocations_gps_lon())));
+            return metadata_is_longitude;
+        }
+        else return metadata_is_longitude;
+
     }
 }

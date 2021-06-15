@@ -8,7 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class Material {
-    @NotNull
+
     public static Metadata getMetadataMaterial(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "material")),
                 new Value(new I18n("en",dllmAttributes.getMaterials_name()),

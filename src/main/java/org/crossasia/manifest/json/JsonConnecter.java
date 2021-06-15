@@ -97,6 +97,18 @@ public class JsonConnecter {
         }
     }
 
+    public static void locationName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("location_name")) {
+            dllmAttributes.setLocation_name((String) jsonObj.get("location_name"));
+        }
+    }
+
+    public static void locationNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("location_name_lao")) {
+            dllmAttributes.setLocation_name_lao((String) jsonObj.get("location_name_lao"));
+        }
+    }
+
     public static void titleRoman(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dllm_title_roman")) {
             dllmAttributes.setDllm_title_roman((JSONArray) jsonObj.get("dllm_title_roman"));

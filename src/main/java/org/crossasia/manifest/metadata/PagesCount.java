@@ -8,14 +8,15 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class PagesCount {
-    @NotNull
-    public static Metadata getMetadataPagesCount(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label("pages_count"),
-                new Value(String.valueOf(dllmAttributes.getDocuments_pages_count())));
 
-        /*
-        * return new Metadata(new Label(new I18n("en", "pages_count")),
-                new Value(new I18n("en", String.valueOf(dllmAttributes.getDocuments_pages_count()))));
-        * */
+    public static Metadata getMetadataPagesCount(DllmAttributes dllmAttributes) {
+        Metadata metadata_pages_count= null;
+
+        if(dllmAttributes.getDocuments_pages_count()!=0) {
+            metadata_pages_count = new Metadata(new Label("pages_count"),
+                    new Value(String.valueOf((dllmAttributes.getDocuments_pages_count()))));
+            return metadata_pages_count;
+        }
+        else return metadata_pages_count;
     }
 }

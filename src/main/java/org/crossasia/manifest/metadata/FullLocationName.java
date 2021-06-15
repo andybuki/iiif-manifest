@@ -8,7 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class FullLocationName {
-    @NotNull
+
     public static Metadata getMetadataFullLocationName(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "full_location_name")),
                 new Value(new I18n("en",dllmAttributes.getFull_location_name()),

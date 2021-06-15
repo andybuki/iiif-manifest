@@ -8,12 +8,14 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class BundleID {
-    @NotNull
     public static Metadata getMetadataBundleID(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label("otherIdentifier.bundle_id"),
-                new Value(dllmAttributes.getDocuments_bundle_id()));
+        Metadata metadata_bundle_id = null;
 
-        /*return new Metadata(new Label(new I18n("en", "otherIdentifier.bundle_id")),
-                new Value(new I18n("en",dllmAttributes.getDocuments_bundle_id())));*/
+        if(dllmAttributes.getDocuments_bundle_id()!=null) {
+            metadata_bundle_id = new Metadata(new Label("otherIdentifier.bundle_id"),
+                    new Value(dllmAttributes.getDocuments_bundle_id()));
+            return metadata_bundle_id;
+        }
+            else return metadata_bundle_id;
     }
 }

@@ -13,7 +13,7 @@ public class Description {
 
         ArrayList<String> descriptionRomanArrayList = new ArrayList<>();
         ArrayList<String> descriptionThaiArrayList = new ArrayList<>();
-        Metadata metadata_description = null;
+        Metadata metadata_description = new Metadata(new Label(""), new Value(""));
         I18n i18n_description_Roman = null;
         I18n i18n_description_Thai = null;
 
@@ -33,8 +33,15 @@ public class Description {
                 if(i18n_description_Thai==null) {
                     System.out.println("check");
                 }
-                metadata_description = new Metadata(new Label("en", "dc:description"),
-                        new Value(new I18n[]{i18n_description_Roman, i18n_description_Thai}));
+                if(i18n_description_Roman==null) {
+                    metadata_description = new Metadata(new Label("en", "dc:description"),
+                            new Value(new I18n[]{ i18n_description_Thai}));
+                } else {
+                    metadata_description = new Metadata(new Label("en", "dc:description"),
+                            new Value(new I18n[]{i18n_description_Roman, i18n_description_Thai}));
+                }
+
+
             }
         }
         if (dllmAttributes.getDescription()!=null) {
@@ -49,6 +56,15 @@ public class Description {
             }
 
         }
+
+        if (dllmAttributes.getDescription()==null &&
+                dllmAttributes.getPublic_remarks_lao()==null &&
+                dllmAttributes.getPublic_remarks_english()==null) {
+            metadata_description = null;
+        }
+
+
+
 
         return metadata_description;
     }

@@ -8,15 +8,24 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class IsColor {
-    @NotNull
-    public static Metadata getMetadataIsColor(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label( "is_color"),
-                new Value(dllmAttributes.getDocuments_is_color()));
 
-        /*
-        *
-        * return new Metadata(new Label(new I18n("en", "is_color")),
-                new Value(new I18n("en",dllmAttributes.getDocuments_is_color())));
-        * */
+    public static Metadata getMetadataIsColor(DllmAttributes dllmAttributes) {
+
+        Metadata metadata_is_color = null;
+
+        if(dllmAttributes.getDocuments_is_color()!=null) {
+            metadata_is_color = new Metadata(new Label( "is_color"),
+                    new Value(dllmAttributes.getDocuments_is_color()));
+            return metadata_is_color;
+        }
+        else return metadata_is_color;
+
+
+
+
+
+
+
+
     }
 }

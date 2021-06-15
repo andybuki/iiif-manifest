@@ -24,13 +24,13 @@ public class IIIFPresentationDlllm  {
     private static final String SERVER = "https://iiif-content.crossasia.org/xasia/";
     private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
     private static final String MANIFEST_COLLECTION="dllm+dllm_";
-    private static final String LOGO_LINK= "https://ngcs-beta.staatsbibliothek-berlin.de/dc/logo-small";
+    private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
 
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter2/");
-        //PrintStream out = new PrintStream(new FileOutputStream("resources/output.txt"));
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter/");
+        PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
         int counter = 1;
@@ -118,7 +118,7 @@ public class IIIFPresentationDlllm  {
                     imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
 
                 }catch (Exception e) {
-                    System.out.println(e +" - "+ file.getName());
+                    System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
                 }
 
                 annoPage = new AnnotationPage<>(annoPageID);
@@ -146,7 +146,11 @@ public class IIIFPresentationDlllm  {
             newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
 
-            //Logger.log("Send manifests logs to file"+ newFile);
+            //Logger.log();
+
+
+            System.setOut(out);
+
 
         }
     }
@@ -172,7 +176,7 @@ public class IIIFPresentationDlllm  {
         Metadata metadata_is_color= IsColor.getMetadataIsColor(dllmAttributes);
         Metadata metadata_bundle_id= BundleID.getMetadataBundleID(dllmAttributes);
 
-        Metadata metadata_is_complete= StaticJsonCaller.getMetadataIsComplete(dllmAttributes);
+        Metadata metadata_is_complete= IsComplete.getMetadataIsComplete(dllmAttributes);
         Metadata metadata_pages_count= PagesCount.getMetadataPagesCount(dllmAttributes);
         Metadata metadata_material= Material.getMetadataMaterial(dllmAttributes);
         Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);

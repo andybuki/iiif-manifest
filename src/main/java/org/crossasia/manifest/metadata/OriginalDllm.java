@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class OriginalDllm {
-    @NotNull
+
     public static Metadata getMetadataDllmOriginal(DllmAttributes dllmAttributes) {
         ArrayList<String> dllmArrayList = new ArrayList<>();
 

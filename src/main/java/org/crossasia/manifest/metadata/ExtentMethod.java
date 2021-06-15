@@ -8,9 +8,17 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class ExtentMethod {
-    @NotNull
+
     public static Metadata getMetadataExtentMethod(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "dc:extent")),
-                new Value(new I18n("en",dllmAttributes.getExtent())));
+
+        Metadata metadata_extent = null;
+
+        if(dllmAttributes.getExtent()!=null) {
+            metadata_extent = new Metadata(new Label(new I18n("en", "dc:extent")),
+                    new Value(new I18n("en",dllmAttributes.getExtent())));
+            return metadata_extent;
+        }
+        else return metadata_extent;
+
     }
 }

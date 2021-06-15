@@ -8,7 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class Legibilities {
-    @NotNull
+
     public static Metadata getMetadataLegibilities(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "legibilities")),
                 new Value(new I18n("en",dllmAttributes.getLegibilities_name()),

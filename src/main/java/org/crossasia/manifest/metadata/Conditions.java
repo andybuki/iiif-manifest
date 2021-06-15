@@ -8,7 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class Conditions {
-    @NotNull
+
     public static Metadata getMetadataConditions(DllmAttributes dllmAttributes) {
         return new Metadata(new Label(new I18n("en", "conditions")),
                 new Value(new I18n("en",dllmAttributes.getConditions_name()),

@@ -8,14 +8,17 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class DocumentsRoll {
-    @NotNull
-    public static Metadata getMetadataDocumentsRoll(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label( "otherIdentifier.roll"),
-                new Value(dllmAttributes.getDocuments_roll()));
 
-        /*
-        * return new Metadata(new Label(new I18n("en", "otherIdentifier.roll")),
-                new Value(new I18n("en",dllmAttributes.getDocuments_roll())));
-        * */
+    public static Metadata getMetadataDocumentsRoll(DllmAttributes dllmAttributes) {
+
+        Metadata metadata_roll = null;
+
+        if(dllmAttributes.getDocuments_roll()!=null) {
+            metadata_roll = new Metadata(new Label( "otherIdentifier.roll"),
+                    new Value(dllmAttributes.getDocuments_roll()));
+            return metadata_roll;
+        }
+        else return metadata_roll;
+
     }
 }

@@ -8,10 +8,18 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 public class DateOriginal {
-    @NotNull
+
     public static Metadata getMetadataDateOriginal(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "date_original")),
-                new Value(new I18n("en",dllmAttributes.getDate_original()),
-                        new I18n("lo", dllmAttributes.getDate_original_lao())));
+
+        Metadata metadata_date_original = null;
+
+        if(dllmAttributes.getDate_original()!=null) {
+            metadata_date_original = new Metadata(new Label(new I18n("en", "date_original")),
+                    new Value(new I18n("en",dllmAttributes.getDate_original()),
+                            new I18n("lo", dllmAttributes.getDate_original_lao())));
+            return metadata_date_original;
+        }
+        else return metadata_date_original;
+
     }
 }
