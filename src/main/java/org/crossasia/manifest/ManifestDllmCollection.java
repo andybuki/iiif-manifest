@@ -36,7 +36,7 @@ public class ManifestDllmCollection {
 			}
 
 		}else {
-			System.out.println("test");
+			System.out.println("Something wrong with IIIF Image Server");
 		}
 		return null;
 	}

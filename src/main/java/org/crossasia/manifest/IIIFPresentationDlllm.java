@@ -11,9 +11,13 @@ import org.crossasia.manifest.metadata.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.*;
 
 import static org.crossasia.manifest.ManifestDllmCollection.readJsonFromUrl;
@@ -29,7 +33,7 @@ public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter/");
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/bad_file/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -37,7 +41,7 @@ public class IIIFPresentationDlllm  {
         final Manifestor manifestor = new Manifestor();
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result2/");
+            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/bad_file/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -102,9 +106,23 @@ public class IIIFPresentationDlllm  {
 
                 if (pagesObj.has("pages_document_id"))
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
-                JSONObject json = null;
+                //JSONObject json = null;
                 try {
-                    json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
+                    //json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
+
+                    URL url = new URL("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
+                    JSONParser jsonParser = new JSONParser();
+                    URLConnection urlConnection = url.openConnection();
+                    BufferedReader in  = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    long weight = 0;
+                    long height =0;
+                    String inputLine;
+                    while ((inputLine = in.readLine())!=null) {
+                        org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) jsonParser.parse(inputLine);
+                        weight = (Long) jsonObject.get("width");
+                        height = (Long) jsonObject.get("height");
+                    }
+                    in.close();
 
                     manifestID = SERVER + MANIFEST_COLLECTION + "dllm_000" + pages_document_id + "+" + pages_id;
                     canvasID = manifestID + "/canvas";
@@ -112,16 +130,21 @@ public class IIIFPresentationDlllm  {
                     annoID = manifestID + "/annotation";
                     annoPageID = manifestID;
 
-                    int weight = (int) json.get("width");
-                    int height = (int) json.get("height");
+                    //int weight = (int) json.get("width");
+                    //int height = (int) json.get("height");
 
-                    canvas = new Canvas(canvasID).setWidthHeight(weight, height);
-                    imageContent = new ImageContent(imageID).setWidthHeight((Integer) weight, (Integer) height);
+                    canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
+                    imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
 
                 }catch (NullPointerException e) {
-                    System.out.println(e +"NullPointerException - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
+                    e.printStackTrace();
+                    System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
+                }catch (ParseException e) {
+                    e.printStackTrace();
+                    System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
                 }catch (Exception e) {
-                    System.out.println(e +"Exception - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
+                    e.printStackTrace();
+                    System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
                 }
 
                 annoPage = new AnnotationPage<>(annoPageID);
