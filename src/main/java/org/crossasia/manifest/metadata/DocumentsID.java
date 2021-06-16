@@ -10,7 +10,14 @@ import org.jetbrains.annotations.NotNull;
 public class DocumentsID {
 
     public static Metadata getMetadataDocumentsID(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label( "dc:identifier"),
-                        new Value(dllmAttributes.getDocuments_id()));
+        Metadata metadata_id = null;
+
+        if(dllmAttributes.getDocuments_id()!=null) {
+            metadata_id = new Metadata(new Label( "dc:identifier"),
+                    new Value(dllmAttributes.getDocuments_id()));
+            return metadata_id;
+        }
+        else return metadata_id;
+
     }
 }

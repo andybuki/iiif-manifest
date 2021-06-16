@@ -33,7 +33,7 @@ public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/bad_file/");
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -41,7 +41,7 @@ public class IIIFPresentationDlllm  {
         final Manifestor manifestor = new Manifestor();
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/bad_file/");
+            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result2/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
