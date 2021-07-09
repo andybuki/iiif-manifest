@@ -46,10 +46,12 @@ public class Index {
                     //indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
                     plmpThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
                     //i18n_index_Thai = new I18n("lo", indexThaiArrayList);
+                    indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
+
                     i18n_index_Thai_Plmp = new I18n("lo", plmpThaiArrayList);
                     if (i18n_index_Thai !=null && i18n_index_Roman!=null) {
                         metadata_index = new Metadata(new Label("en", "index"),
-                                new Value(new I18n[]{i18n_index_Thai, i18n_index_Roman, i18n_index_Thai_Plmp }));
+                                new Value(new I18n[]{i18n_index_Thai, i18n_index_Roman }));
                     } else if (i18n_index_Thai ==null && i18n_index_Roman!=null) {
                         metadata_index = new Metadata(new Label("en", "index"),
                                 new Value(new I18n[]{ i18n_index_Roman, i18n_index_Thai_Plmp }));

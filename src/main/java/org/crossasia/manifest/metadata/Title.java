@@ -8,6 +8,9 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 
 import java.util.ArrayList;
 
+import static org.crossasia.manifest.metadata.LabelMetadata.getStringsLabelNoTitle;
+import static org.crossasia.manifest.metadata.LabelMetadata.getStringsLabelNoTitleThai;
+
 public class Title {
     public static Metadata getMetadataTitle(DllmAttributes dllmAttributes) {
         ArrayList<String> titlesRomanArrayList = new ArrayList<>();
@@ -32,7 +35,8 @@ public class Title {
 
         if (dllmAttributes.getDllm_title_lao()==null &&
                 dllmAttributes.getDllm_title_roman()==null ) {
-            metadata_titles = null;
+            metadata_titles = new Metadata(new Label("en", "title"),
+                    new Value(new I18n[]{getStringsLabelNoTitle(dllmAttributes), getStringsLabelNoTitleThai(dllmAttributes)}));
         }
 
         return metadata_titles;

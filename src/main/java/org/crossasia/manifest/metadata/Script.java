@@ -18,8 +18,8 @@ public class Script {
         if (dllmAttributes.getScripts()!=null) {
 
             for (int i = 0; i < dllmAttributes.getScripts().length(); i++) {
-                scriptRomanArrayList.add(dllmAttributes.getScripts().get(i).toString());
-                scriptThaiArrayList.add(dllmAttributes.getScripts_lao().get(i).toString());
+                scriptRomanArrayList.add(dllmAttributes.getScripts().get(i).toString().replaceAll("\u200b",""));
+                scriptThaiArrayList.add(dllmAttributes.getScripts_lao().get(i).toString().replaceAll("\u200b",""));
                 I18n i18n_script_Roman = new I18n("en", scriptRomanArrayList);
                 I18n i18n_script_Thai = new I18n("lo", scriptThaiArrayList);
                 metadata_script = new Metadata(new Label("en", "script"),

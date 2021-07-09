@@ -1,9 +1,10 @@
 package org.crossasia.manifest;
 
 import info.freelibrary.iiif.presentation.v3.*;
-import info.freelibrary.iiif.presentation.v3.io.Manifestor;
+
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.image.ImageService3;
+import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
 import org.crossasia.manifest.attributes.DllmAttributes;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
@@ -16,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
@@ -29,6 +31,7 @@ public class IIIFPresentationDlllm  {
     private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
     private static final String MANIFEST_COLLECTION="dllm+";
     private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
+    private static final String LOGO_LINK_LAOS= "http://nationallibraryoflaos.net/wp-content/themes/education-pro/images/header.jpg";
 
     public static void main(String[] args) throws IOException {
 
@@ -38,26 +41,37 @@ public class IIIFPresentationDlllm  {
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
         int counter = 1;
-        final Manifestor manifestor = new Manifestor();
+        Manifestor manifestor = new Manifestor();
+
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
             File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result2/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
-
-            I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes); // get Label
-            I18n i18n_title_Lao = LabelMetadata.getStringsLabel(dllmAttributes);
-            Manifest manifest = new Manifest(String.valueOf(file), new Label( new I18n[]{i18n_title_Roman, i18n_title_Lao}));
-
-            StaticFields.staticFields(counter, manifest); //all static fields
-            counter++;
+            Manifest manifest;
+            I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes);
+            I18n i18n_title_Lao = LabelMetadata.getStringsLabelThai(dllmAttributes);
+            I18n i18n_title_no_title = LabelMetadata.getStringsLabelNoTitle(dllmAttributes);
+            I18n i18n_title_no_title_thai = LabelMetadata.getStringsLabelNoTitleThai(dllmAttributes);
+            I18n i18n_title = LabelMetadata.getStringsLabelBoth(dllmAttributes);
+            I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBoth(dllmAttributes);
+            if (i18n_title_Roman!=null) {
+                manifest = new Manifest(String.valueOf(file), new Label( new I18n[]{i18n_title}));
+            } else {
+                manifest = new Manifest(String.valueOf(file), new Label( new I18n[]{i18n_title_no_title_both}));
+            }
+            String plmp_id = dllmAttributes.getDocuments_code_number();
+            counter = Integer.parseInt(dllmAttributes.getDocuments_id().replace("dllm_",""));
+            StaticFields.staticFields(counter, manifest, plmp_id); //all static fields
 
             metadataMembers(dllmAttributes, manifest);
 
-            String [] book_IDs=dllmAttributes.getDocuments_id().split("_");
-            String book_ID = book_IDs[0]+"_"+"000"+book_IDs[1];
+            //String [] book_IDs=dllmAttributes.getDocuments_id().split("_");
+            //String book_ID = book_IDs[0]+"_"+"000"+book_IDs[1];
+            //String book_ID_Thumb = book_IDs[0]+"_"+book_IDs[1];
             String page_ID="484597";
+            String book_ID = "dllm_000"+counter;
 
             String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID + "/manifest";
             String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
@@ -85,13 +99,19 @@ public class IIIFPresentationDlllm  {
 
             for (int j = 0; j < pages.length(); j++) {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
+                JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
                 String pages_position = "";
                 String pages_image_file = "";
                 String pages_id = "";
                 String first_pages_id = "";
+                String first_page = "";
                 String pages_document_id = "";
                 int number_of_pages = pages.length();
+
+                if (pagesObj_first.has("pages_id")) {
+                    first_page = (String) pagesObj_first.get("pages_id").toString();
+                }
 
                 if (pagesObj.has("pages_position"))
                     pages_position = (String) pagesObj.get("pages_position").toString();
@@ -108,8 +128,6 @@ public class IIIFPresentationDlllm  {
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
                 //JSONObject json = null;
                 try {
-                    //json = readJsonFromUrl("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
-
                     URL url = new URL("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
                     JSONParser jsonParser = new JSONParser();
                     URLConnection urlConnection = url.openConnection();
@@ -130,9 +148,6 @@ public class IIIFPresentationDlllm  {
                     annoID = manifestID + "/annotation";
                     annoPageID = manifestID;
 
-                    //int weight = (int) json.get("width");
-                    //int height = (int) json.get("height");
-
                     canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
                     imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
 
@@ -149,35 +164,39 @@ public class IIIFPresentationDlllm  {
 
                 annoPage = new AnnotationPage<>(annoPageID);
                 anno = new PaintingAnnotation(annoID, canvas);
-                annoPage.addAnnotations(anno.setBody(imageContent).setTarget(canvasID));
+                annoPage.addAnnotations(anno.setBodies(imageContent).setTarget(canvasID));
                 canvases.add(canvas.setPaintingPages(annoPage));
                 manifest.setCanvases(canvases);
 
                 MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +"+"+pages_id  + "/manifest";
-                MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
+                MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ first_page+   THUMBNAIL_PATH;
 
-                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ pages_id);
+                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ first_page);
                 manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-                //manifest.setStart(new Start("https://iiif-content.crossasia.org/xasia/dllm/dllm_000"+book_ID+"+"+pages_id + "/canvas/"+pages_id));
-                manifest.setStart(new Start(MANIFEST_URI.replace("manifest", "canvas/")+ pages_id));
 
             }
             //end adding images
 
-            Provider provider = new Provider("https://example.org/about",
-                    String.valueOf(new Label("en", String.valueOf(new Value(new I18n("en", "Test"))))));
+            Provider provider = new Provider("crossasia.org",  "Staatsbibliothek zu Berlin | CrossAsia");
+            Label label_provider_laos = new Label(new I18n("en", "National Library of Laos"),
+                    new I18n("lo","ຫໍສະໝຸດແຫ່ງຊາດ"));
 
-            provider.setLogos(new ImageContent(LOGO_LINK).setServices(manifestThumbService));
-            manifest.setProviders(provider);
+            Provider provider_laos = new Provider("http://nationallibraryoflaos.net/en/", "");
+
+            provider_laos.setLabel(label_provider_laos);
+
+            //provider.setLogos(new ImageContent(LOGO_LINK).setWidthHeight(100, 150));
+            //provider_laos.setLogos(new ImageContent(LOGO_LINK_LAOS).setWidthHeight(100, 150));
+            /*provider.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
+                    new Label("en","Crossasia IIIF collections")));*/
+
+            manifest.setProviders(provider, provider_laos);
+
             File newFile = null;
             newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
 
-            //Logger.log();
-
-
             System.setOut(out);
-
 
         }
     }

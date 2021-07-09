@@ -97,23 +97,23 @@ public class OriginalDllm {
         if (dllmAttributes.getPublic_remarks_lao()!= null)
             dllmArrayList.add("public_remarks_lao : " +String.valueOf(dllmAttributes.getPublic_remarks_lao()));  //ARRAY
 
-        if (dllmAttributes.getPublic_remarks_lao()!= null)
-            dllmArrayList.add("categories_name : " +String.valueOf(dllmAttributes.getPublic_remarks_lao())); //ARRAY
+        if (dllmAttributes.getCategories_name()!= null)
+            dllmArrayList.add("categories_name : " +String.valueOf(dllmAttributes.getCategories_name())); //ARRAY
 
         if (dllmAttributes.getCategories_name_lao()!= null)
-            dllmArrayList.add("categories_name_lao : " +String.valueOf(dllmAttributes.getCategories_name_lao())); //ARRAY
+            dllmArrayList.add("categories_name_lao : " +String.valueOf(dllmAttributes.getCategories_name_lao()).replace("\\u200b", "")); //ARRAY
 
         if (dllmAttributes.getLanguages()!= null)
             dllmArrayList.add("languages : " +String.valueOf(dllmAttributes.getLanguages())); //ARRAY
 
         if (dllmAttributes.getLanguages_lao()!= null)
-            dllmArrayList.add("languages_lao : " +String.valueOf(dllmAttributes.getLanguages_lao())); //ARRAY
+            dllmArrayList.add("languages_lao : " +String.valueOf(dllmAttributes.getLanguages_lao()).replace("\\u200b","")); //ARRAY
 
         if (dllmAttributes.getScripts()!= null)
             dllmArrayList.add("scripts : " +String.valueOf(dllmAttributes.getScripts())); //ARRAY
 
         if (dllmAttributes.getScripts_lao()!= null)
-            dllmArrayList.add("scripts_lao : " +String.valueOf(dllmAttributes.getScripts_lao())); //ARRAY
+            dllmArrayList.add("scripts_lao : " +String.valueOf(dllmAttributes.getScripts_lao()).replace("\\u200b","")); //ARRAY
 
         if (dllmAttributes.getTitle_search_roman()!= null)
             dllmArrayList.add("title_search_roman : " +String.valueOf(dllmAttributes.getTitle_search_roman())); //ARRAY
