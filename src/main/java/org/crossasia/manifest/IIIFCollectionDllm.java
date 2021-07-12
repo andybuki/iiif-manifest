@@ -19,6 +19,8 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -29,7 +31,7 @@ public class IIIFCollectionDllm {
 	public static void main(String[] args) throws IOException {
 
 		String quote = "\u005c\u0022";
-		File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter2/");
+		File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/splitter/");
 		//PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
 		File dir = new File(String.valueOf(absolutePath));
 		File[] filesInDir = dir.listFiles();
@@ -38,9 +40,10 @@ public class IIIFCollectionDllm {
 		Collection collection = new Collection("Collection", "Digital Library of Lao Manuscripts 0-1000");
 		List<Collection.Item> items = new ArrayList<>();
 
+
 		for (File file : filesInDir) {
 			DllmAttributes dllmAttributes = new DllmAttributes();
-
+			int lentgthFiles =  filesInDir.length;
 			JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 			StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
 			I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes);
@@ -66,9 +69,36 @@ public class IIIFCollectionDllm {
 
 			items.add(manifest);
 			collection.setItems(items);
+
+			DllmAttributes finalDllmAttributes = dllmAttributes;
+
+			/*Collections.sort(collection, new Comparator<Collection>() {
+
+
+				@Override
+				public int compare(JSONObject jsonObjectA, JSONObject jsonObjectB) {
+					int compare = 0;
+					try
+					{
+						int keyA = jsonObjectA.getInt("key");
+						int keyB = jsonObjectB.getInt("key");
+						compare = Integer.compare(keyA, keyB);
+					}
+					catch(JSONException e)
+					{
+						e.printStackTrace();
+					}
+					return compare;
+				}
+			});*/
+
+
 		}
 
-		PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result3/collection.json"));
+
+
+
+		PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result3/collection2.json"));
 		out.println(collection.toString());
 	}
 
