@@ -17,12 +17,9 @@ import org.json.simple.parser.ParseException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
-
-import static org.crossasia.manifest.ManifestDllmCollection.readJsonFromUrl;
 
 @SpringBootApplication
 public class IIIFPresentationDlllm  {

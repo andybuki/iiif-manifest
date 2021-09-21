@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.old;
 
 import org.json.JSONArray;
 import org.json.JSONException;
