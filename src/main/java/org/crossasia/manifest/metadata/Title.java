@@ -5,7 +5,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 import static org.crossasia.manifest.metadata.LabelMetadata.getStringsLabelNoTitle;
@@ -24,13 +24,16 @@ public class Title {
                 titlesRomanArrayList.add(dllmAttributes.getDllm_title_roman().get(i).toString());
                 i18n_title_Roman = new I18n("en", titlesRomanArrayList);
             }
-            for (int i = 0; i < dllmAttributes.getDllm_title_lao().length(); i++) {
-                titlesThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
-                i18n_title_Thai = new I18n("lo", titlesThaiArrayList);
-            }
-
-            metadata_titles = new Metadata(new Label("en", "title"),
-                    new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
+            if (dllmAttributes.getDllm_title_lao()!=null) {
+                for (int i = 0; i < dllmAttributes.getDllm_title_lao().length(); i++) {
+                    titlesThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
+                    i18n_title_Thai = new I18n(ORIGINAL_LANGUAGE, titlesThaiArrayList);
+                }
+                metadata_titles = new Metadata(new Label("en", "title"),
+                        new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));
+            } else
+                metadata_titles = new Metadata(new Label("en", "title"),
+                        new Value(new I18n[]{i18n_title_Roman}));
         }
 
         if (dllmAttributes.getDllm_title_lao()==null &&

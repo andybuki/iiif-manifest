@@ -5,7 +5,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Script {
@@ -21,7 +21,7 @@ public class Script {
                 scriptRomanArrayList.add(dllmAttributes.getScripts().get(i).toString().replaceAll("\u200b",""));
                 scriptThaiArrayList.add(dllmAttributes.getScripts_lao().get(i).toString().replaceAll("\u200b",""));
                 I18n i18n_script_Roman = new I18n("en", scriptRomanArrayList);
-                I18n i18n_script_Thai = new I18n("lo", scriptThaiArrayList);
+                I18n i18n_script_Thai = new I18n(ORIGINAL_LANGUAGE, scriptThaiArrayList);
                 metadata_script = new Metadata(new Label("en", "script"),
                         new Value(new I18n[]{i18n_script_Roman, i18n_script_Thai}));
             }

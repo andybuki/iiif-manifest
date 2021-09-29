@@ -8,6 +8,8 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 
 import java.util.ArrayList;
 
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+
 public class Index {
     public static Metadata getMetadataIndex(DllmAttributes dllmAttributes) {
 
@@ -31,7 +33,7 @@ public class Index {
             for (int i = 0; i < dllmAttributes.getTitle_search_lao().length(); i++) {
                 if (dllmAttributes.getTitle_search_lao() != null) {
                     indexThaiArrayList.add(dllmAttributes.getTitle_search_lao().get(i).toString());
-                    i18n_index_Thai = new I18n("lo", indexThaiArrayList);
+                    i18n_index_Thai = new I18n(ORIGINAL_LANGUAGE, indexThaiArrayList);
                     metadata_index = new Metadata(new Label("en", "index"),
                             new Value(new I18n[]{i18n_index_Thai, i18n_index_Roman}));
                 } else {
@@ -45,10 +47,10 @@ public class Index {
                 if (dllmAttributes.getPlmp_title_lao() != null)  {
                     //indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
                     plmpThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
-                    //i18n_index_Thai = new I18n("lo", indexThaiArrayList);
+                    //i18n_index_Thai = new I18n(ORIGINAL_LANGUAGE, indexThaiArrayList);
                     indexThaiArrayList.add(dllmAttributes.getPlmp_title_lao().get(i).toString());
 
-                    i18n_index_Thai_Plmp = new I18n("lo", plmpThaiArrayList);
+                    i18n_index_Thai_Plmp = new I18n(ORIGINAL_LANGUAGE, plmpThaiArrayList);
                     if (i18n_index_Thai !=null && i18n_index_Roman!=null) {
                         metadata_index = new Metadata(new Label("en", "index"),
                                 new Value(new I18n[]{i18n_index_Thai, i18n_index_Roman }));

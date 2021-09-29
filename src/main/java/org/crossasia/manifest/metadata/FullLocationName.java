@@ -6,12 +6,64 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 
 public class FullLocationName {
 
     public static Metadata getMetadataFullLocationName(DllmAttributes dllmAttributes) {
-        return new Metadata(new Label(new I18n("en", "full_location_name")),
-                new Value(new I18n("en",dllmAttributes.getFull_location_name()),
-                        new I18n("lo", dllmAttributes.getFull_location_name_lao())));
+        StringBuilder fullLocationNameBuilder = new StringBuilder();
+        StringBuilder fullLocationNameBuilderLao = new StringBuilder();
+        String district ="";
+        String province ="";
+        String address ="";
+        String district_th ="";
+        String province_th ="";
+        String address_th ="";
+        String collection = "";
+
+        if (dllmAttributes.getLocation_name()!=null) {
+            address = dllmAttributes.getLocation_name();
+            fullLocationNameBuilder.append(address+", ");
+        }
+
+        if (dllmAttributes.getLocations_parent_parent_name()!=null) {
+            district = dllmAttributes.getLocations_parent_parent_name();
+            fullLocationNameBuilder.append(district+", ");
+        }
+
+        if (dllmAttributes.getLocations_parent_name()!=null) {
+            province = dllmAttributes.getLocations_parent_name();
+            fullLocationNameBuilder.append(province);
+        }
+        if( dllmAttributes.isIn_private_collection()==true) {
+            collection = " In private possession";
+            fullLocationNameBuilder.append(collection);
+        }
+
+        if (dllmAttributes.getLocation_name_lao()!=null) {
+            address_th = dllmAttributes.getLocation_name_lao();
+            fullLocationNameBuilderLao.append(address_th+", ");
+        }
+
+        if (dllmAttributes.getLocations_parent_parent_name_lao()!=null) {
+            district_th = dllmAttributes.getLocations_parent_parent_name_lao();
+            fullLocationNameBuilderLao.append(district_th+", ");
+        }
+
+        if (dllmAttributes.getLocations_parent_name_lao()!=null) {
+            province_th = dllmAttributes.getLocations_parent_name_lao();
+            fullLocationNameBuilderLao.append(province_th);
+        }
+
+
+        if (fullLocationNameBuilder!=null) {
+            return new Metadata(new Label(new I18n("en", "full_location_name")),
+                    new Value(new I18n("en",fullLocationNameBuilder.toString()),
+                            new I18n(ORIGINAL_LANGUAGE, fullLocationNameBuilderLao.toString())));
+        } else {
+                return new Metadata(new Label(new I18n("en", "full_location_name")),
+                        new Value(new I18n("en",dllmAttributes.getFull_location_name()),
+                                new I18n(ORIGINAL_LANGUAGE, dllmAttributes.getFull_location_name_lao())));
+        }
     }
 }

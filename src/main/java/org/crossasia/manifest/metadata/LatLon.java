@@ -13,9 +13,12 @@ public class LatLon {
 
         Metadata metadata_is_latitude= null;
 
-        if(dllmAttributes.getLocations_gps_lat()!=0) {
+        if(dllmAttributes.getLocations_gps_lat()!=0 || dllmAttributes.getLatitude()!=null) {
             metadata_is_latitude = new Metadata(new Label( "schema:latitude"),
                     new Value(String.valueOf(dllmAttributes.getLocations_gps_lat())));
+
+            metadata_is_latitude = new Metadata(new Label( "schema:latitude"),
+                    new Value(String.valueOf(dllmAttributes.getLatitude().get(0))));
             return metadata_is_latitude;
         }
         else return metadata_is_latitude;
@@ -27,9 +30,11 @@ public class LatLon {
 
         Metadata metadata_is_longitude= null;
 
-        if(dllmAttributes.getLocations_gps_lon()!=0) {
+        if(dllmAttributes.getLocations_gps_lon()!=0 || dllmAttributes.getLongitude()!=null) {
             metadata_is_longitude = new Metadata(new Label("schema:longitude"),
                     new Value(String.valueOf(dllmAttributes.getLocations_gps_lon())));
+            metadata_is_longitude = new Metadata(new Label("schema:longitude"),
+                    new Value(String.valueOf(dllmAttributes.getLongitude().get(0))));
             return metadata_is_longitude;
         }
         else return metadata_is_longitude;

@@ -5,7 +5,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Language {
@@ -19,7 +19,7 @@ public class Language {
                 languagesRomanArrayList.add(dllmAttributes.getLanguages().get(i).toString());
                 languagesThaiArrayList.add(dllmAttributes.getLanguages_lao().get(i).toString());
                 I18n i18n_language_Roman = new I18n("en", languagesRomanArrayList);
-                I18n i18n_language_Thai = new I18n("lo", languagesThaiArrayList);
+                I18n i18n_language_Thai = new I18n(ORIGINAL_LANGUAGE, languagesThaiArrayList);
                 metadata_language = new Metadata(new Label("en", "dc:language"),
                         new Value(new I18n[]{i18n_language_Roman, i18n_language_Thai}));
             }

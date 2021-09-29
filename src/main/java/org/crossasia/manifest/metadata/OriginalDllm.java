@@ -20,8 +20,14 @@ public class OriginalDllm {
         if (dllmAttributes.getDocuments_code_number()!= null)
             dllmArrayList.add("documents_code_number : " +dllmAttributes.getDocuments_code_number());
 
+        if (dllmAttributes.getCode_number()!= null)
+            dllmArrayList.add("otherIdentifier.code_number : " +dllmAttributes.getCode_number());
+
         if (dllmAttributes.getDocuments_roll()!= null)
             dllmArrayList.add("documents_roll : " +dllmAttributes.getDocuments_roll());
+
+        if (dllmAttributes.getMicrofilm_roll_number()!= null)
+            dllmArrayList.add("otherIdentifier.roll : " +dllmAttributes.getMicrofilm_roll_number());
 
         if (dllmAttributes.getDocuments_number_of_fascicles()!= 0)
             dllmArrayList.add("documents_number_of_fascicles : " +String.valueOf(dllmAttributes.getDocuments_number_of_fascicles()));
@@ -37,6 +43,14 @@ public class OriginalDllm {
 
         if (dllmAttributes.getFull_location_name()!= null)
             dllmArrayList.add("full_location_name : " +dllmAttributes.getFull_location_name());
+
+        if (dllmAttributes.getLocation_name()!= null)
+            dllmArrayList.add("full_location_name : " +dllmAttributes.getLocation_name()+", "+
+                    dllmAttributes.getLocations_parent_name()+ ", "+ dllmAttributes.getLocations_parent_parent_name());
+
+        if (dllmAttributes.getLocation_name_lao()!= null)
+            dllmArrayList.add("full_location_name_lao : " +dllmAttributes.getLocation_name_lao()+", "+
+                    dllmAttributes.getLocations_parent_name_lao()+ ", "+ dllmAttributes.getLocations_parent_parent_name_lao());
 
         if (dllmAttributes.getFull_location_name_lao()!= null)
             dllmArrayList.add("full_location_name_lao : " +dllmAttributes.getFull_location_name_lao());
@@ -68,8 +82,12 @@ public class OriginalDllm {
             dllmArrayList.add("documents_pages_count : " +String.valueOf(dllmAttributes.getDocuments_pages_count()));
         if (dllmAttributes.getMaterials_name()!= null)
             dllmArrayList.add("materials_name : " +dllmAttributes.getMaterials_name());
+        if (dllmAttributes.getMaterial()!= null)
+            dllmArrayList.add("materials_name : " +dllmAttributes.getMaterial());
         if (dllmAttributes.getMaterials_name_lao()!= null)
             dllmArrayList.add("materials_name_lao : " +dllmAttributes.getMaterials_name_lao());
+        if (dllmAttributes.getMaterial_th()!= null)
+            dllmArrayList.add("materials_name_lao : " +dllmAttributes.getMaterial_th());
         if (dllmAttributes.getLocation_types_name()!= null)
             dllmArrayList.add("location_types_name : " +dllmAttributes.getLocation_types_name());
         if (dllmAttributes.getLocation_types_name_lao()!= null)
@@ -82,11 +100,23 @@ public class OriginalDllm {
             dllmArrayList.add("locations_dllm_loc_code : " +String.valueOf(dllmAttributes.getLocations_dllm_loc_code()));
         if (dllmAttributes.getLocations_gps_lat()!= 0)
             dllmArrayList.add("locations_gps_lat : " +String.valueOf(dllmAttributes.getLocations_gps_lat()));
+        if (dllmAttributes.getLatitude()!= null)
+            dllmArrayList.add("locations_gps_lat : " +String.valueOf(dllmAttributes.getLatitude()));
         if (dllmAttributes.getLocations_gps_lon()!= 0)
             dllmArrayList.add("locations_gps_lon : " +String.valueOf(dllmAttributes.getLocations_gps_lon()));
-
+        if (dllmAttributes.getLongitude()!= null)
+            dllmArrayList.add("locations_gps_lon : " +String.valueOf(dllmAttributes.getLongitude()));
         if (dllmAttributes.getAncillary_terms_roman()!= null)
             dllmArrayList.add("ancillary_terms_roman : " +String.valueOf(dllmAttributes.getAncillary_terms_roman())); //ARRAY
+
+        if (dllmAttributes.getExact())
+            dllmArrayList.add("exact_coordinates : " +String.valueOf(dllmAttributes.getExact()));
+
+        if (dllmAttributes.getYear()!= 0)
+            dllmArrayList.add("year : " +String.valueOf(dllmAttributes.getYear()));
+
+        if (dllmAttributes.getLocations_id()!= 0)
+            dllmArrayList.add("locations_dlntm_loc_code : " +String.valueOf(dllmAttributes.getLocations_id()));
 
         if (dllmAttributes.getAncillary_terms_lao()!= null)
             dllmArrayList.add("ancillary_terms_lao : " +String.valueOf(dllmAttributes.getAncillary_terms_lao())); //ARRAY
@@ -154,6 +184,21 @@ public class OriginalDllm {
         if (dllmAttributes.getDocuments_date_written()!= null)
             dllmArrayList.add("documents_date_written : " +dllmAttributes.getDocuments_date_written());
 
+        if (dllmAttributes.getCe_year()!= 0)
+            dllmArrayList.add("documents_date_written : " +dllmAttributes.getCe_year());
+
+        if (dllmAttributes.getMicrofilm_roll_number()!= null)
+            dllmArrayList.add("otherIdentifier.roll : " +dllmAttributes.getMicrofilm_roll_number());
+
+        if (dllmAttributes.getIn_collection()!= null)
+            dllmArrayList.add("in_collection : " +dllmAttributes.getIn_collection());
+
+        if (dllmAttributes.getAlternative_label_ro()!= null)
+            dllmArrayList.add("alternative_title : " +dllmAttributes.getAlternative_label_ro());
+
+        if (dllmAttributes.getAlternative_label_th()!= null)
+            dllmArrayList.add("alternative_title_th : " +dllmAttributes.getAlternative_label_th());
+
         Iterator<String> iterDllm_original = dllmArrayList.iterator();
 
         while (iterDllm_original.hasNext()) {
@@ -164,7 +209,7 @@ public class OriginalDllm {
 
         I18n dllm_org = new I18n("en", dllmArrayList);
 
-        return new Metadata(new Label(new I18n("en", "dllm_original")),
+        return new Metadata(new Label(new I18n("en", "lanna_original")),
                 new Value(new I18n []{ dllm_org }));
     }
 }

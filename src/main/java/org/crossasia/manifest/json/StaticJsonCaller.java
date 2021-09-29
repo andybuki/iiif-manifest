@@ -39,11 +39,12 @@ public class StaticJsonCaller {
         JsonConnecter.locationsID(dllmAttributes,jsonObj);
         JsonConnecter.documentsBundleID(dllmAttributes,jsonObj);
         JsonConnecter.description(dllmAttributes,jsonObj);
-
+        JsonConnecter.documentsInCollection(dllmAttributes, jsonObj);
         JsonConnecter.materialsName(dllmAttributes,jsonObj);
         JsonConnecter.materialsNameLao(dllmAttributes,jsonObj);
         JsonConnecter.locationTypesName(dllmAttributes,jsonObj);
 
+        JsonConnecter.microfilmRollNumber(dllmAttributes,jsonObj);
         JsonConnecter.locationTypesNameLao(dllmAttributes,jsonObj);
         JsonConnecter.locationsLft(dllmAttributes,jsonObj);
         JsonConnecter.locationsRgt(dllmAttributes,jsonObj);
@@ -84,6 +85,15 @@ public class StaticJsonCaller {
         JsonConnecter.dateOriginalLao(dllmAttributes,jsonObj);
         JsonConnecter.locationName(dllmAttributes,jsonObj);
         JsonConnecter.locationNameLao(dllmAttributes,jsonObj);
+        JsonConnecter.numberOfDigitalImages(dllmAttributes,jsonObj);
+
+        JsonConnecter.alternativeRoman(dllmAttributes,jsonObj);
+        JsonConnecter.alternativeThai(dllmAttributes,jsonObj);
+        JsonConnecter.exact(dllmAttributes,jsonObj);
+        JsonConnecter.ceYear(dllmAttributes,jsonObj);
+
+        JsonConnecter.year(dllmAttributes,jsonObj);
+        JsonConnecter.documentsInPrivateCollection(dllmAttributes,jsonObj);
     }
 
 }

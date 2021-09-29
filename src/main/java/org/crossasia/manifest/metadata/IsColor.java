@@ -20,12 +20,5 @@ public class IsColor {
         }
         else return metadata_is_color;
 
-
-
-
-
-
-
-
     }
 }

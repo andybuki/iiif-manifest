@@ -9,7 +9,10 @@ public class JsonConnecter {
 
     public static void documentsID (DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("documents_id")) {
-            dllmAttributes.setDocuments_id((String) jsonObj.get("documents_id"));
+            dllmAttributes.setDocuments_id((String) jsonObj.get("documents_id").toString());
+        }
+        if (jsonObj.has("id")) {
+            dllmAttributes.setDocuments_id((String) jsonObj.get("id").toString());
         }
     }
 
@@ -23,11 +26,27 @@ public class JsonConnecter {
         if (jsonObj.has("documents_code_number")) {
             dllmAttributes.setDocuments_code_number((String) jsonObj.get("documents_code_number"));
         }
+
+        if (jsonObj.has("code_number")) {
+            dllmAttributes.setCode_number((String) jsonObj.get("code_number"));
+        }
     }
 
     public static void documentsRoll(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("documents_roll")) {
             dllmAttributes.setDocuments_roll((String) jsonObj.get("documents_roll"));
+        }
+    }
+
+    public static void year(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("document_years")) {
+            dllmAttributes.setYear((int) jsonObj.get("document_years"));
+        }
+    }
+
+    public static void ceYear(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("ce_year")) {
+            dllmAttributes.setCe_year((int) jsonObj.get("ce_year"));
         }
     }
 
@@ -63,27 +82,41 @@ public class JsonConnecter {
 
     public static void locationsParentName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("locations_parent_name")) {
-            dllmAttributes.setLocations_parent_name((String) jsonObj.get("locations_parent_name"));
+            if (jsonObj.get("locations_parent_name") instanceof String)
+                dllmAttributes.setLocations_parent_name((String) jsonObj.get("locations_parent_name"));
+            else
+                dllmAttributes.setDistrict_ro((JSONArray) jsonObj.get("locations_parent_name"));
         }
     }
 
     public static void locationsParentNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("locations_parent_name_lao")) {
-            dllmAttributes.setLocations_parent_name_lao((String) jsonObj.get("locations_parent_name_lao"));
+            if (jsonObj.get("locations_parent_name_lao") instanceof String)
+                dllmAttributes.setLocations_parent_name_lao((String) jsonObj.get("locations_parent_name_lao"));
+            else
+                dllmAttributes.setDistrict_th((JSONArray) jsonObj.get("locations_parent_name_lao"));
         }
     }
 
     public static void locationsParentParentName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("locations_parent_parent_name")) {
-            dllmAttributes.setLocations_parent_parent_name((String) jsonObj.get("locations_parent_parent_name"));
+            if (jsonObj.get("locations_parent_parent_name") instanceof String)
+                dllmAttributes.setLocations_parent_parent_name((String) jsonObj.get("locations_parent_parent_name"));
+            else
+                dllmAttributes.setProvince_ro((JSONArray) jsonObj.get("locations_parent_parent_name"));
         }
     }
 
+
     public static void locationsParentParentNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("locations_parent_parent_name_lao")) {
-            dllmAttributes.setLocations_parent_parent_name_lao((String) jsonObj.get("locations_parent_parent_name_lao"));
+            if (jsonObj.get("locations_parent_parent_name_lao") instanceof String)
+                dllmAttributes.setLocations_parent_parent_name_lao((String) jsonObj.get("locations_parent_parent_name_lao"));
+            else
+                dllmAttributes.setProvince_th((JSONArray) jsonObj.get("locations_parent_parent_name_lao"));
         }
     }
+
 
     public static void fullLocationName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("full_location_name")) {
@@ -97,15 +130,27 @@ public class JsonConnecter {
         }
     }
 
-    public static void locationName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+    /*public static void addressRo(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("location_name")) {
             dllmAttributes.setLocation_name((String) jsonObj.get("location_name"));
+        }
+    }*/
+
+    public static void locationName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("location_name")) {
+            if (jsonObj.get("location_name") instanceof String)
+                dllmAttributes.setLocation_name((String) jsonObj.get("location_name"));
+            else
+                dllmAttributes.setAddress_ro((JSONArray) jsonObj.get("location_name"));
         }
     }
 
     public static void locationNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("location_name_lao")) {
-            dllmAttributes.setLocation_name_lao((String) jsonObj.get("location_name_lao"));
+            if (jsonObj.get("location_name_lao") instanceof String)
+                dllmAttributes.setLocation_name_lao((String) jsonObj.get("location_name_lao"));
+            else
+                dllmAttributes.setAddress_th((JSONArray) jsonObj.get("location_name_lao"));
         }
     }
 
@@ -129,13 +174,19 @@ public class JsonConnecter {
 
     public static void documentsHasColophon(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("documents_has_colophon")) {
-            dllmAttributes.setDocuments_has_colophon((String) jsonObj.get("documents_has_colophon"));
+            if (jsonObj.get("documents_has_colophon") instanceof String)
+                dllmAttributes.setDocuments_has_colophon((String) jsonObj.get("documents_has_colophon"));
+            else
+                dllmAttributes.setHas_colophon((boolean) jsonObj.get("documents_has_colophon"));
         }
     }
 
     public static void documentsIsIllustrated(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("documents_is_illustrated")) {
-            dllmAttributes.setDocuments_is_illustrated((String) jsonObj.get("documents_is_illustrated"));
+            if (jsonObj.get("documents_is_illustrated") instanceof String)
+                dllmAttributes.setDocuments_is_illustrated((String) jsonObj.get("documents_is_illustrated"));
+            else
+                dllmAttributes.setIllustrated((boolean) jsonObj.get("documents_is_illustrated"));
         }
     }
 
@@ -145,7 +196,17 @@ public class JsonConnecter {
         }
     }
 
+    public static void documentsInCollection(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("collection")) {
+            dllmAttributes.setIn_collection((String) jsonObj.get("collection"));
+        }
+    }
 
+    public static void documentsInPrivateCollection(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("in_private_collection")) {
+            dllmAttributes.setIn_private_collection((boolean) jsonObj.get("in_private_collection"));
+        }
+    }
 
     public static void documentsBundleID(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("documents_bundle_id")) {
@@ -192,13 +253,19 @@ public class JsonConnecter {
 
     public static void materialsName(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("materials_name")) {
-            dllmAttributes.setMaterials_name((String) jsonObj.get("materials_name"));
+            if (jsonObj.get("materials_name") instanceof String)
+                dllmAttributes.setMaterials_name((String) jsonObj.get("materials_name"));
+            else
+                dllmAttributes.setMaterial((JSONArray) jsonObj.get("materials_name"));
         }
     }
 
     public static void materialsNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("materials_name_lao")) {
-            dllmAttributes.setMaterials_name_lao((String) jsonObj.get("materials_name_lao"));
+            if (jsonObj.get("materials_name_lao") instanceof String)
+                dllmAttributes.setMaterials_name_lao((String) jsonObj.get("materials_name_lao"));
+            else
+                dllmAttributes.setMaterial_th((JSONArray) jsonObj.get("materials_name_lao"));
         }
     }
 
@@ -208,9 +275,27 @@ public class JsonConnecter {
         }
     }
 
+    public static void exact(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("exact")) {
+            dllmAttributes.setExact((boolean) jsonObj.get("exact"));
+        }
+    }
+
     public static void locationTypesNameLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("location_types_name_lao")) {
             dllmAttributes.setLocation_types_name_lao((String) jsonObj.get("location_types_name_lao"));
+        }
+    }
+
+    public static void microfilmRollNumber(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("microfilm_roll_number")) {
+            dllmAttributes.setMicrofilm_roll_number((String) jsonObj.get("microfilm_roll_number"));
+        }
+    }
+
+    public static void numberOfDigitalImages(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("number_of_digital_images")) {
+            dllmAttributes.setNumber_of_digital_images((int) jsonObj.get("number_of_digital_images"));
         }
     }
 
@@ -236,11 +321,17 @@ public class JsonConnecter {
         if (jsonObj.has("locations_gps_lat")) {
             dllmAttributes.setLocations_gps_lat((double) jsonObj.get("locations_gps_lat"));
         }
+        if (jsonObj.has("latitude")){
+            dllmAttributes.setLatitude((JSONArray) jsonObj.get("latitude"));
+        }
     }
 
     public static void locationsGpsLon(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("locations_gps_lon")) {
             dllmAttributes.setLocations_gps_lon((double) jsonObj.get("locations_gps_lon"));
+        }
+        if (jsonObj.has("longitude")) {
+            dllmAttributes.setLongitude((JSONArray) jsonObj.get("longitude"));
         }
     }
 
@@ -258,13 +349,14 @@ public class JsonConnecter {
 
     public static void publicRemarksEnglish(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("public_remarks_english")) {
-            dllmAttributes.setPublic_remarks_english((JSONArray) jsonObj.get("public_remarks_english"));
+            if (jsonObj.get("public_remarks_english") instanceof String)
+                dllmAttributes.setPublic_remarks_english((String) jsonObj.get("public_remarks_english"));
         }
     }
 
     public static void publicRemarksLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("public_remarks_lao")) {
-            dllmAttributes.setPublic_remarks_lao((JSONArray) jsonObj.get("public_remarks_lao"));
+            dllmAttributes.setPublic_remarks_lao((String) jsonObj.get("public_remarks_lao"));
         }
     }
 
@@ -392,6 +484,18 @@ public class JsonConnecter {
     public static void dateOriginalLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("date_original_lao")) {
             dllmAttributes.setDate_original_lao((String) jsonObj.get("date_original_lao"));
+        }
+    }
+
+    public static void alternativeRoman(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("alternative_label_ro")) {
+            dllmAttributes.setAlternative_label_ro((JSONArray) jsonObj.get("alternative_label_ro"));
+        }
+    }
+
+    public static void alternativeThai(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("alternative_label_th")) {
+            dllmAttributes.setAlternative_label_th((JSONArray) jsonObj.get("alternative_label_th"));
         }
     }
 }

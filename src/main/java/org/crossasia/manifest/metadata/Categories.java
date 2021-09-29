@@ -5,7 +5,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-
+import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Categories {
@@ -28,7 +28,7 @@ public class Categories {
         if (dllmAttributes.getCategories_name_lao()!=null) {
             for (int j = 0; j < dllmAttributes.getCategories_name_lao().length(); j++) {
                 categoriesThaiArrayList.add(dllmAttributes.getCategories_name_lao().get(j).toString());
-                i18n_categories_Thai = new I18n("lo", categoriesThaiArrayList);
+                i18n_categories_Thai = new I18n(ORIGINAL_LANGUAGE, categoriesThaiArrayList);
                 metadata_categories = new Metadata(new Label("en", "dc:subject"),
                         new Value(new I18n[]{i18n_categories_Roman, i18n_categories_Thai}));
             }
