@@ -37,7 +37,7 @@ public class IIIFPresentationDlmnt {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/data/dlmnt/fedora/books_raw/");
+        File absolutePath = new File("/data/dlmnt/fedora/books_raw2/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -46,7 +46,7 @@ public class IIIFPresentationDlmnt {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/data/dlmnt/fedora/manifests/");
+            File created = new File("/data/dlmnt/fedora/manifests2/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -244,7 +244,7 @@ public class IIIFPresentationDlmnt {
         Metadata metadata_is_complete= IsComplete.getMetadataIsComplete(dllmAttributes);
         Metadata metadata_pages_count= PagesCount.getMetadataPagesCount(dllmAttributes);
         Metadata metadata_material= Material.getMetadataMaterial(dllmAttributes);
-        Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);
+        //Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);
 
         Metadata metadata_latitude= LatLon.getMetadataLatitude(dllmAttributes);
         Metadata metadata_longitude= LatLon.getMetadataLongitude(dllmAttributes);
@@ -289,7 +289,7 @@ public class IIIFPresentationDlmnt {
         metadataArrayList.add(metadata_in_collection);
         metadataArrayList.add(metadata_pages_count);
         metadataArrayList.add(metadata_material);
-        metadataArrayList.add(metadata_location_types_name);
+        //metadataArrayList.add(metadata_location_types_name);
 
         metadataArrayList.add(metadata_latitude);
         metadataArrayList.add(metadata_longitude);

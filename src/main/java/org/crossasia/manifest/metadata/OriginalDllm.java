@@ -188,7 +188,7 @@ public class OriginalDllm {
             dllmArrayList.add("documents_date_written : " +dllmAttributes.getCe_year());
 
         if (dllmAttributes.getMicrofilm_roll_number()!= null)
-            dllmArrayList.add("otherIdentifier.roll : " +dllmAttributes.getMicrofilm_roll_number());
+            //dllmArrayList.add("otherIdentifier.roll : " +dllmAttributes.getMicrofilm_roll_number());
 
         if (dllmAttributes.getIn_collection()!= null)
             dllmArrayList.add("in_collection : " +dllmAttributes.getIn_collection());
