@@ -37,7 +37,7 @@ public class IIIFPresentationDlmnt {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/data/dlmnt/fedora/books_raw2/");
+        File absolutePath = new File("/data/dlmnt/fedora/books_raw/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -46,7 +46,7 @@ public class IIIFPresentationDlmnt {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/data/dlmnt/fedora/manifests2/");
+            File created = new File("/data/dlmnt/fedora/manifests/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -203,11 +203,11 @@ public class IIIFPresentationDlmnt {
                     new Label("en","Crossasia IIIF collections")));*/
 
             if (collection.contains("PNTMP")) {
-                manifest.setProviders(provider, provider_thai);
+                manifest.setProviders(provider, provider_thai, provider_laos);
             } else if (collection.contains("DLNTM")) {
-                manifest.setProviders(provider, provider_laos, provider_thai);
+                manifest.setProviders(provider, provider_laos);
             } else {
-                manifest.setProviders(provider, provider_laos, provider_thai);
+                manifest.setProviders(provider, provider_laos);
             }
 
             File newFile = null;
@@ -273,7 +273,7 @@ public class IIIFPresentationDlmnt {
         metadataArrayList.add(metadata_documentsID);
 
         metadataArrayList.add(metadata_documentsCodeNumber);
-        metadataArrayList.add(metadata_documents_roll);
+        //metadataArrayList.add(metadata_documents_roll);
         metadataArrayList.add(metadata_extent);
         metadataArrayList.add(metadata_place);
 

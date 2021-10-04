@@ -187,11 +187,8 @@ public class OriginalDllm {
         if (dllmAttributes.getCe_year()!= 0)
             dllmArrayList.add("documents_date_written : " +dllmAttributes.getCe_year());
 
-        if (dllmAttributes.getMicrofilm_roll_number()!= null)
-            //dllmArrayList.add("otherIdentifier.roll : " +dllmAttributes.getMicrofilm_roll_number());
-
         if (dllmAttributes.getIn_collection()!= null)
-            dllmArrayList.add("in_collection : " +dllmAttributes.getIn_collection());
+            dllmArrayList.add("in_collection : " + dllmAttributes.getIn_collection());
 
         if (dllmAttributes.getAlternative_label_ro()!= null)
             dllmArrayList.add("alternative_title : " +dllmAttributes.getAlternative_label_ro());
@@ -207,7 +204,7 @@ public class OriginalDllm {
                 iterDllm_original.remove();
         }
 
-        I18n dllm_org = new I18n("en", dllmArrayList);
+        I18n dllm_org = new I18n("none", dllmArrayList);
 
         return new Metadata(new Label(new I18n("en", "lanna_original")),
                 new Value(new I18n []{ dllm_org }));

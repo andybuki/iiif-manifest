@@ -27,7 +27,7 @@ public class Places {
         //String collection = null;
 
         if( dllmAttributes.isIn_private_collection()==true) {
-            String collection = "In private possession";
+            String collection = "Private collection";
             placesArrayList.add(collection);
         }
 
