@@ -91,15 +91,10 @@ public class IIIFPresentationDlmnt {
 
             }
             JSONArray resultArray = null;
+
             List<JSONObject> sortedJsonArray = new ArrayList<>();
-            for (int i = 0; i < pages.length(); i++) {
-                sortedJsonArray.add(pages.getJSONObject(i));
-            }
 
-
-
-
-            int page_int = pages.length();
+            //int page_int = pages.length();
             String manifestID ="";
             String canvasID ="";
             String annoID ="";
@@ -111,8 +106,11 @@ public class IIIFPresentationDlmnt {
             AnnotationPage<PaintingAnnotation> annoPage = new AnnotationPage<>("");
             PaintingAnnotation anno = new PaintingAnnotation("",canvas);
             ImageContent imageContent = new ImageContent("");
-
+            for (int i = 0; i < pages.length(); i++) {
+                sortedJsonArray.add(pages.getJSONObject(i));
+            }
             for (int j = 0; j < pages.length(); j++) {
+
                 JSONObject pagesObj = (JSONObject) pages.get(j);
                 JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
@@ -185,6 +183,7 @@ public class IIIFPresentationDlmnt {
                     canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
                     imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
 
+
                 }catch (NullPointerException e) {
                     e.printStackTrace();
                     System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
@@ -200,6 +199,8 @@ public class IIIFPresentationDlmnt {
                 anno = new PaintingAnnotation(annoID, canvas);
                 annoPage.addAnnotations(anno.setBodies(imageContent).setTarget(canvasID));
                 canvases.add(canvas.setPaintingPages(annoPage));
+                canvas.setLabel("[ "+ pages_position +" ]");
+
                 manifest.setCanvases(canvases);
 
                 MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +"+"+book_ID+"_"+pages_id  + "/manifest";
