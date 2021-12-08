@@ -11,7 +11,9 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
+import org.crossasia.manifest.metadata.Date;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
@@ -21,8 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 @SpringBootApplication
 public class IIIFPresentationDlmnt {
@@ -37,7 +38,7 @@ public class IIIFPresentationDlmnt {
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/data/dlmnt/fedora/books_raw/");
+        File absolutePath = new File("/data/dlmnt/fedora/books2/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -46,7 +47,7 @@ public class IIIFPresentationDlmnt {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/data/dlmnt/fedora/manifests/");
+            File created = new File("/data/dlmnt/fedora/manifest_test/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -84,9 +85,19 @@ public class IIIFPresentationDlmnt {
 
             //start adding images
             JSONArray pages = null;
+
             if (jsonObj.has("pages")) {
                 pages = (jsonObj.getJSONArray("pages"));
+
             }
+            JSONArray resultArray = null;
+            List<JSONObject> sortedJsonArray = new ArrayList<>();
+            for (int i = 0; i < pages.length(); i++) {
+                sortedJsonArray.add(pages.getJSONObject(i));
+            }
+
+
+
 
             int page_int = pages.length();
             String manifestID ="";
@@ -105,7 +116,7 @@ public class IIIFPresentationDlmnt {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
                 JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
-                String pages_position = "";
+                int pages_position = 0;
                 String pages_image_file = "";
                 String pages_id = "";
                 String first_pages_id = "";
@@ -113,12 +124,31 @@ public class IIIFPresentationDlmnt {
                 String pages_document_id = "";
                 int number_of_pages = pages.length();
 
+                Collections.sort(sortedJsonArray, new Comparator<JSONObject>() {
+
+                    @Override
+                    public int compare(JSONObject lhs, JSONObject rhs) {
+                        try {
+                            return lhs.getInt("position") > rhs.getInt("position") ? 1 : (lhs
+                                    .getInt("position") < rhs.getInt("position") ? -1 : 0);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return 0;
+                    }
+                });
+
+                resultArray = new JSONArray(sortedJsonArray);
+
+                 pagesObj = (JSONObject) resultArray.get(j);
+                 pagesObj_first = (JSONObject) resultArray.get(0);
+
                 if (pagesObj_first.has("pages_id")) {
                     first_page = (String) pagesObj_first.get("pages_id").toString();
                 }
 
-                if (pagesObj.has("pages_position"))
-                    pages_position = (String) pagesObj.get("pages_position").toString();
+                if (pagesObj.has("position"))
+                    pages_position = (int) pagesObj.get("position");
 
                 if (pagesObj.has("pages_image_file"))
                     pages_image_file = (String) pagesObj.get("pages_image_file").toString();
@@ -130,9 +160,6 @@ public class IIIFPresentationDlmnt {
 
                 if (pagesObj.has("pages_document_id"))
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
-                /*else
-                    pages_document_id = pagesObj.get("uploaded_file_id").toString();*/
-
 
                 try {
                     URL url = new URL("https://iiif-content.crossasia.org/xasia/dlntm+" + "" + book_ID + "+" +book_ID+"_"+ pages_id + "/info.json");
