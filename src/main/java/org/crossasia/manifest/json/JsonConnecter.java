@@ -356,7 +356,10 @@ public class JsonConnecter {
 
     public static void publicRemarksLao(DllmAttributes dllmAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("public_remarks_lao")) {
-            dllmAttributes.setPublic_remarks_lao((String) jsonObj.get("public_remarks_lao"));
+            if (jsonObj.get("public_remarks_lao") instanceof String)
+                dllmAttributes.setPublic_remarks_lao((String) jsonObj.get("public_remarks_lao"));
+            else
+                dllmAttributes.setPublic_remarks_lao((JSONArray) jsonObj.get("public_remarks_lao"));
         }
     }
 

@@ -9,13 +9,16 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
 import org.crossasia.manifest.metadata.Date;
+import org.crossasia.manifest.metadata.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.MetadataMembers.metadataMembers;
+
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -27,13 +30,15 @@ public class IIIFPresentationDlllm  {
     private static final String SERVER = "https://iiif-content.crossasia.org/xasia/";
     private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
     private static final String MANIFEST_COLLECTION="dllm+";
+    public static final String ORIGINAL_LANGUAGE = "th";
+    public static final String COLLECTION_PATH = "dllm";
     private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
     private static final String LOGO_LINK_LAOS= "http://nationallibraryoflaos.net/wp-content/themes/education-pro/images/header.jpg";
 
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/spl2/");
+        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw/raw1/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -42,7 +47,7 @@ public class IIIFPresentationDlllm  {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/res2/");
+            File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -61,7 +66,7 @@ public class IIIFPresentationDlllm  {
             String plmp_id = dllmAttributes.getDocuments_code_number();
             counter = Integer.parseInt(dllmAttributes.getDocuments_id().replace("dllm_",""));
             String collection = dllmAttributes.getIn_collection();
-            StaticFields.staticFields(counter, manifest, plmp_id, collection); //all static fields
+            StaticFieldsDllmCollection.staticFields(counter, manifest, plmp_id, collection); //all static fields
 
             metadataMembers(dllmAttributes, manifest);
 
@@ -99,7 +104,7 @@ public class IIIFPresentationDlllm  {
                 JSONObject pagesObj = (JSONObject) pages.get(j);
                 JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
-                String pages_position = "";
+                int pages_position = 0;
                 String pages_image_file = "";
                 String pages_id = "";
                 String first_pages_id = "";
@@ -112,7 +117,7 @@ public class IIIFPresentationDlllm  {
                 }
 
                 if (pagesObj.has("pages_position"))
-                    pages_position = (String) pagesObj.get("pages_position").toString();
+                    pages_position = Integer.parseInt(String.valueOf(pagesObj.get("pages_position")))+1;
 
                 if (pagesObj.has("pages_image_file"))
                     pages_image_file = (String) pagesObj.get("pages_image_file").toString();
@@ -124,7 +129,7 @@ public class IIIFPresentationDlllm  {
 
                 if (pagesObj.has("pages_document_id"))
                     pages_document_id = (String) pagesObj.get("pages_document_id").toString();
-                //JSONObject json = null;
+
                 try {
                     URL url = new URL("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
                     JSONParser jsonParser = new JSONParser();
@@ -144,10 +149,20 @@ public class IIIFPresentationDlllm  {
                     canvasID = manifestID + "/canvas";
                     imageID = manifestID + "/full/full/0/default.jpg";
                     annoID = manifestID + "/annotation";
-                    annoPageID = manifestID;
-
+                    //////annoPageID = manifestID;
+                    annoPageID = manifestID+"/annotation_page";
+                    MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + ""+book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
+                    manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ pages_id);
                     canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
+                    canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
                     imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
+                    imageContent.setServices(manifestThumbService);
+
+                    /*canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
+                    imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
+
+                    canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
+                    imageContent.setServices(manifestThumbService);*/
 
                 }catch (NullPointerException e) {
                     e.printStackTrace();
@@ -164,12 +179,16 @@ public class IIIFPresentationDlllm  {
                 anno = new PaintingAnnotation(annoID, canvas);
                 annoPage.addAnnotations(anno.setBodies(imageContent).setTarget(canvasID));
                 canvases.add(canvas.setPaintingPages(annoPage));
+                canvas.setLabel("[ "+ pages_position +" ]");
                 manifest.setCanvases(canvases);
 
                 MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +"+"+pages_id  + "/manifest";
                 MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ first_page+   THUMBNAIL_PATH;
 
-                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ book_ID+"_"+first_page);
+                //manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+book_ID+"_"+ pages_id);
+
+
+                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+first_page);
                 manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
             }
@@ -178,17 +197,29 @@ public class IIIFPresentationDlllm  {
             Provider provider = new Provider("crossasia.org",  "Staatsbibliothek zu Berlin | CrossAsia");
             Label label_provider_laos = new Label(new I18n("en", "National Library of Laos"),
                     new I18n(ORIGINAL_LANGUAGE,"ຫໍສະໝຸດແຫ່ງຊາດ"));
+            Label label_provider_thai = new Label (new I18n("en","Chiang Mai University Library"),
+                    new I18n(ORIGINAL_LANGUAGE, "สำนักหอสมุดมหาวิทยาลัยเชียงใหม่"));
 
             Provider provider_laos = new Provider("http://nationallibraryoflaos.net/en/", "");
+            Provider provider_thai = new Provider("https://library.cmu.ac.th/","");
 
             provider_laos.setLabel(label_provider_laos);
+            provider_thai.setLabel(label_provider_thai);
 
             //provider.setLogos(new ImageContent(LOGO_LINK).setWidthHeight(100, 150));
             //provider_laos.setLogos(new ImageContent(LOGO_LINK_LAOS).setWidthHeight(100, 150));
             /*provider.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
                     new Label("en","Crossasia IIIF collections")));*/
 
-            manifest.setProviders(provider, provider_laos);
+            //manifest.setProviders(provider, provider_laos);
+
+            if (collection.contains("PNTMP")) {
+                manifest.setProviders(provider, provider_thai, provider_laos);
+            } else if (collection.contains("DLNTM")) {
+                manifest.setProviders(provider, provider_laos);
+            } else {
+                manifest.setProviders(provider, provider_laos);
+            }
 
             File newFile = null;
             newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
@@ -198,93 +229,4 @@ public class IIIFPresentationDlllm  {
 
         }
     }
-
-    private static void metadataMembers(DllmAttributes dllmAttributes, Manifest manifest) {
-        //Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
-        Metadata metadata_title = Title.getMetadataTitle(dllmAttributes);
-        Metadata metadata_language = Language.getMetadataLanguageRomanThai(dllmAttributes);
-
-        Metadata metadata_documentsID = DocumentsID.getMetadataDocumentsID(dllmAttributes);
-        Metadata metadata_documentsCodeNumber = CodeNumber.getMetadataDocumentsCodeNumber(dllmAttributes);
-        Metadata metadata_documents_roll = DocumentsRoll.getMetadataDocumentsRoll(dllmAttributes);
-
-        Metadata metadata_extent = ExtentMethod.getMetadataExtentMethod(dllmAttributes);
-        Metadata metadata_description = Description.getMetadataDescription(dllmAttributes);
-
-        Metadata metadataDllmOriginal = OriginalDllm.getMetadataDllmOriginal(dllmAttributes);
-        Metadata metadata_place = Places.getMetadataPlaces(dllmAttributes);
-        Metadata metadata_full_location_name = FullLocationName.getMetadataFullLocationName(dllmAttributes);
-
-        Metadata metadata_has_colophon = HasColophon.getMetadataHasColophon(dllmAttributes);
-        Metadata metadata_is_illustrated = IsIllustrated.getMetadataIsIllustrated(dllmAttributes);
-        Metadata metadata_is_color= IsColor.getMetadataIsColor(dllmAttributes);
-        Metadata metadata_bundle_id= BundleID.getMetadataBundleID(dllmAttributes);
-
-        Metadata metadata_is_complete= IsComplete.getMetadataIsComplete(dllmAttributes);
-        Metadata metadata_pages_count= PagesCount.getMetadataPagesCount(dllmAttributes);
-        Metadata metadata_material= Material.getMetadataMaterial(dllmAttributes);
-        Metadata metadata_location_types_name= LocationTypes.getMetadataLocationTypesName(dllmAttributes);
-
-        Metadata metadata_latitude= LatLon.getMetadataLatitude(dllmAttributes);
-        Metadata metadata_longitude= LatLon.getMetadataLongitude(dllmAttributes);
-        Metadata metadata_keywords= Keywords.getMetadataKeywords(dllmAttributes);
-        Metadata metadata_categories= Categories.getMetadataCategories(dllmAttributes);
-
-        Metadata metadata_script= Script.getMetadataScript(dllmAttributes);
-        Metadata metadata_index= Index.getMetadataIndex(dllmAttributes);
-        Metadata metadata_legibilities= Legibilities.getMetadataLegibilities(dllmAttributes);
-        Metadata metadata_conditions= Conditions.getMetadataConditions(dllmAttributes);
-
-        Metadata metadata_date= Date.getMetadataDate(dllmAttributes);
-        Metadata metadata_date_original= DateOriginal.getMetadataDateOriginal(dllmAttributes);
-
-
-        ArrayList<Metadata> metadataArrayList = new ArrayList<>();
-
-        metadataArrayList.add(metadata_title);
-        metadataArrayList.add(metadata_language);
-        metadataArrayList.add(metadata_documentsID);
-
-        metadataArrayList.add(metadata_documentsCodeNumber);
-        metadataArrayList.add(metadata_documents_roll);
-        metadataArrayList.add(metadata_extent);
-        metadataArrayList.add(metadata_place);
-
-        metadataArrayList.add(metadata_full_location_name);
-        metadataArrayList.add(metadataDllmOriginal);
-        metadataArrayList.add(metadata_description);
-        metadataArrayList.add(metadata_has_colophon);
-
-        metadataArrayList.add(metadata_is_illustrated);
-        metadataArrayList.add(metadata_is_color);
-        metadataArrayList.add(metadata_bundle_id);
-        metadataArrayList.add(metadata_is_complete);
-
-        metadataArrayList.add(metadata_pages_count);
-        metadataArrayList.add(metadata_material);
-        metadataArrayList.add(metadata_location_types_name);
-
-        metadataArrayList.add(metadata_latitude);
-        metadataArrayList.add(metadata_longitude);
-        metadataArrayList.add(metadata_keywords);
-        metadataArrayList.add(metadata_categories);
-
-        metadataArrayList.add(metadata_script);
-        metadataArrayList.add(metadata_index);
-        metadataArrayList.add(metadata_legibilities);
-        metadataArrayList.add(metadata_conditions);
-
-        metadataArrayList.add(metadata_date);
-        metadataArrayList.add(metadata_date_original);
-
-        Iterator<Metadata> iter = metadataArrayList.iterator();
-
-        while (iter.hasNext()) {
-            Metadata md = iter.next();
-            if (md==null)
-                iter.remove();
-        }
-        manifest.setMetadata(metadataArrayList);
-    }
-
 }

@@ -8,8 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class Places {
     @NotNull
@@ -44,16 +43,16 @@ public class Places {
         I18n places_lao = new I18n(ORIGINAL_LANGUAGE, placesArrayListLao);
 
         if (dllmAttributes.isIn_private_collection()==true)
-            return new Metadata(new Label(new I18n("none", "dc:place")),
+            return new Metadata(new Label(new I18n("en", "dc:place")),
                     new Value("In private possession"));
         else if (dllmAttributes.isIn_private_collection()==true && dllmAttributes.getLocation_name()!=null)
-            return new Metadata(new Label(new I18n("none", "dc:place")),
+            return new Metadata(new Label(new I18n("en", "dc:place")),
                         new Value(new I18n [] {places_roman, places_lao}));
         else if (dllmAttributes.isIn_private_collection()==false && dllmAttributes.getLocation_name()==null) {
-            return new Metadata(new Label(new I18n("none", "dc:place")),
+            return new Metadata(new Label(new I18n("en", "dc:place")),
                     new Value("Unknown location"));
         } else
-            return new Metadata(new Label(new I18n("none", "dc:place")),
+            return new Metadata(new Label(new I18n("en", "dc:place")),
                     new Value(new I18n [] {places_roman, places_lao}));
     }
 }

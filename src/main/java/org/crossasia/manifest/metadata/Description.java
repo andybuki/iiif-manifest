@@ -5,7 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+import org.json.JSONArray;
+import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Description {
@@ -32,7 +33,10 @@ public class Description {
         }
 
         if  (dllmAttributes.getPublic_remarks_lao()!=null) {
-                descriptionThaiArrayList.add(dllmAttributes.getPublic_remarks_lao());
+            if (dllmAttributes.getPublic_remarks_lao() instanceof String)
+                descriptionThaiArrayList.add((String) dllmAttributes.getPublic_remarks_lao());
+            else
+                descriptionThaiArrayList.add(String.valueOf((JSONArray) dllmAttributes.getPublic_remarks_lao()));
                 /*i18n_description_Thai = new I18n(ORIGINAL_LANGUAGE, descriptionThaiArrayList);
                 if(i18n_description_Thai==null) {
                     System.out.println("check");

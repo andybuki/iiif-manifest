@@ -13,15 +13,15 @@ public class CodeNumber {
 
         Metadata metadata_code_number = null;
 
-        if(dllmAttributes.getDocuments_code_number()!=null || dllmAttributes.getCode_number()!="") {
-            /*metadata_code_number = new Metadata(new Label( "otherIdentifier.code_number"),
-                    new Value(dllmAttributes.getDocuments_code_number()));*/
+        if(dllmAttributes.getDocuments_code_number()!=null){
+            metadata_code_number = new Metadata(new Label( "otherIdentifier.code_number"),
+                    new Value(dllmAttributes.getDocuments_code_number()));
+            return metadata_code_number;
+        } else if (dllmAttributes.getCode_number()!="") {
             metadata_code_number = new Metadata(new Label( "otherIdentifier.code_number"),
                     new Value(dllmAttributes.getCode_number()));
-
             return metadata_code_number;
         }
         else return metadata_code_number;
-
     }
 }

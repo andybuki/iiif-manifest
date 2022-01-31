@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;

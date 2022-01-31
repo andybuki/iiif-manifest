@@ -44,7 +44,7 @@ public class DllmAttributes {
     private JSONArray ancillary_terms_roman;
     private JSONArray ancillary_terms_lao;
     private  String     public_remarks_english;
-    private String public_remarks_lao;
+    private Object public_remarks_lao;
     private  JSONArray     categories_name;
     private JSONArray categories_name_lao;
     private  JSONArray languages;
@@ -986,11 +986,11 @@ public class DllmAttributes {
         this.public_remarks_english = public_remarks_english;
     }
 
-    public String getPublic_remarks_lao() {
+    public Object getPublic_remarks_lao() {
         return public_remarks_lao;
     }
 
-    public void setPublic_remarks_lao(String public_remarks_lao) {
+    public void setPublic_remarks_lao(Object public_remarks_lao) {
         this.public_remarks_lao = public_remarks_lao;
     }
 

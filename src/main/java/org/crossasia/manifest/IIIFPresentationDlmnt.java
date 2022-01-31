@@ -12,6 +12,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
 import org.crossasia.manifest.metadata.Date;
+import org.crossasia.manifest.metadata.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,15 +31,16 @@ public class IIIFPresentationDlmnt {
 
     public static final String ORIGINAL_LANGUAGE = "th";
     private static final String SERVER = "https://iiif-content.crossasia.org/xasia/";
-    private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
+    private static String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
     private static final String MANIFEST_COLLECTION="dlntm+";
+    public static final String COLLECTION_PATH = "dlntm";
     private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
     private static final String LOGO_LINK_LAOS= "http://nationallibraryoflaos.net/wp-content/themes/education-pro/images/header.jpg";
 
     public static void main(String[] args) throws IOException {
 
         String quote = "\u005c\u0022";
-        File absolutePath = new File("/data/dlmnt/fedora/books2/");
+        File absolutePath = new File("/data/dlmnt/fedora/books_raw/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(absolutePath));
         File[] filesInDir = dir.listFiles();
@@ -47,7 +49,7 @@ public class IIIFPresentationDlmnt {
 
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File created = new File("/data/dlmnt/fedora/manifest_test/");
+            File created = new File("/data/dlmnt/fedora/final/");
             StringBuilder sb = new StringBuilder();
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -68,7 +70,7 @@ public class IIIFPresentationDlmnt {
             counter = Integer.parseInt(dllmAttributes.getDocuments_id());
             String collection = dllmAttributes.getIn_collection();
             //}
-            StaticFields.staticFields(counter, manifest, plmp_id, collection); //all static fields
+            StaticFieldsDllmtCollection.staticFields(counter, manifest, plmp_id, collection); //all static fields
 
             metadataMembers(dllmAttributes, manifest);
 
@@ -178,11 +180,13 @@ public class IIIFPresentationDlmnt {
                     canvasID = manifestID + "/canvas";
                     imageID = manifestID + "/full/full/0/default.jpg";
                     annoID = manifestID + "/annotation";
-                    annoPageID = manifestID;
-
+                    annoPageID = manifestID+"/annotation_page";
+                    MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + ""+book_ID+"+"+book_ID+"_"+ pages_id+   THUMBNAIL_PATH;
+                    manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+book_ID+"_"+ pages_id);
                     canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
+                    canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
                     imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
-
+                    imageContent.setServices(manifestThumbService);
 
                 }catch (NullPointerException e) {
                     e.printStackTrace();
@@ -255,6 +259,7 @@ public class IIIFPresentationDlmnt {
         Metadata metadata_documentsID = DocumentsID.getMetadataDocumentsID(dllmAttributes);
         Metadata metadata_documentsCodeNumber = CodeNumber.getMetadataDocumentsCodeNumber(dllmAttributes);
         Metadata metadata_documents_roll = DocumentsRoll.getMetadataDocumentsRoll(dllmAttributes);
+        Metadata metadata_map= Map.getMapLink(dllmAttributes);
 
         Metadata metadata_extent = ExtentMethod.getMetadataExtentMethod(dllmAttributes);
         Metadata metadata_description = Description.getMetadataDescription(dllmAttributes);
@@ -338,6 +343,7 @@ public class IIIFPresentationDlmnt {
         metadataArrayList.add(metadata_exact_collection);
         metadataArrayList.add(metadata_ce_year_collection);
         metadataArrayList.add(metadata_date_original_lana_collection);
+        metadataArrayList.add(metadata_map);
 
         Iterator<Metadata> iter = metadataArrayList.iterator();
 

@@ -2,7 +2,8 @@ package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import org.crossasia.manifest.attributes.DllmAttributes;
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
+
+import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class LabelMetadata {
