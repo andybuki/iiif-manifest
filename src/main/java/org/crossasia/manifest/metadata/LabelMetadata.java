@@ -2,8 +2,9 @@ package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.OriginalLanguage;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class LabelMetadata {
@@ -31,7 +32,7 @@ public class LabelMetadata {
         if (dllmAttributes.getDllm_title_lao()!=null) {
             for (int i = 0; i < dllmAttributes.getDllm_title_lao().length(); i++) {
                 titlesThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
-                i18n_title_Thai = new I18n(ORIGINAL_LANGUAGE, titlesThaiArrayList);
+                i18n_title_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, titlesThaiArrayList);
             }
             return i18n_title_Thai;
         } else {
@@ -75,7 +76,7 @@ public class LabelMetadata {
     }
 
     public static I18n getStringsLabelNoTitleThai(DllmAttributes dllmAttributes) {
-        I18n i18n_title_no_title_thai = new I18n(ORIGINAL_LANGUAGE, "ໂດຍບໍ່ມີຫົວຂໍ້ (" + dllmAttributes.getDocuments_id() + ")");
+        I18n i18n_title_no_title_thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, "ໂດຍບໍ່ມີຫົວຂໍ້ (" + dllmAttributes.getDocuments_id() + ")");
         return i18n_title_no_title_thai;
     }
 }

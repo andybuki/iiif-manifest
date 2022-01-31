@@ -5,8 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 import static org.crossasia.manifest.metadata.LabelMetadata.getStringsLabelNoTitle;
@@ -28,7 +28,7 @@ public class Title {
             if (dllmAttributes.getDllm_title_lao()!=null) {
                 for (int i = 0; i < dllmAttributes.getDllm_title_lao().length(); i++) {
                     titlesThaiArrayList.add(dllmAttributes.getDllm_title_lao().get(i).toString());
-                    i18n_title_Thai = new I18n(ORIGINAL_LANGUAGE, titlesThaiArrayList);
+                    i18n_title_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, titlesThaiArrayList);
                 }
                 metadata_titles = new Metadata(new Label("en", "title"),
                         new Value(new I18n[]{i18n_title_Roman, i18n_title_Thai}));

@@ -5,8 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Material {
@@ -19,7 +19,7 @@ public class Material {
         if (dllmAttributes.getMaterials_name() instanceof String) {
             return new Metadata(new Label(new I18n("en", "material")),
                     new Value(new I18n("en", dllmAttributes.getMaterials_name()),
-                            new I18n(ORIGINAL_LANGUAGE, dllmAttributes.getMaterials_name_lao())));
+                            new I18n(PublicConstants.ORIGINAL_LANGUAGE, dllmAttributes.getMaterials_name_lao())));
         } else {
             if (dllmAttributes.getMaterial() != null &&
                     dllmAttributes.getMaterial_th() != null) {
@@ -27,7 +27,7 @@ public class Material {
                     materialRomanArrayList.add(dllmAttributes.getMaterial().get(i).toString());
                     materialThaiArrayList.add(dllmAttributes.getMaterial_th().get(i).toString());
                     I18n i18n_material = new I18n("en", materialRomanArrayList);
-                    I18n i18n_material_Thai = new I18n(ORIGINAL_LANGUAGE, materialThaiArrayList);
+                    I18n i18n_material_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, materialThaiArrayList);
                     metadata_material = new Metadata(new Label("en", "material"),
                             new Value(new I18n[]{i18n_material, i18n_material_Thai}));
                 }

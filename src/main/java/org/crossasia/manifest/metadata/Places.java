@@ -5,10 +5,11 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
+
 
 public class Places {
     @NotNull
@@ -40,7 +41,7 @@ public class Places {
             placesArrayListLao.add(dllmAttributes.getLocation_name_lao());
 
         I18n places_roman = new I18n("en", placesArrayList);
-        I18n places_lao = new I18n(ORIGINAL_LANGUAGE, placesArrayListLao);
+        I18n places_lao = new I18n(PublicConstants.ORIGINAL_LANGUAGE, placesArrayListLao);
 
         if (dllmAttributes.isIn_private_collection()==true)
             return new Metadata(new Label(new I18n("en", "dc:place")),

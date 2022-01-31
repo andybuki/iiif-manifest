@@ -5,8 +5,9 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 import org.json.JSONArray;
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
+
 import java.util.ArrayList;
 
 public class Description {
@@ -62,7 +63,7 @@ public class Description {
             }*/
         }
 
-        i18n_description_Thai = new I18n(ORIGINAL_LANGUAGE, descriptionThaiArrayList);
+        i18n_description_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, descriptionThaiArrayList);
         i18n_description_Roman = new I18n("en", descriptionRomanArrayList);
         metadata_description = new Metadata(new Label("en", "dc:description"),
                 new Value(new I18n[]{i18n_description_Roman, i18n_description_Thai}));

@@ -5,8 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 import java.util.ArrayList;
 
 public class Keywords {
@@ -29,7 +29,7 @@ public class Keywords {
         if (dllmAttributes.getAncillary_terms_lao()!=null) {
             for (int i = 0; i < dllmAttributes.getAncillary_terms_lao().length(); i++) {
                 keywordsThaiArrayList.add(dllmAttributes.getAncillary_terms_lao().get(i).toString());
-                i18n_keywords_Thai = new I18n(ORIGINAL_LANGUAGE, keywordsThaiArrayList);
+                i18n_keywords_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, keywordsThaiArrayList);
                 metadata_keywords = new Metadata(new Label("en", "schema:keywords"),
                         new Value(new I18n[]{ i18n_keywords_Roman,i18n_keywords_Thai}));
             }

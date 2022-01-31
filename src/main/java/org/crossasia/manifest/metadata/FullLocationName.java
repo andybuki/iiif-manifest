@@ -5,8 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class FullLocationName {
 
@@ -62,14 +62,14 @@ public class FullLocationName {
         } else if (dllmAttributes.isIn_private_collection()==true && dllmAttributes.getLocation_name()!=null) {
                 return new Metadata(new Label(new I18n("en", "full_location_name")),
                         new Value(new I18n("en",dllmAttributes.getFull_location_name()),
-                                new I18n(ORIGINAL_LANGUAGE, dllmAttributes.getFull_location_name_lao())));
+                                new I18n(PublicConstants.ORIGINAL_LANGUAGE, dllmAttributes.getFull_location_name_lao())));
         } else if (dllmAttributes.isIn_private_collection()==false && dllmAttributes.getLocation_name()==null) {
             return new Metadata(new Label(new I18n("none", "full_location_name")),
                     new Value("Unknown location"));
         } else {
             return new Metadata(new Label(new I18n("en", "full_location_name")),
                     new Value(new I18n("en", fullLocationNameBuilder.toString()),
-                            new I18n(ORIGINAL_LANGUAGE, fullLocationNameBuilderLao.toString())));
+                            new I18n(PublicConstants.ORIGINAL_LANGUAGE, fullLocationNameBuilderLao.toString())));
         }
     }
 }

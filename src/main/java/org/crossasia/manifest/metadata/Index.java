@@ -5,9 +5,9 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
 import java.util.ArrayList;
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class Index {
     public static Metadata getMetadataIndex(DllmAttributes dllmAttributes) {
@@ -40,7 +40,7 @@ public class Index {
         if (!indexRomanArrayList.isEmpty())
             i18n_index_Roman = new I18n("en", indexRomanArrayList);
         if (!indexThaiArrayList.isEmpty())
-            i18n_index_Thai = new I18n(ORIGINAL_LANGUAGE, indexThaiArrayList);
+            i18n_index_Thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, indexThaiArrayList);
 
 
         if (!indexRomanArrayList.isEmpty() && !indexThaiArrayList.isEmpty())

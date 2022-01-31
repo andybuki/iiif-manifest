@@ -5,8 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.PublicConstants;
 
-import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 public class Legibilities {
 
     public static Metadata getMetadataLegibilities(DllmAttributes dllmAttributes) {
@@ -24,7 +24,7 @@ public class Legibilities {
         if (legibility!="" || legibility_lao!="") {
             metadata_legibility = new Metadata(new Label(new I18n("en", "legibilities")),
                     new Value(new I18n("en",dllmAttributes.getLegibilities_name()),
-                            new I18n(ORIGINAL_LANGUAGE, dllmAttributes.getLegibilities_name_lao())));
+                            new I18n(PublicConstants.ORIGINAL_LANGUAGE, dllmAttributes.getLegibilities_name_lao())));
         }
         return metadata_legibility;
     }
