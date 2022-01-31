@@ -1,7 +1,6 @@
 package org.crossasia.manifest.presentations;
 
 import info.freelibrary.iiif.presentation.v3.*;
-
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.image.ImageService3;
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
@@ -21,8 +20,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
-import static org.crossasia.manifest.constants.PublicConstants.SERVER;
-import static org.crossasia.manifest.constants.PublicConstants.THUMBNAIL_PATH;
+import static org.crossasia.manifest.constants.PublicConstants.*;
 import static org.crossasia.manifest.metadata.MetadataMembers.metadataMembers;
 import static org.crossasia.manifest.presentations.ProviderToManifest.addProviderToManifest;
 
@@ -42,7 +40,7 @@ public class IIIFPresentationDlllm  {
         for (File file : filesInDir) {
             Manifest manifest;
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File manifestsResultFolger = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/");
+            File manifestsResultFolder = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/");
 
             JSONObject jsonMetadata = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonMetadata);
@@ -55,12 +53,12 @@ public class IIIFPresentationDlllm  {
             StaticFieldsDllmCollection.staticFields(counter, manifest, plmp_id, collection); //all static fields
 
             metadataMembers(dllmAttributes, manifest);
-            String book_ID = "dllm_000"+counter;
+            String book_ID = COLLECTION_PATH_PLUS_ZERO + counter;
 
             addImagePart(file, jsonMetadata, manifest, book_ID);
             addProviderToManifest(manifest, collection);
 
-            File newFile = new File(manifestsResultFolger + "/" + dllmAttributes.getDocuments_id() + ".json");
+            File newFile = new File(manifestsResultFolder + "/" + dllmAttributes.getDocuments_id() + ".json");
             manifestor.write(manifest, newFile);
             System.setOut(out);
         }
@@ -106,9 +104,7 @@ public class IIIFPresentationDlllm  {
             String first_page = "";
             String pages_document_id = "";
 
-            if (pagesObj_first.has("pages_id")) {
-                first_page = (String) pagesObj_first.get("pages_id");
-            }
+            if (pagesObj_first.has("pages_id")) first_page = (String) pagesObj_first.get("pages_id");
 
             if (pagesObj.has("pages_position"))
                 pages_position = Integer.parseInt(String.valueOf(pagesObj.get("pages_position")))+1;
@@ -119,7 +115,7 @@ public class IIIFPresentationDlllm  {
                 pages_document_id = (String) pagesObj.get("pages_document_id");
 
             try {
-                URL url = new URL("https://iiif-content.crossasia.org/xasia/dllm" + "+dllm_000" + pages_document_id + "+" + pages_id + "/info.json");
+                URL url = new URL("https://iiif-content.crossasia.org/xasia/dllm" + "+"+COLLECTION_PATH_PLUS_ZERO + pages_document_id + "+" + pages_id + "/info.json");
                 JSONParser jsonParser = new JSONParser();
                 URLConnection urlConnection = url.openConnection();
                 BufferedReader in  = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -133,7 +129,7 @@ public class IIIFPresentationDlllm  {
                 }
                 in.close();
 
-                String manifestID = SERVER + CollectionNames.DLLM.getName() + "dllm_000" + pages_document_id + "+" + pages_id;
+                String manifestID = SERVER + CollectionNames.DLLM.getName() + COLLECTION_PATH_PLUS_ZERO+ pages_document_id + "+" + pages_id;
                 canvasID = manifestID + "/canvas";
                 String imageID = manifestID + "/full/full/0/default.jpg";
                 annoID = manifestID + "/annotation";
@@ -157,7 +153,7 @@ public class IIIFPresentationDlllm  {
             canvas.setLabel("[ "+ pages_position +" ]");
             manifest.setCanvases(canvases);
 
-            MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + book_ID +"+"+ first_page+   THUMBNAIL_PATH;
+            MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + book_ID +"+"+ first_page+ THUMBNAIL_PATH;
             manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM.getName()+ book_ID +"+"+first_page);
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
