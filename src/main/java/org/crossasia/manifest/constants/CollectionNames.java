@@ -6,7 +6,11 @@ public enum CollectionNames {
 
     private String name;
 
-    CollectionNames(String shortcut) {
+    CollectionNames(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

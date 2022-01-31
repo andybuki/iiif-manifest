@@ -1,16 +1,20 @@
 package org.crossasia.manifest.constants;
 
 public enum OriginalLanguage {
-
     Thai ("th"),
     Lao ("lo"),
     English("en");
 
-    private String shortcut;
+    private String name;
 
-    OriginalLanguage(String shortcut) {
-        this.shortcut = shortcut;
+    OriginalLanguage(String name) {
+        this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
 
 

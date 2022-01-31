@@ -55,17 +55,9 @@ public class IIIFPresentationDlllm  {
             StaticFieldsDllmCollection.staticFields(counter, manifest, plmp_id, collection); //all static fields
 
             metadataMembers(dllmAttributes, manifest);
-
-            //String page_ID="484597";
             String book_ID = "dllm_000"+counter;
 
-            //String MANIFEST_URI = SERVER + CollectionNames.DLLM + "+"+book_ID+"+"+ page_ID + "/manifest";
-            //String MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + "+"+book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
-
-            //ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID+"+"+ page_ID);
-
             addImagePart(file, jsonMetadata, manifest, book_ID);
-
             addProviderToManifest(manifest, collection);
 
             File newFile = new File(manifestsResultFolger + "/" + dllmAttributes.getDocuments_id() + ".json");
@@ -78,9 +70,6 @@ public class IIIFPresentationDlllm  {
     private static Manifest getLabelDataForManifest(File file, DllmAttributes dllmAttributes) {
         Manifest manifest;
         I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes);
-        //I18n i18n_title_Lao = LabelMetadata.getStringsLabelThai(dllmAttributes);
-        //I18n i18n_title_no_title = LabelMetadata.getStringsLabelNoTitle(dllmAttributes);
-        //I18n i18n_title_no_title_thai = LabelMetadata.getStringsLabelNoTitleThai(dllmAttributes);
         I18n i18n_title = LabelMetadata.getStringsLabelBoth(dllmAttributes);
         I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBoth(dllmAttributes);
         if (i18n_title_Roman!=null) {
@@ -98,12 +87,8 @@ public class IIIFPresentationDlllm  {
         if (jsonObj.has("pages")) {
             pages = (jsonObj.getJSONArray("pages"));
         }
-
-        //int page_int = pages.length();
-        //String manifestID ="";
         String canvasID ="";
         String annoID ="";
-        //String imageID ="";
         String annoPageID ="";
 
         Canvas canvas = new Canvas("");
@@ -117,11 +102,9 @@ public class IIIFPresentationDlllm  {
             JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
             int pages_position = 0;
-            String pages_image_file = "";
             String pages_id = "";
             String first_page = "";
             String pages_document_id = "";
-            int number_of_pages = pages.length();
 
             if (pagesObj_first.has("pages_id")) {
                 first_page = (String) pagesObj_first.get("pages_id");
@@ -130,12 +113,7 @@ public class IIIFPresentationDlllm  {
             if (pagesObj.has("pages_position"))
                 pages_position = Integer.parseInt(String.valueOf(pagesObj.get("pages_position")))+1;
 
-            if (pagesObj.has("pages_image_file"))
-                pages_image_file = (String) pagesObj.get("pages_image_file");
-
-            if (pagesObj.has("pages_id")) {
-                pages_id = (String) pagesObj.get("pages_id");
-            }
+            if (pagesObj.has("pages_id")) pages_id = (String) pagesObj.get("pages_id");
 
             if (pagesObj.has("pages_document_id"))
                 pages_document_id = (String) pagesObj.get("pages_document_id");
@@ -155,24 +133,17 @@ public class IIIFPresentationDlllm  {
                 }
                 in.close();
 
-                String manifestID = SERVER + CollectionNames.DLLM + "dllm_000" + pages_document_id + "+" + pages_id;
+                String manifestID = SERVER + CollectionNames.DLLM.getName() + "dllm_000" + pages_document_id + "+" + pages_id;
                 canvasID = manifestID + "/canvas";
                 String imageID = manifestID + "/full/full/0/default.jpg";
                 annoID = manifestID + "/annotation";
-                //////annoPageID = manifestID;
                 annoPageID = manifestID+"/annotation_page";
-                MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + ""+ book_ID +"+"+ pages_id+   THUMBNAIL_PATH;
-                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID +"+"+ pages_id);
+                MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + ""+ book_ID +"+"+ pages_id+   THUMBNAIL_PATH;
+                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM.getName()+ book_ID +"+"+ pages_id);
                 canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
                 canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
                 imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
                 imageContent.setServices(manifestThumbService);
-
-                /*canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
-                imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
-
-                canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-                imageContent.setServices(manifestThumbService);*/
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -186,9 +157,8 @@ public class IIIFPresentationDlllm  {
             canvas.setLabel("[ "+ pages_position +" ]");
             manifest.setCanvases(canvases);
 
-            MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + book_ID +"+"+ first_page+   THUMBNAIL_PATH;
-            //manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+book_ID+"_"+ pages_id);
-            manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID +"+"+first_page);
+            MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + book_ID +"+"+ first_page+   THUMBNAIL_PATH;
+            manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM.getName()+ book_ID +"+"+first_page);
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
         }
