@@ -10,11 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class IsResultDirectoryEmpty {
-    Path rawData = Paths.get(("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/"));
+    Path resultData = Paths.get(("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/"));
 
     @Test
     public void isResultDirectoryEmptyTest()  {
-        try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(rawData)) {
+        try(DirectoryStream<Path> dirStream = Files.newDirectoryStream(resultData)) {
             boolean isNotEmpty= !dirStream.iterator().hasNext();
             Assert.assertFalse(isNotEmpty);
         } catch (IOException e) {

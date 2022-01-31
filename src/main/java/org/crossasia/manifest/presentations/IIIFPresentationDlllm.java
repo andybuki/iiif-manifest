@@ -28,25 +28,22 @@ import static org.crossasia.manifest.presentations.ProviderToManifest.addProvide
 public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
         File rawData = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw_TEST/");
-        PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(rawData));
         File[] filesInDir = dir.listFiles();
         Manifestor manifestor = new Manifestor();
-        fileGeneration(out, filesInDir != null ? filesInDir : new File[0], manifestor);
+        fileGeneration( filesInDir != null ? filesInDir : new File[0], manifestor);
     }
 
-    private static void fileGeneration(PrintStream out, File[] filesInDir, Manifestor manifestor) throws IOException {
+    private static void fileGeneration(File[] filesInDir, Manifestor manifestor) throws IOException {
         int counter;
         for (File file : filesInDir) {
-            Manifest manifest;
             DllmAttributes dllmAttributes = new DllmAttributes();
             File manifestsResultFolder = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/");
 
             JSONObject jsonMetadata = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonMetadata);
 
-            manifest = getLabelDataForManifest(file, dllmAttributes);
-
+            Manifest manifest = getLabelDataForManifest(file, dllmAttributes);
             String plmp_id = dllmAttributes.getDocuments_code_number();
             counter = Integer.parseInt(dllmAttributes.getDocuments_id().replace("dllm_",""));
             String collection = dllmAttributes.getIn_collection();
@@ -60,7 +57,6 @@ public class IIIFPresentationDlllm  {
 
             File newFile = new File(manifestsResultFolder + "/" + dllmAttributes.getDocuments_id() + ".json");
             manifestor.write(manifest, newFile);
-            System.setOut(out);
         }
     }
 
@@ -156,7 +152,6 @@ public class IIIFPresentationDlllm  {
             MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + book_ID +"+"+ first_page+ THUMBNAIL_PATH;
             manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM.getName()+ book_ID +"+"+first_page);
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
-
         }
     }
 }
