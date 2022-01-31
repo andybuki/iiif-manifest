@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.curlscript;
 
 import org.json.simple.parser.JSONParser;
 

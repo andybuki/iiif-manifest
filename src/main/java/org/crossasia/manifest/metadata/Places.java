@@ -8,7 +8,7 @@ import org.crossasia.manifest.attributes.DllmAttributes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class Places {
     @NotNull

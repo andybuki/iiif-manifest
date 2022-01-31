@@ -7,7 +7,6 @@ import info.freelibrary.iiif.presentation.v3.services.OtherService;
 import java.net.URI;
 
 import static info.freelibrary.iiif.presentation.v3.properties.ViewingDirection.LEFT_TO_RIGHT;
-import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class StaticFieldsDllmCollection {
     public static void staticFields(int counter, Manifest manifest, String plmp_id, String collection) {

@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.collections;
 
 import info.freelibrary.iiif.presentation.v3.Collection;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static org.crossasia.manifest.IIIFPresentationDlmnt.ORIGINAL_LANGUAGE;
 
 @SpringBootApplication
 public class IIIFCollectionDlmnt {

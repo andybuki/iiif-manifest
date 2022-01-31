@@ -5,9 +5,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
 
-import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
+import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
 
 public class FullLocationName {
 

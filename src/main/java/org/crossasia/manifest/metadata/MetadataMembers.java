@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MetadataMembers {
-    static void metadataMembers(DllmAttributes dllmAttributes, Manifest manifest) {
+   public static void metadataMembers(DllmAttributes dllmAttributes, Manifest manifest) {
         //Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
         Metadata metadata_title = Title.getMetadataTitle(dllmAttributes);
         Metadata metadata_language = Language.getMetadataLanguageRomanThai(dllmAttributes);

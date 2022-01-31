@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.presentations;
 
 import info.freelibrary.iiif.presentation.v3.*;
 
@@ -6,49 +6,43 @@ import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.image.ImageService3;
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
 import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.constants.CollectionNames;
+import org.crossasia.manifest.constants.OriginalLanguage;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
-import org.crossasia.manifest.metadata.Date;
-import org.crossasia.manifest.metadata.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import static org.crossasia.manifest.IIIFPresentationDlllm.ORIGINAL_LANGUAGE;
-import static org.crossasia.manifest.MetadataMembers.metadataMembers;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
+import static org.crossasia.manifest.constants.PublicConstants.SERVER;
+import static org.crossasia.manifest.constants.PublicConstants.THUMBNAIL_PATH;
+import static org.crossasia.manifest.metadata.MetadataMembers.metadataMembers;
+
 @SpringBootApplication
 public class IIIFPresentationDlllm  {
-
-    private static final String SERVER = "https://iiif-content.crossasia.org/xasia/";
-    private static final String THUMBNAIL_PATH = "/full/150,/0/default.jpg";
-    private static final String MANIFEST_COLLECTION="dllm+";
-    public static final String ORIGINAL_LANGUAGE = "th";
-    public static final String COLLECTION_PATH = "dllm";
-    private static final String LOGO_LINK= "https://crossasia.org/fileadmin/templates/img/xa1.png";
-    private static final String LOGO_LINK_LAOS= "http://nationallibraryoflaos.net/wp-content/themes/education-pro/images/header.jpg";
-
     public static void main(String[] args) throws IOException {
-
-        String quote = "\u005c\u0022";
-        File absolutePath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw/raw1/");
+        File manifestsPath = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw/raw1/");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
-        File dir = new File(String.valueOf(absolutePath));
+        File dir = new File(String.valueOf(manifestsPath));
         File[] filesInDir = dir.listFiles();
-        int counter = 1;
         Manifestor manifestor = new Manifestor();
+        fileGeneration(out, filesInDir != null ? filesInDir : new File[0], manifestor);
+    }
 
+    private static void fileGeneration(PrintStream out, File[] filesInDir, Manifestor manifestor) throws IOException {
+        int counter;
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
             File created = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result/");
-            StringBuilder sb = new StringBuilder();
+
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
             Manifest manifest;
@@ -76,10 +70,10 @@ public class IIIFPresentationDlllm  {
             String page_ID="484597";
             String book_ID = "dllm_000"+counter;
 
-            String MANIFEST_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID + "/manifest";
-            String MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + "+"+book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
+            String MANIFEST_URI = SERVER + CollectionNames.DLLM + "+"+book_ID+"+"+ page_ID + "/manifest";
+            String MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + "+"+book_ID+"+"+ page_ID+   THUMBNAIL_PATH;
 
-            ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ page_ID);
+            ImageService3 manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID+"+"+ page_ID);
 
             //start adding images
             JSONArray pages = null;
@@ -145,14 +139,14 @@ public class IIIFPresentationDlllm  {
                     }
                     in.close();
 
-                    manifestID = SERVER + MANIFEST_COLLECTION + "dllm_000" + pages_document_id + "+" + pages_id;
+                    manifestID = SERVER + CollectionNames.DLLM + "dllm_000" + pages_document_id + "+" + pages_id;
                     canvasID = manifestID + "/canvas";
                     imageID = manifestID + "/full/full/0/default.jpg";
                     annoID = manifestID + "/annotation";
                     //////annoPageID = manifestID;
                     annoPageID = manifestID+"/annotation_page";
-                    MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + ""+book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
-                    manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+ pages_id);
+                    MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + ""+book_ID+"+"+ pages_id+   THUMBNAIL_PATH;
+                    manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID+"+"+ pages_id);
                     canvas = new Canvas(canvasID).setWidthHeight((int) weight, (int) height);
                     canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
                     imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
@@ -182,13 +176,10 @@ public class IIIFPresentationDlllm  {
                 canvas.setLabel("[ "+ pages_position +" ]");
                 manifest.setCanvases(canvases);
 
-                MANIFEST_URI = SERVER + MANIFEST_COLLECTION + book_ID +"+"+pages_id  + "/manifest";
-                MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + book_ID+"+"+ first_page+   THUMBNAIL_PATH;
-
+                MANIFEST_URI = SERVER + CollectionNames.DLLM + book_ID +"+"+pages_id  + "/manifest";
+                MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM + book_ID+"+"+ first_page+   THUMBNAIL_PATH;
                 //manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+book_ID+"_"+ pages_id);
-
-
-                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ book_ID+"+"+first_page);
+                manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM+ book_ID+"+"+first_page);
                 manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
 
             }
@@ -196,9 +187,9 @@ public class IIIFPresentationDlllm  {
 
             Provider provider = new Provider("crossasia.org",  "Staatsbibliothek zu Berlin | CrossAsia");
             Label label_provider_laos = new Label(new I18n("en", "National Library of Laos"),
-                    new I18n(ORIGINAL_LANGUAGE,"ຫໍສະໝຸດແຫ່ງຊາດ"));
+                    new I18n(String.valueOf(OriginalLanguage.Thai),"ຫໍສະໝຸດແຫ່ງຊາດ"));
             Label label_provider_thai = new Label (new I18n("en","Chiang Mai University Library"),
-                    new I18n(ORIGINAL_LANGUAGE, "สำนักหอสมุดมหาวิทยาลัยเชียงใหม่"));
+                    new I18n(String.valueOf(OriginalLanguage.Thai), "สำนักหอสมุดมหาวิทยาลัยเชียงใหม่"));
 
             Provider provider_laos = new Provider("http://nationallibraryoflaos.net/en/", "");
             Provider provider_thai = new Provider("https://library.cmu.ac.th/","");
@@ -224,7 +215,6 @@ public class IIIFPresentationDlllm  {
             File newFile = null;
             newFile = new File(created + "/" + dllmAttributes.getDocuments_id() + ".json"/*file.getName()*/);
             manifestor.write(manifest, newFile);
-
             System.setOut(out);
 
         }
