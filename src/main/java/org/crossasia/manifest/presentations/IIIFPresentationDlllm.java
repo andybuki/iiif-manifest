@@ -27,7 +27,7 @@ import static org.crossasia.manifest.presentations.ProviderToManifest.addProvide
 @SpringBootApplication
 public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
-        File rawData = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw_TEST/");
+        File rawData = new File("/Users/andreybuchmann/IdeaProjects/iiif-manifest/src/main/resources/raw");
         File dir = new File(String.valueOf(rawData));
         File[] filesInDir = dir.listFiles();
         Manifestor manifestor = new Manifestor();
@@ -38,7 +38,7 @@ public class IIIFPresentationDlllm  {
         int counter;
         for (File file : filesInDir) {
             DllmAttributes dllmAttributes = new DllmAttributes();
-            File manifestsResultFolder = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/");
+            File manifestsResultFolder = new File("/Users/andreybuchmann/IdeaProjects/iiif-manifest/src/main/resources/result/");
 
             JSONObject jsonMetadata = new JSONObject(new JSONTokener(new FileInputStream(file)));
             StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonMetadata);
