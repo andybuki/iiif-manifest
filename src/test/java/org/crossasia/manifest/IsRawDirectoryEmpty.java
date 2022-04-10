@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class IsRawDirectoryEmpty {
-    Path rawData = Paths.get(("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw_TEST/"));
+    Path rawData = Paths.get(("/Users/andreybuchmann/IdeaProjects/iiif-manifest/src/main/resources/raw/"));
 
     @Test
     public void isRawDirectoryEmptyTest()  {
