@@ -5,7 +5,7 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public final class Language {
     private Language() {
     }
 
-    public static Metadata getMetadataLanguageRomanThai(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataLanguageRomanThai(CollectionAttributes dllmAttributes) {
         List<String> languagesRomanArrayList = new ArrayList<>();
         List<String> languagesThaiArrayList = new ArrayList<>();
         if (dllmAttributes.getLanguages()!=null) {

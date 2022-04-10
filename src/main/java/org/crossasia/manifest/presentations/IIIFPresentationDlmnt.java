@@ -73,9 +73,7 @@ public class IIIFPresentationDlmnt {
 
             metadataMembers(dllmAttributes, manifest);
 
-            //String [] book_IDs=dllmAttributes.getDocuments_id().split("_");
-            //String book_ID = book_IDs[0]+"_"+"000"+book_IDs[1];
-            //String book_ID_Thumb = book_IDs[0]+"_"+book_IDs[1];
+
             String page_ID="484597";
             String book_ID = String.valueOf(counter);
 
@@ -228,10 +226,6 @@ public class IIIFPresentationDlmnt {
             provider_laos.setLabel(label_provider_laos);
             provider_thai.setLabel(label_provider_thai);
 
-            //provider.setLogos(new ImageContent(LOGO_LINK).setWidthHeight(100, 150));
-            //provider_laos.setLogos(new ImageContent(LOGO_LINK_LAOS).setWidthHeight(100, 150));
-            /*provider.setHomepages(new Homepage(URI.create("https://iiif.corossasia.org"),
-                    new Label("en","Crossasia IIIF collections")));*/
 
             if (collection.contains("PNTMP")) {
                 manifest.setProviders(provider, provider_thai, provider_laos);

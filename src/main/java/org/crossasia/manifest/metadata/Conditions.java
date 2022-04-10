@@ -7,6 +7,9 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
+import static org.crossasia.manifest.constants.PublicConstants.ORIGINAL_LANGUAGE_ENGLISH;
+import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.LANGUAGE_FOREING;
+
 public class Conditions {
 
     public static Metadata getMetadataConditions(CollectionAttributes dllmAttributes) {
@@ -23,9 +26,9 @@ public class Conditions {
 
 
         if (condition!="" || condition_lao!="") {
-            metadata_condition = new Metadata(new Label(new I18n("en", "conditions")),
-                    new Value(new I18n("en", condition),
-                            new I18n(PublicConstants.ORIGINAL_LANGUAGE, condition_lao)));
+            metadata_condition = new Metadata(new Label(new I18n(ORIGINAL_LANGUAGE_ENGLISH, "conditions")),
+                    new Value(new I18n(ORIGINAL_LANGUAGE_ENGLISH, condition),
+                            new I18n(LANGUAGE_FOREING, condition_lao)));
         }
         return metadata_condition;
     }

@@ -9,6 +9,9 @@ import org.crossasia.manifest.constants.PublicConstants;
 
 import java.util.ArrayList;
 
+import static org.crossasia.manifest.constants.PublicConstants.ORIGINAL_LANGUAGE_ENGLISH;
+import static org.crossasia.manifest.presentations.IIIFPresentationDlllm.LANGUAGE_FOREING;
+
 public class Address {
     public static Metadata getMetadataAddress(CollectionAttributes dllmAttributes) {
         ArrayList<String> addressRo = new ArrayList<>();
@@ -30,13 +33,10 @@ public class Address {
             if (dllmAttributes.getProvince_th()!=null) {
                 addressTh.add(dllmAttributes.getProvince_th().get(0).toString());
             }
-
-
-                I18n i18n_address_Roman = new I18n("en", addressRo);
-                I18n i18n_addressThai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, addressTh);
-                metadata_address = new Metadata(new Label("en", "dc:place"),
+                I18n i18n_address_Roman = new I18n(ORIGINAL_LANGUAGE_ENGLISH, addressRo);
+                I18n i18n_addressThai = new I18n(LANGUAGE_FOREING , addressTh);
+                metadata_address = new Metadata(new Label(ORIGINAL_LANGUAGE_ENGLISH, "dc:place"),
                         new Value(new I18n[]{i18n_address_Roman, i18n_addressThai}));
-
         }
 
         if (dllmAttributes.getAddress_ro()==null &&
