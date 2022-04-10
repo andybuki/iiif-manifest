@@ -4,12 +4,12 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
 public class DateOriginalLana {
 
-    public static Metadata getMetadataDateOriginal(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataDateOriginal(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_date_original_lana = null;
 

@@ -2,16 +2,16 @@ package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.crossasia.manifest.metadata.*;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MetadataMembers {
-   public static void metadataMembers(DllmAttributes dllmAttributes, Manifest manifest) {
+   public static void metadataMembers(CollectionAttributes dllmAttributes, Manifest manifest) {
         //Metadata metadata_title = getMetadataTitlesRomanThai(dllmAttributes, manifest);
         Metadata metadata_title = Title.getMetadataTitle(dllmAttributes);
+        //Metadata metadata_title = Title.getMetadataPhotoTitle(dllmAttributes);
         Metadata metadata_language = Language.getMetadataLanguageRomanThai(dllmAttributes);
 
         Metadata metadata_documentsID = DocumentsID.getMetadataDocumentsID(dllmAttributes);
@@ -56,6 +56,13 @@ public class MetadataMembers {
         Metadata metadata_exact_collection= Exact.getMetadataExact(dllmAttributes);
         Metadata metadata_ce_year_collection= Ce_Year.getMetadataCeYear(dllmAttributes);
         Metadata metadata_date_original_lana_collection= DateOriginalLana.getMetadataDateOriginal(dllmAttributes);
+
+        Metadata metadata_position= Position.getMetadataPosition(dllmAttributes);
+        Metadata metadata_website= Website.getMetadataWebsite(dllmAttributes);
+        Metadata metadata_address= Address.getMetadataAddress(dllmAttributes);
+        Metadata metadata_subject= Subject.getMetadataSubject(dllmAttributes);
+
+        Metadata metadata_image= Image.getMetadataImage(dllmAttributes);
 
         ArrayList<Metadata> metadataArrayList = new ArrayList<>();
 
@@ -103,7 +110,13 @@ public class MetadataMembers {
         metadataArrayList.add(metadata_exact_collection);
         metadataArrayList.add(metadata_ce_year_collection);
         //metadataArrayList.add(metadata_date_original_lana_collection);
+        metadataArrayList.add(metadata_position);
 
+        metadataArrayList.add(metadata_website);
+        metadataArrayList.add(metadata_address);
+        metadataArrayList.add(metadata_subject);
+
+        metadataArrayList.add(metadata_image);
 
         Iterator<Metadata> iter = metadataArrayList.iterator();
 

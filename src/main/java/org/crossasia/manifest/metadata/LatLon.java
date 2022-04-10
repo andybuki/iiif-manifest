@@ -1,15 +1,13 @@
 package org.crossasia.manifest.metadata;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class LatLon {
 
-    public static Metadata getMetadataLatitude(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataLatitude(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_is_latitude= null;
 
@@ -27,7 +25,7 @@ public class LatLon {
     }
 
 
-    public static Metadata getMetadataLongitude(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataLongitude(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_is_longitude= null;
         if(dllmAttributes.getLocations_gps_lon()!=0) {

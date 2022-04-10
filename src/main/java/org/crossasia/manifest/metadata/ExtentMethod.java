@@ -4,12 +4,11 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class ExtentMethod {
 
-    public static Metadata getMetadataExtentMethod(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataExtentMethod(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_extent = null;
 

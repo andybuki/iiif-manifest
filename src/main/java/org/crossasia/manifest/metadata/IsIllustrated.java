@@ -1,15 +1,13 @@
 package org.crossasia.manifest.metadata;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class IsIllustrated {
 
-    public static Metadata getMetadataIsIllustrated(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataIsIllustrated(CollectionAttributes dllmAttributes) {
         Metadata metadata_is_illustrated = null;
 
             if(dllmAttributes.getDocuments_is_illustrated()!=null) {

@@ -1,14 +1,13 @@
 package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.crossasia.manifest.constants.OriginalLanguage;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
 import java.util.ArrayList;
 
 public class LabelMetadata {
-    public static I18n getStringsLabel(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabel(CollectionAttributes dllmAttributes) {
         ArrayList<String> titlesArrayList = new ArrayList<>();
         I18n i18n_title_no_title = new I18n("en", "no title (" + dllmAttributes.getDocuments_id() + ")");
         I18n i18n_title_Roman = null;
@@ -26,7 +25,7 @@ public class LabelMetadata {
         }
     }
 
-    public static I18n getStringsLabelThai(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabelThai(CollectionAttributes dllmAttributes) {
         ArrayList<String> titlesThaiArrayList = new ArrayList<>();
         I18n i18n_title_Thai = null;
         if (dllmAttributes.getDllm_title_lao()!=null) {
@@ -41,7 +40,7 @@ public class LabelMetadata {
         }
     }
 
-    public static I18n getStringsLabelBoth(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabelBoth(CollectionAttributes dllmAttributes) {
         ArrayList<String> titlesThaiArrayList = new ArrayList<>();
         ArrayList<String> titlesArrayList = new ArrayList<>();
 
@@ -65,18 +64,35 @@ public class LabelMetadata {
     }
 
 
-    public static I18n getStringsLabelNoTitleBoth(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabelNoTitleBoth(CollectionAttributes dllmAttributes) {
         I18n i18n_title_no_title = new I18n("none", "no title (" + "ໂດຍບໍ່ມີຫົວຂໍ້ " +  dllmAttributes.getDocuments_id() + ")");
         return i18n_title_no_title;
     }
 
-    public static I18n getStringsLabelNoTitle(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabelNoTitleBothLanna(CollectionAttributes dllmAttributes) {
+        I18n i18n_title_no_title = new I18n("none", "no title (" + "ไม่มีชื่อเรื่อง " +  dllmAttributes.getDocuments_id() + ")");
+        return i18n_title_no_title;
+    }
+
+    public static I18n getStringsLabelNoTitle(CollectionAttributes dllmAttributes) {
         I18n i18n_title_no_title = new I18n("en", "no title (" + dllmAttributes.getDocuments_id() + ")");
         return i18n_title_no_title;
     }
 
-    public static I18n getStringsLabelNoTitleThai(DllmAttributes dllmAttributes) {
+    public static I18n getStringsLabelNoTitleThai(CollectionAttributes dllmAttributes) {
         I18n i18n_title_no_title_thai = new I18n(PublicConstants.ORIGINAL_LANGUAGE, "ໂດຍບໍ່ມີຫົວຂໍ້ (" + dllmAttributes.getDocuments_id() + ")");
         return i18n_title_no_title_thai;
+    }
+
+    public static I18n getStringsLabelFromAddress(CollectionAttributes dllmAttributes) {
+        I18n i18n_title_from_address = new I18n(PublicConstants.ORIGINAL_LANGUAGE_ENGLISH, dllmAttributes.getAddress_ro().get(0) +" (" +
+                dllmAttributes.getDistrict_ro().get(0) + ") : "+ dllmAttributes.getSubject_ro());
+        return i18n_title_from_address;
+    }
+
+    public static I18n getStringsLabelFromAddressThai(CollectionAttributes dllmAttributes) {
+        I18n i18n_title_from_address = new I18n(PublicConstants.ORIGINAL_LANGUAGE, dllmAttributes.getAddress_th().get(0) +" (" +
+                dllmAttributes.getDistrict_th().get(0) + ") : "+ dllmAttributes.getSubject_th());
+        return i18n_title_from_address;
     }
 }

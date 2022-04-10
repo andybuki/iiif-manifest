@@ -3,11 +3,11 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class Ce_Year {
 
-    public static Metadata getMetadataCeYear(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataCeYear(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_ce_year = null;
 

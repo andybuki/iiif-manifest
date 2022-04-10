@@ -4,7 +4,7 @@ import info.freelibrary.iiif.presentation.v3.*;
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.image.ImageService3;
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.CollectionNames;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.*;
@@ -27,9 +27,8 @@ import static org.crossasia.manifest.presentations.ProviderToManifest.addProvide
 @SpringBootApplication
 public class IIIFPresentationDlllm  {
     public static void main(String[] args) throws IOException {
-        File rawData = new File("/Users/andreybuchmann/IdeaProjects/iiif-manifest/src/main/resources/raw");
-        File dir = new File(String.valueOf(rawData));
-        File[] filesInDir = dir.listFiles();
+        File rawData = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/raw_TEST/");
+        File[] filesInDir = rawData.listFiles();
         Manifestor manifestor = new Manifestor();
         fileGeneration( filesInDir != null ? filesInDir : new File[0], manifestor);
     }
@@ -37,35 +36,39 @@ public class IIIFPresentationDlllm  {
     private static void fileGeneration(File[] filesInDir, Manifestor manifestor) throws IOException {
         int counter;
         for (File file : filesInDir) {
-            DllmAttributes dllmAttributes = new DllmAttributes();
-            File manifestsResultFolder = new File("/Users/andreybuchmann/IdeaProjects/iiif-manifest/src/main/resources/result/");
+            CollectionAttributes collectionAttributes = new CollectionAttributes();
+            File manifestsResultFolder = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/final/result_TEST/");
 
             JSONObject jsonMetadata = new JSONObject(new JSONTokener(new FileInputStream(file)));
-            StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonMetadata);
+            StaticJsonCaller.staticJsonCaller(collectionAttributes, jsonMetadata);
 
-            Manifest manifest = getLabelDataForManifest(file, dllmAttributes);
-            String plmp_id = dllmAttributes.getDocuments_code_number();
-            counter = Integer.parseInt(dllmAttributes.getDocuments_id().replace("dllm_",""));
-            String collection = dllmAttributes.getIn_collection();
+            Manifest manifest = getLabelDataForManifest(file, collectionAttributes);
+
+            String plmp_id = collectionAttributes.getDocuments_code_number();
+
+            counter = Integer.parseInt(collectionAttributes.getDocuments_id().replace("dllm_",""));
+
+            String collection = collectionAttributes.getIn_collection();
+
             StaticFieldsDllmCollection.staticFields(counter, manifest, plmp_id, collection); //all static fields
 
-            metadataMembers(dllmAttributes, manifest);
+            metadataMembers(collectionAttributes, manifest);
             String book_ID = COLLECTION_PATH_PLUS_ZERO + counter;
 
             addImagePart(file, jsonMetadata, manifest, book_ID);
             addProviderToManifest(manifest, collection);
 
-            File newFile = new File(manifestsResultFolder + "/" + dllmAttributes.getDocuments_id() + ".json");
+            File newFile = new File(manifestsResultFolder + "/" + collectionAttributes.getDocuments_id() + ".json");
             manifestor.write(manifest, newFile);
         }
     }
 
     @NotNull
-    private static Manifest getLabelDataForManifest(File file, DllmAttributes dllmAttributes) {
+    private static Manifest getLabelDataForManifest(File file, CollectionAttributes collectionAttributes) {
         Manifest manifest;
-        I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes);
-        I18n i18n_title = LabelMetadata.getStringsLabelBoth(dllmAttributes);
-        I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBoth(dllmAttributes);
+        I18n i18n_title_Roman = LabelMetadata.getStringsLabel(collectionAttributes);
+        I18n i18n_title = LabelMetadata.getStringsLabelBoth(collectionAttributes);
+        I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBoth(collectionAttributes);
         if (i18n_title_Roman!=null) {
             manifest = new Manifest(String.valueOf(file), new Label(i18n_title));
         } else {

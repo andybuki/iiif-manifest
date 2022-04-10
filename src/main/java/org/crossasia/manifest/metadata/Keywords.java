@@ -4,13 +4,13 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
 import java.util.ArrayList;
 
 public class Keywords {
-    public static Metadata getMetadataKeywords(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataKeywords(CollectionAttributes dllmAttributes) {
 
         ArrayList<String> keywordsRomanArrayList = new ArrayList<>();
         ArrayList<String> keywordsThaiArrayList = new ArrayList<>();
