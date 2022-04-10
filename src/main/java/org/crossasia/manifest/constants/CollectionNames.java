@@ -1,3 +1,4 @@
+
 package org.crossasia.manifest.constants;
 
 public enum CollectionNames {

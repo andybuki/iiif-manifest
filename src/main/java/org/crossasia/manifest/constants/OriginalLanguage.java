@@ -1,9 +1,10 @@
+
 package org.crossasia.manifest.constants;
 
-public enum OriginalLanguage {
-    Thai ("th"),
-    Lao ("lo"),
-    English("en");
+public enum OriginalLanguage    {
+    THAI ("th"),
+    LAO ("lo"),
+    ENGLISH("en");
 
     private String name;
 

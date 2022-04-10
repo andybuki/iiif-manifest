@@ -533,7 +533,7 @@ public class DllmAttributes {
         this.alternative_title_id = alternative_title_id;
     }
 
-    public JSONArray getAlternative_label_th() {
+    public JSONArray getAlternativeLabelTh() {
         return alternative_label_th;
     }
 
@@ -541,7 +541,7 @@ public class DllmAttributes {
         this.alternative_label_th = alternative_label_th;
     }
 
-    public JSONArray getAlternative_label_ro() {
+    public JSONArray getAlternativeLabelRo() {
         return alternative_label_ro;
     }
 

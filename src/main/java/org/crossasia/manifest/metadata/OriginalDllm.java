@@ -190,11 +190,11 @@ public class OriginalDllm {
         if (dllmAttributes.getIn_collection()!= null)
             dllmArrayList.add("in_collection : " + dllmAttributes.getIn_collection());
 
-        if (dllmAttributes.getAlternative_label_ro()!= null)
-            dllmArrayList.add("alternative_title : " +dllmAttributes.getAlternative_label_ro());
+        if (dllmAttributes.getAlternativeLabelRo()!= null)
+            dllmArrayList.add("alternative_title : " +dllmAttributes.getAlternativeLabelRo());
 
-        if (dllmAttributes.getAlternative_label_th()!= null)
-            dllmArrayList.add("alternative_title_th : " +dllmAttributes.getAlternative_label_th());
+        if (dllmAttributes.getAlternativeLabelTh()!= null)
+            dllmArrayList.add("alternative_title_th : " +dllmAttributes.getAlternativeLabelTh());
 
         Iterator<String> iterDllm_original = dllmArrayList.iterator();
 

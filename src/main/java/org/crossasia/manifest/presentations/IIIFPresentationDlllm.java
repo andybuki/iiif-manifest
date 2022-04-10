@@ -142,16 +142,12 @@ public class IIIFPresentationDlllm  {
                 System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
             }
 
-            annoPage = new AnnotationPage<>(annoPageID);
-            anno = new PaintingAnnotation(annoID, canvas);
-            annoPage.addAnnotations(anno.setBodies(imageContent).setTarget(canvasID));
-            canvases.add(canvas.setPaintingPages(annoPage));
-            canvas.setLabel("[ "+ pages_position +" ]");
-            manifest.setCanvases(canvases);
+            AnnotatedPage.addAnnotatedPage(manifest, canvasID, annoID, annoPageID, canvas, canvases, imageContent, pages_position);
 
             MANIFEST_THUMBNAIL_URI = SERVER + CollectionNames.DLLM.getName() + book_ID +"+"+ first_page+ THUMBNAIL_PATH;
             manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + CollectionNames.DLLM.getName()+ book_ID +"+"+first_page);
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService));
         }
     }
+
 }

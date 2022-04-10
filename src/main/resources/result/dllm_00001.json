@@ -1,0 +1,748 @@
+{
+  "@context" : "http://iiif.io/api/presentation/3/context.json",
+  "id" : "https://itr02.crossasia.org/fcrepo/rest/dllm/dllm_0001/manifest",
+  "type" : "Manifest",
+  "label" : {
+    "none" : [ "Wohan kakula thela nippan (ໂວຫານ ກະກຸລະເຖຣະນິພພານ)" ]
+  },
+  "provider" : [ {
+    "id" : "crossasia.org",
+    "type" : "Agent",
+    "label" : {
+      "none" : [ "Staatsbibliothek zu Berlin | CrossAsia" ]
+    }
+  }, {
+    "id" : "http://nationallibraryoflaos.net/en/",
+    "type" : "Agent",
+    "label" : {
+      "en" : [ "National Library of Laos" ],
+      "thai" : [ "ຫໍສະໝຸດແຫ່ງຊາດ" ]
+    }
+  } ],
+  "partOf" : [ {
+    "id" : "https://iiif.crossasia.org/s/dllmlanna",
+    "type" : "Collection"
+  } ],
+  "homepage" : [ {
+    "id" : "https://iiif.crossasia.org",
+    "type" : "Text",
+    "label" : {
+      "en" : [ "Crossasia IIIF collections" ]
+    }
+  } ],
+  "thumbnail" : [ {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/full/150,/0/default.jpg",
+    "type" : "Image",
+    "format" : "image/jpeg",
+    "service" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497",
+      "type" : "ImageService3",
+      "profile" : "level2"
+    } ]
+  } ],
+  "summary" : {
+    "none" : [ "Digital Library of Lao Manuscripts  - PLMP Code:06011413001_04 (dllm_00001)" ]
+  },
+  "metadata" : [ {
+    "label" : {
+      "en" : [ "title" ]
+    },
+    "value" : {
+      "en" : [ "Wohan kakula thela nippan" ],
+      "th" : [ "ໂວຫານ ກະກຸລະເຖຣະນິພພານ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "dc:language" ]
+    },
+    "value" : {
+      "en" : [ "Lan Na", "Pali" ],
+      "th" : [ "ປາ​ລີ", "ລ້ານ​ນາ" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "dc:identifier" ]
+    },
+    "value" : {
+      "none" : [ "dllm_00001" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "otherIdentifier.code_number" ]
+    },
+    "value" : {
+      "none" : [ "06011413001_04" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "dc:extent" ]
+    },
+    "value" : {
+      "en" : [ "1 fascicle(s), 36 folio(s) (12 img.)" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "dc:place" ]
+    },
+    "value" : {
+      "en" : [ "Vientiane Capital", "Mueang Canthabuli District", "Vat Haisok" ],
+      "th" : [ "ນະຄອນຫຼວງວຽງຈັນ", "ເມືອງ ຈັນທະບູລີ", "ວັດຫາຍໂສກ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "full_location_name" ]
+    },
+    "value" : {
+      "en" : [ "Vat Haisok, Vientiane Capital, Mueang Canthabuli District" ],
+      "th" : [ "ວັດຫາຍໂສກ, ນະຄອນຫຼວງວຽງຈັນ, ເມືອງ ຈັນທະບູລີ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "lanna_original" ]
+    },
+    "value" : {
+      "none" : [ "documents_id : dllm_00001", "documents_code_number : 06011413001_04", "documents_roll : 0482", "documents_number_of_fascicles : 1", "documents_number_of_folios : 36", "locations_parent_parent_id : 1", "full_location_name : Vat Haisok, Mueang Canthabuli District, Vientiane Capital", "full_location_name : Vat Haisok, Mueang Canthabuli District, Vientiane Capital", "full_location_name_lao : ວັດຫາຍໂສກ, ເມືອງ ຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ", "full_location_name_lao : ວັດຫາຍໂສກ, ເມືອງ ຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ", "documents_has_colophon : yes", "documents_is_illustrated : no", "documents_is_color : no", "documents_bundle_id : 06011413001", "locations_id : 6", "locations_parent_id : 2", "documents_position_in_bundle : 4", "documents_is_complete : no", "documents_pages_count : 12", "materials_name : Palm-leaf", "materials_name_lao : ​ໃບ​ລານ", "location_types_name : Wat or Location", "location_types_name_lao : ວັດ", "locations_rgt : 10", "locations_lft : 9", "locations_dllm_loc_code : 7", "locations_gps_lat : 17.9663", "locations_gps_lon : 102.605", "ancillary_terms_roman : [\"vohan\",\"vohāra\"]", "locations_dlntm_loc_code : 6", "ancillary_terms_lao : [\"ໂວຫານ\"]", "public_remarks_lao : [\"ຊື່ເລື່ອງຢູ່ໃບສຳຫຼວດແມ່ນ ກະກຸນເຖຣີນິພພານ. ປີຈານຢູ່ໃບສຳຫຼວດແມ່ນ ຈສ. 1199 ປີເມິງເຮົ້າ\"]", "categories_name : [\"Buddhist Chronicle\",\"Didactics\"]", "categories_name_lao : [\"ຕຳນານພຸທທະສາສະໜາ\",\"ໂອວາດຄຳສອນ\"]", "languages : [\"Lan Na\",\"Pali\"]", "languages_lao : [\"ປາລີ\",\"ລ້ານນາ\"]", "scripts : [\"Tham Lan Na\"]", "scripts_lao : [\"ທັມລ້ານນາ\"]", "title_search_roman : [\"Kakula\",\"Nipphan\",\"nilaphan\",\"nibbāna\",\"Thela\"]", "title_search_lao : [\"ກະກຸລະ\",\"ນິບພານ\",\"ນີລະພານ\",\"ເຖລະ\"]", "dllm_title_roman : [\"Wohan kakula thela nippan\"]", "dllm_title_lao : [\"ໂວຫານ ກະກຸລະເຖຣະນິພພານ\"]", "plmp_title_lao : [\"ກະກຸນເຖຣີນິພພານ\"]", "location_documents_count : 12", "legibilities_name : Good legibility", "legibilities_name_lao : ອ່ານໄດ້ດີ", "conditions_name : Good", "conditions_name_lao : ດີ", "documents_preferred_date_system : Undated", "documents_preferred_date_system_lao : ບໍ່ປາກົດປີລິດຈະນາ", "in_collection : Dllm" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "dc:description" ]
+    },
+    "value" : {
+      "en" : [ "Bundle ID: 06011413001, position in bundle: 4; roll: 0482" ],
+      "th" : [ "[\"ຊື່ເລື່ອງຢູ່ໃບສຳຫຼວດແມ່ນ ກະກຸນເຖຣີນິພພານ. ປີຈານຢູ່ໃບສຳຫຼວດແມ່ນ ຈສ. 1199 ປີເມິງເຮົ້າ\"]" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "has_colophon" ]
+    },
+    "value" : {
+      "none" : [ "yes" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "is_illustrated" ]
+    },
+    "value" : {
+      "none" : [ "no" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "is_color" ]
+    },
+    "value" : {
+      "none" : [ "no" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "otherIdentifier.bundle_id" ]
+    },
+    "value" : {
+      "none" : [ "06011413001" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "is_complete" ]
+    },
+    "value" : {
+      "none" : [ "no" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "in_collection" ]
+    },
+    "value" : {
+      "none" : [ "Dllm" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "pages_count" ]
+    },
+    "value" : {
+      "none" : [ "12" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "material" ]
+    },
+    "value" : {
+      "en" : [ "Palm-leaf" ],
+      "th" : [ "​ໃບ​ລານ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "location_type" ]
+    },
+    "value" : {
+      "en" : [ "Wat or Location" ],
+      "th" : [ "ວັດ" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "schema:latitude" ]
+    },
+    "value" : {
+      "none" : [ "17.9663" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "schema:longitude" ]
+    },
+    "value" : {
+      "none" : [ "102.605" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "schema:keywords" ]
+    },
+    "value" : {
+      "en" : [ "vohan", "vohāra" ],
+      "th" : [ "ໂວຫານ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "dc:subject" ]
+    },
+    "value" : {
+      "en" : [ "Buddhist Chronicle", "Didactics" ],
+      "th" : [ "ຕຳນານ​ພຸ​ທທະ​ສາສະໜາ", "​ໂອວາດ​ຄຳ​ສອນ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "script" ]
+    },
+    "value" : {
+      "en" : [ "Tham Lan Na" ],
+      "th" : [ "ທັມລ້ານນາ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "index" ]
+    },
+    "value" : {
+      "th" : [ "ກະກຸລະ", "ນິບພານ", "ນີລະພານ", "ເຖລະ", "ກະກຸນເຖຣີນິພພານ" ],
+      "en" : [ "Kakula", "Nipphan", "nilaphan", "nibbāna", "Thela" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "legibilities" ]
+    },
+    "value" : {
+      "en" : [ "Good legibility" ],
+      "th" : [ "ອ່ານໄດ້ດີ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "conditions" ]
+    },
+    "value" : {
+      "en" : [ "Good" ],
+      "th" : [ "ດີ" ]
+    }
+  }, {
+    "label" : {
+      "en" : [ "date_original" ]
+    },
+    "value" : {
+      "en" : [ "(Undated)" ],
+      "th" : [ "(ບໍ່ປາກົດປີລິດຈະນາ)" ]
+    }
+  }, {
+    "label" : {
+      "none" : [ "map" ]
+    },
+    "value" : {
+      "none" : [ "<a href=\"#\" onClick=\"MyWindow=window.open('https://www.openstreetmap.org/?mlat=17.9663&mlon=102.605#map=16/17.9663/102.605','Map','width=500,height=500'); return false;\">Map view</a>" ]
+    }
+  } ],
+  "rights" : "http://creativecommons.org/licenses/by/4.0/",
+  "requiredStatement" : {
+    "label" : {
+      "en" : [ "Attribution" ]
+    },
+    "value" : {
+      "en" : [ "Images and metadata are made available by Harald Hundius in collaboration with the National Library of Laos (CC BY-NC 4.0) via the Staatsbibliothek zu Berlin | CrossAsia" ]
+    }
+  },
+  "viewingDirection" : "left-to-right",
+  "items" : [ {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 1 ]" ]
+    },
+    "height" : 2432,
+    "width" : 1664,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 1664,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484497/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 2 ]" ]
+    },
+    "height" : 2432,
+    "width" : 1242,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 1242,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484498/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 3 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2963,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2963,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484499/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 4 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2963,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2963,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484500/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 5 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2970,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2970,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484501/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 6 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2970,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2970,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484502/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 7 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2970,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2970,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484503/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 8 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2970,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2970,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484504/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 9 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2976,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2976,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484505/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 10 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2963,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2963,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484506/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 11 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2963,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2963,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484507/canvas"
+      } ]
+    } ]
+  }, {
+    "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/canvas",
+    "type" : "Canvas",
+    "label" : {
+      "none" : [ "[ 12 ]" ]
+    },
+    "height" : 2432,
+    "width" : 2989,
+    "thumbnail" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/full/150,/0/default.jpg",
+      "type" : "Image",
+      "format" : "image/jpeg",
+      "service" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508",
+        "type" : "ImageService3",
+        "profile" : "level2"
+      } ]
+    } ],
+    "items" : [ {
+      "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/annotation_page",
+      "type" : "AnnotationPage",
+      "items" : [ {
+        "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/annotation",
+        "type" : "Annotation",
+        "motivation" : "painting",
+        "body" : {
+          "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/full/full/0/default.jpg",
+          "type" : "Image",
+          "format" : "image/jpeg",
+          "height" : 2432,
+          "width" : 2989,
+          "service" : [ {
+            "id" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508",
+            "type" : "ImageService3",
+            "profile" : "level2"
+          } ]
+        },
+        "target" : "https://iiif-content.crossasia.org/xasia/dllm+dllm_0001+484508/canvas"
+      } ]
+    } ]
+  } ]
+}

@@ -10,9 +10,9 @@ public class ProviderToManifest {
     public static void addProviderToManifest(Manifest manifest, String collection) {
         Provider provider = new Provider("crossasia.org",  "Staatsbibliothek zu Berlin | CrossAsia");
         Label label_provider_laos = new Label(new I18n("en", "National Library of Laos"),
-                new I18n(String.valueOf(OriginalLanguage.Thai),"ຫໍສະໝຸດແຫ່ງຊາດ"));
+                new I18n(String.valueOf(OriginalLanguage.THAI.getName()),"ຫໍສະໝຸດແຫ່ງຊາດ"));
         Label label_provider_thai = new Label (new I18n("en","Chiang Mai University Library"),
-                new I18n(String.valueOf(OriginalLanguage.Thai), "สำนักหอสมุดมหาวิทยาลัยเชียงใหม่"));
+                new I18n(String.valueOf(OriginalLanguage.THAI.getName()), "สำนักหอสมุดมหาวิทยาลัยเชียงใหม่"));
 
         Provider provider_laos = new Provider("http://nationallibraryoflaos.net/en/", "");
         Provider provider_thai = new Provider("https://library.cmu.ac.th/","");
