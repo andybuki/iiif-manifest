@@ -2,7 +2,7 @@ package org.crossasia.manifest.attributes;
 
 import org.json.JSONArray;
 
-public class DllmAttributes {
+public class CollectionAttributes {
 
     private String  documents_id;
     private String  documents_code_number;
@@ -72,6 +72,7 @@ public class DllmAttributes {
     private int id;
     private String code_number;
     private String active;
+    private String image;
     private String in_collection;
     private int number_of_fascicles;
     private int number_of_digital_images;
@@ -84,8 +85,11 @@ public class DllmAttributes {
     private int location_id;
     private int pntmp_title_id;
     private String date_system;
+    private String subject_th;
+    private String subject_ro;
     private int number_of_folios;
     private int year;
+    private int position;
     private JSONArray upload;
     private JSONArray code;
     private JSONArray province_th;
@@ -122,10 +126,10 @@ public class DllmAttributes {
     private JSONArray material_th;
     private JSONArray script_th;
 
-    public DllmAttributes(){}
 
+    public CollectionAttributes(){}
 
-    public DllmAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String locations_parent_name, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, JSONArray ancillary_terms_roman, JSONArray ancillary_terms_lao, String public_remarks_english, String public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages, String microfilm_roll_number, int id, String code_number, String active, String in_collection, int number_of_fascicles, int number_of_digital_images, boolean complete, boolean has_colophon, boolean illustrated, boolean directly_digitised, String legibility, String condition, int location_id, int pntmp_title_id, String date_system, int number_of_folios, int year, JSONArray upload, JSONArray code, JSONArray province_th, JSONArray province_ro, JSONArray district_th, JSONArray district_ro, JSONArray address_th, JSONArray address_ro, JSONArray latitude, JSONArray longitude, boolean exact, JSONArray website, JSONArray manuscripts_count, JSONArray dlntm_title_id, JSONArray dlntm_label_th, JSONArray dlntm_label_ro, JSONArray alternative_title_id, JSONArray alternative_label_th, JSONArray alternative_label_ro, JSONArray label, JSONArray label_ro, JSONArray pntmp_label, String thai_remarks, String remarks, int ce_year, boolean in_private_collection, JSONArray category, JSONArray language, JSONArray material, JSONArray script, JSONArray category_th, JSONArray language_th, JSONArray material_th, JSONArray script_th) {
+    public CollectionAttributes(String documents_id, String documents_code_number, String documents_roll, int documents_number_of_fascicles, int documents_number_of_folios, String extent, int locations_is_top_level, int locations_parent_parent_id, String locations_parent_parent_name, String full_location_name_lao, String locations_parent_parent_name_lao, String locations_parent_name_lao, String locations_parent_name, String full_location_name, String location_name, String location_name_lao, String documents_has_colophon, String documents_is_illustrated, String documents_is_color, String documents_bundle_id, int locations_id, int locations_parent_id, int documents_position_in_bundle, String documents_is_complete, int documents_pages_count, String description, String materials_name, String materials_name_lao, String location_types_name, String location_types_name_lao, int locations_lft, int locations_rgt, int locations_dllm_loc_code, double locations_gps_lat, double locations_gps_lon, JSONArray ancillary_terms_roman, JSONArray ancillary_terms_lao, String public_remarks_english, Object public_remarks_lao, JSONArray categories_name, JSONArray categories_name_lao, JSONArray languages, JSONArray languages_lao, JSONArray scripts, JSONArray scripts_lao, JSONArray title_search_roman, JSONArray title_search_lao, JSONArray dllm_title_roman, JSONArray dllm_title_lao, JSONArray plmp_title_lao, int location_documents_count, String legibilities_name, String legibilities_name_lao, String conditions_name, String conditions_name_lao, String documents_preferred_date_system, String documents_preferred_date_system_lao, String documents_date_written, String date_original, String date_original_lao, JSONArray pages, String microfilm_roll_number, int id, String code_number, String active, String image, String in_collection, int number_of_fascicles, int number_of_digital_images, boolean complete, boolean has_colophon, boolean illustrated, boolean directly_digitised, String legibility, String condition, int location_id, int pntmp_title_id, String date_system, String subject_th, String subject_ro, int number_of_folios, int year, int position, JSONArray upload, JSONArray code, JSONArray province_th, JSONArray province_ro, JSONArray district_th, JSONArray district_ro, JSONArray address_th, JSONArray address_ro, JSONArray latitude, JSONArray longitude, boolean exact, JSONArray website, JSONArray manuscripts_count, JSONArray dlntm_title_id, JSONArray dlntm_label_th, JSONArray dlntm_label_ro, JSONArray alternative_title_id, JSONArray alternative_label_th, JSONArray alternative_label_ro, JSONArray label, JSONArray label_ro, JSONArray pntmp_label, String thai_remarks, String remarks, int ce_year, boolean in_private_collection, JSONArray category, JSONArray language, JSONArray material, JSONArray script, JSONArray category_th, JSONArray language_th, JSONArray material_th, JSONArray script_th) {
         this.documents_id = documents_id;
         this.documents_code_number = documents_code_number;
         this.documents_roll = documents_roll;
@@ -191,6 +195,7 @@ public class DllmAttributes {
         this.id = id;
         this.code_number = code_number;
         this.active = active;
+        this.image = image;
         this.in_collection = in_collection;
         this.number_of_fascicles = number_of_fascicles;
         this.number_of_digital_images = number_of_digital_images;
@@ -203,8 +208,11 @@ public class DllmAttributes {
         this.location_id = location_id;
         this.pntmp_title_id = pntmp_title_id;
         this.date_system = date_system;
+        this.subject_th = subject_th;
+        this.subject_ro = subject_ro;
         this.number_of_folios = number_of_folios;
         this.year = year;
+        this.position = position;
         this.upload = upload;
         this.code = code;
         this.province_th = province_th;
@@ -241,12 +249,44 @@ public class DllmAttributes {
         this.script_th = script_th;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getSubject_th() {
+        return subject_th;
+    }
+
+    public void setSubject_th(String subject_th) {
+        this.subject_th = subject_th;
+    }
+
+    public String getSubject_ro() {
+        return subject_ro;
+    }
+
+    public void setSubject_ro(String subject_ro) {
+        this.subject_ro = subject_ro;
+    }
+
     public String getMicrofilm_roll_number() {
         return microfilm_roll_number;
     }
 
     public void setMicrofilm_roll_number(String microfilm_roll_number) {
         this.microfilm_roll_number = microfilm_roll_number;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public boolean isExact() {

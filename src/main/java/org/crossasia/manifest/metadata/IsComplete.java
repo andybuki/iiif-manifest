@@ -3,12 +3,11 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class IsComplete {
 
-    public static Metadata getMetadataIsComplete(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataIsComplete(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_is_complete = null;
 

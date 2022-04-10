@@ -4,14 +4,14 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 
 
 import java.util.ArrayList;
 
 public class Alternative {
-    public static Metadata getMetadataAlternative(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataAlternative(CollectionAttributes dllmAttributes) {
         ArrayList<String> alternativeArrayList = new ArrayList<>();
         ArrayList<String> alternativeThArrayList = new ArrayList<>();
 

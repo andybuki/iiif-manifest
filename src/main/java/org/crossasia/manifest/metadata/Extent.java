@@ -4,13 +4,10 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class Extent {
-    public static Metadata getMetadataExtent(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataExtent(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_extent = null;
         int number_of_digital_images = 0;

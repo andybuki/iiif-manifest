@@ -1,14 +1,12 @@
 package org.crossasia.manifest.metadata;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class BundleID {
-    public static Metadata getMetadataBundleID(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataBundleID(CollectionAttributes dllmAttributes) {
         Metadata metadata_bundle_id = null;
 
         if(dllmAttributes.getDocuments_bundle_id()!=null) {

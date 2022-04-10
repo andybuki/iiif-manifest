@@ -1,15 +1,13 @@
 package org.crossasia.manifest.metadata;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class PagesCount {
 
-    public static Metadata getMetadataPagesCount(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataPagesCount(CollectionAttributes dllmAttributes) {
         Metadata metadata_pages_count= null;
 
         if(dllmAttributes.getDocuments_pages_count()!=0) {

@@ -4,15 +4,14 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class OriginalDllm {
 
-    public static Metadata getMetadataDllmOriginal(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataDllmOriginal(CollectionAttributes dllmAttributes) {
         ArrayList<String> dllmArrayList = new ArrayList<>();
 
         dllmArrayList.add("documents_id : " + dllmAttributes.getDocuments_id());
@@ -46,11 +45,11 @@ public class OriginalDllm {
 
         if (dllmAttributes.getLocation_name()!= null)
             dllmArrayList.add("full_location_name : " +dllmAttributes.getLocation_name()+", "+
-                    dllmAttributes.getLocations_parent_name()+ ", "+ dllmAttributes.getLocations_parent_parent_name());
+                    dllmAttributes.getLocations_parent_parent_name()+ ", "+ dllmAttributes.getLocations_parent_name());
 
         if (dllmAttributes.getLocation_name_lao()!= null)
             dllmArrayList.add("full_location_name_lao : " +dllmAttributes.getLocation_name_lao()+", "+
-                    dllmAttributes.getLocations_parent_name_lao()+ ", "+ dllmAttributes.getLocations_parent_parent_name_lao());
+                    dllmAttributes.getLocations_parent_parent_name_lao()+ ", "+ dllmAttributes.getLocations_parent_name_lao());
 
         if (dllmAttributes.getFull_location_name_lao()!= null)
             dllmArrayList.add("full_location_name_lao : " +dllmAttributes.getFull_location_name_lao());
@@ -188,13 +187,16 @@ public class OriginalDllm {
             dllmArrayList.add("documents_date_written : " +dllmAttributes.getCe_year());
 
         if (dllmAttributes.getIn_collection()!= null)
-            dllmArrayList.add("in_collection : " + dllmAttributes.getIn_collection());
+            dllmArrayList.add("in_collection : " + dllmAttributes.getIn_collection().toUpperCase());
 
         if (dllmAttributes.getAlternative_label_ro()!= null)
             dllmArrayList.add("alternative_title : " +dllmAttributes.getAlternative_label_ro());
 
         if (dllmAttributes.getAlternative_label_th()!= null)
             dllmArrayList.add("alternative_title_th : " +dllmAttributes.getAlternative_label_th());
+
+        if (dllmAttributes.getPosition()!= 0)
+            dllmArrayList.add("position : " +dllmAttributes.getPosition());
 
         Iterator<String> iterDllm_original = dllmArrayList.iterator();
 
@@ -205,8 +207,11 @@ public class OriginalDllm {
         }
 
         I18n dllm_org = new I18n("none", dllmArrayList);
-
-        return new Metadata(new Label(new I18n("en", "lanna_original")),
+        if (dllmAttributes.getDocuments_id().contains("lanna"))
+            return new Metadata(new Label(new I18n("en", "lanna_original")),
                 new Value(new I18n []{ dllm_org }));
+        else
+            return new Metadata(new Label(new I18n("en", "dllm_original")),
+                    new Value(new I18n []{ dllm_org }));
     }
 }

@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LabelDataForManifestDlllmTest {
+public class LabelDataForManifestTest {
     @Test
-    void isLabelDataForManifestDlllmTest () {
+    void isLabelDataForManifestTest () {
 
     }
 

@@ -3,10 +3,10 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class Map {
-    public static Metadata getMapLink(DllmAttributes dllmAttributes) {
+    public static Metadata getMapLink(CollectionAttributes dllmAttributes) {
 
         Metadata map= null;
 

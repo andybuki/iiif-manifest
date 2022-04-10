@@ -1,15 +1,13 @@
 package org.crossasia.manifest.metadata;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class CodeNumber {
 
-    public static Metadata getMetadataDocumentsCodeNumber(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataDocumentsCodeNumber(CollectionAttributes dllmAttributes) {
 
         Metadata metadata_code_number = null;
 

@@ -4,7 +4,7 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Places {
     @NotNull
-    public static Metadata getMetadataPlaces(DllmAttributes dllmAttributes) {
+    public static Metadata getMetadataPlaces(CollectionAttributes dllmAttributes) {
         ArrayList<String> placesArrayList = new ArrayList<>();
         ArrayList<String> placesArrayListLao = new ArrayList<>();
         if (dllmAttributes.getLocations_parent_parent_name()!=null)

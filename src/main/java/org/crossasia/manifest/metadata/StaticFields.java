@@ -43,7 +43,7 @@ public class StaticFields {
         } else if (collection.contains("DLNTM")) {
             statement="Images and metadata are made available by the National Library of Laos (CC BY-NC 4.0) via the Staatsbibliothek zu Berlin | CrossAsia";
         } else {
-            statement ="Images and metadata are made available by Harald Hundius in collaboration with the National Library of Laos (CC BY-NC 4.0) via the Staatsbibliothek zu Berlin | CrossAsia";
+            statement ="Images and metadata are made available by the National Library of Laos (CC BY-NC 4.0) via the Staatsbibliothek zu Berlin | CrossAsia";
         }
 
         reqStmt = new RequiredStatement(new Label("en","Attribution"),

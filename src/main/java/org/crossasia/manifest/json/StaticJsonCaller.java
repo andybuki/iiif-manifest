@@ -1,44 +1,46 @@
 package org.crossasia.manifest.json;
 
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
-import info.freelibrary.iiif.presentation.v3.properties.Label;
-import info.freelibrary.iiif.presentation.v3.properties.Metadata;
-import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.DllmAttributes;
-import org.jetbrains.annotations.NotNull;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.json.JSONObject;
 
 public class StaticJsonCaller {
 
-    public static void staticJsonCaller(DllmAttributes dllmAttributes, JSONObject jsonObj) {
+    public static void staticJsonCaller(CollectionAttributes dllmAttributes, JSONObject jsonObj) {
         JsonConnecter.titleRoman(dllmAttributes, jsonObj);
         JsonConnecter.titleThai(dllmAttributes, jsonObj);
         JsonConnecter.languageRoman(dllmAttributes, jsonObj);
         JsonConnecter.languageThai(dllmAttributes, jsonObj);
+
         JsonConnecter.documentsID(dllmAttributes,jsonObj);
         JsonConnecter.documentsCodeNumber(dllmAttributes,jsonObj);
         JsonConnecter.documentsRoll(dllmAttributes,jsonObj);
         JsonConnecter.documentsExtent(dllmAttributes,jsonObj);
+
         JsonConnecter.documentsNumberOfFascicles(dllmAttributes,jsonObj);
         JsonConnecter.documentsNumberOfFolios(dllmAttributes,jsonObj);
         JsonConnecter.fullLocationName(dllmAttributes,jsonObj);
         JsonConnecter.fullLocationNameLao(dllmAttributes,jsonObj);
+
         JsonConnecter.locationsParentParentName(dllmAttributes,jsonObj);
         JsonConnecter.locationsParentParentNameLao(dllmAttributes,jsonObj);
         JsonConnecter.locationsParentName(dllmAttributes,jsonObj);
         JsonConnecter.locationsParentNameLao(dllmAttributes,jsonObj);
+
         JsonConnecter.locationsIsTopLevel(dllmAttributes,jsonObj);
         JsonConnecter.locationsParentParentID(dllmAttributes,jsonObj);
         JsonConnecter.documentsHasColophon(dllmAttributes,jsonObj);
         JsonConnecter.documentsIsIllustrated(dllmAttributes,jsonObj);
+
         JsonConnecter.documentsIsColor(dllmAttributes,jsonObj);
         JsonConnecter.documentsIsComplete(dllmAttributes,jsonObj);
         JsonConnecter.documentsPagesCount(dllmAttributes,jsonObj);
         JsonConnecter.documentsPositionInBundle(dllmAttributes,jsonObj);
+
         JsonConnecter.locationsParentID(dllmAttributes,jsonObj);
         JsonConnecter.locationsID(dllmAttributes,jsonObj);
         JsonConnecter.documentsBundleID(dllmAttributes,jsonObj);
         JsonConnecter.description(dllmAttributes,jsonObj);
+
         JsonConnecter.documentsInCollection(dllmAttributes, jsonObj);
         JsonConnecter.materialsName(dllmAttributes,jsonObj);
         JsonConnecter.materialsNameLao(dllmAttributes,jsonObj);
@@ -94,6 +96,20 @@ public class StaticJsonCaller {
 
         JsonConnecter.year(dllmAttributes,jsonObj);
         JsonConnecter.documentsInPrivateCollection(dllmAttributes,jsonObj);
+        JsonConnecter.documentsPosition(dllmAttributes,jsonObj);
+        JsonConnecter.website(dllmAttributes,jsonObj);
+
+        JsonConnecter.addressRo(dllmAttributes,jsonObj);
+        JsonConnecter.addressTh(dllmAttributes,jsonObj);
+        JsonConnecter.districtRo(dllmAttributes,jsonObj);
+        JsonConnecter.districtTh(dllmAttributes,jsonObj);
+
+        JsonConnecter.provinceRo(dllmAttributes,jsonObj);
+        JsonConnecter.provinceTh(dllmAttributes,jsonObj);
+        JsonConnecter.subjectRo(dllmAttributes,jsonObj);
+        JsonConnecter.subjectTh(dllmAttributes,jsonObj);
+
+        JsonConnecter.image(dllmAttributes,jsonObj);
     }
 
 }

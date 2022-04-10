@@ -4,7 +4,7 @@ import info.freelibrary.iiif.presentation.v3.Collection;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Summary;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.LabelMetadata;
 import org.json.JSONArray;
@@ -36,7 +36,7 @@ public class IIIFCollectionDlmnt {
 
 		for (File file : filesInDir) {
 			if (file.toString().contains(".json")) {
-				DllmAttributes dllmAttributes = new DllmAttributes();
+				CollectionAttributes dllmAttributes = new CollectionAttributes();
 				int lentgthFiles = filesInDir.length;
 				JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 				StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -45,7 +45,7 @@ public class IIIFCollectionDlmnt {
 				String title = (String) arrayTitle.get(0);
 				I18n i18n_title_Roman = LabelMetadata.getStringsLabel(dllmAttributes);
 				I18n i18n_title = LabelMetadata.getStringsLabelBoth(dllmAttributes);
-				I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBoth(dllmAttributes);
+				I18n i18n_title_no_title_both = LabelMetadata.getStringsLabelNoTitleBothLanna(dllmAttributes);
 				Label label = new Label(title);
 				Label label_no_title_both = new Label(i18n_title_no_title_both);
 
@@ -69,7 +69,7 @@ public class IIIFCollectionDlmnt {
 				items.add(manifest);
 				collection.setItems(items);
 
-				DllmAttributes finalDllmAttributes = dllmAttributes;
+				CollectionAttributes finalDllmAttributes = dllmAttributes;
 			}
 
 			PrintStream out = new PrintStream(new FileOutputStream("/data/dlmnt/fedora/results/collection.json"));

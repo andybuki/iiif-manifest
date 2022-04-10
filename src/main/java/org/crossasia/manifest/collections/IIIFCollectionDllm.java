@@ -4,7 +4,7 @@ import info.freelibrary.iiif.presentation.v3.Collection;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Summary;
-import org.crossasia.manifest.attributes.DllmAttributes;
+import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.constants.PublicConstants;
 import org.crossasia.manifest.json.StaticJsonCaller;
 import org.crossasia.manifest.metadata.LabelMetadata;
@@ -35,7 +35,7 @@ public class IIIFCollectionDllm {
 
 
 		for (File file : filesInDir) {
-			DllmAttributes dllmAttributes = new DllmAttributes();
+			CollectionAttributes dllmAttributes = new CollectionAttributes();
 			int lentgthFiles =  filesInDir.length;
 			JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 			StaticJsonCaller.staticJsonCaller(dllmAttributes, jsonObj);
@@ -63,7 +63,7 @@ public class IIIFCollectionDllm {
 			items.add(manifest);
 			collection.setItems(items);
 
-			DllmAttributes finalDllmAttributes = dllmAttributes;
+			CollectionAttributes finalDllmAttributes = dllmAttributes;
 
 			/*Collections.sort(collection, new Comparator<Collection>() {
 
