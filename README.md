@@ -1,6 +1,7 @@
 # IIIFManifestBuilder
 
-This app is for creating IIIF Manifests, based on IIIF 3.0 Presentation Standart, from already existing Json files.
+This app is for creating IIIF manifests, based on IIIF 3.0 presentation standards, 
+from already existing Json files.
 
 I use predifined names in metadata block.
 You need to adapt your json file before creating a IIIF Manifest.
@@ -21,5 +22,10 @@ The actual version based on IIIF standard 2.1, but IIIF Presentation 3.0 works c
 
 Each json file will converts in one IIIF Manifest. 
 Json file should have pages array where all the pages are. 
+
+IIIF Image Server:
+Server url : https://iiif-content.crossasia.org/xasia/ 
+Manifest collection: 
+Pages:
 
 Hier i give a list of all obligatorily fields in metadata and in pages level
