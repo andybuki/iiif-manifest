@@ -9,24 +9,23 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 
-public class DsrLinkTurfan {
+public class SiteNameGer {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-
-        Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(turfanAttributes.getDsrLink()!=null) {
-            for (int i = 0; i < turfanAttributes.getDsrLink().length(); i++) {
-                list.add(turfanAttributes.getDsrLink().get(i).toString());
+        Metadata metadata = null;
+
+        if(turfanAttributes.getSiteNameGer()!=null) {
+            for (int i = 0; i < turfanAttributes.getSiteNameGer().length(); i++) {
+                list.add(turfanAttributes.getSiteNameGer().get(i).toString());
             }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "turfan:dsrLink"),
+            i18n = new I18n("de", list);
+            metadata = new Metadata(new Label("de", "turfan:siteNameGer"),
                     new Value(new I18n[]{i18n}));
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

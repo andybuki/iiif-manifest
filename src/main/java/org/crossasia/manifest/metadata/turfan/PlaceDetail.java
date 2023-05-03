@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PlaceDetailTurfan {
+public class PlaceDetail {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
@@ -32,7 +32,6 @@ public class PlaceDetailTurfan {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

@@ -26,7 +26,6 @@ public class GeorgBezug {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

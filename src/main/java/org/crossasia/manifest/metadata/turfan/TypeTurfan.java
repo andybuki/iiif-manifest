@@ -25,7 +25,6 @@ public class TypeTurfan {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

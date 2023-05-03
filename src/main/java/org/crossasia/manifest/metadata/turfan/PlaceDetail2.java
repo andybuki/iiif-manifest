@@ -1,20 +1,21 @@
 package org.crossasia.manifest.metadata.turfan;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
+import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
-public class IdentifierTurfan {
+public class PlaceDetail2 {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
         Metadata metadata = null;
 
-        if(turfanAttributes.getIdentifier()!=null) {
-            metadata = new Metadata(new Label( "none","dc:identifier"),
-                    new Value(  turfanAttributes.getIdentifier()));
+        if(turfanAttributes.getPlaceDetail2()!=null) {
+            metadata = new Metadata(new Label( "de","turfan:placeDetail2"),
+                    new Value( new I18n("de", turfanAttributes.getPlaceDetail2())));
             return metadata;
         }
         else {

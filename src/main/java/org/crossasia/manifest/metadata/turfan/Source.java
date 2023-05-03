@@ -16,8 +16,6 @@ public class Source {
 
         Metadata metadata = null;
 
-
-
         if(turfanAttributes.getSource()!=null) {
             ArrayList<String> l = new ArrayList<>();
             if (turfanAttributes.getSource().contains(";")) {
@@ -32,7 +30,6 @@ public class Source {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

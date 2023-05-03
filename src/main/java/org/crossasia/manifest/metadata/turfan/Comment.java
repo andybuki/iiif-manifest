@@ -19,7 +19,6 @@ public class Comment {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

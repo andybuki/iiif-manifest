@@ -11,24 +11,24 @@ import java.util.List;
 
 public class MetadataMembers {
     public static List<Metadata> metadataMembers(CollectionAttributes turfanAttributes, Manifest manifest) {
-        Metadata metadata_title = TitleTurfan.getTitle(turfanAttributes, manifest);
-        Metadata metadata_date = DateTurfan.getDate(turfanAttributes, manifest);
-        Metadata metadata_seeAlso = SeeAlsoTurfan.getSeeAlso(turfanAttributes, manifest);
-        Metadata metadata_invnumber = InvNumberTurfan.get(turfanAttributes, manifest);
+        Metadata metadata_title = Title.get(turfanAttributes, manifest);
+        Metadata metadata_date = Date.get(turfanAttributes, manifest);
+        Metadata metadata_seeAlso = SeeAlso.get(turfanAttributes, manifest);
+        Metadata metadata_invnumber = InvNumber.get(turfanAttributes, manifest);
 
         Metadata metadata_collection = CollectionTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_place = PlaceTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_placeDetail = PlaceDetailTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_placeDetail2 = PlaceDetail2Turfan.get(turfanAttributes, manifest);
+        Metadata metadata_place = Place.get(turfanAttributes, manifest);
+        Metadata metadata_placeDetail = PlaceDetail.get(turfanAttributes, manifest);
+        Metadata metadata_placeDetail2 = PlaceDetail2.get(turfanAttributes, manifest);
 
-        Metadata metadata_dsrLink = DsrLinkTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_siteNameGer = SiteNameGerTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_siteID = SiteIDTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_keyword = KeywordTurfan.get(turfanAttributes, manifest);
+        Metadata metadata_dsrLink = DsrLink.get(turfanAttributes, manifest);
+        Metadata metadata_siteNameGer = SiteNameGer.get(turfanAttributes, manifest);
+        Metadata metadata_siteID = SiteID.get(turfanAttributes, manifest);
+        Metadata metadata_keyword = Keyword.get(turfanAttributes, manifest);
 
         Metadata metadata_type = TypeTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_objId = ObjIDTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_identifier = IdentifierTurfan.get(turfanAttributes, manifest);
+        Metadata metadata_objId = ObjID.get(turfanAttributes, manifest);
+        Metadata metadata_identifier = Identifier.get(turfanAttributes, manifest);
         Metadata metadata_langeBeschreibung = LangeBeschreibung.get(turfanAttributes, manifest);
 
         Metadata metadata_georgBezug = GeorgBezug.get(turfanAttributes, manifest);

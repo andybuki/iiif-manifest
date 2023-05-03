@@ -10,9 +10,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 import java.util.ArrayList;
 
 public class CollectionTurfan {
-
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();

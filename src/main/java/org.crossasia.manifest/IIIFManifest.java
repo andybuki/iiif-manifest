@@ -8,7 +8,6 @@ import org.crossasia.manifest.canvas.Canvas;
 import org.crossasia.manifest.json.StaticJsonCallerTurfan;
 import org.crossasia.manifest.metadata.StaticFieldsTurfan;
 import org.crossasia.manifest.metadata.turfan.*;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -22,30 +21,21 @@ public class IIIFManifest {
         File in = new File("C:\\Users\\b-ab107\\turfan\\manifests3\\");
         PrintStream out = new PrintStream(new FileOutputStream("src/main/resources/output.txt"));
         File dir = new File(String.valueOf(in));
-        File[] filesInDir = dir.listFiles();
-        //int counter = 1;
+        File[] filesDir = dir.listFiles();
         Manifestor manifestor = new Manifestor();
 
-        for (File file : filesInDir) {
+        for (File file : filesDir) {
             CollectionAttributes turfanAttributes = new CollectionAttributes();
             File created = new File("C:\\Users\\b-ab107\\turfan\\res\\");
             StringBuilder sb = new StringBuilder();
-            JSONObject jsonObj =null;
-
-            try {
-                jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
-            } catch (JSONException | IllegalArgumentException e) {
-                System.out.println(file.getName());
-            } finally {
-                System.out.println(file.getName());
-            }
+            JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 
             StaticJsonCallerTurfan.staticJsonCaller(turfanAttributes, jsonObj);
             Manifest manifest;
 
             String identifier = jsonObj.get("id").toString().replace(" ", "");
             String title = jsonObj.get("dc:title").toString();
-            I18n i18n_title = LabelMetadataTurfan.getLabelTitle(turfanAttributes);
+            I18n i18n_title = LabelMetadata.getLabelTitle(turfanAttributes);
 
             if (i18n_title!=null) {
                 manifest = new Manifest(String.valueOf(file.getName()), new Label( new I18n[]{i18n_title}));

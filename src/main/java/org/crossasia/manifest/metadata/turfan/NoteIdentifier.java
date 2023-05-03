@@ -19,7 +19,6 @@ public class NoteIdentifier {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

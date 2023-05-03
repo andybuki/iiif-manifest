@@ -9,9 +9,9 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 
-public class SeeAlsoTurfan {
+public class SeeAlso {
 
-    public static Metadata getSeeAlso(CollectionAttributes turfanAttributes, Manifest manifest) {
+    public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
         ArrayList<String> list = new ArrayList<>();
         Metadata metadata = null;
         I18n i18n = null;
@@ -26,7 +26,6 @@ public class SeeAlsoTurfan {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

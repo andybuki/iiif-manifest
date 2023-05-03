@@ -8,33 +8,24 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class SiteIDTurfan {
+public class DsrLink {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-
-        if(turfanAttributes.getSiteID()!=null) {
-            for (int i = 0; i < turfanAttributes.getSiteID().length(); i++) {
-                if (turfanAttributes.getSiteID().get(i).toString().contains(";")) {
-                    String [] descrs = turfanAttributes.getSiteID().get(i).toString().split(";");
-                    Collections.addAll(list, descrs);
-                } else{
-                    list.add(turfanAttributes.getSiteID().get(i).toString());
-                }
-
+        if(turfanAttributes.getDsrLink()!=null) {
+            for (int i = 0; i < turfanAttributes.getDsrLink().length(); i++) {
+                list.add(turfanAttributes.getDsrLink().get(i).toString());
             }
             i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "turfan:siteID"),
+            metadata = new Metadata(new Label("none", "turfan:dsrLink"),
                     new Value(new I18n[]{i18n}));
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

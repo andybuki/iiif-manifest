@@ -9,24 +9,22 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 
-public class InvNumberTurfan {
+public class Keyword {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        Metadata metadata = null;
 
-        if(turfanAttributes.getInvnumber()!=null) {
-            for (int i = 0; i < turfanAttributes.getInvnumber().length(); i++) {
-                list.add(turfanAttributes.getInvnumber().get(i).toString());
+        Metadata metadata = null;
+        I18n i18n = null;
+        ArrayList<String> keywords = new ArrayList<>();
+        if (turfanAttributes.getKeyword() != null) {
+            for (int i = 0; i < turfanAttributes.getKeyword().length(); i++) {
+                keywords.add(turfanAttributes.getKeyword().get(i).toString());
             }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "turfan:invNumber"),
+            i18n = new I18n("de", keywords);
+            metadata = new Metadata(new Label("de", "schema:keyword"),
                     new Value(new I18n[]{i18n}));
             return metadata;
-        }
-        else {
-            metadata = null;
+        } else {
             return metadata;
         }
     }

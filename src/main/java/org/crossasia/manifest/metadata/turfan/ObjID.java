@@ -9,24 +9,23 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 
-public class SiteNameGerTurfan {
+public class ObjID {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
+
+        Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        Metadata metadata = null;
-
-        if(turfanAttributes.getSiteNameGer()!=null) {
-            for (int i = 0; i < turfanAttributes.getSiteNameGer().length(); i++) {
-                list.add(turfanAttributes.getSiteNameGer().get(i).toString());
+        if(turfanAttributes.getObjId()!=null) {
+            for (int i = 0; i < turfanAttributes.getObjId().length(); i++) {
+                list.add(turfanAttributes.getObjId().get(i).toString());
             }
-            i18n = new I18n("de", list);
-            metadata = new Metadata(new Label("de", "turfan:siteNameGer"),
+            i18n = new I18n("none", list);
+            metadata = new Metadata(new Label("none", "smb:objId"),
                     new Value(new I18n[]{i18n}));
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

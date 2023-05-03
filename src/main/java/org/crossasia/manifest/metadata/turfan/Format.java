@@ -19,7 +19,6 @@ public class Format {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

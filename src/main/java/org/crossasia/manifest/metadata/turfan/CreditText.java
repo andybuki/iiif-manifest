@@ -30,7 +30,6 @@ public class CreditText {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

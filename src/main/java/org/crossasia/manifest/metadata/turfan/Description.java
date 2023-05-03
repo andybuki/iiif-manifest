@@ -33,7 +33,6 @@ public class Description {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

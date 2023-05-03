@@ -24,7 +24,6 @@ public class SchemaIdentifier {
                     new Value(new I18n[]{i18n}));
             return metadata;
         } else {
-            metadata = null;
             return metadata;
         }
     }

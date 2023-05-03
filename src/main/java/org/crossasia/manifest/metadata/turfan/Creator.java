@@ -31,7 +31,6 @@ public class Creator {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

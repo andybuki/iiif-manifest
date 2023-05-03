@@ -529,12 +529,9 @@ public class Canvas {
             anno = new PaintingAnnotation(annoID, canvas);
             //annoPage.setServices(manifestThumbService);
             annoPage.addAnnotations(anno.setBodies(imageContent).setTarget(canvasID));
-
             canvases.add(canvas.setPaintingPages(annoPage));
-
             //canvases.add(canvas.setLabel(pages_document_id+ ":"+ jsonObj.get("dc:title") + " ("+pagesObj.get("old_name")+ ")"));
             manifest.setCanvases(canvases);
-
 
             manifestThumbService2 = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ first_pages_id);
             //manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService2));

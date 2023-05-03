@@ -32,7 +32,6 @@ public class LangeBeschreibung {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }

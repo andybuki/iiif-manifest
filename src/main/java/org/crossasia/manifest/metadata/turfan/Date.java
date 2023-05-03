@@ -9,9 +9,9 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 
-public class DateTurfan {
+public class Date {
 
-    public static Metadata getDate(CollectionAttributes turfanAttributes, Manifest manifest) {
+    public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
         Metadata metadata = null;
         I18n i18n = null;
@@ -27,7 +27,6 @@ public class DateTurfan {
             return metadata;
         }
         else {
-            metadata = null;
             return metadata;
         }
     }
