@@ -1,4 +1,4 @@
-package org.crossasia.manifest;
+package org.crossasia.manifest.start;
 
 import info.freelibrary.iiif.presentation.v3.Collection;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
