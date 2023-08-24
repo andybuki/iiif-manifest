@@ -36,16 +36,19 @@ public class IIIFManifest {
             String id = file.getName().toString().replace(".json", "");
             I18n i18n_title = LabelMetadata.getLabelTitle(attributes);
 
-            if (i18n_title!=null) {
+            if (i18n_title.getStrings().get(0)!=null) {
                 manifest = new Manifest(String.valueOf(file.getName()),
                         new Label( new I18n[]{i18n_title}));
+            } else {
+                manifest = new Manifest(String.valueOf(file.getName()),
+                        new Label( id));
             }
 
             StaticFields.staticFields(id, manifest, i18n_title.getStrings().get(0)); //all static fields
 
             metadataMembers(attributes, manifest);
             Canvas canvas = new Canvas();
-            //canvas.createCanvas(file, turfanAttributes, jsonObj, manifest);
+            canvas.createCanvas(file, attributes, jsonObj, manifest);
             File  newFile = new File(out+"\\"+ file.getName());
             manifestor.write(manifest, newFile);
         }

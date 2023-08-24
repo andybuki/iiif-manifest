@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
-
+import static org.crossasia.manifest.statics.collection.Label.TURFAN;
 import java.util.ArrayList;
 
 public class CollectionTurfan {
@@ -26,7 +26,7 @@ public class CollectionTurfan {
         else {
 
             metadata = new Metadata(new Label("none", "schema:collection"),
-                    new Value("Turfan Akten"));;
+                    new Value(TURFAN.getVal()));
             return metadata;
         }
     }

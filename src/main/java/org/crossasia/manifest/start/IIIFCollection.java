@@ -14,7 +14,7 @@ import java.util.List;
 import static org.crossasia.manifest.statics.collection.CollectionData.*;
 
 public class IIIFCollection {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void buildCollection () throws FileNotFoundException {
         File in = new File("C:\\Users\\user\\collection\\JSON\\");
         Collection collection = getCollection(in);
         PrintStream out = new PrintStream(new FileOutputStream("C:\\Users\\user\\collection\\collection.json"));

@@ -60,6 +60,8 @@ public class Canvas {
             String pages_position = "";
             String id = "";
             String pages_image_file = "";
+            String alben ="";
+
             String pages_id = "";
             String first_pages_id = "";
             String first_page = "1";
@@ -78,6 +80,7 @@ public class Canvas {
             String id_identifier="";
             String dcIdentifier="";
             String akten= "";
+            String name = "";
             String image ="";
             String schemaIdentifier="";
             String position ="";
@@ -115,10 +118,18 @@ public class Canvas {
                 id = (String) pagesObj.get("id").toString();
             }
 
+            if (pagesObj.has("name")) {
+                name = (String) pagesObj.get("name").toString();
+            }
+
+            if (pagesObj.has("alben")) {
+                alben = (String) pagesObj.get("alben").toString();
+            }
+
             String [] aktenArr = id.split("_");
 
-            akten = "akten"+aktenArr[0];
-
+            //akten = "akten"+aktenArr[0];
+            akten = alben;
 
             if (pagesObj.has("dc:identifier")) {
                 dcIdentifier = (String) pagesObj.get("dc:identifier").toString().trim();
@@ -242,11 +253,11 @@ public class Canvas {
             }
 
 
-            MANIFEST_URI = SERVER + MANIFEST_COLLECTION + "+"+akten+"+"+ id_short + "/manifest";
-            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + "+"+akten+"+"+ id_short+   THUMBNAIL_PATH;
+            MANIFEST_URI = SERVER + MANIFEST_COLLECTION +akten+  "+"+ id + "/manifest";
+            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION +akten+  "+"+ id+   THUMBNAIL_PATH;
 
             try {
-                URL url = new URL("https://iiif-content.crossasia.org/xasia/turfan" + "+" + akten + "+" + id_short + "/info.json");
+                URL url = new URL("https://iiif-content.crossasia.org/xasia/xinjiang-legaldocuments" + "+"+ akten + "+" + id + "/info.json");
                 JSONParser jsonParser = new JSONParser();
                 URLConnection urlConnection = url.openConnection();
                 BufferedReader in  = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -260,7 +271,7 @@ public class Canvas {
                 }
                 in.close();
 
-                manifestID = SERVER + MANIFEST_COLLECTION + "" + akten + "+" + id_short;
+                manifestID = SERVER + MANIFEST_COLLECTION + "" + akten + "+" + id;
                 canvasID = manifestID + "/canvas";
                 imageID = manifestID + "/full/full/0/default.jpg";
                 annoID = manifestID + "/annotation";
@@ -500,7 +511,7 @@ public class Canvas {
                 //canvas.setMetadata(metadataMembers(turfanAttributes, manifest));
 
                 imageContent = new ImageContent(imageID).setWidthHeight((int) weight, (int) height);
-                ImageService3 manifestThumbService3 = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id_short);
+                ImageService3 manifestThumbService3 = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id);
                 imageContent.setServices(manifestThumbService3);
 
                 //canvas.setServices(manifestThumbService3);
@@ -515,14 +526,15 @@ public class Canvas {
                 e.printStackTrace();
                 System.out.println(e +" - "+ file.getName()+ ", " + pages_id +" - " + pages_document_id) ;
             }
-            MANIFEST_URI = SERVER + MANIFEST_COLLECTION + akten +"+"+id_short  + "/manifest";
-            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + akten+"+"+ id_short+   THUMBNAIL_PATH;
-            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + akten+"+"+ first_pages_id+   THUMBNAIL_PATH;
-            manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id_short);
+            MANIFEST_URI = SERVER + MANIFEST_COLLECTION + akten +"+"+id  + "/manifest";
+            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + akten+"+"+ id+   THUMBNAIL_PATH;
+            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + akten+"+"+ id+   THUMBNAIL_PATH;
+            manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id);
             annoPage = new AnnotationPage<>(annoPageID);
 
             //canvas.setLabel(pages_document_id+ ": "+ jsonObj.get("dc:title") + " ("+pagesObj.get("name")+ ")");
-            canvas.setLabel(pagesObj.get("schema:collection") + " | ("+pagesObj.get("dc:identifier")+ ")");
+
+            //canvas.setLabel(pagesObj.get("schema:collection") + " | ("+pagesObj.get("dc:identifier")+ ")");
 
             //canvas.setServices(manifest.set,SERVER + MANIFEST_COLLECTION + pages_document_id +"+"+pages_id );
             canvas.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI));
@@ -533,7 +545,7 @@ public class Canvas {
             //canvases.add(canvas.setLabel(pages_document_id+ ":"+ jsonObj.get("dc:title") + " ("+pagesObj.get("old_name")+ ")"));
             manifest.setCanvases(canvases);
 
-            manifestThumbService2 = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ first_pages_id);
+            manifestThumbService2 = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id);
             //manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI).setServices(manifestThumbService2));
             manifest.setThumbnails(new ImageContent(MANIFEST_THUMBNAIL_URI2));
 

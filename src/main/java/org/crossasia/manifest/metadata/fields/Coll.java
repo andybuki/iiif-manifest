@@ -1,17 +1,19 @@
 package org.crossasia.manifest.metadata.fields;
 
-public enum Languages {
-    EN("en"),
-    LO("lo"),
-    TH("th"),
-    DE("de");
+public enum Coll {
+    xinjiang_legaldocuments("xinjiang-legaldocuments"),
 
+    turfan("turfan"),
+    dllm("dllm"),
+    lanna("lanna");
     private String value;
-    Languages(String value) {
+
+    Coll(String value) {
         this.value = value;
     }
 
     public String getVal() {
         return value;
     }
+
 }

@@ -24,7 +24,6 @@ public class CollectionAttributes {
     private String langeBeschreibung;
     private JSONArray georgBezug;
     private String description;
-
     private JSONArray descriptions;
     private String noteDate;
 

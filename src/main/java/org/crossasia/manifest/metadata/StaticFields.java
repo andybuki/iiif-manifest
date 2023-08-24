@@ -3,7 +3,7 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.OtherService;
-import org.crossasia.manifest.metadata.fields.Collection;
+import org.crossasia.manifest.metadata.fields.Coll;
 import org.crossasia.manifest.metadata.fields.Languages;
 
 import java.net.URI;
@@ -40,7 +40,7 @@ public class StaticFields {
         manifest.setHomepages(new Homepage(URI.create(HOMEPAGE),
                 new Label("en",HOMEPAGE_DESCRIPTION)));
 
-        manifest.setID(FEDORA + Collection.turfan + "/"+id+"/manifest");
+        manifest.setID(FEDORA + Coll.xinjiang_legaldocuments.getVal() + "/"+id+"/manifest");
 
         manifest.setSummary(summary);
 
@@ -50,12 +50,6 @@ public class StaticFields {
 
         manifest.setProviders(provider);
 
-        /* NOT USED IN THOSE MANIFESTS
-
-        SeeAlso seeAlso = new SeeAlso("https://example.org/library/catalog/book1.xml", ResourceTypes.DATASET);
-        seeAlso.setFormat("text/xml");
-        seeAlso.setProfile("https//schema.org");
-        manifest.setSeeAlsoRefs(seeAlso);
-        */
+        //manifest.setSeeAlsoRefs(seeAlso);
     }
 }
