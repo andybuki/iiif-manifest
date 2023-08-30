@@ -4,6 +4,7 @@ import info.freelibrary.iiif.presentation.v3.*;
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.canvas.Canvas;
 import org.crossasia.manifest.json.StaticJsonCallerTurfan;
 import org.crossasia.manifest.metadata.StaticFields;
@@ -13,7 +14,8 @@ import org.json.JSONTokener;
 
 import java.io.*;
 
-import static org.crossasia.manifest.metadata.MetadataMembers.metadataMembers;
+import static org.crossasia.manifest.metadata.sugawara.MetadataMembers.metadataMembers;
+
 
 public class IIIFManifest {
     public static void main(String[] args) throws IOException {
@@ -26,11 +28,13 @@ public class IIIFManifest {
 
     private static void fileCreator(File[] filesDir, Manifestor manifestor) throws IOException {
         for (File file : filesDir) {
-            CollectionAttributes attributes = new CollectionAttributes();
+            //CollectionAttributes attributes = new CollectionAttributes();
+            SugawaraAttributes attributes = new SugawaraAttributes();
             File out = new File("C:\\Users\\b-ab107\\IdeaProjects\\iiifmanifestbuilders\\src\\main\\resources\\manifest\\");
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
 
-            StaticJsonCallerTurfan.staticJsonCaller(attributes, jsonObj);
+            //StaticJsonCallerTurfan.staticJsonCaller(attributes, jsonObj);
+            StaticJsonCallerTurfan.staticJsonCallerSugawara(attributes, jsonObj);
             Manifest manifest=null;
 
             String id = file.getName().toString().replace(".json", "");

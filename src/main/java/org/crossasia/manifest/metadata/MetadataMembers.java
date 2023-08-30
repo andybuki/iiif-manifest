@@ -3,6 +3,7 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.metadata.sugawara.CollectionSugawara;
 import org.crossasia.manifest.metadata.turfan.*;
 
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ import java.util.List;
 public class MetadataMembers {
     public static List<Metadata> metadataMembers(CollectionAttributes turfanAttributes, Manifest manifest) {
         Metadata metadata_title = Title.get(turfanAttributes, manifest);
-        Metadata metadata_date = Date.get(turfanAttributes, manifest);
+        //Metadata metadata_date = Date.get(turfanAttributes, manifest);
         Metadata metadata_seeAlso = SeeAlso.get(turfanAttributes, manifest);
         Metadata metadata_invnumber = InvNumber.get(turfanAttributes, manifest);
 
-        Metadata metadata_collection = CollectionTurfan.get(turfanAttributes, manifest);
-        Metadata metadata_place = Place.get(turfanAttributes, manifest);
+        //Metadata metadata_collection = CollectionSugawara.get(turfanAttributes, manifest);
+        //Metadata metadata_place = Place.get(turfanAttributes, manifest);
         Metadata metadata_placeDetail = PlaceDetail.get(turfanAttributes, manifest);
         Metadata metadata_placeDetail2 = PlaceDetail2.get(turfanAttributes, manifest);
 
@@ -59,12 +60,12 @@ public class MetadataMembers {
         metadataArrayList.add(metadata_requirements);
 
         metadataArrayList.add(metadata_title);
-        metadataArrayList.add(metadata_date);
+        //metadataArrayList.add(metadata_date);
         metadataArrayList.add(metadata_seeAlso);
         metadataArrayList.add(metadata_invnumber);
 
-        metadataArrayList.add(metadata_collection);
-        metadataArrayList.add(metadata_place);
+        //metadataArrayList.add(metadata_collection);
+        //metadataArrayList.add(metadata_place);
         metadataArrayList.add(metadata_placeDetail);
         metadataArrayList.add(metadata_placeDetail2);
 

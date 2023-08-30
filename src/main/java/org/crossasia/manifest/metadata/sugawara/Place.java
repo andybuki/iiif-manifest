@@ -1,4 +1,4 @@
-package org.crossasia.manifest.metadata.turfan;
+package org.crossasia.manifest.metadata.sugawara;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
@@ -12,19 +12,19 @@ import java.util.ArrayList;
 
 public class Place {
 
-    public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
+    public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
 
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(turfanAttributes.getPlace()!=null) {
-            for (int i = 0; i < turfanAttributes.getPlace().length(); i++) {
-                list.add(turfanAttributes.getPlace().get(i).toString());
+        if(sugawaraAttributes.getDc_places()!=null) {
+            for (int i = 0; i < sugawaraAttributes.getDc_places().length(); i++) {
+                list.add(sugawaraAttributes.getDc_places().get(i).toString());
 
             }
-            i18n = new I18n("de", list);
+            i18n = new I18n("en", list);
 
-            metadata = new Metadata(new Label("de", "dc:place"),
+            metadata = new Metadata(new Label("en", "dc:place"),
                     new Value(new I18n[]{i18n}));
             return metadata;
         }
@@ -46,4 +46,5 @@ public class Place {
             return metadata;
         }
     }*/
+
 }
