@@ -11,7 +11,7 @@ public class SugawaraDCDescription {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getDc_description()!="") {
+        if(sugawaraAttributes.getDc_description()!=null) {
             metadata = new Metadata(new Label( "en","dc:description"),
                     new Value( new I18n("en", sugawaraAttributes.getDc_description())));
             return metadata;

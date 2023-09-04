@@ -11,7 +11,7 @@ public class SugawaraDCTermsExtent {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getDcterms_extent()!="") {
+        if(sugawaraAttributes.getDcterms_extent()!=null) {
             metadata = new Metadata(new Label( "none","dcterms:extent"),
                     new Value( new I18n("none", sugawaraAttributes.getDcterms_extent())));
             return metadata;

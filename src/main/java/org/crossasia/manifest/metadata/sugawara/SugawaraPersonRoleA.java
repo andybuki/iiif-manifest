@@ -24,7 +24,7 @@ public class SugawaraPersonRoleA {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getSugawara_personRoleA() != "") {
+        } else if (sugawaraAttributes.getSugawara_personRoleA() != null) {
             metadata = new Metadata(new Label( "en","schema:personA"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_personRoleA())));
             return metadata;

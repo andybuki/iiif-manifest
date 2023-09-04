@@ -11,7 +11,7 @@ public class SugawaraDocument {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_document()!="") {
+        if(sugawaraAttributes.getSugawara_document()!=null) {
             metadata = new Metadata(new Label( "none","sugawara:document"),
                     new Value( new I18n("none", sugawaraAttributes.getSugawara_document())));
             return metadata;

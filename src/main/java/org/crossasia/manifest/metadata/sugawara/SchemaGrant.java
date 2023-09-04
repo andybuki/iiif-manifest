@@ -11,7 +11,7 @@ public class SchemaGrant {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSchema_grant()!="") {
+        if(sugawaraAttributes.getSchema_grant()!=null) {
             metadata = new Metadata(new Label( "en","schema:grant"),
                     new Value( new I18n("en", sugawaraAttributes.getSchema_grant())));
             return metadata;

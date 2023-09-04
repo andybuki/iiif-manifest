@@ -27,8 +27,11 @@ public class Place {
             metadata = new Metadata(new Label("en", "dc:place"),
                     new Value(new I18n[]{i18n}));
             return metadata;
-        }
-        else {
+        } else if (sugawaraAttributes.getDc_place()!="") {
+            metadata = new Metadata(new Label("en", "dc:place"),
+                    new Value(new I18n("en", sugawaraAttributes.getDc_place())));
+            return metadata;
+        }else {
             return metadata;
         }
 

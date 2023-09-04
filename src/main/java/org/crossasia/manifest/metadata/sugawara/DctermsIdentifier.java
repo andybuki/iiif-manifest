@@ -15,9 +15,10 @@ public class DctermsIdentifier {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getDcterms_identifier()!="") {
-            metadata = new Metadata(new Label( "none","dcterms:identifier"),
-                    new Value( new I18n("none", sugawaraAttributes.getDcterms_identifier())));
+        if(sugawaraAttributes.getDcterms_identifier()!=null) {
+            metadata = new Metadata(new Label( "none","dc:identifier"),
+                    new Value( new I18n("none", sugawaraAttributes.getDcterms_identifier()
+                            .replace("sugawara","KCDC"))));
             return metadata;
         }
         else {

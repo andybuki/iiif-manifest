@@ -12,7 +12,7 @@ public class SchemaCategory {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSchema_category()!="") {
+        if(sugawaraAttributes.getSchema_category()!=null) {
             metadata = new Metadata(new Label( "none","schema:category"),
                     new Value( new I18n("none", sugawaraAttributes.getSchema_category())));
             return metadata;

@@ -24,7 +24,7 @@ public class SugawaraPlace {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getSugawara_place() != "") {
+        } else if (sugawaraAttributes.getSugawara_place() != null) {
             metadata = new Metadata(new Label( "en","sugawara:place"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_place())));
             return metadata;

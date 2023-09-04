@@ -11,7 +11,7 @@ public class SchemaCitation {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSchema_citation()!="") {
+        if(sugawaraAttributes.getSchema_citation()!=null) {
             metadata = new Metadata(new Label( "en","schema:citation"),
                     new Value( new I18n("en", sugawaraAttributes.getSchema_citation())));
             return metadata;

@@ -11,7 +11,7 @@ public class SugawaraPhystype {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_phystype()!="") {
+        if(sugawaraAttributes.getSugawara_phystype()!=null) {
             metadata = new Metadata(new Label( "en","sugawara:phystype"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_phystype())));
             return metadata;

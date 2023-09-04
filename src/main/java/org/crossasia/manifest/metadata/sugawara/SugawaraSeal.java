@@ -24,7 +24,7 @@ public class SugawaraSeal {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getSugawara_seal() != "") {
+        } else if (sugawaraAttributes.getSugawara_seal() != null) {
             metadata = new Metadata(new Label( "en","sugawara:seal"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_seal())));
             return metadata;

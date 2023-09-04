@@ -26,8 +26,11 @@ public class Date {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        }
-        else {
+        }  else if (sugawaraAttributes.getDc_date()!="") {
+            metadata = new Metadata(new Label( "none","dc:date"),
+                    new Value( new I18n("none", sugawaraAttributes.getDc_date())));
+            return metadata;
+        } else {
             return metadata;
         }
     }

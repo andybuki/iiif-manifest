@@ -24,10 +24,10 @@ import static org.crossasia.manifest.metadata.fields.SummaryData.SUMMARY;
 public class StaticFields {
     public static void staticFields(String id, Manifest manifest, String title) {
 
-        Summary summary = new Summary(SUMMARY + title);
+        Summary summary = new Summary( id + " "+  SUMMARY);
 
-        RequiredStatement reqStmt = new RequiredStatement(new Label("de",INFO),
-                new Value(new I18n("de", REQUIRED)));
+        RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
+                new Value(new I18n("en", REQUIRED)));
 
         Provider provider = new Provider(WEBSITE,  PROVIDER);
 

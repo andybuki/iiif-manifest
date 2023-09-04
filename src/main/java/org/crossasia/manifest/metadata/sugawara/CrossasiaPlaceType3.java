@@ -11,7 +11,7 @@ public class CrossasiaPlaceType3 {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getCrossasia_placeType3()!="") {
+        if(sugawaraAttributes.getCrossasia_placeType3()!=null) {
             metadata = new Metadata(new Label( "en","crossasia:placeType3"),
                     new Value( new I18n("en", sugawaraAttributes.getCrossasia_placeType3())));
             return metadata;

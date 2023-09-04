@@ -11,7 +11,7 @@ public class SugawaraRoleB {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_RoleB()!="") {
+        if(sugawaraAttributes.getSugawara_RoleB()!=null) {
             metadata = new Metadata(new Label( "en","sugawara:RoleB"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_RoleB())));
             return metadata;

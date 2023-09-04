@@ -11,7 +11,7 @@ public class CrossasiaYearOriginal {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getCrossasia_yearOriginal()!="") {
+        if(sugawaraAttributes.getCrossasia_yearOriginal()!=null) {
             metadata = new Metadata(new Label( "none","crossasia:yearOriginal"),
                     new Value( new I18n("none", sugawaraAttributes.getCrossasia_yearOriginal())));
             return metadata;

@@ -21,12 +21,12 @@ public class DctermsDescription {
                 list.add(sugawaraAttributes.getDcterms_descriptions().get(i).toString());
             }
             i18n = new I18n("en", list);
-            metadata = new Metadata(new Label("en", "dcterms:description"),
+            metadata = new Metadata(new Label("en", "dschema:abstract"),
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getDcterms_description() != "") {
-            metadata = new Metadata(new Label( "en","dcterms:description"),
+        } else if (sugawaraAttributes.getDcterms_description() != null) {
+            metadata = new Metadata(new Label( "en","schema:abstract"),
                     new Value( new I18n("en", sugawaraAttributes.getDcterms_description())));
             return metadata;
 

@@ -24,7 +24,7 @@ public class SugawaraDctermsLanguage {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getDcterms_language() != "") {
+        } else if (sugawaraAttributes.getDcterms_language() != null) {
             metadata = new Metadata(new Label( "none","dcterms:language"),
                     new Value( new I18n("none", sugawaraAttributes.getDcterms_language())));
             return metadata;

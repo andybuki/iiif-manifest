@@ -11,7 +11,7 @@ public class SugawaraPhysicalData {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_physicaldata()!="") {
+        if(sugawaraAttributes.getSugawara_physicaldata()!=null) {
             metadata = new Metadata(new Label( "en","sugawara:physicaldata"),
                     new Value( new I18n("en", sugawaraAttributes.getSugawara_physicaldata())));
             return metadata;

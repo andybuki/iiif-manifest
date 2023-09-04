@@ -12,7 +12,7 @@ public class SugawaraFolger {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_folder()!="") {
+        if(sugawaraAttributes.getSugawara_folder()!=null) {
             metadata = new Metadata(new Label( "none","sugawara:folder"),
                     new Value( new I18n("none", sugawaraAttributes.getSugawara_folder())));
             return metadata;

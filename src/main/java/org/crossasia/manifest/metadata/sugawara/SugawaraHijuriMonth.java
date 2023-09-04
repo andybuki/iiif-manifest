@@ -11,7 +11,7 @@ public class SugawaraHijuriMonth {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_hijuriMonth()!="") {
+        if(sugawaraAttributes.getSugawara_hijuriMonth()!=null) {
             metadata = new Metadata(new Label( "none","sugawara:hijuriMonth"),
                     new Value( new I18n("none", sugawaraAttributes.getSugawara_hijuriMonth())));
             return metadata;

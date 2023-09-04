@@ -24,7 +24,7 @@ public class SugawaraTaxStamp {
             metadata = new Metadata(new Label("none", "sugawara:taxStamp"),
                     new Value(new I18n[]{i18n}));
             return metadata;
-        } else if (sugawaraAttributes.getSugawara_taxStamp() !="") {
+        } else if (sugawaraAttributes.getSugawara_taxStamp() !=null) {
             metadata = new Metadata(new Label( "none","sugawara:taxStamp"),
                     new Value( new I18n("none", sugawaraAttributes.getSugawara_taxStamp())));
             return metadata;
