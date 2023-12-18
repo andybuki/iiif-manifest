@@ -58,7 +58,10 @@ public class Canvas {
             JSONObject pagesObj_first = (JSONObject) pages.get(0);
 
             String pages_position = "";
+
             String id = "";
+            String id_first = "4";
+
             String pages_image_file = "";
             String alben ="";
 
@@ -116,6 +119,7 @@ public class Canvas {
 
             if (pagesObj.has("id")) {
                 id = (String) pagesObj.get("id").toString();
+                id_first =(String) pagesObj_first.get("id").toString();
             }
 
             if (pagesObj.has("name")) {
@@ -528,10 +532,10 @@ public class Canvas {
             }
             MANIFEST_URI = SERVER + MANIFEST_COLLECTION + akten +"+"+id  + "/manifest";
             MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + akten+"+"+ id+   THUMBNAIL_PATH;
-            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + akten+"+"+ id+   THUMBNAIL_PATH;
+            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + akten+"+"+ id_first+   THUMBNAIL_PATH;
             manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ akten+"+"+ id);
             annoPage = new AnnotationPage<>(annoPageID);
-
+            canvas.setLabel("canvas: " + name.replace(".jpg","") );
             //canvas.setLabel(pages_document_id+ ": "+ jsonObj.get("dc:title") + " ("+pagesObj.get("name")+ ")");
 
             //canvas.setLabel(pagesObj.get("schema:collection") + " | ("+pagesObj.get("dc:identifier")+ ")");

@@ -18,7 +18,8 @@ public class CollectionSugawara {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getCollection()!=null) {
+        if(sugawaraAttributes.getCollection()!=null
+                && sugawaraAttributes.getCollection().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getCollection().length(); i++) {
                 list.add(sugawaraAttributes.getCollection().get(i).toString());
             }
