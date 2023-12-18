@@ -5,7 +5,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 public class LabelMetadata {
     public static I18n getLabelTitle(CollectionAttributes turfanAttributes) {
-        I18n i18n_title = new I18n("de",  turfanAttributes.getTitle());
+        I18n i18n_title = new I18n("en",  turfanAttributes.getTitle());
         //I18n i18n_title = new I18n("de",  turfanAttributes.getIdentifier()+": "+turfanAttributes.getTitle());
         return i18n_title;
     }

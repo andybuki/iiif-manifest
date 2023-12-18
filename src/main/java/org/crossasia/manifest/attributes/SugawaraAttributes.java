@@ -55,9 +55,11 @@ public class SugawaraAttributes extends CollectionAttributes{
     String schema_grant="";
     String dcterms_extent="";
 
+    String schema_abstract="";
+
     public SugawaraAttributes() {}
 
-    public SugawaraAttributes(String id, String title, JSONArray date, JSONArray keyword, JSONArray place, JSONArray seeAlso, JSONArray invnumber, JSONArray collection, String placeDetail, JSONArray dsrLink, JSONArray siteNameGer, JSONArray siteID, String placeDetail2, JSONArray type, JSONArray objId, String identifier, String rechercheLink, String langeBeschreibung, JSONArray georgBezug, String description, JSONArray descriptions, String noteDate, String noteIdentifier, String comment, String creator, String noteCreator, String format, String source, String creditText, JSONArray schemaIdentifier, String requirements, String dcterms_identifier, String mods_physicalLocation, String sugawara_folder, String schema_category, String dcterms_subject, JSONArray dcterms_subjects, String dcterms_description, String dc_place, JSONArray dc_places, String dc_date, JSONArray dc_dates, JSONArray dcterms_descriptions, String sugawara_physicaldata, String sugawara_phystype, String sugawara_taxStamp, JSONArray sugawara_taxStamps, String sugawara_document, String crossasia_dateOriginal, String crossasia_yearOriginal, String sugawara_hijuriYear, String sugawara_hijuriMonth, String sugawara_dow, String crossasia_wholedate, String crossasia_adminlevel1, String crossasia_adminlevel2, String crossasia_placeType2, String crossasia_placeType3, String sugawara_place, JSONArray sugawara_places, String sugawara_personRoleA, JSONArray sugawara_personRolesA, String sugawara_RoleA, String schema_personRoleB, JSONArray schema_personRolesB, String sugawara_RoleB, String sugawara_seal, JSONArray sugawara_seals, String dcterms_language, JSONArray dcterms_languages, String crossasia_language, JSONArray crossasia_languages, String dc_description, String schema_citation, String schema_grant, String dcterms_extent) {
+    public SugawaraAttributes(String id, String title, JSONArray date, JSONArray keyword, JSONArray place, JSONArray seeAlso, JSONArray invnumber, JSONArray collection, String placeDetail, JSONArray dsrLink, JSONArray siteNameGer, JSONArray siteID, String placeDetail2, JSONArray type, JSONArray objId, String identifier, String rechercheLink, String langeBeschreibung, JSONArray georgBezug, String description, JSONArray descriptions, String noteDate, String noteIdentifier, String comment, String creator, String noteCreator, String format, String source, String creditText, JSONArray schemaIdentifier, String requirements, String dcterms_identifier, String mods_physicalLocation, String sugawara_folder, String schema_category, String dcterms_subject, JSONArray dcterms_subjects, String dcterms_description, String dc_place, JSONArray dc_places, String dc_date, JSONArray dc_dates, JSONArray dcterms_descriptions, String sugawara_physicaldata, String sugawara_phystype, String sugawara_taxStamp, JSONArray sugawara_taxStamps, String sugawara_document, String crossasia_dateOriginal, String crossasia_yearOriginal, String sugawara_hijuriYear, String sugawara_hijuriMonth, String sugawara_dow, String crossasia_wholedate, String crossasia_adminlevel1, String crossasia_adminlevel2, String crossasia_placeType2, String crossasia_placeType3, String sugawara_place, JSONArray sugawara_places, String sugawara_personRoleA, JSONArray sugawara_personRolesA, String sugawara_RoleA, String schema_personRoleB, JSONArray schema_personRolesB, String sugawara_RoleB, String sugawara_seal, JSONArray sugawara_seals, String dcterms_language, JSONArray dcterms_languages, String crossasia_language, JSONArray crossasia_languages, String dc_description, String schema_citation, String schema_grant, String dcterms_extent, String schema_abstract) {
         super(id, title, date, keyword, place, seeAlso, invnumber, collection, placeDetail, dsrLink, siteNameGer, siteID, placeDetail2, type, objId, identifier, rechercheLink, langeBeschreibung, georgBezug, description, descriptions, noteDate, noteIdentifier, comment, creator, noteCreator, format, source, creditText, schemaIdentifier, requirements);
         this.dcterms_identifier = dcterms_identifier;
         this.mods_physicalLocation = mods_physicalLocation;
@@ -104,6 +106,15 @@ public class SugawaraAttributes extends CollectionAttributes{
         this.schema_citation = schema_citation;
         this.schema_grant = schema_grant;
         this.dcterms_extent = dcterms_extent;
+        this.schema_abstract = schema_abstract;
+    }
+
+    public String getSchema_abstract() {
+        return schema_abstract;
+    }
+
+    public void setSchema_abstract(String schema_abstract) {
+        this.schema_abstract = schema_abstract;
     }
 
     public String getDc_place() {

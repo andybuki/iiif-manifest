@@ -4,6 +4,7 @@ import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.metadata.sugawara.CollectionSugawara;
+import org.crossasia.manifest.metadata.sugawara.SchemaAbstract;
 import org.crossasia.manifest.metadata.turfan.*;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class MetadataMembers {
         Metadata metadata_creditText = CreditText.get(turfanAttributes, manifest);
         Metadata metadata_comment = Comment.get(turfanAttributes, manifest);
         Metadata metadata_schemaIdentifier = SchemaIdentifier.get(turfanAttributes, manifest);
+        //Metadata metadata_schemaAbstract = SchemaAbstract.get(turfanAttributes, manifest);
         Metadata metadata_requirements = Requirements.get(turfanAttributes, manifest);
 
         ArrayList<Metadata> metadataArrayList = new ArrayList<>();
@@ -58,6 +60,8 @@ public class MetadataMembers {
         metadataArrayList.add(metadata_comment);
         metadataArrayList.add(metadata_schemaIdentifier);
         metadataArrayList.add(metadata_requirements);
+
+        //metadataArrayList.add(metadata_schemaAbstract);
 
         metadataArrayList.add(metadata_title);
         //metadataArrayList.add(metadata_date);

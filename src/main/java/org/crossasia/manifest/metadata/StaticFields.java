@@ -1,6 +1,7 @@
 package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
+import info.freelibrary.iiif.presentation.v3.Service;
 import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.OtherService;
 import org.crossasia.manifest.metadata.fields.Coll;
@@ -31,6 +32,9 @@ public class StaticFields {
 
         Provider provider = new Provider(WEBSITE,  PROVIDER);
 
+        /*Service service = new Service("https://iiif.io/api/search/2/context.json",
+                "@id", "profile", "label");*/
+
         manifest.addContexts(CONTEXT);
 
         manifest.setViewingDirection(LEFT_TO_RIGHT);
@@ -49,6 +53,8 @@ public class StaticFields {
         manifest.setRequiredStatement(reqStmt);
 
         manifest.setProviders(provider);
+
+        //manifest.setServices(services);
 
         //manifest.setSeeAlsoRefs(seeAlso);
     }

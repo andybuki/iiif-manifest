@@ -15,7 +15,7 @@ public class SchemaPersonRoleB {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getSchema_personRolesB() != null) {
+        if (sugawaraAttributes.getSchema_personRolesB() != null && sugawaraAttributes.getSchema_personRolesB().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getSchema_personRolesB().length(); i++) {
                 list.add(sugawaraAttributes.getSchema_personRolesB().get(i).toString());
             }

@@ -72,6 +72,7 @@ public class StaticJsonCallerTurfan {
         JsonConnecterSugawara.dcDescription(sugawaraAttributes, jsonObj);
         JsonConnecterSugawara.schemaCitation(sugawaraAttributes, jsonObj);
         JsonConnecterSugawara.schemaGrant(sugawaraAttributes, jsonObj);
+        JsonConnecterSugawara.schemaAbstract(sugawaraAttributes, jsonObj);
         JsonConnecterSugawara.dctermsExtent(sugawaraAttributes, jsonObj);
         JsonConnecterSugawara.place(sugawaraAttributes, jsonObj);
         JsonConnecterSugawara.date(sugawaraAttributes, jsonObj);

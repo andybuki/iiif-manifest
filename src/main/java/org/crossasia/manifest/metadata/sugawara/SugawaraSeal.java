@@ -6,6 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,8 @@ public class SugawaraSeal {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getSugawara_seals() != null) {
+
+        if (sugawaraAttributes.getSugawara_seals() != null &&  sugawaraAttributes.getSugawara_seals().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getSugawara_seals().length(); i++) {
                 list.add(sugawaraAttributes.getSugawara_seals().get(i).toString());
             }

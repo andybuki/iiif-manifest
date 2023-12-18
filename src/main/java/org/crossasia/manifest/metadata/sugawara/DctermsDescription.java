@@ -16,17 +16,18 @@ public class DctermsDescription {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getDcterms_descriptions() != null) {
+        if (sugawaraAttributes.getDcterms_descriptions() != null
+                && sugawaraAttributes.getDcterms_descriptions().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getDcterms_descriptions().length(); i++) {
                 list.add(sugawaraAttributes.getDcterms_descriptions().get(i).toString());
             }
             i18n = new I18n("en", list);
-            metadata = new Metadata(new Label("en", "dschema:abstract"),
+            metadata = new Metadata(new Label("en", "dcterms:description"),
                     new Value(new I18n[]{i18n}));
 
             return metadata;
         } else if (sugawaraAttributes.getDcterms_description() != null) {
-            metadata = new Metadata(new Label( "en","schema:abstract"),
+            metadata = new Metadata(new Label( "en","dcterms:description"),
                     new Value( new I18n("en", sugawaraAttributes.getDcterms_description())));
             return metadata;
 

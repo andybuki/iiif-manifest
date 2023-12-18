@@ -215,6 +215,12 @@ public class JsonConnecterSugawara {
             sugawaraAttributes.setSchema_grant((String) jsonObj.get("schema:grant"));
         }
     }
+
+    public static void schemaAbstract (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("schema:abstract")) {
+            sugawaraAttributes.setSchema_abstract((String) jsonObj.get("schema:abstract"));
+        }
+    }
     public static void dctermsExtent (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:extent")) {
             sugawaraAttributes.setDcterms_extent((String) jsonObj.get("dcterms:extent"));

@@ -15,7 +15,7 @@ public class SugawaraCrossasiaLanguage {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getCrossasia_languages() != null) {
+        if (sugawaraAttributes.getCrossasia_languages() != null && sugawaraAttributes.getCrossasia_languages().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getCrossasia_languages().length(); i++) {
                 list.add(sugawaraAttributes.getCrossasia_languages().get(i).toString());
             }

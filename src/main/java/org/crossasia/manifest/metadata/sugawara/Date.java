@@ -17,7 +17,8 @@ public class Date {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getDc_dates()!=null) {
+        if(sugawaraAttributes.getDc_dates()!=null
+                && sugawaraAttributes.getDc_dates().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getDc_dates().length(); i++) {
                 list.add(sugawaraAttributes.getDc_dates().get(i).toString());
             }

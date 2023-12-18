@@ -17,13 +17,11 @@ public class Place {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getDc_places()!=null) {
+        if(sugawaraAttributes.getDc_places()!=null && sugawaraAttributes.getDc_places().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getDc_places().length(); i++) {
                 list.add(sugawaraAttributes.getDc_places().get(i).toString());
-
             }
             i18n = new I18n("en", list);
-
             metadata = new Metadata(new Label("en", "dc:place"),
                     new Value(new I18n[]{i18n}));
             return metadata;

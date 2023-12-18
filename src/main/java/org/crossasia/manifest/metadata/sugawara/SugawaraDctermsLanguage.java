@@ -15,7 +15,7 @@ public class SugawaraDctermsLanguage {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getDcterms_languages() != null) {
+        if (sugawaraAttributes.getDcterms_languages() != null && sugawaraAttributes.getDcterms_languages().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getDcterms_languages().length(); i++) {
                 list.add(sugawaraAttributes.getDcterms_languages().get(i).toString());
             }

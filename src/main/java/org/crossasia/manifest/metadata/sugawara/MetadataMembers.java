@@ -42,11 +42,11 @@ public class MetadataMembers {
         Metadata metadata_sugawara_seal = SugawaraSeal.get(sugawaraAttributes, manifest);
         Metadata metadata_dcterms_language = SugawaraDctermsLanguage.get(sugawaraAttributes, manifest);
         Metadata metadata_crossasia_language = SugawaraCrossasiaLanguage.get(sugawaraAttributes, manifest);
-        Metadata metadata_dc_description = SugawaraDCDescription.get(sugawaraAttributes,manifest);
+        //Metadata metadata_dc_description = SugawaraDCDescription.get(sugawaraAttributes,manifest);
         Metadata metadata_schema_citation = SchemaCitation.get(sugawaraAttributes,manifest);
         Metadata metadata_schema_grant = SchemaGrant.get(sugawaraAttributes,manifest);
         Metadata metadata_dcterms_extent = SugawaraDCTermsExtent.get(sugawaraAttributes,manifest);
-
+        Metadata metadata_schema_abstract = SchemaAbstract.get(sugawaraAttributes, manifest);
         ArrayList<Metadata> metadataArrayList = new ArrayList<>();
 
         metadataArrayList.add(metadata_dcterms_identifier);
@@ -79,7 +79,8 @@ public class MetadataMembers {
         metadataArrayList.add(metadata_sugawara_seal);
         metadataArrayList.add(metadata_dcterms_language);
         metadataArrayList.add(metadata_crossasia_language);
-        metadataArrayList.add(metadata_dc_description);
+        metadataArrayList.add(metadata_schema_abstract);
+        //metadataArrayList.add(metadata_dc_description);
         metadataArrayList.add(metadata_schema_citation);
         metadataArrayList.add(metadata_schema_grant);
         metadataArrayList.add(metadata_dcterms_extent);

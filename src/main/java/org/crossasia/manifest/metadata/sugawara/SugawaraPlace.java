@@ -15,7 +15,7 @@ public class SugawaraPlace {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getSugawara_places() != null) {
+        if (sugawaraAttributes.getSugawara_places() != null && sugawaraAttributes.getSugawara_places().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getSugawara_places().length(); i++) {
                 list.add(sugawaraAttributes.getSugawara_places().get(i).toString());
             }

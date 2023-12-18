@@ -15,7 +15,7 @@ public class SugawaraTaxStamp {
     Metadata metadata = null;
     I18n i18n = null;
     ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getSugawara_taxStamps()!=null) {
+        if(sugawaraAttributes.getSugawara_taxStamps()!=null && sugawaraAttributes.getSugawara_taxStamps().length()!=0) {
             for (int i = 0; i < sugawaraAttributes.getSugawara_taxStamps().length(); i++) {
                 list.add(sugawaraAttributes.getSugawara_taxStamps().get(i).toString());
             }
