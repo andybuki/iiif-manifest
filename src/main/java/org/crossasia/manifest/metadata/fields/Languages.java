@@ -4,6 +4,7 @@ public enum Languages {
     EN("en"),
     LO("lo"),
     TH("th"),
+    TB("bo"),
     DE("de");
 
     private String value;

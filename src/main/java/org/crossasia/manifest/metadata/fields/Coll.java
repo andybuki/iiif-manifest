@@ -5,6 +5,8 @@ public enum Coll {
 
     turfan("turfan"),
     dllm("dllm"),
+
+    dtab("dtab"),
     lanna("lanna");
     private String value;
 

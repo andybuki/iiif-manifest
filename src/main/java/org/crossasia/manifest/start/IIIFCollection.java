@@ -15,9 +15,9 @@ import static org.crossasia.manifest.statics.collection.CollectionData.*;
 
 public class IIIFCollection {
     public static void buildCollection () throws FileNotFoundException {
-        File in = new File("C:\\Users\\b-ab107\\IdeaProjects\\iiifmanifestbuilders\\src\\main\\resources\\manifest\\");
+        File in = new File("C:\\Colllections\\dtab\\manifests\\split\\manifest\\");
         Collection collection = getCollection(in);
-        PrintStream out = new PrintStream(new FileOutputStream("C:\\Users\\b-ab107\\IdeaProjects\\iiifmanifestbuilders\\src\\main\\resources\\collection\\collection.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("C:\\Colllections\\dtab\\manifests\\split\\collection.json"));
         out.println(collection);
     }
 
@@ -42,11 +42,16 @@ public class IIIFCollection {
         for (File file : filesInDir) {
             JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
             String id = (String) jsonObj.get("id");
-            //String title= (String) jsonObj.get("dc:title");
+            JSONObject label= (JSONObject) jsonObj.get("label");
+            String title = "";
+            if (label!=null) {
+                title = (String) label.getJSONArray("en").get(0);
+            }
 
-            String manifestID = STORAGE_DATA+id+"/manifest";
+
+            String manifestID = id;
             Collection.Item manifest = new Collection.Item(Collection.Item.Type.MANIFEST, manifestID);
-            manifest.setLabel(id);
+            manifest.setLabel(title);
             items.add(manifest);
             collection.setItems(items);
         }

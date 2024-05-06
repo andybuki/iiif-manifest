@@ -61,12 +61,10 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-
-
         <dependency>
             <groupId>info.freelibrary</groupId>
             <artifactId>jiiify-presentation-v3</artifactId>
-            <version>0.12.3</version>
+            <version>0.12.4</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->

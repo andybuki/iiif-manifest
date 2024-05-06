@@ -23,9 +23,10 @@ import static org.crossasia.manifest.metadata.fields.Rights.RIGHTS;
 import static org.crossasia.manifest.metadata.fields.SummaryData.SUMMARY;
 
 public class StaticFields {
-    public static void staticFields(String id, Manifest manifest, String title) {
+    public static void staticFields(String id, Manifest manifest,
+                                    String title, String archive_signatory) {
 
-        Summary summary = new Summary( id + " "+  SUMMARY);
+        Summary summary = new Summary( SUMMARY + ": " + archive_signatory);
 
         RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
                 new Value(new I18n("en", REQUIRED)));
@@ -44,7 +45,7 @@ public class StaticFields {
         manifest.setHomepages(new Homepage(URI.create(HOMEPAGE),
                 new Label("en",HOMEPAGE_DESCRIPTION)));
 
-        manifest.setID(FEDORA + Coll.xinjiang_legaldocuments.getVal() + "/"+id+"/manifest");
+        manifest.setID(FEDORA + Coll.dtab.getVal() + "/"+id+"/manifest");
 
         manifest.setSummary(summary);
 
