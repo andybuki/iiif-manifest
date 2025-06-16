@@ -2,6 +2,7 @@ package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.json.JSONObject;
 
@@ -87,6 +88,10 @@ public class StaticJsonCallerTurfan {
         JsonConnecterDtab.senderComment(dtabAttributes, jsonObj);
         JsonConnecterDtab.commentAboutTypesOfDocumentTb(dtabAttributes, jsonObj);
         JsonConnecterDtab.sealId(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealInscription(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealLinks(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealReference(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealComment(dtabAttributes, jsonObj);
         JsonConnecterDtab.dateDescriptionId(dtabAttributes, jsonObj);
         JsonConnecterDtab.archiveId(dtabAttributes, jsonObj);
         JsonConnecterDtab.commentAboutTypesOfDocument(dtabAttributes, jsonObj);
@@ -133,5 +138,19 @@ public class StaticJsonCallerTurfan {
         JsonConnecterDtab.receiverTb(dtabAttributes, jsonObj);
         JsonConnecterDtab.placeComment(dtabAttributes, jsonObj);
         JsonConnecterDtab.place(dtabAttributes, jsonObj);
+        JsonConnecterDtab.multiSeal(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealImageFiles(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealColorNEW(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealFormNEW(dtabAttributes, jsonObj);
+        JsonConnecterDtab.sealCompare(dtabAttributes, jsonObj);
+    }
+
+    public static void staticJsonCallerKahlen(KahlenAttributes kahlenAttributes, JSONObject jsonObj) {
+        JsonConnecterKahlen.dctermsPlace(kahlenAttributes, jsonObj);
+        JsonConnecterKahlen.schemaIndex(kahlenAttributes, jsonObj);
+        JsonConnecterKahlen.dctermsDate(kahlenAttributes, jsonObj);
+        JsonConnecterKahlen.dcTitle(kahlenAttributes, jsonObj);
+        JsonConnecterKahlen.dctermsSubject(kahlenAttributes, jsonObj);
+
     }
 }

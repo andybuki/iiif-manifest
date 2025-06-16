@@ -59,4 +59,42 @@ public class StaticFields {
 
         //manifest.setSeeAlsoRefs(seeAlso);
     }
+
+
+    public static void staticFields(String id, Manifest manifest,
+                                    String title) {
+
+        //Summary summary = new Summary( SUMMARY + ": " + archive_signatory);
+
+        RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
+                new Value(new I18n("en", REQUIRED)));
+
+        Provider provider = new Provider(WEBSITE,  PROVIDER);
+
+        /*Service service = new Service("https://iiif.io/api/search/2/context.json",
+                "@id", "profile", "label");*/
+
+        manifest.addContexts(CONTEXT);
+
+        manifest.setViewingDirection(LEFT_TO_RIGHT);
+
+        manifest.setRights(RIGHTS);
+
+        manifest.setHomepages(new Homepage(URI.create(HOMEPAGE),
+                new Label("en",HOMEPAGE_DESCRIPTION)));
+
+        manifest.setID(FEDORA + Coll.kahlen.getVal() + "/"+id+"/manifest");
+
+        //manifest.setSummary(summary);
+
+        manifest.setPartOfs(new PartOf(PARTOF,"Collection"));
+
+        manifest.setRequiredStatement(reqStmt);
+
+        manifest.setProviders(provider);
+
+        //manifest.setServices(services);
+
+        //manifest.setSeeAlsoRefs(seeAlso);
+    }
 }

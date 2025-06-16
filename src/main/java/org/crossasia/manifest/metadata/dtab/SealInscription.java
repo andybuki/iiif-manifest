@@ -8,23 +8,23 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
-public class SealCommentUsedScripts {
+public class SealInscription {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabSealCommentUsedScripts()!=null) {
-            for (int i = 0; i < dtabAttributes.getDtabSealCommentUsedScripts().length(); i++) {
-                list.add(dtabAttributes.getDtabSealCommentUsedScripts().get(i).toString());
+        if(dtabAttributes.getDtabSealInscription()!=null) {
+
+            for (int i = 0; i < dtabAttributes.getDtabSealInscription().length(); i++) {
+                list.add(dtabAttributes.getDtabSealInscription().get(i).toString());
             }
-            HashSet<String> hashSet = new HashSet<String>();
-            hashSet.addAll(list);
-            list.clear();
-            list.addAll(hashSet);
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label( "none","dtab:seal_comment_used_scripts"),
+
+            String str = String.join("; ", list);
+
+            i18n = new I18n("en", str);
+
+            metadata = new Metadata(new Label( "en","dtab:seal_inscription"),
                     new Value( new I18n[]{i18n}));
             return metadata;
         }

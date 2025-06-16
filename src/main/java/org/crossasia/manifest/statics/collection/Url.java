@@ -4,6 +4,7 @@ public enum Url {
 
     TURFAN("https://itr02.crossasia.org/fcrepo/rest/turfan/collection"),
     SUGAWARA("https://itr02.crossasia.org/fcrepo/rest/xinjiang-legaldocuments/collection"),
+    KAHLEN("https://itr02.crossasia.org/fcrepo/rest/kahlen"),
     DTAB("https://itr02.crossasia.org/fcrepo/rest/dtab/collection");
     private String value;
     Url(String value) {

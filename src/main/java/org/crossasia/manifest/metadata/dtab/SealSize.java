@@ -8,6 +8,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class SealSize {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
@@ -19,7 +20,10 @@ public class SealSize {
             for (int i = 0; i < dtabAttributes.getDtabSealSize().length(); i++) {
                 list.add(dtabAttributes.getDtabSealSize().get(i).toString());
             }
-
+            HashSet<String> hashSet = new HashSet<String>();
+            hashSet.addAll(list);
+            list.clear();
+            list.addAll(hashSet);
             i18n = new I18n("none", list);
 
             metadata = new Metadata(new Label( "none","dtab:seal_size"),

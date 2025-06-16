@@ -36,6 +36,8 @@ public class MetadataMembersDtab {
         Metadata metadata_sender_id = SenderId.get(dtabAttributes, manifest);
         Metadata metadata_seal_size = SealSize.get(dtabAttributes, manifest);
         Metadata metadata_seal_form = SealForm.get(dtabAttributes, manifest);
+        Metadata metadata_seal_color = SealColor.get(dtabAttributes, manifest);
+        Metadata metadata_seal_links = SealLinks.get(dtabAttributes, manifest);
         Metadata metadata_recipient = Recipient.get(dtabAttributes, manifest);
         Metadata metadata_date = Date.get(dtabAttributes, manifest);
         Metadata metadata_script = Script.get(dtabAttributes, manifest);
@@ -57,6 +59,15 @@ public class MetadataMembersDtab {
         Metadata metadata_receiver_comment = ReceiverComment.get(dtabAttributes, manifest);
         Metadata metadata_place_comment = PlaceComment.get(dtabAttributes, manifest);
         Metadata metadata_place = Place.get(dtabAttributes, manifest);
+        Metadata metadata_seal_inscription = SealInscription.get(dtabAttributes, manifest);
+        Metadata metadata_seal_reference = SealReference.get(dtabAttributes, manifest);
+        Metadata metadata_seal_comment = SealComment.get(dtabAttributes, manifest);
+        Metadata metadata_seal_multi = SealInfo.get(dtabAttributes, manifest);
+
+        Metadata metadata_seal_formNEW = SealFormNEW.get(dtabAttributes, manifest);
+        Metadata metadata_seal_colorNEW = SealColorNEW.get(dtabAttributes, manifest);
+        Metadata metadata_seal_image_files = SealImageFiles.get(dtabAttributes, manifest);
+        Metadata metadata_seal_compare = SealCompare.get(dtabAttributes, manifest);
 
         ArrayList<Metadata> metadataArrayList = new ArrayList<>();
 
@@ -80,6 +91,10 @@ public class MetadataMembersDtab {
         metadataArrayList.add(metadata_used_scripts);
         metadataArrayList.add(metadata_transcription_files);
         metadataArrayList.add(metadata_gpos);
+        metadataArrayList.add(metadata_seal_color);
+        metadataArrayList.add(metadata_seal_inscription);
+        metadataArrayList.add(metadata_seal_reference);
+        metadataArrayList.add(metadata_seal_comment);
         metadataArrayList.add(metadata_name_archive);
         metadataArrayList.add(metadata_script_role_id);
         metadataArrayList.add(metadata_sender_id);
@@ -106,6 +121,13 @@ public class MetadataMembersDtab {
         metadataArrayList.add(metadata_receiver_comment);
         metadataArrayList.add(metadata_place_comment);
         metadataArrayList.add(metadata_place);
+        metadataArrayList.add(metadata_seal_links);
+        metadataArrayList.add(metadata_seal_multi);
+
+        metadataArrayList.add(metadata_seal_formNEW);
+        metadataArrayList.add(metadata_seal_colorNEW);
+        metadataArrayList.add(metadata_seal_image_files);
+        metadataArrayList.add(metadata_seal_compare);
 
         Iterator<Metadata> iter = metadataArrayList.iterator();
 

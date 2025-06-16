@@ -8,6 +8,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SealNameScript {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
@@ -18,8 +19,15 @@ public class SealNameScript {
             for (int i = 0; i < dtabAttributes.getDtabSealNameOfScript().length(); i++) {
                 list.add(dtabAttributes.getDtabSealNameOfScript().get(i).toString());
             }
+
+        /*if (list.contains(";")) {
+            System.out.println("Warning");
+            String[] split = list.toString().split(";");
+            list.addAll(List.of(split));
+        }*/
+
             i18n = new I18n("none", list);
-            metadata = new Metadata(new Label( "none","dtab:seal_name_of_script"),
+            metadata = new Metadata(new Label( "none","dtab:seal_script"),
                     new Value( new I18n[]{i18n}));
             return metadata;
         }

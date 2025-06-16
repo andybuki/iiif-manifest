@@ -12,6 +12,10 @@ public class SenderComment {
         Metadata metadata = null;
         if(dtabAttributes.getDtabSenderComment()!=""
                 || dtabAttributes.getDtabSenderCommentTb()!="") {
+            if (dtabAttributes.getDtabSenderComment()=="") {
+                dtabAttributes.setDtabSenderComment("none");
+            }
+
             metadata = new Metadata(new Label( "en","dtab:sender_comment"),
                     new Value( new I18n("en", dtabAttributes.getDtabSenderComment()),
                             new I18n("bo", dtabAttributes.getDtabSenderCommentTb())));
