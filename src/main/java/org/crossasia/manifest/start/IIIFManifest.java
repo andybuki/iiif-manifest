@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
 
 import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.crossasia.manifest.attributes.TapAttributes;
-import org.crossasia.manifest.canvas.Canvas;
+
 import org.crossasia.manifest.canvas.CanvasKahlen;
 import org.crossasia.manifest.json.StaticJsonCallerTurfan;
 import org.crossasia.manifest.metadata.StaticFields;

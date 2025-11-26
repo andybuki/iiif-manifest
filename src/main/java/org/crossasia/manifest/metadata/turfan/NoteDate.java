@@ -6,6 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.domain.DateInfo;
 
 public class NoteDate {
 
@@ -13,13 +14,17 @@ public class NoteDate {
 
         Metadata metadata = null;
 
-        if(turfanAttributes.getNoteDate()!=null) {
-            metadata = new Metadata(new Label( "de","turfan:noteDate"),
-                    new Value( new I18n("de", turfanAttributes.getNoteDate())));
+        // Access noteDate through DateInfo
+        DateInfo dateInfo = turfanAttributes.getDateInfo();
+
+        if (dateInfo != null && dateInfo.getNoteDate() != null) {
+            metadata = new Metadata(
+                    new Label("de", "turfan:noteDate"),
+                    new Value(new I18n("de", dateInfo.getNoteDate()))
+            );
             return metadata;
         }
-        else {
-            return metadata;
-        }
+
+        return null;
     }
 }
