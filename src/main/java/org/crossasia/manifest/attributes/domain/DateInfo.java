@@ -10,6 +10,7 @@ public class DateInfo {
     private String wholeDate;
     private String noteDate;
     private String descriptionDate;
+    private String dateId;
 
     // Hijri calendar specific
     private String hijriYear;
@@ -92,4 +93,7 @@ public class DateInfo {
 
     public String getDayOfWeek() { return dayOfWeek; }
     public void setDayOfWeek(String dayOfWeek) { this.dayOfWeek = dayOfWeek; }
+
+    public String getDateId() { return dateId; }
+    public void setDateId(String dateId) { this.dateId = dateId; }
 }
