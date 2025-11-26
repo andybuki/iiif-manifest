@@ -8,9 +8,9 @@ import org.json.JSONArray;
 import java.util.List;
 
 public class SugawaraAttributes extends CollectionAttributes {
-
     private String folder;
     private String category;
+    private String physicalLocation;
 
     // Subject/classification
     private List<String> subjects;
@@ -51,6 +51,9 @@ public class SugawaraAttributes extends CollectionAttributes {
 
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+
+    public String getPhysicalLocation() { return physicalLocation; }
+    public void setPhysicalLocation(String physicalLocation) { this.physicalLocation = physicalLocation; }
 
     public List<String> getSubjects() { return subjects; }
     public void setSubjects(List<String> subjects) { this.subjects = subjects; }

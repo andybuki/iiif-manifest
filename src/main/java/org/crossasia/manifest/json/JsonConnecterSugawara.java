@@ -1,232 +1,322 @@
 package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.*;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonConnecterSugawara {
 
-    public static void modsPhysicalLocation (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void modsPhysicalLocation(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("mods:physicalLocation")) {
-            sugawaraAttributes.setMods_physicalLocation((String) jsonObj.get("mods:physicalLocation"));
-
+            sugawaraAttributes.setPhysicalLocation(JsonConverter.getString(jsonObj, "mods:physicalLocation"));
         }
     }
-    public static void sugawaraFolder (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraFolder(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:folder")) {
-            sugawaraAttributes.setSugawara_folder((String) jsonObj.get("sugawara:folder"));
+            sugawaraAttributes.setFolder(JsonConverter.getString(jsonObj, "sugawara:folder"));
         }
     }
-    public static void schemaCategory (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void schemaCategory(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:category")) {
-            sugawaraAttributes.setSchema_category((String) jsonObj.get("schema:category"));
-
+            sugawaraAttributes.setCategory(JsonConverter.getString(jsonObj, "schema:category"));
         }
     }
-    public static void dctermsSubject (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void dctermsSubject(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:subject")) {
-            if (jsonObj.get("dcterms:subject") instanceof String)
-                sugawaraAttributes.setDcterms_subject((String) jsonObj.get("dcterms:subject"));
-            else
-                sugawaraAttributes.setDcterms_subjects((JSONArray) jsonObj.get("dcterms:subject"));
+            sugawaraAttributes.setSubjects(JsonConverter.getStringList(jsonObj, "dcterms:subject"));
         }
     }
-    public static void dctermsDescription (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void dctermsDescription(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:description")) {
-            if (jsonObj.get("dcterms:description") instanceof String)
-                sugawaraAttributes.setDcterms_description((String) jsonObj.get("dcterms:description"));
-            else
-                sugawaraAttributes.setDcterms_descriptions((JSONArray) jsonObj.get("dcterms:description"));
-
+            sugawaraAttributes.setDescriptions(JsonConverter.getStringList(jsonObj, "dcterms:description"));
         }
     }
-    public static void sugawaraPhysicaldata (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraPhysicaldata(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:physicaldata")) {
-            sugawaraAttributes.setSugawara_physicaldata((String) jsonObj.get("sugawara:physicaldata"));
+            sugawaraAttributes.setPhysicalData(JsonConverter.getString(jsonObj, "sugawara:physicaldata"));
         }
     }
-    public static void sugawaraPhystype (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraPhystype(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:phystype")) {
-            sugawaraAttributes.setSugawara_phystype((String) jsonObj.get("sugawara:phystype"));
+            sugawaraAttributes.setPhysicalType(JsonConverter.getString(jsonObj, "sugawara:phystype"));
         }
     }
-    public static void sugawaraTaxStamp (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraTaxStamp(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:taxStamp")) {
-            if (jsonObj.get("sugawara:taxStamp") instanceof String)
-                sugawaraAttributes.setSugawara_taxStamp((String) jsonObj.get("sugawara:taxStamp"));
-            else
-                sugawaraAttributes.setSugawara_taxStamps((JSONArray) jsonObj.get("sugawara:taxStamp"));
+            sugawaraAttributes.setTaxStamps(JsonConverter.getStringList(jsonObj, "sugawara:taxStamp"));
         }
     }
-    public static void sugawaraDocument (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraDocument(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:document")) {
-            sugawaraAttributes.setSugawara_document((String) jsonObj.get("sugawara:document"));
+            sugawaraAttributes.setDocument(JsonConverter.getString(jsonObj, "sugawara:document"));
         }
     }
-    public static void crossasiaDateOriginal (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaDateOriginal(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:dateOriginal")) {
-            sugawaraAttributes.setCrossasia_dateOriginal((String) jsonObj.get("crossasia:dateOriginal"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDateOriginal(JsonConverter.getString(jsonObj, "crossasia:dateOriginal"));
         }
     }
-    public static void crossasiaYearOriginal (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaYearOriginal(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:yearOriginal")) {
-            sugawaraAttributes.setCrossasia_yearOriginal((String) jsonObj.get("crossasia:yearOriginal"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setYearOriginal(JsonConverter.getString(jsonObj, "crossasia:yearOriginal"));
         }
     }
-    public static void sugawaraHijuriYear (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraHijuriYear(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:hijuriYear")) {
-            sugawaraAttributes.setSugawara_hijuriYear((String) jsonObj.get("sugawara:hijuriYear"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setHijriYear(JsonConverter.getString(jsonObj, "sugawara:hijuriYear"));
         }
     }
-    public static void sugawaraHijuriMonth (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraHijuriMonth(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:hijuriMonth")) {
-            sugawaraAttributes.setSugawara_hijuriMonth((String) jsonObj.get("sugawara:hijuriMonth"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setHijriMonth(JsonConverter.getString(jsonObj, "sugawara:hijuriMonth"));
         }
     }
-    public static void sugawaraDow (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraDow(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:dow")) {
-            sugawaraAttributes.setSugawara_dow((String) jsonObj.get("sugawara:dow"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDayOfWeek(JsonConverter.getString(jsonObj, "sugawara:dow"));
         }
     }
-    public static void crossasiaWholedate (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaWholedate(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:wholedate")) {
-            sugawaraAttributes.setCrossasia_wholedate((String) jsonObj.get("crossasia:wholedate"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setWholeDate(JsonConverter.getString(jsonObj, "crossasia:wholedate"));
         }
     }
-    public static void crossasiaAdminlevel1 (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaAdminlevel1(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:adminlevel1")) {
-            sugawaraAttributes.setCrossasia_adminlevel1((String) jsonObj.get("crossasia:adminlevel1"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setAdminLevel1(JsonConverter.getString(jsonObj, "crossasia:adminlevel1"));
         }
     }
-    public static void crossasiaAdminlevel2 (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaAdminlevel2(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:adminlevel2")) {
-            sugawaraAttributes.setCrossasia_adminlevel2((String) jsonObj.get("crossasia:adminlevel2"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setAdminLevel2(JsonConverter.getString(jsonObj, "crossasia:adminlevel2"));
         }
     }
-    public static void crossasiaPlaceType2 (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaPlaceType2(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:placeType2")) {
-            sugawaraAttributes.setCrossasia_placeType2((String) jsonObj.get("crossasia:placeType2"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceType2(JsonConverter.getString(jsonObj, "crossasia:placeType2"));
         }
     }
-    public static void crossasiaPlaceType3 (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void crossasiaPlaceType3(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:placeType3")) {
-            sugawaraAttributes.setCrossasia_placeType3((String) jsonObj.get("crossasia:placeType3"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceType3(JsonConverter.getString(jsonObj, "crossasia:placeType3"));
         }
     }
-    public static void sugawaraPlace (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraPlace(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:place")) {
-            if (jsonObj.get("sugawara:place") instanceof String)
-                sugawaraAttributes.setSugawara_place((String) jsonObj.get("sugawara:place"));
-            else
-                sugawaraAttributes.setSugawara_places((JSONArray) jsonObj.get("sugawara:place"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaces(JsonConverter.getStringList(jsonObj, "sugawara:place"));
         }
     }
-    public static void sugawaraPersonRoleA (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraPersonRoleA(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:personRoleA")) {
-            if (jsonObj.get("sugawara:personRoleA") instanceof String)
-                sugawaraAttributes.setSugawara_personRoleA((String) jsonObj.get("sugawara:personRoleA"));
-            else
-                sugawaraAttributes.setSugawara_personRolesA((JSONArray) jsonObj.get("sugawara:personRoleA"));
+            PersonRole roleA = sugawaraAttributes.getRoleA();
+            if (roleA == null) {
+                roleA = new PersonRole();
+                sugawaraAttributes.setRoleA(roleA);
+            }
+            roleA.setPersonNames(JsonConverter.getStringList(jsonObj, "sugawara:personRoleA"));
         }
     }
-    public static void sugawaraRoleA (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraRoleA(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:RoleA")) {
-            sugawaraAttributes.setSugawara_RoleA((String) jsonObj.get("sugawara:RoleA"));
+            PersonRole roleA = sugawaraAttributes.getRoleA();
+            if (roleA == null) {
+                roleA = new PersonRole();
+                sugawaraAttributes.setRoleA(roleA);
+            }
+            roleA.setRole(JsonConverter.getString(jsonObj, "sugawara:RoleA"));
         }
     }
 
-    public static void schemaPersonRoleB (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void schemaPersonRoleB(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:personRoleB")) {
-            if (jsonObj.get("schema:personRoleB") instanceof String)
-                sugawaraAttributes.setSchema_personRoleB((String) jsonObj.get("schema:personRoleB"));
-            else
-                sugawaraAttributes.setSchema_personRolesB((JSONArray) jsonObj.get("schema:personRoleB"));
+            PersonRole roleB = sugawaraAttributes.getRoleB();
+            if (roleB == null) {
+                roleB = new PersonRole();
+                sugawaraAttributes.setRoleB(roleB);
+            }
+            roleB.setPersonNames(JsonConverter.getStringList(jsonObj, "schema:personRoleB"));
         }
     }
-    public static void sugawaraRoleB (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraRoleB(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:RoleB")) {
-            sugawaraAttributes.setSugawara_RoleB((String) jsonObj.get("sugawara:RoleB"));
+            PersonRole roleB = sugawaraAttributes.getRoleB();
+            if (roleB == null) {
+                roleB = new PersonRole();
+                sugawaraAttributes.setRoleB(roleB);
+            }
+            roleB.setRole(JsonConverter.getString(jsonObj, "sugawara:RoleB"));
         }
     }
-    public static void sugawaraSeal (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void sugawaraSeal(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("sugawara:seal")) {
-            if (jsonObj.get("sugawara:seal") instanceof String)
-                sugawaraAttributes.setSugawara_seal((String) jsonObj.get("sugawara:seal"));
-            else
-                sugawaraAttributes.setSugawara_seals((JSONArray) jsonObj.get("sugawara:seal"));
+            SealInfo sealInfo = sugawaraAttributes.getSealInfo();
+            if (sealInfo == null) {
+                sealInfo = new SealInfo();
+                sugawaraAttributes.setSealInfo(sealInfo);
+            }
+            sealInfo.setSeals(JsonConverter.getStringList(jsonObj, "sugawara:seal"));
         }
     }
-    public static void dctermsLanguage (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void dctermsLanguage(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:language")) {
-            if (jsonObj.get("dcterms:language") instanceof String)
-                sugawaraAttributes.setDcterms_language((String) jsonObj.get("dcterms:language"));
-            else
-                sugawaraAttributes.setDcterms_languages((JSONArray) jsonObj.get("dcterms:language"));
+            ScriptInfo scriptInfo = sugawaraAttributes.getScriptInfo();
+            if (scriptInfo == null) {
+                scriptInfo = new ScriptInfo();
+                sugawaraAttributes.setScriptInfo(scriptInfo);
+            }
+            scriptInfo.setLanguages(JsonConverter.getStringList(jsonObj, "dcterms:language"));
         }
     }
 
-    public static void crossasiaLanguage (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void crossasiaLanguage(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("crossasia:language")) {
-            if (jsonObj.get("crossasia:language") instanceof String)
-                sugawaraAttributes.setCrossasia_language((String) jsonObj.get("crossasia:language"));
-            else
-                sugawaraAttributes.setCrossasia_languages((JSONArray) jsonObj.get("crossasia:language"));
+            ScriptInfo scriptInfo = sugawaraAttributes.getScriptInfo();
+            if (scriptInfo == null) {
+                scriptInfo = new ScriptInfo();
+                sugawaraAttributes.setScriptInfo(scriptInfo);
+            }
+            // Store crossasia language separately or merge with languages list
+            // For now, adding to the same languages list
+            scriptInfo.setLanguages(JsonConverter.getStringList(jsonObj, "crossasia:language"));
         }
     }
 
-    public static void place (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void place(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:place")) {
-            if (jsonObj.get("dc:place") instanceof String)
-                sugawaraAttributes.setDc_place((String) jsonObj.get("dc:place"));
-            else
-                sugawaraAttributes.setDc_places((JSONArray) jsonObj.get("dc:place"));
+            PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                sugawaraAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaces(JsonConverter.getStringList(jsonObj, "dc:place"));
         }
     }
 
-    public static void date (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void date(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:date")) {
-            if (jsonObj.get("dc:date") instanceof String)
-                sugawaraAttributes.setDc_date((String) jsonObj.get("dc:date"));
-            else
-                sugawaraAttributes.setDc_dates((JSONArray) jsonObj.get("dc:date"));
+            DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                sugawaraAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDates(JsonConverter.getStringList(jsonObj, "dc:date"));
         }
     }
 
-
-
-    public static void dcDescription (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void dcDescription(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:description")) {
-            sugawaraAttributes.setDc_description((String) jsonObj.get("dc:description"));
+            sugawaraAttributes.setDescription(JsonConverter.getString(jsonObj, "dc:description"));
         }
     }
 
-    public static void dctermsIdentifier (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void dctermsIdentifier(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:identifier")) {
-            sugawaraAttributes.setDcterms_identifier((String) jsonObj.get("dcterms:identifier"));
+            sugawaraAttributes.setIdentifier(JsonConverter.getString(jsonObj, "dcterms:identifier"));
         }
     }
 
-    public static void schemaCitation (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void schemaCitation(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:citation")) {
-            sugawaraAttributes.setSchema_citation((String) jsonObj.get("schema:citation"));
+            sugawaraAttributes.setCitation(JsonConverter.getString(jsonObj, "schema:citation"));
         }
     }
-    public static void schemaGrant (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+
+    public static void schemaGrant(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:grant")) {
-            sugawaraAttributes.setSchema_grant((String) jsonObj.get("schema:grant"));
+            sugawaraAttributes.setGrant(JsonConverter.getString(jsonObj, "schema:grant"));
         }
     }
 
-    public static void schemaAbstract (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+    public static void schemaAbstract(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:abstract")) {
-            sugawaraAttributes.setSchema_abstract((String) jsonObj.get("schema:abstract"));
-        }
-    }
-    public static void dctermsExtent (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dcterms:extent")) {
-            sugawaraAttributes.setDcterms_extent((String) jsonObj.get("dcterms:extent"));
+            sugawaraAttributes.setAbstractText(JsonConverter.getString(jsonObj, "schema:abstract"));
         }
     }
 
+    public static void dctermsExtent(SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dcterms:extent")) {
+            sugawaraAttributes.setExtent(JsonConverter.getString(jsonObj, "dcterms:extent"));
+        }
+    }
 }

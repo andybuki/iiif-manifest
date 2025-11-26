@@ -1,6 +1,6 @@
 package org.crossasia.manifest.attributes.base;
 
-public abstract  class BaseCollectionAttributes {
+public abstract class BaseCollectionAttributes {
     private String id;
     private String identifier;
     private String title;

@@ -5,7 +5,6 @@ import org.crossasia.manifest.attributes.domain.*;
 import org.json.JSONArray;
 
 public class DtabAttributes extends BaseCollectionAttributes {
-
     private DateInfo dateInfo;
     private PlaceInfo placeInfo;
     private ArchiveInfo archiveInfo;
