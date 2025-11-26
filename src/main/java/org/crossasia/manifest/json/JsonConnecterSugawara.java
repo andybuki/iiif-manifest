@@ -10,6 +10,7 @@ public class JsonConnecterSugawara {
     public static void modsPhysicalLocation (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("mods:physicalLocation")) {
             sugawaraAttributes.setMods_physicalLocation((String) jsonObj.get("mods:physicalLocation"));
+            sugawaraAttributes.
         }
     }
     public static void sugawaraFolder (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
@@ -20,6 +21,7 @@ public class JsonConnecterSugawara {
     public static void schemaCategory (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:category")) {
             sugawaraAttributes.setSchema_category((String) jsonObj.get("schema:category"));
+
         }
     }
     public static void dctermsSubject (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
@@ -36,6 +38,7 @@ public class JsonConnecterSugawara {
                 sugawaraAttributes.setDcterms_description((String) jsonObj.get("dcterms:description"));
             else
                 sugawaraAttributes.setDcterms_descriptions((JSONArray) jsonObj.get("dcterms:description"));
+
         }
     }
     public static void sugawaraPhysicaldata (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {

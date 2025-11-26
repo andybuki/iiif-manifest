@@ -17,19 +17,20 @@ public class JsonConnecterTurfan {
     public static void date (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:date")) {
             DateInfo dateInfo = turfanAttributes.getDateInfo();
-            turfanAttributes.setDate((JSONArray) jsonObj.get("dc:date"));
+            turfanAttributes.getDateInfo().setDates(JsonConverter.getStringList(jsonObj, "dc:date")
+            );
         }
     }
 
     public static void keyword (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:keyword")) {
-            turfanAttributes.setKeyword((JSONArray) jsonObj.get("schema:keyword"));
+            turfanAttributes.setKeywords(JsonConverter.getStringList(jsonObj, "schema:keyword"));
         }
     }
 
     public static void collection (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:collection")) {
-            turfanAttributes.setCollection((JSONArray) jsonObj.get("schema:collection"));
+            turfanAttributes.setCollections(JsonConverter.getStringList(jsonObj, "schema:collection"));
         }
     }
 
@@ -41,73 +42,78 @@ public class JsonConnecterTurfan {
 
     public static void type (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:type")) {
-            turfanAttributes.setType((JSONArray) jsonObj.get("turfan:type"));
+            turfanAttributes.setTypes(JsonConverter.getStringList(jsonObj, "turfan:type"));
         }
     }
 
     public static void placeDetail2 (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:placeDetail2")) {
             turfanAttributes.setPlaceDetail2((String) jsonObj.get("turfan:placeDetail2"));
+
         }
     }
 
     public static void siteID (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:siteID")) {
-            turfanAttributes.setSiteID((JSONArray) jsonObj.get("turfan:siteID"));
+            turfanAttributes.setSiteIds(JsonConverter.getStringList(jsonObj, "turfan:siteID"));
         }
     }
 
     public static void siteNameGer (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:siteNameGer")) {
-            turfanAttributes.setSiteNameGer((JSONArray) jsonObj.get("turfan:siteNameGer"));
+            turfanAttributes.setSiteNamesGerman(JsonConverter.getStringList(jsonObj, "turfan:siteNamesGer"));
         }
     }
 
     public static void dsrLink (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:dsrLink")) {
-            turfanAttributes.setDsrLink((JSONArray) jsonObj.get("turfan:dsrLink"));
+            turfanAttributes.setDsrLinks(JsonConverter.getStringList(jsonObj, "turfan:dsrLink"));
         }
     }
 
     public static void placeDetail (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:placeDetail")) {
             turfanAttributes.setPlaceDetail((String) jsonObj.get("turfan:placeDetail"));
+
         }
     }
 
     public static void place (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:place")) {
             turfanAttributes.setPlace((JSONArray) jsonObj.get("dc:place"));
+
         }
     }
 
     public static void invnumber (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:invNumber")) {
-            turfanAttributes.setInvnumber((JSONArray) jsonObj.get("turfan:invNumber"));
+            turfanAttributes.setInventoryNumbers(JsonConverter.getStringList(jsonObj, "turfan:invNumber"));
         }
     }
 
     public static void seeAlso (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("rdfs:seeAlso")) {
-            turfanAttributes.setSeeAlso((JSONArray) jsonObj.get("rdfs:seeAlso"));
+            turfanAttributes.setSeeAlso(JsonConverter.getStringList(jsonObj, "rdfs:seeAlso"));
         }
     }
 
     public static void objId (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("smb:objId")) {
-            turfanAttributes.setObjId((JSONArray) jsonObj.get("smb:objId"));
+            turfanAttributes.setObjectIds(JsonConverter.getStringList(jsonObj, "smb:objId"));
         }
     }
 
     public static void langeBeschreibung (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("smb:langeBeschreibung")) {
             turfanAttributes.setLangeBeschreibung((String) jsonObj.get("smb:langeBeschreibung"));
+
         }
     }
 
     public static void georgBezug (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("smb:GeogrBezug")) {
             turfanAttributes.setGeorgBezug((JSONArray) jsonObj.get("smb:GeogrBezug"));
+
         }
     }
 
@@ -116,7 +122,7 @@ public class JsonConnecterTurfan {
             if (jsonObj.get("dcterms:description") instanceof String)
                 turfanAttributes.setDescription((String) jsonObj.get("dcterms:description"));
             else
-                turfanAttributes.setDescriptions((JSONArray) jsonObj.get("dcterms:description"));
+                turfanAttributes.setDescriptions(JsonConverter.getStringList(jsonObj, "dcterms:description"));
         }
     }
 
@@ -129,6 +135,7 @@ public class JsonConnecterTurfan {
     public static void noteDate (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:noteDate")) {
             turfanAttributes.setNoteDate((String) jsonObj.get("turfan:noteDate"));
+
         }
     }
 
@@ -176,7 +183,7 @@ public class JsonConnecterTurfan {
 
     public static void schemaIdentifier (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:identifier")) {
-            turfanAttributes.setSchemaIdentifier((JSONArray) jsonObj.get("schema:identifier"));
+            turfanAttributes.setSchemaIdentifiers(JsonConverter.getStringList(jsonObj, "schema:identifier"));
         }
     }
 

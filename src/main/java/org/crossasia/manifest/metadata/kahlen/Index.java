@@ -16,7 +16,7 @@ public class Index {
         ArrayList<String> list = new ArrayList<>();
         if(kahlenAttributes.getIndexes()!=null) {
 
-            for (int i = 0; i < kahlenAttributes.getIndexes().length(); i++) {
+            for (int i = 0; i < kahlenAttributes.getIndexes().size(); i++) {
                 list.add(kahlenAttributes.getIndexes().get(i).toString());
             }
 
@@ -25,13 +25,7 @@ public class Index {
             metadata = new Metadata(new Label( "en","schema:index"),
                     new Value( new I18n[]{i18n}));
             return metadata;
-        }
-        else if (kahlenAttributes.getIndex()!=null) {
-            metadata = new Metadata(new Label( "en","schema:index"),
-                    new Value( kahlenAttributes.getIndex()));
-            return metadata;
-        }
-        else {
+        } else {
             return metadata;
         }
     }

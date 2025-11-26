@@ -17,7 +17,7 @@ public class Place {
         ArrayList<String> list = new ArrayList<>();
         if (kahlenAttributes.getPlaces() != null) {
 
-            for (int i = 0; i < kahlenAttributes.getPlaces().length(); i++) {
+            for (int i = 0; i < kahlenAttributes.getPlaces().size(); i++) {
                 list.add(kahlenAttributes.getPlaces().get(i).toString());
             }
 
@@ -26,11 +26,7 @@ public class Place {
             metadata = new Metadata(new Label("en", "dcterms:place"),
                     new Value(new I18n[]{i18n}));
             return metadata;
-        } else if (kahlenAttributes.getPlace() != null) {
-            metadata = new Metadata(new Label("en", "dcterms:place"),
-                    new Value(kahlenAttributes.getPlace()));
-            return metadata;
-        } else {
+        }  else {
             return metadata;
         }
     }

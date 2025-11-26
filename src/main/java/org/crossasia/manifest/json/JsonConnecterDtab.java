@@ -73,6 +73,7 @@ public class JsonConnecterDtab {
     public static void sealDocID (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:seal_docID")) {
             dtabAttributes.setDtabSealDocID((JSONArray) jsonObj.get("dtab:seal_docID"));
+
         }
     }
 

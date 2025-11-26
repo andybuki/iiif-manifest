@@ -17,7 +17,7 @@ public class Subject {
         ArrayList<String> list = new ArrayList<>();
         if(kahlenAttributes.getSubjects()!=null) {
 
-            for (int i = 0; i < kahlenAttributes.getSubjects().length(); i++) {
+            for (int i = 0; i < kahlenAttributes.getSubjects().size(); i++) {
                 list.add(kahlenAttributes.getSubjects().get(i).toString());
             }
 
@@ -26,11 +26,7 @@ public class Subject {
             metadata = new Metadata(new Label( "en","dcterms:subject"),
                     new Value( new I18n[]{i18n}));
             return metadata;
-        } else if (kahlenAttributes.getSubject()!=null) {
-            metadata = new Metadata(new Label( "en","dcterms:subject"),
-                    new Value( kahlenAttributes.getSubject() ));
-            return metadata;
-        } else {
+        }  else {
             return metadata;
         }
     }

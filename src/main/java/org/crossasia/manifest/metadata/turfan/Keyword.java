@@ -16,9 +16,9 @@ public class Keyword {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> keywords = new ArrayList<>();
-        if (turfanAttributes.getKeyword() != null) {
-            for (int i = 0; i < turfanAttributes.getKeyword().length(); i++) {
-                keywords.add(turfanAttributes.getKeyword().get(i).toString());
+        if (turfanAttributes.getKeywords() != null) {
+            for (int i = 0; i < turfanAttributes.getKeywords().size(); i++) {
+                keywords.add(turfanAttributes.getKeywords().get(i).toString());
             }
             i18n = new I18n("de", keywords);
             metadata = new Metadata(new Label("de", "schema:keyword"),

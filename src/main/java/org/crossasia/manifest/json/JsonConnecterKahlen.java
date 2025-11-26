@@ -10,21 +10,14 @@ public class JsonConnecterKahlen {
 
     public static void dctermsPlace (KahlenAttributes kahlenAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:place")) {
-            if (jsonObj.get("dcterms:place") instanceof String) {
-                kahlenAttributes.setPlace((String) jsonObj.get("dcterms:place"));
-            } else {
-                kahlenAttributes.setPlaces((JSONArray) jsonObj.get("dcterms:place"));
-            }
+                kahlenAttributes.setPlaces(JsonConverter.getStringList(jsonObj, "dcterms:place"));
         }
     }
 
+
     public static void schemaIndex (KahlenAttributes kahlenAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:index")) {
-            if (jsonObj.get("schema:index") instanceof String) {
-                kahlenAttributes.setIndex((String) jsonObj.get("schema:index"));
-            } else {
-                kahlenAttributes.setIndexes((JSONArray) jsonObj.get("schema:index"));
-            }
+                kahlenAttributes.setIndexes(JsonConverter.getStringList(jsonObj, "schema:index"));
         }
     }
 
@@ -70,13 +63,7 @@ public class JsonConnecterKahlen {
 
     public static void dctermsSubject (KahlenAttributes kahlenAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dcterms:subject")) {
-            if (jsonObj.get("dcterms:subject") instanceof String) {
-                kahlenAttributes.setSubject((String) jsonObj.get("dcterms:subject"));
-            } else {
-                kahlenAttributes.setSubjects((JSONArray) jsonObj.get("dcterms:subject"));
-            }
+            kahlenAttributes.setSubjects(JsonConverter.getStringList( jsonObj, "dcterms:subject"));
         }
     }
-
-
 }
