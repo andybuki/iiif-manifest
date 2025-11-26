@@ -19,7 +19,7 @@ public class Description {
         ArrayList<String> list = new ArrayList<>();
         if(turfanAttributes.getDescriptions()!=null) {
 
-            for (int i = 0; i < turfanAttributes.getDescriptions().length(); i++) {
+            for (int i = 0; i < turfanAttributes.getDescriptions().size(); i++) {
                 if (turfanAttributes.getDescriptions().get(i).toString().contains(";")) {
                     String [] descrs = turfanAttributes.getDescriptions().get(i).toString().split(";");
                     Collections.addAll(list, descrs);

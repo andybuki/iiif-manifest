@@ -10,7 +10,7 @@ public class JsonConnecterSugawara {
     public static void modsPhysicalLocation (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("mods:physicalLocation")) {
             sugawaraAttributes.setMods_physicalLocation((String) jsonObj.get("mods:physicalLocation"));
-            sugawaraAttributes.
+
         }
     }
     public static void sugawaraFolder (SugawaraAttributes sugawaraAttributes, @NotNull JSONObject jsonObj) {

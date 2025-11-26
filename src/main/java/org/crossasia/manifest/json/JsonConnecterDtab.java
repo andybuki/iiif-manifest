@@ -2,6 +2,7 @@ package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.*;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,94 +10,152 @@ import org.json.JSONObject;
 public class JsonConnecterDtab {
     public static void invisible (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:invisible")) {
-            dtabAttributes.setDtabInvisible((String) jsonObj.get("dtab:invisible"));
+            dtabAttributes.setInvisible(JsonConverter.getString(jsonObj, "dtab:invisible"));
         }
     }
 
     public static void archiveSignatory (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:archive_signatory")) {
-            dtabAttributes.setDtabArchiveSignatory((String) jsonObj.get("dtab:archive_signatory"));
+            ArchiveInfo archiveInfo = dtabAttributes.getArchiveInfo();
+            if (archiveInfo == null) {
+                archiveInfo = new ArchiveInfo();
+                dtabAttributes.setArchiveInfo(archiveInfo);
+            }
+            archiveInfo.setArchiveSignatory(JsonConverter.getString(jsonObj, "dtab:archive_signatory"));
         }
     }
     public static void commentPlace (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:comment_place")) {
-            dtabAttributes.setDtabCommentPlace((String) jsonObj.get("dtab:comment_place"));
+        if (jsonObj.has("dtab:commentPlace")) {
+            PlaceInfo placeInfo = dtabAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                dtabAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setCommentPlace(JsonConverter.getString(jsonObj, "dtab:commentPlace"));
         }
     }
     public static void senderTb (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:sender_tb")) {
-            dtabAttributes.setDtabSenderTb((JSONArray) jsonObj.get("dtab:sender_tb"));
+            PersonRole sender = dtabAttributes.getSender();
+            if (sender == null) {
+                sender = new PersonRole();
+                dtabAttributes.setSender(sender);
+            }
+            sender.setPersonNames(JsonConverter.getStringList(jsonObj, "dtab:sender_tb"));
+
         }
     }
 
     public static void senderComment (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:sender_comment")) {
-            dtabAttributes.setDtabSenderComment((String) jsonObj.get("dtab:sender_comment"));
+            PersonRole sender = dtabAttributes.getSender();
+            if (sender == null) {
+                sender = new PersonRole();
+                dtabAttributes.setSender(sender);
+            }
+            sender.setRoleComment(JsonConverter.getString(jsonObj, "dtab:sender_comment"));
+
         }
     }
 
     public static void commentAboutTypesOfDocumentTb (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:comment_about_types_of_document_tb")) {
-            dtabAttributes.setDtabCommentAboutTypesOfDocumentTb((String) jsonObj.get("dtab:comment_about_types_of_document_tb"));
+        if (jsonObj.has("dtab:commentAboutTypesOfDocument")) {
+            dtabAttributes.setCommentAboutTypesOfDocument(JsonConverter.getString(jsonObj, "dtab:commentAboutTypesOfDocument"));
         }
     }
 
     public static void sealId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:seal_id")) {
-            dtabAttributes.setDtabSealId((JSONArray) jsonObj.get("dtab:seal_id"));
+            SealInfo sealInfo = dtabAttributes.getSealInfo();
+            if (sealInfo == null) {
+                sealInfo = new SealInfo();
+                dtabAttributes.setSealInfo(sealInfo);
+            }
+            sealInfo.setSealIds(JsonConverter.getStringList(jsonObj, "dtab:seal_id"));
         }
     }
     public static void dateDescriptionId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:date_description_id")) {
-            dtabAttributes.setDtabDateDescriptionId((String) jsonObj.get("dtab:date_description_id"));
+            DateInfo dateInfo = dtabAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                dtabAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDescriptionDate(JsonConverter.getString(jsonObj, "dtab:date_description_id"));
         }
     }
 
     public static void archiveId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:archive_id")) {
-            dtabAttributes.setDtabArchiveId((String) jsonObj.get("dtab:archive_id"));
+            ArchiveInfo archiveInfo = dtabAttributes.getArchiveInfo();
+            if (archiveInfo == null) {
+                archiveInfo = new ArchiveInfo();
+                dtabAttributes.setArchiveInfo(archiveInfo);
+            }
+            archiveInfo.setArchiveId(JsonConverter.getString(jsonObj, "dtab:archiveId"));
         }
     }
 
     public static void commentAboutTypesOfDocument (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:comment_about_types_of_document")) {
-            dtabAttributes.setDtabCommentAboutTypesOfDocument((String) jsonObj.get("dtab:comment_about_types_of_document"));
+            dtabAttributes.setCommentAboutTypesOfDocument(JsonConverter.getString(jsonObj, "dtab:comment_about_types_of_document"));
         }
     }
 
     public static void dateId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:date_id")) {
-            dtabAttributes.setDtabDateId((String) jsonObj.get("dtab:date_id"));
+            DateInfo dateInfo = dtabAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                dtabAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDateId(JsonConverter.getString(jsonObj, "dtab:date_id"));
+
         }
     }
 
     public static void sealDocID (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:seal_docID")) {
-            dtabAttributes.setDtabSealDocID((JSONArray) jsonObj.get("dtab:seal_docID"));
-
+            SealInfo sealInfo = dtabAttributes.getSealInfo();
+            if (sealInfo == null) {
+                sealInfo = new SealInfo();
+                dtabAttributes.setSealInfo(sealInfo);
+            }
+            sealInfo.setDocumentIds(JsonConverter.getStringList(jsonObj, "dtab:seal_docID"));
         }
     }
 
     public static void dcTitle (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:title")) {
-            dtabAttributes.setDcTitle((String) jsonObj.get("dc:title"));
+            dtabAttributes.setTitle((String) jsonObj.get("dc:title"));
         }
     }
 
     public static void descriptionDate (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:description_date")) {
-            dtabAttributes.setDtabDescriptionDate((String) jsonObj.get("dtab:description_date"));
+        if (jsonObj.has("dtab:descriptionDate")) {
+            DateInfo dateInfo = dtabAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                dtabAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setDescriptionDate(JsonConverter.getString(jsonObj, "dtab:descriptionDate"));
         }
     }
 
     public static void schemaComment (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:comment")) {
-            dtabAttributes.setSchemaComment((String) jsonObj.get("schema:comment"));
+            dtabAttributes.setComment(JsonConverter.getString(jsonObj, "schema:comment"));
         }
     }
 
     public static void sealNameOfScript (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:seal_script")) {
+            SealInfo sealInfo = dtabAttributes.getSealInfo();
+            if (sealInfo == null) {
+                sealInfo = new SealInfo();
+                dtabAttributes.setSealInfo(sealInfo);
+            }
+
             dtabAttributes.setDtabSealNameOfScript((JSONArray) jsonObj.get("dtab:seal_script"));
         }
     }
@@ -115,17 +174,18 @@ public class JsonConnecterDtab {
 
     public static void schemaText (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:text")) {
-            if (jsonObj.get("schema:text") instanceof String) {
-            dtabAttributes.setSchemaText((String) jsonObj.get("schema:text"));
-            } else {
-                System.out.println("xa");
-            }
+            dtabAttributes.setText(JsonConverter.getString(jsonObj, "schema:text"));
         }
     }
 
     public static void usedScripts (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:used_scripts")) {
-            dtabAttributes.setDtabUsedScripts((String) jsonObj.get("dtab:used_scripts"));
+            ScriptInfo scriptInfo = dtabAttributes.getScriptInfo();
+            if (scriptInfo == null) {
+                scriptInfo = new ScriptInfo();
+                dtabAttributes.setScriptInfo(scriptInfo);
+            }
+            scriptInfo.setUsedScripts((String) jsonObj.get("dtab:used_scripts"));
         }
     }
 
@@ -149,7 +209,7 @@ public class JsonConnecterDtab {
 
     public static void gpos (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:gpos")) {
-            dtabAttributes.setDtabGpos((String) jsonObj.get("dtab:gpos"));
+            dtabAttributes.setGeographicPosition(JsonConverter.getString(jsonObj, "dtab:gpos"));
         }
     }
 
@@ -185,7 +245,12 @@ public class JsonConnecterDtab {
 
     public static void nameOfArchive (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:name_of_archive")) {
-            dtabAttributes.setDtabNameOfArchive((String) jsonObj.get("dtab:name_of_archive"));
+            ArchiveInfo archiveInfo = dtabAttributes.getArchiveInfo();
+            if (archiveInfo == null) {
+                archiveInfo = new ArchiveInfo();
+                dtabAttributes.setArchiveInfo(archiveInfo);
+            }
+            archiveInfo.setArchiveName(JsonConverter.getString(jsonObj, "dtab:nameOfArchive"));
         }
     }
 
@@ -269,13 +334,18 @@ public class JsonConnecterDtab {
 
     public static void groupno (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:groupno")) {
-            dtabAttributes.setDtabGroupno((String) jsonObj.get("dtab:groupno"));
+            dtabAttributes.setGroupNumber(JsonConverter.getString(jsonObj, "dtab:groupno"));
         }
     }
 
     public static void idInArchive (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:id_in_archive")) {
-            dtabAttributes.setDtabIdInArchive((String) jsonObj.get("dtab:id_in_archive"));
+        if (jsonObj.has("dtab:idInArchiv")) {
+            ArchiveInfo archiveInfo = dtabAttributes.getArchiveInfo();
+            if (archiveInfo == null) {
+                archiveInfo = new ArchiveInfo();
+                dtabAttributes.setArchiveInfo(archiveInfo);
+            }
+            archiveInfo.setIdInArchive(JsonConverter.getString(jsonObj, "dtab:idInArchive"));
         }
     }
 
@@ -298,8 +368,8 @@ public class JsonConnecterDtab {
     }
 
     public static void documentId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:document_id")) {
-            dtabAttributes.setDtabDocumentId((String) jsonObj.get("dtab:document_id"));
+        if (jsonObj.has("dtab:documentId")) {
+            dtabAttributes.setDocumentId(JsonConverter.getString(jsonObj, "dtab:documentId"));
         }
     }
 
@@ -316,20 +386,30 @@ public class JsonConnecterDtab {
     }
 
     public static void placeId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:place_id")) {
-            dtabAttributes.setDtabPlaceId((String) jsonObj.get("dtab:place_id"));
+        if (jsonObj.has("dtab:placeId")) {
+            PlaceInfo placeInfo = dtabAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                dtabAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceId(JsonConverter.getString(jsonObj, "dtab:placeId"));
         }
     }
 
     public static void placeOfIssueId (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:place_of_issue_id")) {
-            dtabAttributes.setDtabPlaceOfIssueId((String) jsonObj.get("dtab:place_of_issue_id"));
+        if (jsonObj.has("dtab:placeOfIssueId")) {
+            PlaceInfo placeInfo = dtabAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                dtabAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceOfIssueId(JsonConverter.getString(jsonObj, "dtab:placeOfIssueId"));
         }
     }
 
     public static void terminology (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:terminology")) {
-            dtabAttributes.setDtabTerminology((String) jsonObj.get("dtab:terminology"));
+            dtabAttributes.setTerminology(JsonConverter.getString(jsonObj, "dtab:terminology"));
         }
     }
 
@@ -341,7 +421,7 @@ public class JsonConnecterDtab {
 
     public static void proverbs (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:proverbs")) {
-            dtabAttributes.setDtabProverbs((String) jsonObj.get("dtab:proverbs"));
+            dtabAttributes.setProverbs(JsonConverter.getString(jsonObj, "dtab:proverbs"));
         }
     }
 

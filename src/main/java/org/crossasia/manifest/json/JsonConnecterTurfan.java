@@ -2,11 +2,14 @@ package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.domain.DateInfo;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonConnecterTurfan {
+
+
 
     public static void title (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:title")) {
@@ -48,8 +51,12 @@ public class JsonConnecterTurfan {
 
     public static void placeDetail2 (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:placeDetail2")) {
-            turfanAttributes.setPlaceDetail2((String) jsonObj.get("turfan:placeDetail2"));
-
+            PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                turfanAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceDetail2(JsonConverter.getString(jsonObj, "turfan:placeDetail2"));
         }
     }
 
@@ -73,15 +80,23 @@ public class JsonConnecterTurfan {
 
     public static void placeDetail (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:placeDetail")) {
-            turfanAttributes.setPlaceDetail((String) jsonObj.get("turfan:placeDetail"));
-
+            PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                turfanAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlaceDetail(JsonConverter.getString(jsonObj, "turfan:placeDetail"));
         }
     }
 
     public static void place (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:place")) {
-            turfanAttributes.setPlace((JSONArray) jsonObj.get("dc:place"));
-
+            PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                turfanAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setPlace(JsonConverter.getString(jsonObj, "dc:place"));
         }
     }
 
@@ -105,15 +120,18 @@ public class JsonConnecterTurfan {
 
     public static void langeBeschreibung (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("smb:langeBeschreibung")) {
-            turfanAttributes.setLangeBeschreibung((String) jsonObj.get("smb:langeBeschreibung"));
-
+            turfanAttributes.setLongDescription(JsonConverter.getString(jsonObj, "smb:langeBeschreibung"));
         }
     }
 
     public static void georgBezug (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("smb:GeogrBezug")) {
-            turfanAttributes.setGeorgBezug((JSONArray) jsonObj.get("smb:GeogrBezug"));
-
+            PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
+            if (placeInfo == null) {
+                placeInfo = new PlaceInfo();
+                turfanAttributes.setPlaceInfo(placeInfo);
+            }
+            placeInfo.setGeographicReferences(JsonConverter.getStringList(jsonObj, "smb:GeogrBezug"));
         }
     }
 
@@ -134,8 +152,12 @@ public class JsonConnecterTurfan {
 
     public static void noteDate (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("turfan:noteDate")) {
-            turfanAttributes.setNoteDate((String) jsonObj.get("turfan:noteDate"));
-
+            DateInfo dateInfo = turfanAttributes.getDateInfo();
+            if (dateInfo == null) {
+                dateInfo = new DateInfo();
+                turfanAttributes.setDateInfo(dateInfo);
+            }
+            dateInfo.setNoteDate(JsonConverter.getString(jsonObj, "turfan:noteDate"));
         }
     }
 
