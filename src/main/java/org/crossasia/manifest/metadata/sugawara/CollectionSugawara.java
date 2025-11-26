@@ -5,13 +5,11 @@ import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
-import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 import java.util.ArrayList;
 
 import static org.crossasia.manifest.statics.collection.Label.SUGAWARA;
-import static org.crossasia.manifest.statics.collection.Label.TURFAN;
 
 public class CollectionSugawara {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {

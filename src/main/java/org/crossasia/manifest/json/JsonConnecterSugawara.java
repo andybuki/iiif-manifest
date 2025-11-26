@@ -1,6 +1,5 @@
 package org.crossasia.manifest.json;
 
-import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;

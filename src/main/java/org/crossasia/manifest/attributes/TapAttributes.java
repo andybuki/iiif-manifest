@@ -1,5 +1,4 @@
 package org.crossasia.manifest.attributes;
 
-public class CanvasAttributes {
-
+public class TapAttributes {
 }

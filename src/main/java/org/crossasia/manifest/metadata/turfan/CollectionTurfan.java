@@ -6,6 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+
 import static org.crossasia.manifest.statics.collection.Label.TURFAN;
 import java.util.ArrayList;
 

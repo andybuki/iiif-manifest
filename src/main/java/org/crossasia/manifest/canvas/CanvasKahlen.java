@@ -9,7 +9,8 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import info.freelibrary.iiif.presentation.v3.services.ImageService3;
-import org.crossasia.manifest.attributes.DtabAttributes;
+
+import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,11 +25,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
 import static org.crossasia.manifest.statics.manifest.ManifestData.*;
 
-public class Canvas {
-    public  void createCanvas(File file, DtabAttributes turfanAttributes, JSONObject jsonObj, Manifest manifest) {
+public class CanvasKahlen {
+    public  void createCanvas(File file, KahlenAttributes kahlenAttributes, JSONObject jsonObj, Manifest manifest) {
         String MANIFEST_THUMBNAIL_URI;
         ImageService3 manifestThumbService;
         String MANIFEST_THUMBNAIL_URI2;
@@ -151,19 +151,14 @@ public class Canvas {
 
             if (pagesObj.has("position")) {
                 pages_id = (String) pagesObj.get("position").toString();
-                first_pages_id = turfanAttributes.getId();
+                first_pages_id = kahlenAttributes.getId();
             }
 
             if (pagesObj.has("schema:collection")) {
                 collection = (String) pagesObj.get("schema:collection").toString().trim();
             }
 
-            if (pagesObj.has("schema:person")) {
-                if (pagesObj.get("schema:person") instanceof String)
-                    person = (String) pagesObj.get("schema:person").toString().trim();
-                else
-                    personArray =pagesObj.getJSONArray("schema:person");
-            }
+            id = String.valueOf(jsonObj.getInt("id"));
 
             if (pagesObj.has("schema:index")) {
                 if (pagesObj.get("schema:index") instanceof String)
@@ -179,48 +174,6 @@ public class Canvas {
                     subjectArray =pagesObj.getJSONArray("dc:subject");
             }
 
-            if (pagesObj.has("dcterms:spatial")) {
-                if (pagesObj.get("dcterms:spatial") instanceof String)
-                    spatial = (String) pagesObj.get("dcterms:spatial").toString().trim();
-                else
-                    spatialArray =pagesObj.getJSONArray("dcterms:spatial");
-            }
-
-            if (pagesObj.has("dcterms:medium")) {
-                if (pagesObj.get("dcterms:medium") instanceof String)
-                    medium = (String) pagesObj.get("dcterms:medium").toString().trim();
-                else
-                    mediumArray =pagesObj.getJSONArray("dcterms:medium");
-            }
-
-
-            if (pagesObj.has("schema:year")) {
-                year = (String) pagesObj.get("schema:year").toString().trim();
-                if (year.equals("O.Dat.")) {
-                    year="o.Dat.";
-                } else if (year.equals("o.Dat")) {
-                    year="o.Dat.";
-                }   else if (year.equals("o.Da")) {
-                    year="o.Dat.";
-                }
-            }
-
-            if (pagesObj.has("turfan:number_page")) {
-                turfanNumberPage = (String) pagesObj.get("turfan:number_page").toString().trim();
-            }
-
-            if (pagesObj.has("turfan:sender")) {
-                sender = (String) pagesObj.get("turfan:sender").toString().trim();
-            }
-
-            if (pagesObj.has("turfan:recipient")) {
-                recipient = (String) pagesObj.get("turfan:recipient").toString().trim();
-            }
-
-            if (pagesObj.has("schema:comment")) {
-                comment = (String) pagesObj.get("schema:comment").toString().trim();
-            }
-
             if (pagesObj.has("position")) {
                 position = (String) pagesObj.get("position").toString().trim();
             }
@@ -229,20 +182,8 @@ public class Canvas {
                 title3 = (String) pagesObj.get("dc:title").toString().trim();
             }
 
-            if (pagesObj.has("dc:date")) {
-                date = (String) pagesObj.get("dc:date").toString().trim();
-                if (date.equals("O.Dat.")) {
-                    date="o.Dat.";
-                } else if (date.equals("o.Dat")) {
-                    date="o.Dat.";
-                }   else if (date.equals("o.Da")) {
-                    date="o.Dat.";
-                }
-            }
 
-            if (pagesObj.has("dc:description")) {
-                description = (String) pagesObj.get("dc:description").toString().trim();
-            }
+
 
             if (pagesObj.has("schema:image")) {
                 image = (String) pagesObj.get("schema:image").toString().trim();
@@ -258,12 +199,12 @@ public class Canvas {
             }
 
 
-            MANIFEST_URI = SERVER + MANIFEST_COLLECTION +id+  "+"+ position + "/manifest";
-            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION +id+  "+"+ position+   THUMBNAIL_PATH;
+            MANIFEST_URI = SERVER + MANIFEST_COLLECTION +id+  "+"+ "1" + "/manifest";
+            MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION +id+  "+"+ "1"+   THUMBNAIL_PATH;
 
             try {
-                URL url = new URL("https://iiif-content.crossasia.org/xasia/dtab" + "+"+ id +
-                        "+" + position + "/info.json");
+                URL url = new URL("https://iiif-content.crossasia.org/xasia/kahlen" + "+"+ id +
+                        "+" + "1" + "/info.json");
                 JSONParser jsonParser = new JSONParser();
                 URLConnection urlConnection = url.openConnection();
                 BufferedReader in  = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -277,7 +218,7 @@ public class Canvas {
                 }
                 in.close();
 
-                manifestID = SERVER + MANIFEST_COLLECTION + "" + id + "+" + position;
+                manifestID = SERVER + MANIFEST_COLLECTION + "" + id + "+" + "1";
                 canvasID = manifestID + "/canvas";
                 imageID = manifestID + "/full/full/0/default.jpg";
                 annoID = manifestID + "/annotation";
@@ -534,7 +475,7 @@ public class Canvas {
             }
             MANIFEST_URI = SERVER + MANIFEST_COLLECTION + id +"+"+position  + "/manifest";
             MANIFEST_THUMBNAIL_URI = SERVER + MANIFEST_COLLECTION + id+"+"+ position+   THUMBNAIL_PATH;
-            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + id+"+"+ id_first+   THUMBNAIL_PATH;
+            MANIFEST_THUMBNAIL_URI2 = SERVER + MANIFEST_COLLECTION + id+"+"+ position+   THUMBNAIL_PATH;
             manifestThumbService = new ImageService3(ImageService3.Profile.LEVEL_TWO, SERVER + MANIFEST_COLLECTION+ id+"+"+ position);
             annoPage = new AnnotationPage<>(annoPageID);
             String [] names =name.split("/");

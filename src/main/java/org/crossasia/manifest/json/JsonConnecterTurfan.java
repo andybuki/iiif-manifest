@@ -1,6 +1,7 @@
 package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.domain.DateInfo;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,6 +16,7 @@ public class JsonConnecterTurfan {
 
     public static void date (CollectionAttributes turfanAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dc:date")) {
+            DateInfo dateInfo = turfanAttributes.getDateInfo();
             turfanAttributes.setDate((JSONArray) jsonObj.get("dc:date"));
         }
     }

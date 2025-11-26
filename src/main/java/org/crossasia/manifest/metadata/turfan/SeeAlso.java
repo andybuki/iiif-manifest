@@ -16,7 +16,7 @@ public class SeeAlso {
         Metadata metadata = null;
         I18n i18n = null;
         if(turfanAttributes.getSeeAlso()!=null) {
-            for (int i = 0; i < turfanAttributes.getSeeAlso().length(); i++) {
+            for (int i = 0; i < turfanAttributes.getSeeAlso().size(); i++) {
                 list.add(turfanAttributes.getSeeAlso().get(i).toString());
             }
             i18n = new I18n("none", list);

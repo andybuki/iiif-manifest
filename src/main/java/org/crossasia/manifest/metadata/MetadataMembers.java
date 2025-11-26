@@ -3,8 +3,6 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import org.crossasia.manifest.attributes.CollectionAttributes;
-import org.crossasia.manifest.metadata.sugawara.CollectionSugawara;
-import org.crossasia.manifest.metadata.sugawara.SchemaAbstract;
 import org.crossasia.manifest.metadata.turfan.*;
 
 import java.util.ArrayList;
