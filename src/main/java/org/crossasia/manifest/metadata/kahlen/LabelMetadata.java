@@ -1,12 +1,18 @@
 package org.crossasia.manifest.metadata.kahlen;
 
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
+import info.freelibrary.iiif.presentation.v3.properties.Label;
+import info.freelibrary.iiif.presentation.v3.properties.Metadata;
+import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.KahlenAttributes;
 
 public class LabelMetadata {
     public static I18n getLabelTitle(KahlenAttributes kahlenAttributes) {
-        I18n i18n_title = new I18n("en",  kahlenAttributes.getTitle());
+
+        I18n i18n_title = new I18n("en",  kahlenAttributes.getLabel());
         return i18n_title;
     }
+
+
 }

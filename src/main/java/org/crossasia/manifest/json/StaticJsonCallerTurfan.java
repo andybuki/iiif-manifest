@@ -151,6 +151,9 @@ public class StaticJsonCallerTurfan {
         JsonConnecterKahlen.dctermsDate(kahlenAttributes, jsonObj);
         JsonConnecterKahlen.dcTitle(kahlenAttributes, jsonObj);
         JsonConnecterKahlen.dctermsSubject(kahlenAttributes, jsonObj);
+        JsonConnecterKahlen.schemaKeyword(kahlenAttributes,jsonObj);
+        JsonConnecterKahlen.kahlenLabel(kahlenAttributes,jsonObj);
+        JsonConnecterKahlen.kahlenIdentifier(kahlenAttributes,jsonObj);
 
     }
 }

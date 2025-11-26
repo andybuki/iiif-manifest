@@ -1,7 +1,7 @@
 package org.crossasia.manifest.metadata.fields;
 
 public class SummaryData {
-    public static final String SUMMARY ="DTAB";
+    public static final String SUMMARY ="The collection ‘Tangtong Gyalpo - Archive Wolf Kahlen’ comprises the photographs of Wolf Kahlen, which he took in Tibet, China, India, the Himalayan region and Mongolia in the period from 1985 to 1994.";
 
 
     /*Summary summary = new Summary(new I18n("en", "The Digital Library of Lao Manuscripts makes images of over 12,000 texts from throughout Laos easily accessible for study. Collaborating institutions are the National Library of Laos, the University of Passau, and the Staatsbibliothek zu Berlin Preußischer Kulturbesitz. The project is funded by the German Research Foundation (DFG) and the German Federal Ministry of Economic Cooperation and Development (BMZ)."),

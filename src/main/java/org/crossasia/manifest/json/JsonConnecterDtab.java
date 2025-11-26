@@ -95,8 +95,8 @@ public class JsonConnecterDtab {
     }
 
     public static void sealNameOfScript (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:seal_name_of_script")) {
-            dtabAttributes.setDtabSealNameOfScript((JSONArray) jsonObj.get("dtab:seal_name_of_script"));
+        if (jsonObj.has("dtab:seal_script")) {
+            dtabAttributes.setDtabSealNameOfScript((JSONArray) jsonObj.get("dtab:seal_script"));
         }
     }
 
@@ -128,6 +128,12 @@ public class JsonConnecterDtab {
         }
     }
 
+    public static void multiSeal (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_info")) {
+            dtabAttributes.setDtabMultiSeal((JSONArray) jsonObj.get("dtab:seal_info"));
+        }
+    }
+
     public static void transcriptionFiles (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:transcription_files")) {
             dtabAttributes.setDtabTranscriptionFiles((String) jsonObj.get("dtab:transcription_files"));
@@ -147,8 +153,32 @@ public class JsonConnecterDtab {
     }
 
     public static void sealColor (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dtab:seal_color")) {
-            dtabAttributes.setDtabSealColor((JSONArray) jsonObj.get("dtab:seal_color"));
+        if (jsonObj.has("dtab:seal_color_orig")) {
+            dtabAttributes.setDtabSealColor((JSONArray) jsonObj.get("dtab:seal_color_orig"));
+        }
+    }
+
+    public static void sealInscription (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_inscription")) {
+            dtabAttributes.setDtabSealInscription((JSONArray) jsonObj.get("dtab:seal_inscription"));
+        }
+    }
+
+    public static void sealReference (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_reference")) {
+            dtabAttributes.setDtabSealReference((JSONArray) jsonObj.get("dtab:seal_reference"));
+        }
+    }
+
+    public static void sealComment (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_comment")) {
+            dtabAttributes.setDtabSealComment((JSONArray) jsonObj.get("dtab:seal_comment"));
+        }
+    }
+
+    public static void sealLinks (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_docID")) {
+            dtabAttributes.setDtabSealLinks((JSONArray) jsonObj.get("dtab:seal_docID"));
         }
     }
 
@@ -177,8 +207,32 @@ public class JsonConnecterDtab {
     }
 
     public static void sealForm (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_form_orig")) {
+            dtabAttributes.setDtabSealForm((JSONArray) jsonObj.get("dtab:seal_form_orig"));
+        }
+    }
+
+    public static void sealFormNEW (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("dtab:seal_form")) {
-            dtabAttributes.setDtabSealForm((JSONArray) jsonObj.get("dtab:seal_form"));
+            dtabAttributes.setSeal_formNEW((JSONArray) jsonObj.get("dtab:seal_form"));
+        }
+    }
+
+    public static void sealColorNEW (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_color")) {
+            dtabAttributes.setSeal_colorNEW((JSONArray) jsonObj.get("dtab:seal_color"));
+        }
+    }
+
+    public static void sealImageFiles (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_image_files")) {
+            dtabAttributes.setSeal_image_files((JSONArray) jsonObj.get("dtab:seal_image_files"));
+        }
+    }
+
+    public static void sealCompare (DtabAttributes dtabAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dtab:seal_compare")) {
+            dtabAttributes.setSeal_compare((JSONArray) jsonObj.get("dtab:seal_compare"));
         }
     }
 

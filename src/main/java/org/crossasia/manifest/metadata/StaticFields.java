@@ -6,6 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.*;
 import info.freelibrary.iiif.presentation.v3.services.OtherService;
 import org.crossasia.manifest.metadata.fields.Coll;
 import org.crossasia.manifest.metadata.fields.Languages;
+import org.crossasia.manifest.metadata.fields.RequiredStatement2;
 
 import java.net.URI;
 
@@ -19,6 +20,8 @@ import static org.crossasia.manifest.metadata.fields.Provider.PROVIDER;
 import static org.crossasia.manifest.metadata.fields.Provider.WEBSITE;
 import static org.crossasia.manifest.metadata.fields.RequiredStatement.INFO;
 import static org.crossasia.manifest.metadata.fields.RequiredStatement.REQUIRED;
+import static org.crossasia.manifest.metadata.fields.RequiredStatement2.INFO2;
+import static org.crossasia.manifest.metadata.fields.RequiredStatement2.REQUIRED2;
 import static org.crossasia.manifest.metadata.fields.Rights.RIGHTS;
 import static org.crossasia.manifest.metadata.fields.SummaryData.SUMMARY;
 
@@ -64,10 +67,13 @@ public class StaticFields {
     public static void staticFields(String id, Manifest manifest,
                                     String title) {
 
-        //Summary summary = new Summary( SUMMARY + ": " + archive_signatory);
+        Summary summary = new Summary( SUMMARY);
 
         RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
                 new Value(new I18n("en", REQUIRED)));
+
+        /*RequiredStatement2 reqStmt2 = new RequiredStatement2(new Label("en",INFO2),
+                new Value(new I18n("en", REQUIRED2)));*/
 
         Provider provider = new Provider(WEBSITE,  PROVIDER);
 
@@ -85,11 +91,12 @@ public class StaticFields {
 
         manifest.setID(FEDORA + Coll.kahlen.getVal() + "/"+id+"/manifest");
 
-        //manifest.setSummary(summary);
+        manifest.setSummary(summary);
 
         manifest.setPartOfs(new PartOf(PARTOF,"Collection"));
 
         manifest.setRequiredStatement(reqStmt);
+        //manifest.setRequiredStatement(reqStmt2);
 
         manifest.setProviders(provider);
 

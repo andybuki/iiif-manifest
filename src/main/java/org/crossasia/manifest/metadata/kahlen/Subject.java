@@ -26,8 +26,11 @@ public class Subject {
             metadata = new Metadata(new Label( "en","dcterms:subject"),
                     new Value( new I18n[]{i18n}));
             return metadata;
-        }
-        else {
+        } else if (kahlenAttributes.getSubject()!=null) {
+            metadata = new Metadata(new Label( "en","dcterms:subject"),
+                    new Value( kahlenAttributes.getSubject() ));
+            return metadata;
+        } else {
             return metadata;
         }
     }
