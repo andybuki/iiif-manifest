@@ -1,8 +1,6 @@
 package org.crossasia.manifest.attributes;
 
 import org.crossasia.manifest.attributes.base.BaseCollectionAttributes;
-import org.json.JSONArray;
-
 import java.util.List;
 
 public class KahlenAttributes extends BaseCollectionAttributes {

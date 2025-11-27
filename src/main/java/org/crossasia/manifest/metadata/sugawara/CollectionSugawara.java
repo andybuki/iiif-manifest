@@ -8,28 +8,30 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.crossasia.manifest.statics.collection.Label.SUGAWARA;
 
 public class CollectionSugawara {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getCollection()!=null
-                && sugawaraAttributes.getCollection().length()!=0) {
-            for (int i = 0; i < sugawaraAttributes.getCollection().length(); i++) {
-                list.add(sugawaraAttributes.getCollection().get(i).toString());
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "schema:collection"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
-        }
-        else {
+        List<String> collections = sugawaraAttributes.getCollections();
 
-            metadata = new Metadata(new Label("none", "schema:collection"),
-                    new Value(SUGAWARA.getVal()));
+        if (collections != null && !collections.isEmpty()) {
+            I18n i18n = new I18n("none", collections);
+
+            Metadata metadata = new Metadata(
+                    new Label("none", "schema:collection"),
+                    new Value(new I18n[]{i18n})
+            );
+
+            return metadata;
+        } else {
+            // Return default SUGAWARA value if no collections exist
+            Metadata metadata = new Metadata(
+                    new Label("none", "schema:collection"),
+                    new Value(SUGAWARA.getVal())
+            );
+
             return metadata;
         }
     }

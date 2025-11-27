@@ -6,18 +6,28 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.DateInfo;
 
 public class CrossasiaYearOriginal {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getCrossasia_yearOriginal()!=null) {
-            metadata = new Metadata(new Label( "none","crossasia:yearOriginal"),
-                    new Value( new I18n("none", sugawaraAttributes.getCrossasia_yearOriginal())));
-            return metadata;
+        DateInfo dateInfo = sugawaraAttributes.getDateInfo();
+
+        if (dateInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String yearOriginal = dateInfo.getYearOriginal();
+
+        if (yearOriginal == null || yearOriginal.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "crossasia:yearOriginal"),
+                new Value(new I18n("none", yearOriginal))
+        );
+
+        return metadata;
     }
 }

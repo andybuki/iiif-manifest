@@ -6,18 +6,28 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 public class CrossasiaPlaceType2 {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getCrossasia_placeType2()!=null) {
-            metadata = new Metadata(new Label( "en","crossasia:placeType2"),
-                    new Value( new I18n("en", sugawaraAttributes.getCrossasia_placeType2())));
-            return metadata;
+        PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
+
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String place2 = placeInfo.getPlaceType2();
+
+        if (place2 == null || place2.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "crossasia:placeType2"),
+                new Value(new I18n("en", place2))
+        );
+
+        return metadata;
     }
 }

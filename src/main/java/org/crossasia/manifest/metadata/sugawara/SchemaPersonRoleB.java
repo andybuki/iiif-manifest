@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class SchemaPersonRoleB {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
 
+
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();

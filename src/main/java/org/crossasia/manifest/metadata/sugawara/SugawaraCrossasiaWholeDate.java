@@ -10,7 +10,6 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 public class SugawaraCrossasiaWholeDate {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         Metadata metadata = null;
-
         if(sugawaraAttributes.getCrossasia_wholedate()!=null) {
             metadata = new Metadata(new Label( "none","crossasia:wholedate"),
                     new Value( new I18n("none", sugawaraAttributes.getCrossasia_wholedate())));

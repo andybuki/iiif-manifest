@@ -6,19 +6,27 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 public class CrossasiaAdminLevel2 {
-
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
 
-        if(sugawaraAttributes.getCrossasia_adminlevel2()!=null) {
-            metadata = new Metadata(new Label( "en","crossasia:adminlevel2"),
-                    new Value( new I18n("en", sugawaraAttributes.getCrossasia_adminlevel2())));
-            return metadata;
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String adminLevel1 = placeInfo.getAdminLevel2();
+
+        if (adminLevel1 == null || adminLevel1.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "crossasia:adminlevel2"),
+                new Value(new I18n("en", adminLevel1))
+        );
+
+        return metadata;
     }
 }

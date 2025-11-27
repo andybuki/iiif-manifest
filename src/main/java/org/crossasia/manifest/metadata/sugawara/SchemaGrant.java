@@ -9,15 +9,13 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SchemaGrant {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getSchema_grant()!=null) {
-            metadata = new Metadata(new Label( "en","schema:grant"),
-                    new Value( new I18n("en", sugawaraAttributes.getSchema_grant())));
-            return metadata;
+        String grant = sugawaraAttributes.getGrant();
+        if (grant == null || grant.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+        return new Metadata(new Label( "en","schema:grant"),
+                new Value( new I18n("en", grant
+                        )));
     }
 }

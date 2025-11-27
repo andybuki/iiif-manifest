@@ -71,7 +71,7 @@ public class IntegrationTest {
 
     @Test
     @DisplayName("Handle mixed string and array values")
-    public void testMixedStringAndArray() {
+    public void testMixedStringAndArray() throws JSONException {
         JSONObject jsonObj = new JSONObject();
 
         // Single string value
@@ -91,7 +91,7 @@ public class IntegrationTest {
 
     @Test
     @DisplayName("Handle null and missing values gracefully")
-    public void testNullAndMissingValues() {
+    public void testNullAndMissingValues() throws JSONException {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("nullValue", JSONObject.NULL);
 

@@ -10,15 +10,14 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 public class ModsPhysicLocation {
 
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        String physicalLocation = sugawaraAttributes.getPhysicalLocation();
+        if (physicalLocation == null || physicalLocation.isEmpty()) {
+            return null;
+        }
 
-        if(sugawaraAttributes.getMods_physicalLocation()!=null) {
-            metadata = new Metadata(new Label( "none","mods:physicalLocation"),
-                    new Value( new I18n("none", sugawaraAttributes.getMods_physicalLocation())));
+        Metadata metadata = new Metadata(new Label( "none","mods:physicalLocation"),
+                    new Value( new I18n("none", physicalLocation)));
             return metadata;
-        }
-        else {
-            return metadata;
-        }
+
     }
 }

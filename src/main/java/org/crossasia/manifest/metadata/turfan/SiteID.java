@@ -6,9 +6,6 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SiteID {

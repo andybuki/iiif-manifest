@@ -24,12 +24,7 @@ public class SugawaraCrossasiaLanguage {
                     new Value(new I18n[]{i18n}));
 
             return metadata;
-        } else if (sugawaraAttributes.getCrossasia_language() != null) {
-            metadata = new Metadata(new Label( "en","crossasia:language"),
-                    new Value( new I18n("en", sugawaraAttributes.getCrossasia_language())));
-            return metadata;
-
-        } else {
+        }  else {
             return metadata;
         }
     }

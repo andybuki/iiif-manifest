@@ -10,15 +10,14 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 public class SchemaCategory {
 
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        String category = sugawaraAttributes.getCategory();
+        if (category == null || category.isEmpty()) {
+            return null;
+        }
 
-        if(sugawaraAttributes.getSchema_category()!=null) {
-            metadata = new Metadata(new Label( "none","schema:category"),
-                    new Value( new I18n("none", sugawaraAttributes.getSchema_category())));
-            return metadata;
-        }
-        else {
-            return metadata;
-        }
+        return new Metadata(new Label( "none","schema:category"),
+                new Value( new I18n("none", category
+                )));
+
     }
 }

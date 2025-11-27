@@ -2,7 +2,6 @@ package org.crossasia.manifest.attributes;
 
 import org.crossasia.manifest.attributes.base.BaseCollectionAttributes;
 import org.crossasia.manifest.attributes.domain.*;
-import org.json.JSONArray;
 
 public class DtabAttributes extends BaseCollectionAttributes {
     private DateInfo dateInfo;

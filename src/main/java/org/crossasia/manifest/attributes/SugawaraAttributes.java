@@ -3,7 +3,6 @@ package org.crossasia.manifest.attributes;
 import org.crossasia.manifest.attributes.domain.PersonRole;
 import org.crossasia.manifest.attributes.domain.ScriptInfo;
 import org.crossasia.manifest.attributes.domain.SealInfo;
-import org.json.JSONArray;
 
 import java.util.List;
 

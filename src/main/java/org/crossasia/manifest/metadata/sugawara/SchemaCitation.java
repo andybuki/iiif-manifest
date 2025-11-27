@@ -9,15 +9,14 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SchemaCitation {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        String citation = sugawaraAttributes.getCitation();
+        if (citation == null || citation.isEmpty()) {
+            return null;
+        }
 
-        if(sugawaraAttributes.getSchema_citation()!=null) {
-            metadata = new Metadata(new Label( "en","schema:citation"),
-                    new Value( new I18n("en", sugawaraAttributes.getSchema_citation())));
-            return metadata;
-        }
-        else {
-            return metadata;
-        }
+        return new Metadata(new Label( "en","schema:citation"),
+                new Value( new I18n("en", citation
+                        )));
+
     }
 }

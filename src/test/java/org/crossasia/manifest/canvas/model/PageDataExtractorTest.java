@@ -1,7 +1,6 @@
 package org.crossasia.manifest.canvas.model;
 
 import org.crossasia.manifest.canvas.extractor.PageDataExtractor;
-import org.crossasia.manifest.canvas.model.PageData;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

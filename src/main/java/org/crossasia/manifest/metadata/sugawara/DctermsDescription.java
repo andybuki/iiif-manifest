@@ -8,31 +8,34 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DctermsDescription {
-
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
+        List<String> descriptions = sugawaraAttributes.getDescriptions();
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getDcterms_descriptions() != null
-                && sugawaraAttributes.getDcterms_descriptions().length()!=0) {
-            for (int i = 0; i < sugawaraAttributes.getDcterms_descriptions().length(); i++) {
-                list.add(sugawaraAttributes.getDcterms_descriptions().get(i).toString());
-            }
-            i18n = new I18n("en", list);
-            metadata = new Metadata(new Label("en", "dcterms:description"),
-                    new Value(new I18n[]{i18n}));
+        if (descriptions != null && !descriptions.isEmpty()) {
+            I18n i18n = new I18n("en", descriptions);
 
-            return metadata;
-        } else if (sugawaraAttributes.getDcterms_description() != null) {
-            metadata = new Metadata(new Label( "en","dcterms:description"),
-                    new Value( new I18n("en", sugawaraAttributes.getDcterms_description())));
-            return metadata;
+            Metadata metadata = new Metadata(
+                    new Label("en", "dcterms:description"),
+                    new Value(new I18n[]{i18n})
+            );
 
-        } else {
             return metadata;
         }
+        // Fallback to single description
+        String description = sugawaraAttributes.getDescription();
+
+        if (description != null && !description.isEmpty()) {
+            Metadata metadata = new Metadata(
+                    new Label("en", "dcterms:description"),
+                    new Value(new I18n("en", description))
+            );
+
+            return metadata;
+        }
+
+        return null;
     }
 }
