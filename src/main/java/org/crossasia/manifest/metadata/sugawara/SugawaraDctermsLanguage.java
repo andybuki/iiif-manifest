@@ -6,31 +6,32 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.ScriptInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SugawaraDctermsLanguage {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
+        ScriptInfo scriptInfo = sugawaraAttributes.getScriptInfo();
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if (sugawaraAttributes.getDcterms_languages() != null && sugawaraAttributes.getDcterms_languages().length()!=0) {
-            for (int i = 0; i < sugawaraAttributes.getDcterms_languages().length(); i++) {
-                list.add(sugawaraAttributes.getDcterms_languages().get(i).toString());
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "dcterms:language"),
-                    new Value(new I18n[]{i18n}));
-
-            return metadata;
-        } else if (sugawaraAttributes.getDcterms_language() != null) {
-            metadata = new Metadata(new Label( "none","dcterms:language"),
-                    new Value( new I18n("none", sugawaraAttributes.getDcterms_language())));
-            return metadata;
-
-        } else {
-            return metadata;
+        if (scriptInfo == null) {
+            return null;
         }
+
+        List<String> languages = scriptInfo.getLanguages();
+
+        if (languages == null || languages.isEmpty()) {
+            return null;
+        }
+
+        I18n i18n = new I18n("none", languages);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dcterms:language"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

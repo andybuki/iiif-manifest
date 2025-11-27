@@ -9,15 +9,16 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SugawaraDocument {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_document()!=null) {
-            metadata = new Metadata(new Label( "none","sugawara:document"),
-                    new Value( new I18n("none", sugawaraAttributes.getSugawara_document())));
-            return metadata;
+        String document = sugawaraAttributes.getDocument();
+        if (document == null || document.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+        Metadata metadata = new Metadata(
+                new Label("none", "sugawara:document"),
+                new Value(new I18n("none", document))
+        );
+
+        return metadata;
     }
 }

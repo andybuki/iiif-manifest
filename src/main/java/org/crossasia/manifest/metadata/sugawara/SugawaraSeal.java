@@ -6,33 +6,33 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.SealInfo;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SugawaraSeal {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
+        SealInfo sealInfo = sugawaraAttributes.getSealInfo();
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-
-        if (sugawaraAttributes.getSugawara_seals() != null &&  sugawaraAttributes.getSugawara_seals().length()!=0) {
-            for (int i = 0; i < sugawaraAttributes.getSugawara_seals().length(); i++) {
-                list.add(sugawaraAttributes.getSugawara_seals().get(i).toString());
-            }
-            i18n = new I18n("en", list);
-            metadata = new Metadata(new Label("en", "sugawara:seal"),
-                    new Value(new I18n[]{i18n}));
-
-            return metadata;
-        } else if (sugawaraAttributes.getSugawara_seal() != null) {
-            metadata = new Metadata(new Label( "en","sugawara:seal"),
-                    new Value( new I18n("en", sugawaraAttributes.getSugawara_seal())));
-            return metadata;
-
-        } else {
-            return metadata;
+        if (sealInfo == null) {
+            return null;
         }
+
+        List<String> seals = sealInfo.getSeals();
+
+        if (seals == null || seals.isEmpty()) {
+            return null;
+        }
+
+        I18n i18n = new I18n("en", seals);
+
+        Metadata metadata = new Metadata(
+                new Label("en", "sugawara:seal"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

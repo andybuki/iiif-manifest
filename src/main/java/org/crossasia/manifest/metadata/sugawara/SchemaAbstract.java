@@ -9,15 +9,18 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SchemaAbstract {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getSchema_abstract()!=null) {
-            metadata = new Metadata(new Label( "en","schema:abstract"),
-                    new Value( new I18n("en", sugawaraAttributes.getSchema_abstract())));
-            return metadata;
+        String abstractText = sugawaraAttributes.getAbstractText();
+        if (abstractText == null || abstractText.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "schema:abstract"),
+                new Value(new I18n("en", abstractText))
+        );
+
+        return metadata;
+
     }
 }

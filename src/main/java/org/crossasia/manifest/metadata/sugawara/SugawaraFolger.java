@@ -10,17 +10,15 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 public class SugawaraFolger {
 
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
-
-        sugawaraAttributes.getFolder();
-
-        if(sugawaraAttributes.getSugawara_folder()!=null) {
-            metadata = new Metadata(new Label( "none","sugawara:folder"),
-                    new Value( new I18n("none", sugawaraAttributes.getSugawara_folder())));
-            return metadata;
+        String folder = sugawaraAttributes.getFolder();
+        if (folder == null || folder.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "sugawara:folder"),
+                new Value(new I18n("none", folder))
+        );
+        return metadata;
     }
 }

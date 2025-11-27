@@ -6,28 +6,32 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Place {
-
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
+        PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(sugawaraAttributes.getDc_places()!=null && sugawaraAttributes.getDc_places().length()!=0) {
-            for (int i = 0; i < sugawaraAttributes.getDc_places().length(); i++) {
-                list.add(sugawaraAttributes.getDc_places().get(i).toString());
-            }
-            i18n = new I18n("en", list);
-            metadata = new Metadata(new Label("en", "dc:place"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
-        } else {
-            return metadata;
+        if (placeInfo == null) {
+            return null;
         }
 
-    }
+        List<String> places = placeInfo.getPlaces();
 
+        if (places == null || places.isEmpty()) {
+            return null;
+        }
+
+        I18n i18n = new I18n("en", places);
+
+        Metadata metadata = new Metadata(
+                new Label("en", "dc:place"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
+    }
 }

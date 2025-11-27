@@ -9,15 +9,17 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SugawaraPhystype {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getSugawara_phystype()!=null) {
-            metadata = new Metadata(new Label( "en","sugawara:phystype"),
-                    new Value( new I18n("en", sugawaraAttributes.getSugawara_phystype())));
-            return metadata;
+        String physicalType = sugawaraAttributes.getPhysicalType();
+        if (physicalType == null || physicalType.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "sugawara:phystype"),
+                new Value(new I18n("en", physicalType))
+        );
+
+        return metadata;
     }
 }

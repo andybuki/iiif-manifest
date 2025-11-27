@@ -6,18 +6,27 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.domain.PersonRole;
 
 public class SugawaraRoleB {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        PersonRole roleB = sugawaraAttributes.getRoleB();
 
-        if(sugawaraAttributes.getSugawara_RoleB()!=null) {
-            metadata = new Metadata(new Label( "en","sugawara:RoleB"),
-                    new Value( new I18n("en", sugawaraAttributes.getSugawara_RoleB())));
-            return metadata;
+        if (roleB == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String role = roleB.getRole();
+
+        if (role == null || role.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "sugawara:RoleB"),
+                new Value(new I18n("en", role))
+        );
+
+        return metadata;
     }
 }
