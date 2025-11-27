@@ -6,17 +6,29 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 public class PlaceOfIssueId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getPlaceOfIssueId()!="") {
-            metadata = new Metadata(new Label( "none","dtab:place_of_issue_id"),
-                    new Value( new I18n("none", dtabAttributes.getDtabPlaceOfIssueId())));
-            return metadata;
+
+        PlaceInfo placeInfo = dtabAttributes.getPlaceInfo();
+
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String issued = placeInfo.getPlaceOfIssueId();
+
+        if (issued == null || issued.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:place_of_issue_id"),
+                new Value(new I18n("none", issued))
+        );
+
+        return metadata;
+
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public class CommentTypes {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         String commentTypes = dtabAttributes.getCommentAboutTypesOfDocument();
-        String commentTypesTb = dtabAttributes.getCommentAboutTypesOfDocumentTb();
+        //String commentTypesTb = dtabAttributes.getCommentAboutTypesOfDocumentTb();
 
         // Collect non-empty comments
         List<I18n> i18nList = new ArrayList<>();
@@ -22,9 +22,9 @@ public class CommentTypes {
             i18nList.add(new I18n("en", commentTypes));
         }
 
-        if (commentTypesTb != null && !commentTypesTb.isEmpty()) {
+        /*if (commentTypesTb != null && !commentTypesTb.isEmpty()) {
             i18nList.add(new I18n("bo", commentTypesTb));
-        }
+        }*/
 
         // Return null if no comments exist
         if (i18nList.isEmpty()) {

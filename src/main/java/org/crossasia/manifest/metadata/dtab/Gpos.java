@@ -6,17 +6,21 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.DateInfo;
 
 public class Gpos {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getGpos()!="") {
-            metadata = new Metadata(new Label( "none","dtab:gpos"),
-                    new Value( new I18n("none", dtabAttributes.getGpos())));
-            return metadata;
+        String gpos = dtabAttributes.getGeographicPosition();
+
+        if (gpos == null || gpos.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:gpos"),
+                new Value(new I18n("none", gpos))
+        );
+
+        return metadata;
     }
 }

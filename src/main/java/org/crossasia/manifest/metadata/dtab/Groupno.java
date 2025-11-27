@@ -9,14 +9,18 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 
 public class Groupno {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getGroupno()!="") {
-            metadata = new Metadata(new Label( "none","dtab:groupno"),
-                    new Value( new I18n("none", dtabAttributes.getGroupno())));
-            return metadata;
+
+        String gposNum = dtabAttributes.getGeographicPosition();
+
+        if (gposNum == null || gposNum.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:groupno"),
+                new Value(new I18n("none", gposNum))
+        );
+
+        return metadata;
     }
 }

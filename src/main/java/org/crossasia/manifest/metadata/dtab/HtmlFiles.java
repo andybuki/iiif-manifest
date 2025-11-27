@@ -12,6 +12,7 @@ public class HtmlFiles {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         FileReferences fileReferences = dtabAttributes.getFileReferences();
 
+
         if (fileReferences == null) {
             return null;
         }

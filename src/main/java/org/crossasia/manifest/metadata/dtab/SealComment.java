@@ -6,28 +6,30 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.SealInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SealComment {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getSealComment()!=null) {
-
-            for (int i = 0; i < dtabAttributes.getSealComment().length(); i++) {
-                list.add(dtabAttributes.getSealComment().get(i).toString());
-            }
-
-            i18n = new I18n("en", list);
-
-            metadata = new Metadata(new Label( "en","dtab:seal_comment"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        SealInfo sealInfo = dtabAttributes.getSealInfo();
+        if (sealInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        List<String> comments = sealInfo.getComments();
+        if (comments == null || comments.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("en", comments);
+        Metadata metadata = new Metadata(
+                new Label("en", "dtab:seal_comment"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
+
     }
 }

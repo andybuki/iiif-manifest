@@ -6,28 +6,32 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.ScriptInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Script {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getScript()!=null) {
+        ScriptInfo scriptInfo = dtabAttributes.getScriptInfo();
 
-            for (int i = 0; i < dtabAttributes.getDtabScript().length(); i++) {
-                list.add(dtabAttributes.getDtabScript().get(i).toString());
-            }
-
-            i18n = new I18n("en", list);
-
-            metadata = new Metadata(new Label( "en","dtab:script"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (scriptInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        List<String> scripts = scriptInfo.getScripts();
+
+        if (scripts == null || scripts.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("en", scripts);
+
+        Metadata metadata = new Metadata(
+                new Label("en", "dtab:script"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

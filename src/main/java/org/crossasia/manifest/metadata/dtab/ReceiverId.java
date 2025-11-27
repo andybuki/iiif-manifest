@@ -6,28 +6,31 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.PersonRole;
 
 import java.util.ArrayList;
 
 public class ReceiverId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getReceiverId()!=null) {
+        PersonRole receiver = dtabAttributes.getReceiver();
 
-            for (int i = 0; i < dtabAttributes.getReceiverId().length(); i++) {
-                list.add(dtabAttributes.getDtabReceiverId().get(i).toString());
-            }
-
-            i18n = new I18n("none", list);
-
-            metadata = new Metadata(new Label( "none","dtab:receiver_id"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (receiver == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String receiverId = receiver.getPersonId();
+
+        if (receiverId == null || receiverId.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("none", receiverId);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:receiver_id"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }
