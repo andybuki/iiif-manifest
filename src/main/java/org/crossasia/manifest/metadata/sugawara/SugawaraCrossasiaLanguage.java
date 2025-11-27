@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class SugawaraCrossasiaLanguage {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
 
+        s
+
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
