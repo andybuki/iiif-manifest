@@ -8,25 +8,23 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SiteNameGer {
-
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        Metadata metadata = null;
+        List<String> siteNamesGerman = turfanAttributes.getSiteNamesGerman();
 
-        if(turfanAttributes.getSiteNameGer()!=null) {
-            for (int i = 0; i < turfanAttributes.getSiteNameGer().length(); i++) {
-                list.add(turfanAttributes.getSiteNameGer().get(i).toString());
-            }
-            i18n = new I18n("de", list);
-            metadata = new Metadata(new Label("de", "turfan:siteNameGer"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
+        if (siteNamesGerman == null || siteNamesGerman.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        I18n i18n = new I18n("de", siteNamesGerman);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "turfan:siteNameGer"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

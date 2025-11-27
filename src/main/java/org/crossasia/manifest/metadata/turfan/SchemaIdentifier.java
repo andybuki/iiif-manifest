@@ -8,23 +8,23 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SchemaIdentifier {
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> keywords = new ArrayList<>();
-        if (turfanAttributes.getSchemaIdentifier() != null) {
-            for (int i = 0; i < turfanAttributes.getSchemaIdentifier().length(); i++) {
-                keywords.add(turfanAttributes.getSchemaIdentifier().get(i).toString());
-            }
-            i18n = new I18n("none", keywords);
-            metadata = new Metadata(new Label("none", "schema:identifier"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
-        } else {
-            return metadata;
+        List<String> schemaIdentifiers = turfanAttributes.getSchemaIdentifiers();
+        if (schemaIdentifiers == null || schemaIdentifiers.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("none", schemaIdentifiers);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "schema:identifier"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

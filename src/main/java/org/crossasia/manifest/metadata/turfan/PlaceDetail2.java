@@ -6,21 +6,30 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 public class PlaceDetail2 {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
-        Metadata metadata = null;
+        PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
 
-        if(turfanAttributes.getPlaceDetail2()!=null) {
-            metadata = new Metadata(new Label( "de","turfan:placeDetail2"),
-                    new Value( new I18n("de", turfanAttributes.getPlaceDetail2())));
-            return metadata;
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            metadata = null;
-            return metadata;
+        String placeDetail2 = placeInfo.getPlaceDetail2();
+
+        if (placeDetail2 == null || placeDetail2.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("de", placeDetail2);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "turfan:placeDetail2"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

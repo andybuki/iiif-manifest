@@ -6,27 +6,33 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeorgBezug {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        Metadata metadata = null;
+        PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
 
-        if(turfanAttributes.getGeorgBezug()!=null) {
-            for (int i = 0; i < turfanAttributes.getGeorgBezug().length(); i++) {
-                list.add(turfanAttributes.getGeorgBezug().get(i).toString());
-            }
-            i18n = new I18n("de", list);
-            metadata = new Metadata(new Label("de", "smb:geogrBezug"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        List<String> geographicReferences = placeInfo.getGeographicReferences();
+
+        if (geographicReferences == null || geographicReferences.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("de", geographicReferences);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "smb:geogrBezug"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

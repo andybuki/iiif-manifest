@@ -8,25 +8,24 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InvNumber {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        Metadata metadata = null;
+        List<String> inventoryNumbers = turfanAttributes.getInventoryNumbers();
 
-        if(turfanAttributes.getInvnumber()!=null) {
-            for (int i = 0; i < turfanAttributes.getInvnumber().length(); i++) {
-                list.add(turfanAttributes.getInvnumber().get(i).toString());
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "turfan:invNumber"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
+        if (inventoryNumbers == null || inventoryNumbers.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        I18n i18n = new I18n("none", inventoryNumbers);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "turfan:invNumber"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

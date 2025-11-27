@@ -6,6 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,26 +14,25 @@ import java.util.Collections;
 public class PlaceDetail {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
+        PlaceInfo placeInfo = turfanAttributes.getPlaceInfo();
 
-        Metadata metadata = null;
-
-        if(turfanAttributes.getPlaceDetail()!=null) {
-
-            ArrayList<String> l = new ArrayList<>();
-            if (turfanAttributes.getPlaceDetail().contains(";")) {
-                String [] places = turfanAttributes.getPlaceDetail().split(";");
-                Collections.addAll(l, places);
-            } else {
-                l.add(turfanAttributes.getPlaceDetail());
-            }
-            I18n i18n = new I18n("de", l);
-
-            metadata = new Metadata(new Label( "de","turfan:placeDetail"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String placeDetail = placeInfo.getPlaceDetail();
+
+        if (placeDetail == null || placeDetail.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("de", placeDetail);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "turfan:placeDetail"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

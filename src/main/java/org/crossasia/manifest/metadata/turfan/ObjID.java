@@ -8,25 +8,25 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ObjID {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(turfanAttributes.getObjId()!=null) {
-            for (int i = 0; i < turfanAttributes.getObjId().length(); i++) {
-                list.add(turfanAttributes.getObjId().get(i).toString());
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "smb:objId"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
+        List<String> objectIds = turfanAttributes.getObjectIds();
+
+        if (objectIds == null || objectIds.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        I18n i18n = new I18n("none", objectIds);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "smb:objId"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

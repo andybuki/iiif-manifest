@@ -9,32 +9,22 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class SiteID {
-
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-
-        if(turfanAttributes.getSiteID()!=null) {
-            for (int i = 0; i < turfanAttributes.getSiteID().length(); i++) {
-                if (turfanAttributes.getSiteID().get(i).toString().contains(";")) {
-                    String [] descrs = turfanAttributes.getSiteID().get(i).toString().split(";");
-                    Collections.addAll(list, descrs);
-                } else{
-                    list.add(turfanAttributes.getSiteID().get(i).toString());
-                }
-
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "turfan:siteID"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
+        List<String> siteIds = turfanAttributes.getSiteIds();
+        if (siteIds == null || siteIds.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+        I18n i18n = new I18n("none", siteIds);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "turfan:siteID"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

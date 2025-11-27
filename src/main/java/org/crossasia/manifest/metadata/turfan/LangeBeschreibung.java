@@ -14,25 +14,28 @@ public class LangeBeschreibung {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
 
-        Metadata metadata = null;
+        String longDescription = turfanAttributes.getLongDescription();
 
-        if(turfanAttributes.getLangeBeschreibung()!=null) {
-
-            ArrayList<String> l = new ArrayList<>();
-            if (turfanAttributes.getLangeBeschreibung().contains(";")) {
-                String [] s = turfanAttributes.getLangeBeschreibung().split(";");
-                Collections.addAll(l, s);
-            } else {
-                l.add(turfanAttributes.getLangeBeschreibung());
-            }
-            I18n i18n = new I18n("de", l);
-
-            metadata = new Metadata(new Label( "de","smb:langeBeschreibung"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (longDescription == null || longDescription.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
+
+        ArrayList<String> list = new ArrayList<>();
+
+        if (longDescription.contains(";")) {
+            String[] parts = longDescription.split(";");
+            Collections.addAll(list, parts);
+        } else {
+            list.add(longDescription);
         }
+
+        I18n i18n = new I18n("de", list);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "smb:langeBeschreibung"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }
