@@ -6,12 +6,14 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.PersonRole;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Receiver {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
+        /*Metadata metadata = null;
         I18n i18n = null;
         I18n i18n_td = null;
         ArrayList<String> list = new ArrayList<>();
@@ -36,6 +38,26 @@ public class Receiver {
         }
         else {
             return metadata;
+        }*/
+        PersonRole receiver = dtabAttributes.getReceiver();
+
+        if (receiver == null) {
+            return null;
         }
+
+        List<String> receiverNames = receiver.getPersonNames();
+
+        if (receiverNames == null || receiverNames.isEmpty()) {
+            return null;
+        }
+
+        I18n i18n = new I18n("de", receiverNames);
+
+        Metadata metadata = new Metadata(
+                new Label("de", "dtab:receiver"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

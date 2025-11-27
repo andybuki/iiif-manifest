@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class Invisible {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabInvisible()!="") {
+        if(dtabAttributes.getInvisible()!="") {
             metadata = new Metadata(new Label( "none","dtab:invisible"),
-                    new Value( new I18n("none", dtabAttributes.getDtabInvisible())));
+                    new Value( new I18n("none", dtabAttributes.getInvisible())));
             return metadata;
         }
         else {

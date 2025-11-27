@@ -6,32 +6,37 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.SealInfo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class SealImageFiles {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getSeal_image_files()!=null) {
+        SealInfo sealInfo = dtabAttributes.getSealInfo();
 
-            for (int i = 0; i < dtabAttributes.getSeal_image_files().length(); i++) {
-                list.add(dtabAttributes.getSeal_image_files().get(i).toString());
-            }
-            HashSet<String> hashSet = new HashSet<String>();
-            hashSet.addAll(list);
-            list.clear();
-            list.addAll(hashSet);
-            i18n = new I18n("none", list);
+        if (sealInfo == null) {
+            return null;
+        }
 
-            metadata = new Metadata(new Label( "none","dtab:seal_image_files"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        List<String> imageFiles = sealInfo.getImageFiles();
+
+        if (imageFiles == null || imageFiles.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        // Remove duplicates using HashSet
+        HashSet<String> hashSet = new HashSet<>(imageFiles);
+        List<String> uniqueList = new ArrayList<>(hashSet);
+
+        I18n i18n = new I18n("none", uniqueList);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:seal_image_files"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

@@ -6,17 +6,27 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.FileReferences;
 
 public class TranscriptionFiles {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getDtabTranscriptionFiles()!="") {
-            metadata = new Metadata(new Label( "none","dtab:transcription_files"),
-                    new Value( new I18n("none", dtabAttributes.getDtabTranscriptionFiles())));
-            return metadata;
+        FileReferences fileReferences = dtabAttributes.getFileReferences();
+
+        if (fileReferences == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String transcriptionFiles = fileReferences.getTranscriptionFiles();
+
+        if (transcriptionFiles == null || transcriptionFiles.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:transcription_files"),
+                new Value(new I18n("none", transcriptionFiles))
+        );
+
+        return metadata;
     }
 }

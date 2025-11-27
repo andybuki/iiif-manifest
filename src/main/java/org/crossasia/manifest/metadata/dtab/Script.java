@@ -14,7 +14,7 @@ public class Script {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabScript()!=null) {
+        if(dtabAttributes.getScript()!=null) {
 
             for (int i = 0; i < dtabAttributes.getDtabScript().length(); i++) {
                 list.add(dtabAttributes.getDtabScript().get(i).toString());

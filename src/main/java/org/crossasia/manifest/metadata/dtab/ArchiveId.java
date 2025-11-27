@@ -6,17 +6,26 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.ArchiveInfo;
 
 public class ArchiveId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getDtabArchiveId()!="") {
-            metadata = new Metadata(new Label( "none","dtab:archive_id"),
-                    new Value( new I18n("none", dtabAttributes.getDtabArchiveId())));
-            return metadata;
+        ArchiveInfo archiveInfo = dtabAttributes.getArchiveInfo();
+
+        if (archiveInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String archiveId = archiveInfo.getArchiveId();
+
+        if (archiveId == null || archiveId.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:archive_id"),
+                new Value(new I18n("none", archiveId)));
+
+        return metadata;
     }
 }

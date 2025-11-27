@@ -6,30 +6,32 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.FileReferences;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PreviewImageFiles {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabPreviewImageFiles()!=null) {
+        FileReferences fileReferences = dtabAttributes.getFileReferences();
 
-            for (int i = 0; i < dtabAttributes.getDtabPreviewImageFiles().length(); i++) {
-                String[] split = dtabAttributes.getDtabPreviewImageFiles().get(i).toString().split("/");
-                String last = split[split.length-1];
-                list.add(last);
-            }
-
-            i18n = new I18n("en", list);
-
-            metadata = new Metadata(new Label( "en","dtab:preview_image_files"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (fileReferences == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        List<String> previewImageFiles = fileReferences.getPreviewImageFiles();
+
+        if (previewImageFiles == null || previewImageFiles.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("none", previewImageFiles);
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:preview_image_files"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class DocumentId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabDocumentId()!="") {
+        if(dtabAttributes.getDocumentId()!="") {
             metadata = new Metadata(new Label( "none","dtab:document_id"),
-                    new Value( new I18n("none", dtabAttributes.getDtabDocumentId())));
+                    new Value( new I18n("none", dtabAttributes.getDocumentId())));
             return metadata;
         }
         else {

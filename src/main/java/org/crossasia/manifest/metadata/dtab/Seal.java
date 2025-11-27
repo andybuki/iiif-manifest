@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class Seal {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabSeal()!="") {
+        if(dtabAttributes.getSeal()!="") {
             metadata = new Metadata(new Label( "en","dtab:seal"),
                     new Value( new I18n("en", dtabAttributes.getDtabSeal())));
             return metadata;

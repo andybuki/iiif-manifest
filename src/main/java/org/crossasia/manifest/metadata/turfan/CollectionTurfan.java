@@ -9,25 +9,28 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import static org.crossasia.manifest.statics.collection.Label.TURFAN;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CollectionTurfan {
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(turfanAttributes.getCollection()!=null) {
-            for (int i = 0; i < turfanAttributes.getCollection().length(); i++) {
-                list.add(turfanAttributes.getCollection().get(i).toString());
-            }
-            i18n = new I18n("none", list);
-            metadata = new Metadata(new Label("none", "schema:collection"),
-                    new Value(new I18n[]{i18n}));
-            return metadata;
-        }
-        else {
+        List<String> collections = turfanAttributes.getCollections();
 
-            metadata = new Metadata(new Label("none", "schema:collection"),
-                    new Value(TURFAN.getVal()));
+        if (collections != null && !collections.isEmpty()) {
+            I18n i18n = new I18n("none", collections);
+
+            Metadata metadata = new Metadata(
+                    new Label("none", "schema:collection"),
+                    new Value(new I18n[]{i18n})
+            );
+
+            return metadata;
+        } else {
+            // Return default TURFAN value if no collections exist
+            Metadata metadata = new Metadata(
+                    new Label("none", "schema:collection"),
+                    new Value(TURFAN.getVal())
+            );
+
             return metadata;
         }
     }

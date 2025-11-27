@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class DateDescriptionId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabDateDescriptionId()!="") {
+        if(dtabAttributes.getDateDescriptionId()!="") {
             metadata = new Metadata(new Label( "none","dtab:date_description_id"),
-                    new Value( new I18n("none", dtabAttributes.getDtabDateDescriptionId())));
+                    new Value( new I18n("none", dtabAttributes.getDateDescriptionId())));
             return metadata;
         }
         else {

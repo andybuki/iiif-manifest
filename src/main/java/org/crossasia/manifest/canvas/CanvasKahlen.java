@@ -1,14 +1,7 @@
 package org.crossasia.manifest.canvas;
 
-import info.freelibrary.iiif.presentation.v3.AnnotationPage;
 import info.freelibrary.iiif.presentation.v3.ImageContent;
 import info.freelibrary.iiif.presentation.v3.Manifest;
-import info.freelibrary.iiif.presentation.v3.PaintingAnnotation;
-import info.freelibrary.iiif.presentation.v3.properties.I18n;
-import info.freelibrary.iiif.presentation.v3.properties.Label;
-import info.freelibrary.iiif.presentation.v3.properties.Metadata;
-import info.freelibrary.iiif.presentation.v3.properties.Value;
-import info.freelibrary.iiif.presentation.v3.services.ImageService3;
 
 import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.crossasia.manifest.canvas.builder.CanvasBuilder;
@@ -17,18 +10,9 @@ import org.crossasia.manifest.canvas.model.PageData;
 import org.crossasia.manifest.canvas.service.ImageInfoFetcher;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import static org.crossasia.manifest.statics.manifest.ManifestData.*;
 
 public class CanvasKahlen {

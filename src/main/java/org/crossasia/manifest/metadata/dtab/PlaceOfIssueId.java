@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class PlaceOfIssueId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabPlaceOfIssueId()!="") {
+        if(dtabAttributes.getPlaceOfIssueId()!="") {
             metadata = new Metadata(new Label( "none","dtab:place_of_issue_id"),
                     new Value( new I18n("none", dtabAttributes.getDtabPlaceOfIssueId())));
             return metadata;

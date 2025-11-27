@@ -14,7 +14,7 @@ public class SealId {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabSealId()!=null) {
+        if(dtabAttributes.getSealId()!=null) {
 
             for (int i = 0; i < dtabAttributes.getDtabSealId().length(); i++) {
                 list.add(dtabAttributes.getDtabSealId().get(i).toString());

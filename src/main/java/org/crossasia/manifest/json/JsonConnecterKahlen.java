@@ -1,9 +1,8 @@
 package org.crossasia.manifest.json;
 
-import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.KahlenAttributes;
+import org.crossasia.manifest.attributes.util.JsonConverter;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonConnecterKahlen {

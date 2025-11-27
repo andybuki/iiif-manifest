@@ -1,4 +1,4 @@
-package org.crossasia.manifest.json;
+package org.crossasia.manifest.attributes.util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

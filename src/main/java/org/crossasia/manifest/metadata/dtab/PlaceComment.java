@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class PlaceComment {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabCommentPlace()!="") {
+        if(dtabAttributes.getCommentPlace()!="") {
             metadata = new Metadata(new Label( "en","dtab:place_comment"),
-                    new Value( new I18n("en", dtabAttributes.getDtabCommentPlace())));
+                    new Value( new I18n("en", dtabAttributes.getCommentPlace())));
             return metadata;
         }
         else {

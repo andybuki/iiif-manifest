@@ -14,9 +14,9 @@ public class ReceiverId {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabReceiverId()!=null) {
+        if(dtabAttributes.getReceiverId()!=null) {
 
-            for (int i = 0; i < dtabAttributes.getDtabReceiverId().length(); i++) {
+            for (int i = 0; i < dtabAttributes.getReceiverId().length(); i++) {
                 list.add(dtabAttributes.getDtabReceiverId().get(i).toString());
             }
 

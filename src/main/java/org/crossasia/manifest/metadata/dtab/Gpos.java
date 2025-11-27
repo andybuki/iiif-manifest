@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class Gpos {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabGpos()!="") {
+        if(dtabAttributes.getGpos()!="") {
             metadata = new Metadata(new Label( "none","dtab:gpos"),
-                    new Value( new I18n("none", dtabAttributes.getDtabGpos())));
+                    new Value( new I18n("none", dtabAttributes.getGpos())));
             return metadata;
         }
         else {

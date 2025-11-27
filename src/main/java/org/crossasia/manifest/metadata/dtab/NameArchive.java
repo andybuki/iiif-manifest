@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class NameArchive {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabNameOfArchive()!="") {
+        if(dtabAttributes.getNameOfArchive()!="") {
             metadata = new Metadata(new Label( "en","dtab:name_of_archive"),
-                    new Value( new I18n("en", dtabAttributes.getDtabNameOfArchive())));
+                    new Value( new I18n("en", dtabAttributes.getNameOfArchive())));
             return metadata;
         }
         else {

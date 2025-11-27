@@ -9,14 +9,17 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 
 public class SchemaComment {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getSchemaComment()!="") {
-            metadata = new Metadata(new Label( "en","schema:comment"),
-                    new Value( new I18n("en", dtabAttributes.getSchemaComment())));
-            return metadata;
+        String comment = dtabAttributes.getComment();
+
+        if (comment == null || comment.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "schema:comment"),
+                new Value(new I18n("en", comment))
+        );
+
+        return metadata;
     }
 }

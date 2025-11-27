@@ -6,28 +6,32 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.SealInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SealReference {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        I18n i18n = null;
-        ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabSealReference()!=null) {
+        SealInfo sealInfo = dtabAttributes.getSealInfo();
 
-            for (int i = 0; i < dtabAttributes.getDtabSealReference().length(); i++) {
-                list.add(dtabAttributes.getDtabSealReference().get(i).toString());
-            }
-
-            i18n = new I18n("en", list);
-
-            metadata = new Metadata(new Label( "en","dtab:seal_reference"),
-                    new Value( new I18n[]{i18n}));
-            return metadata;
+        if (sealInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        List<String> references = sealInfo.getReferences();
+
+        if (references == null || references.isEmpty()) {
+            return null;
         }
+
+        I18n i18n = new I18n("en", references);
+
+        Metadata metadata = new Metadata(
+                new Label("en", "dtab:seal_reference"),
+                new Value(new I18n[]{i18n})
+        );
+
+        return metadata;
     }
 }

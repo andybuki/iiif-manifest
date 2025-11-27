@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class ScriptRoleId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabScriptIdRole()!="") {
+        if(dtabAttributes.getScriptIdRole()!="") {
             metadata = new Metadata(new Label( "none","dtab:script_id_role"),
                     new Value( new I18n("none", dtabAttributes.getDtabScriptIdRole())));
             return metadata;

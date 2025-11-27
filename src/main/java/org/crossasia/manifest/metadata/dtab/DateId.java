@@ -6,17 +6,27 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.DateInfo;
 
 public class DateId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getDtabDateId()!="") {
-            metadata = new Metadata(new Label( "none","dtab:date_id"),
-                    new Value( new I18n("none", dtabAttributes.getDtabDateId())));
-            return metadata;
+        DateInfo dateInfo = dtabAttributes.getDateInfo();
+
+        if (dateInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String dateId = dateInfo.getDateId();
+
+        if (dateId == null || dateId.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dtab:date_id"),
+                new Value(new I18n("none", dateId))
+        );
+
+        return metadata;
     }
 }

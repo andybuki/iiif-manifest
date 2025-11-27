@@ -3,8 +3,8 @@ package org.crossasia.manifest.json;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.domain.DateInfo;
 import org.crossasia.manifest.attributes.domain.PlaceInfo;
+import org.crossasia.manifest.attributes.util.JsonConverter;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonConnecterTurfan {

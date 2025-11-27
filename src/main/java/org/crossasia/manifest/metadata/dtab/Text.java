@@ -9,14 +9,17 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 
 public class Text {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getSchemaText()!="") {
-            metadata = new Metadata(new Label( "en","schema:text"),
-                    new Value( new I18n("en", dtabAttributes.getSchemaText())));
-            return metadata;
+        String text = dtabAttributes.getText();
+
+        if (text == null || text.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("en", "schema:text"),
+                new Value(new I18n("en", text))
+        );
+
+        return metadata;
     }
 }

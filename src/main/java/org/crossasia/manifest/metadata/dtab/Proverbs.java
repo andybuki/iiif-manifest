@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class Proverbs {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabProverbs()!="") {
+        if(dtabAttributes.getProverbs()!="") {
             metadata = new Metadata(new Label( "en","dtab:proverbs"),
-                    new Value( new I18n("en", dtabAttributes.getDtabProverbs())));
+                    new Value( new I18n("en", dtabAttributes.getProverbs())));
             return metadata;
         }
         else {

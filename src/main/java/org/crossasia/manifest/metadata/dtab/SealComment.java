@@ -14,10 +14,10 @@ public class SealComment {
         Metadata metadata = null;
         I18n i18n = null;
         ArrayList<String> list = new ArrayList<>();
-        if(dtabAttributes.getDtabSealComment()!=null) {
+        if(dtabAttributes.getSealComment()!=null) {
 
-            for (int i = 0; i < dtabAttributes.getDtabSealComment().length(); i++) {
-                list.add(dtabAttributes.getDtabSealComment().get(i).toString());
+            for (int i = 0; i < dtabAttributes.getSealComment().length(); i++) {
+                list.add(dtabAttributes.getSealComment().get(i).toString());
             }
 
             i18n = new I18n("en", list);

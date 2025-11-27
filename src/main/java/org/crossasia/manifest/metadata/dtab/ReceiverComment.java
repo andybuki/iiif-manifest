@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class ReceiverComment {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabReceiverComment()!=""
+        if(dtabAttributes.getReceiverComment()!=""
                 || dtabAttributes.getDtabReceiverCommentTb()!="") {
             metadata = new Metadata(new Label( "en","dtab:receiver_comment"),
                     new Value( new I18n("en", dtabAttributes.getDtabReceiverComment()),

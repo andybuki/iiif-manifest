@@ -6,19 +6,27 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 public class Comment {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata = null;
-        if(dtabAttributes.getDtabCommentPlace()!=""
-                || dtabAttributes.getDtabCommentPlaceTb()!="") {
-            metadata = new Metadata(new Label( "en","dtab:comment_place"),
-                    new Value( new I18n("en", dtabAttributes.getDtabCommentPlace()),
-                            new I18n("bo", dtabAttributes.getDtabCommentPlaceTb())));
-            return metadata;
+        PlaceInfo placeInfo = dtabAttributes.getPlaceInfo();
+
+        if (placeInfo == null) {
+            return null;
         }
-        else {
-            return metadata;
+
+        String commentPlace = placeInfo.getCommentPlace();
+
+        if (commentPlace == null || commentPlace.isEmpty()) {
+            return null;
         }
+
+        Metadata metadata = new Metadata(
+                new Label("de", "dtab:comment_place"),
+                new Value(new I18n("de", commentPlace))
+        );
+
+        return metadata;
     }
 }

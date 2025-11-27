@@ -1,10 +1,9 @@
 package org.crossasia.manifest.json;
 
 import org.crossasia.manifest.attributes.DtabAttributes;
-import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.attributes.domain.*;
+import org.crossasia.manifest.attributes.util.JsonConverter;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonConnecterDtab {

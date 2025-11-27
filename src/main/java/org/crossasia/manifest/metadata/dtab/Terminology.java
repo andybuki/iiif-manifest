@@ -10,9 +10,9 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 public class Terminology {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;
-        if(dtabAttributes.getDtabTerminology()!="") {
+        if(dtabAttributes.getTerminology()!="") {
             metadata = new Metadata(new Label( "en","dtab:terminology"),
-                    new Value( new I18n("en", dtabAttributes.getDtabTerminology())));
+                    new Value( new I18n("en", dtabAttributes.getTerminology())));
             return metadata;
         }
         else {
