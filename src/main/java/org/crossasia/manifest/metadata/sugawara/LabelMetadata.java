@@ -1,4 +1,4 @@
-package org.crossasia.manifest.metadata.turfan;
+package org.crossasia.manifest.metadata.sugawara;
 
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import org.crossasia.manifest.attributes.CollectionAttributes;

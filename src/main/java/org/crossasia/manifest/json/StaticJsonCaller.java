@@ -6,7 +6,7 @@ import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.json.JSONObject;
 
-public class StaticJsonCallerTurfan {
+public class StaticJsonCaller {
 
     public static void staticJsonCaller(CollectionAttributes turfanAttributes, JSONObject jsonObj) {
         JsonConnecterTurfan.title(turfanAttributes, jsonObj);
