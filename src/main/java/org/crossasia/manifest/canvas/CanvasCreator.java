@@ -17,26 +17,44 @@ import java.util.List;
 
 /**
  * Unified canvas creator that works with any collection type.
+ *
+ * Replaces the old collection-specific classes:
+ * - Canvas.java (for DTAB)
+ * - CanvasKahlen.java (for Kahlen/TAP)
+ *
  * Collection-specific behavior is driven by CollectionConfig.
+ *
+ * Usage:
+ *   CanvasCreator creator = new CanvasCreator(CollectionConfig.DTAB);
+ *   creator.createCanvas(file, jsonObj, manifest);
+ *
+ * Or use factory methods:
+ *   CanvasCreator.forDtab().createCanvas(file, jsonObj, manifest);
  */
 public class CanvasCreator {
 
-    private final CollectionConfig config;
+    protected final CollectionConfig config;
     private final CanvasBuilder canvasBuilder;
 
     public CanvasCreator(CollectionConfig config) {
         this.config = config;
         this.canvasBuilder = new CanvasBuilder(
-                ManifestConfig.SERVER,
+                config.getIiifBaseUrl(),
                 config.getManifestCollection(),
                 ManifestConfig.THUMBNAIL_PATH
         );
     }
 
     /**
-     * Create canvases for a manifest from JSON data
+     * Create canvases for a manifest from JSON data.
+     * This is the main entry point - replaces both Canvas.createCanvas()
+     * and CanvasKahlen.createCanvas().
+     *
+     * @param file      The input file (for error reporting)
+     * @param jsonObj   The JSON object containing page data
+     * @param manifest  The manifest to add canvases to
      */
-    public void createCanvases(File file, JSONObject jsonObj, Manifest manifest) {
+    public void createCanvas(File file, JSONObject jsonObj, Manifest manifest) {
         if (!jsonObj.has("pages")) {
             return;
         }
@@ -62,7 +80,7 @@ public class CanvasCreator {
                 String positionForDimensions = getPositionForDimensions(pageData, j);
 
                 ImageInfoFetcher.ImageDimensions dimensions = ImageInfoFetcher.fetchDimensions(
-                        config.getBaseUrl(),
+                        config.getIiifBaseUrl(),
                         config.getCollectionName(),
                         id,
                         positionForDimensions
@@ -83,9 +101,11 @@ public class CanvasCreator {
     }
 
     /**
-     * Extract ID from JSON based on collection's ID type
+     * Extract ID from JSON based on collection's ID type.
+     * - DTAB uses integer IDs: jsonObj.getInt("id")
+     * - Kahlen/TAP use string IDs: jsonObj.getString("id")
      */
-    private String extractId(JSONObject jsonObj) {
+    protected String extractId(JSONObject jsonObj) {
         switch (config.getIdType()) {
             case INTEGER:
                 return String.valueOf(jsonObj.getInt("id"));
@@ -98,21 +118,30 @@ public class CanvasCreator {
     /**
      * Determine which position to use for fetching image dimensions.
      * Override this method in subclasses for collection-specific behavior.
+     *
+     * Default behavior (DTAB, TAP, etc.): use the page's actual position
+     * Kahlen behavior: always use "1" (overridden in KahlenCanvasCreator)
      */
     protected String getPositionForDimensions(PageData pageData, int pageIndex) {
-        // Default: use the page's actual position
         return pageData.getPosition() != null ? pageData.getPosition() : "1";
+    }
+
+    /**
+     * Get the position to use for the thumbnail.
+     * Override for collection-specific behavior.
+     */
+    protected String getThumbnailPosition(String firstPosition) {
+        return firstPosition;
     }
 
     /**
      * Set the thumbnail for the manifest
      */
     private void setManifestThumbnail(Manifest manifest, String id, String firstPosition) {
-        String thumbnailUri = ManifestConfig.buildThumbnailUrl(
-                config.getManifestCollection(),
-                id,
-                firstPosition
-        );
+        String thumbnailPosition = getThumbnailPosition(firstPosition);
+        String thumbnailUri = config.getIiifBaseUrl() +
+                config.getManifestCollection() + id + "+" + thumbnailPosition +
+                ManifestConfig.THUMBNAIL_PATH;
         manifest.setThumbnails(new ImageContent(thumbnailUri));
     }
 
@@ -127,15 +156,28 @@ public class CanvasCreator {
 
     // ========== Factory Methods ==========
 
+    /** Create creator for DTAB collection (replaces Canvas.java) */
     public static CanvasCreator forDtab() {
         return new CanvasCreator(CollectionConfig.DTAB);
     }
 
+    /** Create creator for Kahlen collection (replaces CanvasKahlen.java) */
     public static CanvasCreator forKahlen() {
         return new KahlenCanvasCreator();
     }
 
+    /** Create creator for TAP collection */
     public static CanvasCreator forTap() {
         return new CanvasCreator(CollectionConfig.TAP);
+    }
+
+    /** Create creator for Turfan collection */
+    public static CanvasCreator forTurfan() {
+        return new CanvasCreator(CollectionConfig.TURFAN);
+    }
+
+    /** Create creator for Sugawara collection */
+    public static CanvasCreator forSugawara() {
+        return new CanvasCreator(CollectionConfig.SUGAWARA);
     }
 }

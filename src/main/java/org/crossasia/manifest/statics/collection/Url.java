@@ -1,17 +1,27 @@
 package org.crossasia.manifest.statics.collection;
 
+/**
+ * @deprecated Use {@link CollectionConfig#getCollectionUrl()} instead.
+ *
+ * Example migration:
+ *   Before: Url.TURFAN.getVal()
+ *   After:  CollectionConfig.TURFAN.getCollectionUrl()
+ */
+@Deprecated
 public enum Url {
 
-    TURFAN("https://itr02.crossasia.org/fcrepo/rest/turfan/collection"),
-    SUGAWARA("https://itr02.crossasia.org/fcrepo/rest/xinjiang-legaldocuments/collection"),
-    KAHLEN("https://itr02.crossasia.org/fcrepo/rest/kahlen"),
-    DTAB("https://itr02.crossasia.org/fcrepo/rest/dtab/collection");
-    private String value;
-    Url(String value) {
-        this.value = value;
+    TURFAN(CollectionConfig.TURFAN),
+    SUGAWARA(CollectionConfig.SUGAWARA),
+    KAHLEN(CollectionConfig.KAHLEN),
+    DTAB(CollectionConfig.DTAB);
+
+    private final CollectionConfig config;
+
+    Url(CollectionConfig config) {
+        this.config = config;
     }
 
     public String getVal() {
-        return value;
+        return config.getCollectionUrl();
     }
 }

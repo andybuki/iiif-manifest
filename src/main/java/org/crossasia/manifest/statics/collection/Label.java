@@ -1,15 +1,26 @@
 package org.crossasia.manifest.statics.collection;
 
+/**
+ * @deprecated Use {@link CollectionConfig#getLabel()} instead.
+ *
+ * Example migration:
+ *   Before: Label.TURFAN.getVal()
+ *   After:  CollectionConfig.TURFAN.getLabel()
+ */
+@Deprecated
 public enum Label {
-    TURFAN("Turfan Sammlung - Akten"),
-    SUGAWARA("Kashgar Contractual Documents Collection"),
-    DTAB("DTAB Collection");
-    private String value;
-    Label(String value) {
-        this.value = value;
+
+    TURFAN(CollectionConfig.TURFAN),
+    SUGAWARA(CollectionConfig.SUGAWARA),
+    DTAB(CollectionConfig.DTAB);
+
+    private final CollectionConfig config;
+
+    Label(CollectionConfig config) {
+        this.config = config;
     }
 
     public String getVal() {
-        return value;
+        return config.getLabel();
     }
 }
