@@ -4,6 +4,7 @@ import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
 import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
+import org.crossasia.manifest.attributes.KahlenAttributes;
 import org.crossasia.manifest.attributes.TapAttributes;
 import org.crossasia.manifest.canvas.CanvasKahlen;
 import org.crossasia.manifest.json.StaticJsonCallerTurfan;
@@ -25,7 +26,7 @@ public class FileCreator {
         for (File file : filesDir) {
             //SugawaraAttributes attributes = new SugawaraAttributes();
             //DtabAttributes attributes = new DtabAttributes();
-            //KahlenAttributes kahlenAttributes = new KahlenAttributes();
+            KahlenAttributes kahlenAttributes = new KahlenAttributes();
             TapAttributes tapAttributes = new TapAttributes();
 
             File out = new File(MANIFESTS_FOLGER);

@@ -19,7 +19,7 @@ public class CanvasKahlen {
 
     private final CanvasBuilder canvasBuilder;
     private final String baseUrl = "https://iiif-content.crossasia.org/xasia/";
-    private final String collectionName = "kahlen";
+    private final String collectionName = "tap";
 
     public CanvasKahlen() {
         this.canvasBuilder = new CanvasBuilder(SERVER, MANIFEST_COLLECTION, THUMBNAIL_PATH);
@@ -33,7 +33,8 @@ public class CanvasKahlen {
         JSONArray pages = jsonObj.getJSONArray("pages");
         List<info.freelibrary.iiif.presentation.v3.Canvas> canvases = new ArrayList<>();
 
-        String id = String.valueOf(jsonObj.getInt("id"));
+        //String id = String.valueOf(jsonObj.getInt("id"));
+        String id = jsonObj.getString("id");
 
         // Process each page
         for (int j = 0; j < pages.length(); j++) {

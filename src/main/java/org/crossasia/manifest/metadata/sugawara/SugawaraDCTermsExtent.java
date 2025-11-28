@@ -9,15 +9,18 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 public class SugawaraDCTermsExtent {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
-        Metadata metadata = null;
 
-        if(sugawaraAttributes.getDcterms_extent()!=null) {
-            metadata = new Metadata(new Label( "none","dcterms:extent"),
-                    new Value( new I18n("none", sugawaraAttributes.getDcterms_extent())));
-            return metadata;
+        String extent = sugawaraAttributes.getExtent();
+        if (extent == null || extent.isEmpty()) {
+            return null;
         }
-        else {
-            return metadata;
-        }
+
+        Metadata metadata = new Metadata(
+                new Label("none", "dcterms:extent"),
+                new Value(new I18n("none", extent))
+        );
+
+        return metadata;
+
     }
 }
