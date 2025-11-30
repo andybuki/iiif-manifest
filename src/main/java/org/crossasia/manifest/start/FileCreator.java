@@ -30,7 +30,7 @@ public class FileCreator {
      * Kept for backward compatibility with IIIFManifest.buildManifest()
      */
     public static void fileCreator(File[] filesDir, Manifestor manifestor) throws IOException {
-        processFiles(filesDir, manifestor, CollectionConfig.KAHLEN);
+        processFiles(filesDir, manifestor, CollectionConfig.TAP);
     }
 
     /**

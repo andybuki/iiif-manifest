@@ -1,21 +1,38 @@
 package org.crossasia.manifest.metadata.fields;
 
+import org.crossasia.manifest.statics.collection.CollectionConfig;
+
+/**
+ * @deprecated Use {@link CollectionConfig#getCollectionName()} instead.
+ *
+ * Example migration:
+ *   Before: Coll.kahlen.getVal()
+ *   After:  CollectionConfig.KAHLEN.getCollectionName()
+ */
+@Deprecated
 public enum Coll {
-    xinjiang_legaldocuments("xinjiang-legaldocuments"),
 
-    turfan("turfan"),
-    dllm("dllm"),
-    kahlen("kahlen"),
-    dtab("dtab"),
-    lanna("lanna");
-    private String value;
+    xinjiang_legaldocuments(CollectionConfig.SUGAWARA),
+    turfan(CollectionConfig.TURFAN),
+    dllm(CollectionConfig.DLLM),
+    kahlen(CollectionConfig.KAHLEN),
+    dtab(CollectionConfig.DTAB),
+    lanna(CollectionConfig.LANNA);
 
-    Coll(String value) {
-        this.value = value;
+    private final CollectionConfig config;
+
+    Coll(CollectionConfig config) {
+        this.config = config;
     }
 
     public String getVal() {
-        return value;
+        return config.getCollectionName();
     }
 
+    /**
+     * Get the underlying CollectionConfig
+     */
+    public CollectionConfig getConfig() {
+        return config;
+    }
 }

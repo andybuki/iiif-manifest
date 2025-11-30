@@ -50,7 +50,7 @@ public class MetadataBuilder {
         addArrayMetadata(list, "dcterms:medium", data.getMediumArray(), "de");
 
         // Semicolon-separated fields
-        addSemicolonSeparated(list, "schema:keyword", data.getKeyword(), "de");
+        addSemicolonSeparated(list, "schema:keyword", data.getKeyword(), "en");
         addSemicolonSeparated(list, "schema:identifier", data.getSchemaIdentifier(), "none");
         addSemicolonSeparated(list, "turfan:sender", data.getSender(), "de");
         addSemicolonSeparated(list, "turfan:recipient", data.getRecipient(), "de");

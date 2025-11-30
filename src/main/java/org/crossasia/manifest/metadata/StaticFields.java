@@ -1,107 +1,141 @@
 package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
-import info.freelibrary.iiif.presentation.v3.Service;
 import info.freelibrary.iiif.presentation.v3.properties.*;
-import info.freelibrary.iiif.presentation.v3.services.OtherService;
-import org.crossasia.manifest.metadata.fields.Coll;
-import org.crossasia.manifest.metadata.fields.Languages;
-import org.crossasia.manifest.metadata.fields.RequiredStatement2;
+import org.crossasia.manifest.statics.collection.CollectionConfig;
 
 import java.net.URI;
 
 import static info.freelibrary.iiif.presentation.v3.properties.ViewingDirection.LEFT_TO_RIGHT;
-import static org.crossasia.manifest.metadata.fields.Contexts.CONTEXT;
-import static org.crossasia.manifest.metadata.fields.Homepage.HOMEPAGE;
-import static org.crossasia.manifest.metadata.fields.Homepage.HOMEPAGE_DESCRIPTION;
-import static org.crossasia.manifest.metadata.fields.Id.FEDORA;
-import static org.crossasia.manifest.metadata.fields.PartOf.PARTOF;
-import static org.crossasia.manifest.metadata.fields.Provider.PROVIDER;
-import static org.crossasia.manifest.metadata.fields.Provider.WEBSITE;
-import static org.crossasia.manifest.metadata.fields.RequiredStatement.INFO;
-import static org.crossasia.manifest.metadata.fields.RequiredStatement.REQUIRED;
-import static org.crossasia.manifest.metadata.fields.RequiredStatement2.INFO2;
-import static org.crossasia.manifest.metadata.fields.RequiredStatement2.REQUIRED2;
-import static org.crossasia.manifest.metadata.fields.Rights.RIGHTS;
-import static org.crossasia.manifest.metadata.fields.SummaryData.SUMMARY;
 
+/**
+ * Adds static fields to manifests.
+ * Uses CollectionConfig for all collection-specific values.
+ *
+ * Replaces hardcoded values from:
+ * - org.crossasia.manifest.metadata.fields.Contexts
+ * - org.crossasia.manifest.metadata.fields.Homepage
+ * - org.crossasia.manifest.metadata.fields.Id
+ * - org.crossasia.manifest.metadata.fields.PartOf
+ * - org.crossasia.manifest.metadata.fields.Provider
+ * - org.crossasia.manifest.metadata.fields.RequiredStatement
+ * - org.crossasia.manifest.metadata.fields.Rights
+ * - org.crossasia.manifest.metadata.fields.SummaryData
+ */
 public class StaticFields {
-    public static void staticFields(String id, Manifest manifest,
-                                    String title, String archive_signatory) {
 
-        Summary summary = new Summary( SUMMARY + ": " + archive_signatory);
+    /**
+     * Add static fields to manifest using CollectionConfig.
+     * This is the preferred method.
+     *
+     * @param id       Document ID
+     * @param manifest The manifest to populate
+     * @param title    Document title
+     * @param config   Collection configuration
+     */
+    public static void staticFields(String id, Manifest manifest, String title, CollectionConfig config) {
+        // Summary from collection config
+        Summary summary = new Summary(config.getSummary());
 
-        RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
-                new Value(new I18n("en", REQUIRED)));
+        // Required statement from collection config
+        RequiredStatement reqStmt = new RequiredStatement(
+                new Label(config.getLanguage(), CollectionConfig.REQUIRED_STATEMENT_LABEL),
+                new Value(new I18n(config.getLanguage(), config.getRequiredStatement()))
+        );
 
-        Provider provider = new Provider(WEBSITE,  PROVIDER);
+        // Provider (shared across all collections)
+        Provider provider = new Provider(
+                CollectionConfig.PROVIDER_WEBSITE,
+                CollectionConfig.PROVIDER_NAME
+        );
 
-        /*Service service = new Service("https://iiif.io/api/search/2/context.json",
-                "@id", "profile", "label");*/
-
-        manifest.addContexts(CONTEXT);
-
+        // Apply to manifest
+        manifest.addContexts(CollectionConfig.CONTEXT);
         manifest.setViewingDirection(LEFT_TO_RIGHT);
+        manifest.setRights(CollectionConfig.RIGHTS);
 
-        manifest.setRights(RIGHTS);
+        manifest.setHomepages(new Homepage(
+                URI.create(CollectionConfig.HOMEPAGE),
+                new Label("en", CollectionConfig.HOMEPAGE_DESCRIPTION)
+        ));
 
-        manifest.setHomepages(new Homepage(URI.create(HOMEPAGE),
-                new Label("en",HOMEPAGE_DESCRIPTION)));
-
-        manifest.setID(FEDORA + Coll.dtab.getVal() + "/"+id+"/manifest");
+        // Build manifest ID using collection name
+        manifest.setID(CollectionConfig.FEDORA + config.getCollectionName() + "/" + id + "/manifest");
 
         manifest.setSummary(summary);
 
-        manifest.setPartOfs(new PartOf(PARTOF,"Collection"));
+        // PartOf from collection config
+        manifest.setPartOfs(new PartOf(config.getPartOf(), "Collection"));
 
         manifest.setRequiredStatement(reqStmt);
-
         manifest.setProviders(provider);
-
-        //manifest.setServices(services);
-
-        //manifest.setSeeAlsoRefs(seeAlso);
     }
 
+    /**
+     * Add static fields with archive signatory (for collections like DTAB).
+     *
+     * @param id               Document ID
+     * @param manifest         The manifest to populate
+     * @param title            Document title
+     * @param archiveSignatory Archive signatory info
+     * @param config           Collection configuration
+     */
+    public static void staticFields(String id, Manifest manifest, String title,
+                                    String archiveSignatory, CollectionConfig config) {
+        // Summary with archive signatory appended
+        Summary summary = new Summary(config.getSummary() + ": " + archiveSignatory);
 
-    public static void staticFields(String id, Manifest manifest,
-                                    String title) {
+        // Required statement from collection config
+        RequiredStatement reqStmt = new RequiredStatement(
+                new Label(config.getLanguage(), CollectionConfig.REQUIRED_STATEMENT_LABEL),
+                new Value(new I18n(config.getLanguage(), config.getRequiredStatement()))
+        );
 
-        Summary summary = new Summary( SUMMARY);
+        // Provider (shared across all collections)
+        Provider provider = new Provider(
+                CollectionConfig.PROVIDER_WEBSITE,
+                CollectionConfig.PROVIDER_NAME
+        );
 
-        RequiredStatement reqStmt = new RequiredStatement(new Label("en",INFO),
-                new Value(new I18n("en", REQUIRED)));
-
-        /*RequiredStatement2 reqStmt2 = new RequiredStatement2(new Label("en",INFO2),
-                new Value(new I18n("en", REQUIRED2)));*/
-
-        Provider provider = new Provider(WEBSITE,  PROVIDER);
-
-        /*Service service = new Service("https://iiif.io/api/search/2/context.json",
-                "@id", "profile", "label");*/
-
-        manifest.addContexts(CONTEXT);
-
+        // Apply to manifest
+        manifest.addContexts(CollectionConfig.CONTEXT);
         manifest.setViewingDirection(LEFT_TO_RIGHT);
+        manifest.setRights(CollectionConfig.RIGHTS);
 
-        manifest.setRights(RIGHTS);
+        manifest.setHomepages(new Homepage(
+                URI.create(CollectionConfig.HOMEPAGE),
+                new Label("en", CollectionConfig.HOMEPAGE_DESCRIPTION)
+        ));
 
-        manifest.setHomepages(new Homepage(URI.create(HOMEPAGE),
-                new Label("en",HOMEPAGE_DESCRIPTION)));
-
-        manifest.setID(FEDORA + Coll.kahlen.getVal() + "/"+id+"/manifest");
+        // Build manifest ID using collection name
+        manifest.setID(CollectionConfig.FEDORA + config.getCollectionName() + "/" + id + "/manifest");
 
         manifest.setSummary(summary);
 
-        manifest.setPartOfs(new PartOf(PARTOF,"Collection"));
+        // PartOf from collection config
+        manifest.setPartOfs(new PartOf(config.getPartOf(), "Collection"));
 
         manifest.setRequiredStatement(reqStmt);
-        //manifest.setRequiredStatement(reqStmt2);
-
         manifest.setProviders(provider);
+    }
 
-        //manifest.setServices(services);
+    // ========== Legacy methods for backward compatibility ==========
 
-        //manifest.setSeeAlsoRefs(seeAlso);
+    /**
+     * @deprecated Use {@link #staticFields(String, Manifest, String, CollectionConfig)} instead.
+     * Defaults to KAHLEN collection for backward compatibility.
+     */
+    @Deprecated
+    public static void staticFields(String id, Manifest manifest, String title) {
+        staticFields(id, manifest, title, CollectionConfig.KAHLEN);
+    }
+
+    /**
+     * @deprecated Use {@link #staticFields(String, Manifest, String, String, CollectionConfig)} instead.
+     * Defaults to DTAB collection for backward compatibility.
+     */
+    @Deprecated
+    public static void staticFields(String id, Manifest manifest, String title, String archiveSignatory) {
+        staticFields(id, manifest, title, archiveSignatory, CollectionConfig.DTAB);
     }
 }

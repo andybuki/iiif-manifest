@@ -69,8 +69,10 @@ public class PageData {
     public String getYear() { return year; }
     public void setYear(String year) { this.year = year; }
 
-    public String getKeyword() { return keyword; }
-    public void setKeyword(String keyword) { this.keyword = keyword; }
+    public String getKeyword() {
+        return keyword; }
+    public void setKeyword(String keyword) {
+        this.keyword = keyword; }
 
     public String getSource() { return source; }
     public void setSource(String source) { this.source = source; }

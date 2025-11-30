@@ -1,7 +1,16 @@
 package org.crossasia.manifest.metadata.fields;
 
+import org.crossasia.manifest.statics.collection.CollectionConfig;
+
+/**
+ * @deprecated Use {@link CollectionConfig#getRequiredStatement()} and
+ *             {@link CollectionConfig#REQUIRED_STATEMENT_LABEL} instead.
+ *
+ * Note: Required statement is now collection-specific in CollectionConfig.
+ * The old REQUIRED constant defaulted to Kahlen's required statement.
+ */
+@Deprecated
 public class RequiredStatement {
-    public static final String REQUIRED = """           
-            The collection ‘Tangtong Gyalpo - Archive Wolf Kahlen’ comprises the photographs of Wolf Kahlen, which he took in Tibet, China, India, the Himalayan region and Mongolia in the period from 1985 to 1994. The licence is CC BY-NC-SA. Commercial use is only possible after consultation with VG Bildkunst and Wolf Kahlen.""";
-    public static final String INFO = "Info & Rights Statement";
+    public static final String REQUIRED = CollectionConfig.KAHLEN.getRequiredStatement();
+    public static final String INFO = CollectionConfig.REQUIRED_STATEMENT_LABEL;
 }

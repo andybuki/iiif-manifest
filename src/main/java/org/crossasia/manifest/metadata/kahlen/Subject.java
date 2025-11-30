@@ -14,6 +14,7 @@ public class Subject {
     public static Metadata get(KahlenAttributes kahlenAttributes, Manifest manifest) {
         Metadata metadata = null;
         I18n i18n = null;
+        I18n i18n_ch = null;
         ArrayList<String> list = new ArrayList<>();
         if(kahlenAttributes.getSubjects()!=null) {
 
@@ -21,10 +22,10 @@ public class Subject {
                 list.add(kahlenAttributes.getSubjects().get(i).toString());
             }
 
-            i18n = new I18n("en", list);
-
+            i18n = new I18n("en", list.get(0));
+            i18n_ch = new I18n("ch", list.get(1));
             metadata = new Metadata(new Label( "en","dcterms:subject"),
-                    new Value( new I18n[]{i18n}));
+                    new Value(new I18n[]{i18n, i18n_ch}));
             return metadata;
         }  else {
             return metadata;
