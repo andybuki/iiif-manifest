@@ -3,140 +3,138 @@ package org.crossasia.manifest.metadata;
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import org.crossasia.manifest.attributes.DtabAttributes;
-import org.crossasia.manifest.metadata.dtab.*;
+import org.crossasia.manifest.attributes.domain.*;
+import org.crossasia.manifest.metadata.builder.MetadataBuilder;
+import org.crossasia.manifest.metadata.builder.MetadataField;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Metadata members for DTAB collection.
+ *
+ * Based on DTAB metadata fields from the original implementation.
+ * Each field maps to a getter in DtabAttributes.
+ */
 public class MetadataMembersDtab {
-    public static List<Metadata> metadataMembersDtab(DtabAttributes dtabAttributes, Manifest manifest) {
-        Metadata metadata_title = Title.get(dtabAttributes, manifest);
-        Metadata metadata_invisible = Invisible.get(dtabAttributes, manifest);
-        Metadata metadata_signatory = Signatory.get(dtabAttributes, manifest);
-        Metadata metadata_comment = Comment.get(dtabAttributes, manifest);
-        Metadata metadata_sender = Sender.get(dtabAttributes, manifest);
-        Metadata metadata_sender_comment = SenderComment.get(dtabAttributes, manifest);
-        Metadata metadata_comment_types = CommentTypes.get(dtabAttributes, manifest);
-        Metadata metadata_seal_id = SealId.get(dtabAttributes, manifest);
-        Metadata metadata_date_description_id = DateDescriptionId.get(dtabAttributes, manifest);
-        Metadata metadata_archive_id = ArchiveId.get(dtabAttributes, manifest);
-        Metadata metadata_date_id = DateId.get(dtabAttributes, manifest);
-        Metadata metadata_description_date = DescriptionDate.get(dtabAttributes, manifest);
-        Metadata metadata_schema_comment = SchemaComment.get(dtabAttributes, manifest);
-        Metadata metadata_seal_name_script = SealNameScript.get(dtabAttributes, manifest);
-        Metadata metadata_seal_comment_used_scripts = SealCommentUsedScripts.get(dtabAttributes, manifest);
-        Metadata metadata_id = Id.get(dtabAttributes, manifest);
-        Metadata metadata_text = Text.get(dtabAttributes, manifest);
-        Metadata metadata_used_scripts = UsedScripts.get(dtabAttributes, manifest);
-        Metadata metadata_transcription_files = TranscriptionFiles.get(dtabAttributes, manifest);
-        Metadata metadata_gpos = Gpos.get(dtabAttributes, manifest);
-        Metadata metadata_name_archive = NameArchive.get(dtabAttributes, manifest);
-        Metadata metadata_script_role_id = ScriptRoleId.get(dtabAttributes, manifest);
-        Metadata metadata_sender_id = SenderId.get(dtabAttributes, manifest);
-        Metadata metadata_seal_size = SealSize.get(dtabAttributes, manifest);
-        Metadata metadata_seal_form = SealForm.get(dtabAttributes, manifest);
-        Metadata metadata_seal_color = SealColor.get(dtabAttributes, manifest);
-        Metadata metadata_seal_links = SealLinks.get(dtabAttributes, manifest);
-        Metadata metadata_recipient = Recipient.get(dtabAttributes, manifest);
-        Metadata metadata_date = Date.get(dtabAttributes, manifest);
-        Metadata metadata_script = Script.get(dtabAttributes, manifest);
-        Metadata metadata_preview_image_files = PreviewImageFiles.get(dtabAttributes, manifest);
-        Metadata metadata_groupno = Groupno.get(dtabAttributes, manifest);
-        Metadata metadata_idinarchive = IdInArchive.get(dtabAttributes, manifest);
-        Metadata metadata_name = Name.get(dtabAttributes, manifest);
-        Metadata metadata_html_files = HtmlFiles.get(dtabAttributes, manifest);
-        Metadata metadata_document_id = DocumentId.get(dtabAttributes, manifest);
-        Metadata metadata_seal = Seal.get(dtabAttributes, manifest);
-        Metadata metadata_place_id = PlaceId.get(dtabAttributes, manifest);
-        Metadata metadata_place_of_issue_id = PlaceOfIssueId.get(dtabAttributes, manifest);
-        Metadata metadata_terminology = Terminology.get(dtabAttributes, manifest);
-        Metadata metadata_other_files = OtherFiles.get(dtabAttributes, manifest);
-        Metadata metadata_proverbs = Proverbs.get(dtabAttributes, manifest);
-        Metadata metadata_sender_role_comment = SenderRoleComment.get(dtabAttributes, manifest);
-        Metadata metadata_receiver_id = ReceiverId.get(dtabAttributes, manifest);
-        Metadata metadata_receiver = Receiver.get(dtabAttributes, manifest);
-        Metadata metadata_receiver_comment = ReceiverComment.get(dtabAttributes, manifest);
-        Metadata metadata_place_comment = PlaceComment.get(dtabAttributes, manifest);
-        Metadata metadata_place = Place.get(dtabAttributes, manifest);
-        Metadata metadata_seal_inscription = SealInscription.get(dtabAttributes, manifest);
-        Metadata metadata_seal_reference = SealReference.get(dtabAttributes, manifest);
-        Metadata metadata_seal_comment = SealComment.get(dtabAttributes, manifest);
-        Metadata metadata_seal_multi = SealInfo.get(dtabAttributes, manifest);
 
-        Metadata metadata_seal_formNEW = SealFormNEW.get(dtabAttributes, manifest);
-        Metadata metadata_seal_colorNEW = SealColorNEW.get(dtabAttributes, manifest);
-        Metadata metadata_seal_image_files = SealImageFiles.get(dtabAttributes, manifest);
-        Metadata metadata_seal_compare = SealCompare.get(dtabAttributes, manifest);
+    public static void metadataMembersDtab(DtabAttributes attrs, Manifest manifest) {
+        List<Metadata> metadataList = new ArrayList<>();
 
-        ArrayList<Metadata> metadataArrayList = new ArrayList<>();
+        // ========== Identification ==========
+        addIfPresent(metadataList, MetadataField.DC_TITLE.with(attrs.getTitle()));
+        addIfPresent(metadataList, MetadataField.DTAB_ID.with(attrs.getId()));
+        addIfPresent(metadataList, MetadataField.DTAB_DOCUMENT_ID.with(attrs.getDocumentId()));
 
-        metadataArrayList.add(metadata_title);
-        metadataArrayList.add(metadata_invisible);
-        metadataArrayList.add(metadata_signatory);
-        metadataArrayList.add(metadata_comment);
-        metadataArrayList.add(metadata_sender);
-        metadataArrayList.add(metadata_sender_comment);
-        metadataArrayList.add(metadata_comment_types);
-        metadataArrayList.add(metadata_seal_id);
-        metadataArrayList.add(metadata_date_description_id);
-        metadataArrayList.add(metadata_archive_id);
-        metadataArrayList.add(metadata_date_id);
-        metadataArrayList.add(metadata_description_date);
-        metadataArrayList.add(metadata_schema_comment);
-        metadataArrayList.add(metadata_seal_name_script);
-        metadataArrayList.add(metadata_seal_comment_used_scripts);
-        metadataArrayList.add(metadata_id);
-        metadataArrayList.add(metadata_text);
-        metadataArrayList.add(metadata_used_scripts);
-        metadataArrayList.add(metadata_transcription_files);
-        metadataArrayList.add(metadata_gpos);
-        metadataArrayList.add(metadata_seal_color);
-        metadataArrayList.add(metadata_seal_inscription);
-        metadataArrayList.add(metadata_seal_reference);
-        metadataArrayList.add(metadata_seal_comment);
-        metadataArrayList.add(metadata_name_archive);
-        metadataArrayList.add(metadata_script_role_id);
-        metadataArrayList.add(metadata_sender_id);
-        metadataArrayList.add(metadata_seal_size);
-        metadataArrayList.add(metadata_seal_form);
-        metadataArrayList.add(metadata_recipient);
-        metadataArrayList.add(metadata_date);
-        metadataArrayList.add(metadata_script);
-        metadataArrayList.add(metadata_preview_image_files);
-        metadataArrayList.add(metadata_groupno);
-        metadataArrayList.add(metadata_idinarchive);
-        metadataArrayList.add(metadata_name);
-        metadataArrayList.add(metadata_html_files);
-        metadataArrayList.add(metadata_document_id);
-        metadataArrayList.add(metadata_seal);
-        metadataArrayList.add(metadata_place_id);
-        metadataArrayList.add(metadata_place_of_issue_id);
-        metadataArrayList.add(metadata_terminology);
-        metadataArrayList.add(metadata_other_files);
-        metadataArrayList.add(metadata_proverbs);
-        metadataArrayList.add(metadata_sender_role_comment);
-        metadataArrayList.add(metadata_receiver_id);
-        metadataArrayList.add(metadata_receiver);
-        metadataArrayList.add(metadata_receiver_comment);
-        metadataArrayList.add(metadata_place_comment);
-        metadataArrayList.add(metadata_place);
-        metadataArrayList.add(metadata_seal_links);
-        metadataArrayList.add(metadata_seal_multi);
-
-        metadataArrayList.add(metadata_seal_formNEW);
-        metadataArrayList.add(metadata_seal_colorNEW);
-        metadataArrayList.add(metadata_seal_image_files);
-        metadataArrayList.add(metadata_seal_compare);
-
-        Iterator<Metadata> iter = metadataArrayList.iterator();
-
-        while (iter.hasNext()) {
-            Metadata md = iter.next();
-            if (md==null)
-                iter.remove();
+        if (attrs.getArchiveInfo() != null) {
+            ArchiveInfo archive = attrs.getArchiveInfo();
+            addIfPresent(metadataList, MetadataField.DTAB_ARCHIVE_SIGNATORY.with(archive.getArchiveSignatory()));
+            addIfPresent(metadataList, MetadataField.DTAB_ARCHIVE_ID.with(archive.getArchiveId()));
+            addIfPresent(metadataList, MetadataField.DTAB_ID_IN_ARCHIVE.with(archive.getIdInArchive()));
+            addIfPresent(metadataList, MetadataField.DTAB_NAME_OF_ARCHIVE.with(archive.getArchiveName()));
         }
-        manifest.setMetadata(metadataArrayList);
-        return metadataArrayList;
+        addIfPresent(metadataList, MetadataField.DTAB_INVISIBLE.with(attrs.getInvisible()));
+
+        // ========== Dates ==========
+        if (attrs.getDateInfo() != null) {
+            DateInfo dateInfo = attrs.getDateInfo();
+            addIfPresent(metadataList, MetadataField.DC_DATE.with(dateInfo.getDate()));
+            addIfPresent(metadataList, MetadataField.DTAB_DATE_ID.with(dateInfo.getDateId()));
+            addIfPresent(metadataList, MetadataField.DC_DATE_DESCRIPTION_ID.with(dateInfo.getDateDescriptionId()));
+            addIfPresent(metadataList, MetadataField.DTAB_DESCRIPTION_DATE.with(dateInfo.getDescriptionDate()));
+        }
+
+        // ========== Places ==========
+        if (attrs.getPlaceInfo() != null) {
+            PlaceInfo placeInfo = attrs.getPlaceInfo();
+            addIfPresent(metadataList, MetadataField.SCHEMA_PLACE.with(placeInfo.getPlace()));
+            addIfPresent(metadataList, MetadataField.DTAB_PLACE_ID.with(placeInfo.getPlaceId()));
+            addIfPresent(metadataList, MetadataField.DTAB_PLACE_OF_ISSUE_ID.with(placeInfo.getPlaceOfIssueId()));
+            addIfPresent(metadataList, MetadataField.DTAB_COMMENT_PLACE.with(placeInfo.getCommentPlace()));
+        }
+
+        // ========== Sender / Receiver ==========
+        if (attrs.getSender() != null || attrs.getReceiver() != null) {
+            PersonRole sender = attrs.getSender();
+            PersonRole receiver = attrs.getReceiver();
+            addIfPresent(metadataList, MetadataField.DTAB_SENDER.with(sender.getPersonName()));
+            addIfPresent(metadataList, MetadataField.DTAB_SENDER_ID.with(sender.getPersonId()));
+            addIfPresent(metadataList, MetadataField.DTAB_SENDER_ROLE_COMMENT.with(sender.getRoleComment()));
+            // If there are multiple names
+            addIfPresent(metadataList, MetadataField.DTAB_SENDER.with(sender.getPersonNames()));
+            addIfPresent(metadataList, MetadataField.DTAB_RECEIVER.with(receiver.getPersonName()));
+            addIfPresent(metadataList, MetadataField.DTAB_RECEIVER_ID.with(receiver.getPersonId()));
+            addIfPresent(metadataList, MetadataField.DTAB_RECEIVER_COMMENT.with(receiver.getRoleComment()));
+            // If there are multiple names
+            addIfPresent(metadataList, MetadataField.DTAB_RECEIVER.with(receiver.getPersonNames()));
+        }
+
+        // ========== Content & Comments ==========
+        addIfPresent(metadataList, MetadataField.SCHEMA_TEXT.with(attrs.getText()));
+        addIfPresent(metadataList, MetadataField.SCHEMA_COMMENT.with(attrs.getComment()));
+        addIfPresent(metadataList, MetadataField.DTAB_COMMENT_ABOUT_TYPES.with(attrs.getCommentAboutTypesOfDocument()));
+        addIfPresent(metadataList, MetadataField.DTAB_PROVERBS.with(attrs.getProverbs()));
+        addIfPresent(metadataList, MetadataField.DTAB_TERMINOLOGY.with(attrs.getTerminology()));
+
+        // ========== Scripts ==========
+        if (attrs.getScriptInfo() != null) {
+            ScriptInfo scriptInfo = attrs.getScriptInfo();
+            addIfPresent(metadataList, MetadataField.DTAB_SCRIPT.with(scriptInfo.getScripts()));
+            addIfPresent(metadataList, MetadataField.DTAB_SCRIPT_ID_ROLE.with(scriptInfo.getScriptIdRole()));
+            addIfPresent(metadataList, MetadataField.DTAB_USED_SCRIPTS.with(scriptInfo.getUsedScripts()));
+        }
+
+        // ========== Seals (nested in SealInfo) ==========
+        // SealInfo is a nested object, so we need to check if it's not null
+        if (attrs.getSealInfo() != null) {
+            SealInfo seal = attrs.getSealInfo();
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL.with(seal.getSeal()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_ID.with(seal.getSealId()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_DOC_ID.with(seal.getDocumentIds()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_INSCRIPTION.with(seal.getInscriptions()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_COLOR.with(seal.getColors()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_FORM.with(seal.getForms()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_SIZE.with(seal.getSizes()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_REFERENCE.with(seal.getReferences()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_COMMENT.with(seal.getComments()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_LINKS.with(seal.getLinks()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_NAME_SCRIPT.with(seal.getNameOfScripts()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_COMMENT_USED_SCRIPTS.with(seal.getCommentUsedScripts()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_COMPARE.with(seal.getCompare()));
+            addIfPresent(metadataList, MetadataField.DTAB_SEAL_IMAGE_FILES.with(seal.getImageFiles()));
+        };
+
+        addIfPresent(metadataList, MetadataField.DTAB_GPOS.with(attrs.getGeographicPosition()));
+        addIfPresent(metadataList, MetadataField.DTAB_GROUPNO.with(attrs.getGroupNumber()));
+
+        // ========== Files ==========
+        if (attrs.getFileReferences() != null) {
+            FileReferences fileReferences = attrs.getFileReferences();
+            addIfPresent(metadataList, MetadataField.DTAB_TRANSCRIPTION_FILES.with(fileReferences.getTranscriptionFiles()));
+            addIfPresent(metadataList, MetadataField.DTAB_PREVIEW_IMAGE_FILES.with(fileReferences.getPreviewImageFiles()));
+            addIfPresent(metadataList, MetadataField.DTAB_HTML_FILES.with(fileReferences.getHtmlFiles()));
+            addIfPresent(metadataList, MetadataField.DTAB_OTHER_FILES.with(fileReferences.getOtherFiles()));
+        }
+
+        // ========== Multi-seal handling ==========
+        // If multiSeal is a list, use with(List)
+        // addIfPresent(metadataList, MetadataField.DTAB_SEAL.with(attrs.getMultiSeal()));
+
+        // Set all metadata
+        if (!metadataList.isEmpty()) {
+            manifest.setMetadata(metadataList);
+        }
+    }
+
+    /**
+     * Helper to add metadata if builder has values
+     */
+    private static void addIfPresent(List<Metadata> list, MetadataBuilder builder) {
+        if (builder != null && builder.hasValues()) {
+            Metadata metadata = builder.build();
+            if (metadata != null) {
+                list.add(metadata);
+            }
+        }
     }
 }

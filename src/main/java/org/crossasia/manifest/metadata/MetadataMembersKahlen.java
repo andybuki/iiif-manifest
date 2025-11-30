@@ -1,43 +1,73 @@
 package org.crossasia.manifest.metadata;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
-import info.freelibrary.iiif.presentation.v3.properties.Metadata;
-
 import org.crossasia.manifest.attributes.KahlenAttributes;
-import org.crossasia.manifest.metadata.kahlen.*;
-
+import org.crossasia.manifest.metadata.builder.MetadataBuilder;
+import org.crossasia.manifest.metadata.builder.MetadataField;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Metadata members for Kahlen collection.
+ *
+ * Usage:
+ *   MetadataMembersKahlen.metadataMembersKahlen(attributes, manifest);
+ *
+ * The MetadataField.with() method is overloaded to handle both:
+ *   - String values:       MetadataField.DATE.with(attrs.getDate())
+ *   - List<String> values: MetadataField.PLACE.with(attrs.getPlaces())
+ *
+ * Java will automatically select the correct method based on the parameter type.
+ */
 public class MetadataMembersKahlen {
-    public static List<Metadata> metadataMembersKahlen(KahlenAttributes kahlenAttributes, Manifest manifest) {
-        Metadata metadata_place = Place.get(kahlenAttributes, manifest);
-        Metadata metadata_title = Title.get(kahlenAttributes, manifest);
-        Metadata metadata_date = Date.get(kahlenAttributes, manifest);
-        Metadata metadata_subject = Subject.get(kahlenAttributes, manifest);
-        Metadata metadata_index = Index.get(kahlenAttributes, manifest);
-        Metadata metadata_keyword = Keywords.get(kahlenAttributes, manifest);
-        Metadata metadata_identifier = Identifier.get(kahlenAttributes, manifest);
 
-        ArrayList<Metadata> metadataArrayList = new ArrayList<>();
-        metadataArrayList.add(metadata_identifier);
-        metadataArrayList.add(metadata_place);
-        metadataArrayList.add(metadata_title);
-        metadataArrayList.add(metadata_date);
-        metadataArrayList.add(metadata_subject);
-        metadataArrayList.add(metadata_index);
-        metadataArrayList.add(metadata_keyword);
+    /**
+     * Add all Kahlen metadata to manifest
+     */
+    public static void metadataMembersKahlen(KahlenAttributes attrs, Manifest manifest) {
+        List<info.freelibrary.iiif.presentation.v3.properties.Metadata> metadataList = new ArrayList<>();
 
-        Iterator<Metadata> iter = metadataArrayList.iterator();
+        // String fields
+        addIfPresent(metadataList, MetadataField.DCTERMS_DATE.with(attrs.getDate()));
+        addIfPresent(metadataList, MetadataField.SCHEMA_INDEX.with(attrs.getIndexes()));
 
-        while (iter.hasNext()) {
-            Metadata md = iter.next();
-            if (md==null)
-                iter.remove();
+        // dc:identifier (was kahlenAttributes.getIdentifier())
+        addIfPresent(metadataList, MetadataField.DC_IDENTIFIER.with(attrs.getIdentifier()));
+
+        // List fields
+        addIfPresent(metadataList, MetadataField.DCTERMS_PLACE.with(attrs.getPlaces()));
+        addIfPresent(metadataList, MetadataField.SCHEMA_KEYWORD.with(attrs.getKeyword()));
+
+        // Multi-language subject field (English at index 0, Chinese at index 1)
+        if (attrs.getSubjects() != null && attrs.getSubjects().size() >= 2) {
+            addIfPresent(metadataList,
+                    MetadataField.DCTERMS_SUBJECT.builder()
+                            .addValueFromList("en", attrs.getSubjects(), 0)
+                            .addValueFromList("zh", attrs.getSubjects(), 1)
+            );
+        } else if (attrs.getSubjects() != null && !attrs.getSubjects().isEmpty()) {
+            // Single value - just use the list
+            addIfPresent(metadataList, MetadataField.DCTERMS_SUBJECT.with(attrs.getSubjects()));
         }
-        manifest.setMetadata(metadataArrayList);
-        return metadataArrayList;
+
+        // Set all metadata at once
+        if (!metadataList.isEmpty()) {
+            manifest.setMetadata(metadataList);
+        }
+    }
+
+    /**
+     * Helper to add metadata if builder has values
+     */
+    private static void addIfPresent(
+            List<info.freelibrary.iiif.presentation.v3.properties.Metadata> list,
+            MetadataBuilder builder) {
+        if (builder != null && builder.hasValues()) {
+            info.freelibrary.iiif.presentation.v3.properties.Metadata metadata = builder.build();
+            if (metadata != null) {
+                list.add(metadata);
+            }
+        }
     }
 }
