@@ -30,9 +30,9 @@ public class JsonConnecterTap {
     }
 
     public static void label(TapAttributes tapAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("schema:label")) {
-            if (jsonObj.get("schema:label") instanceof String) {
-                tapAttributes.setLabel((String) jsonObj.get("schema:label"));
+        if (jsonObj.has("dc:title")) {
+            if (jsonObj.get("dc:title") instanceof String) {
+                tapAttributes.setLabel((String) jsonObj.get("dc:title"));
             }
         }
     }

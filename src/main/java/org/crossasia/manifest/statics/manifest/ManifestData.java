@@ -6,7 +6,6 @@ package org.crossasia.manifest.statics.manifest;
  *             {@link org.crossasia.manifest.statics.collection.CollectionConfig}
  *             for collection-specific settings.
  */
-import info.freelibrary.iiif.presentation.v3.properties.RequiredStatement;
 
 
 @Deprecated

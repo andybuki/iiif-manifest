@@ -7,7 +7,7 @@ import org.crossasia.manifest.attributes.TapAttributes;
 public class LabelMetadata {
     public static I18n getLabelTitle(TapAttributes tapAttributes) {
 
-        I18n i18n_title = new I18n("en",  tapAttributes.getLabel());
+        I18n i18n_title = new I18n("en",  tapAttributes.getTitle());
         return i18n_title;
     }
 }

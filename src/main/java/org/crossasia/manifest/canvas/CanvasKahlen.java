@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.crossasia.manifest.statics.manifest.ManifestData.*;
 
+@Deprecated
 public class CanvasKahlen {
 
     private final CanvasBuilder canvasBuilder;

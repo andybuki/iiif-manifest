@@ -29,6 +29,9 @@ public class MetadataMembersTap {
 
         // ========== TAP-specific String fields ==========
         addIfPresent(metadataList,
+                MetadataBuilder.create("dc:title", attrs.getLabel(), "zh")
+                        .withLabelLang("en"));
+        addIfPresent(metadataList,
                 MetadataBuilder.create("schema:alternative", attrs.getAlternative(), "en")
                         .withLabelLang("en"));
         addIfPresent(metadataList,

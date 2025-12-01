@@ -13,12 +13,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import static org.crossasia.manifest.statics.manifest.ManifestData.*;
-
+@Deprecated
 class Canvas {
 
     private final CanvasBuilder canvasBuilder;
-    private final String baseUrl = "https://iiif-content.crossasia.org/xasia/";
-    private final String collectionName = "dtab";
+    private final String BASEURL = "https://iiif-content.crossasia.org/xasia/";
+    private final String COLLECTION_NAME = "dtab";
 
     public Canvas() {
         this.canvasBuilder = new CanvasBuilder(SERVER, MANIFEST_COLLECTION, THUMBNAIL_PATH);
@@ -50,8 +50,8 @@ class Canvas {
 
                 // Fetch image dimensions
                 ImageInfoFetcher.ImageDimensions dimensions = ImageInfoFetcher.fetchDimensions(
-                        baseUrl,
-                        collectionName,
+                        BASEURL,
+                        COLLECTION_NAME,
                         id,
                         pageData.getPosition()
                 );

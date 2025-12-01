@@ -163,6 +163,6 @@ public class StaticJsonCaller {
         JsonConnecterTap.people(tapAttributes, jsonObj);
         JsonConnecterTap.keywords(tapAttributes, jsonObj);
         JsonConnecterTap.subject(tapAttributes,jsonObj);
-
+        JsonConnecterTap.label(tapAttributes,jsonObj);
     }
 }

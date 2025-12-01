@@ -2,8 +2,13 @@ package org.crossasia.manifest.start;
 
 import info.freelibrary.iiif.presentation.v3.Manifest;
 import info.freelibrary.iiif.presentation.v3.properties.I18n;
-import org.crossasia.manifest.attributes.*;
+import org.crossasia.manifest.attributes.CollectionAttributes;
+import org.crossasia.manifest.attributes.DtabAttributes;
+import org.crossasia.manifest.attributes.KahlenAttributes;
+import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.TapAttributes;
 import org.crossasia.manifest.json.StaticJsonCaller;
+import org.crossasia.manifest.json.JsonConnecterTap;
 import org.crossasia.manifest.statics.collection.CollectionConfig;
 import org.json.JSONObject;
 
@@ -11,15 +16,16 @@ import static org.crossasia.manifest.metadata.MetadataMembersDtab.metadataMember
 import static org.crossasia.manifest.metadata.MetadataMembersKahlen.metadataMembersKahlen;
 import static org.crossasia.manifest.metadata.MetadataMembersSugawara.metadataMembersSugawara;
 import static org.crossasia.manifest.metadata.MetadataMembersTap.metadataMembersTap;
+import static org.crossasia.manifest.metadata.MetadataMembersTurfan.metadataMembersTurfan;
 
 /**
  * Handles collection-specific attribute parsing and metadata.
  *
  * Maps to existing code:
- * - StaticJsonCallerTurfan.staticJsonCaller() for Turfan
- * - StaticJsonCallerTurfan.staticJsonCallerSugawara() for Sugawara
- * - StaticJsonCallerTurfan.staticJsonCallerDtab() for DTAB
- * - StaticJsonCallerTurfan.staticJsonCallerKahlen() for Kahlen
+ * - StaticJsonCaller.staticJsonCaller() for Turfan
+ * - StaticJsonCaller.staticJsonCallerSugawara() for Sugawara
+ * - StaticJsonCaller.staticJsonCallerDtab() for DTAB
+ * - StaticJsonCaller.staticJsonCallerKahlen() for Kahlen
  */
 public interface AttributeProcessor {
 
@@ -76,23 +82,51 @@ public interface AttributeProcessor {
 
     /**
      * TAP collection processor
-     * Uses same structure as Kahlen (adjust if TAP has different parsing)
+     * Uses TapAttributes and schema:caption for title
      */
     class TapProcessor implements AttributeProcessor {
         @Override
         public I18n extractTitle(JSONObject jsonObj) {
-            // TAP uses Kahlen structure based on your original code
-            TapAttributes attributes = new TapAttributes();
-            //KahlenAttributes attributes = new KahlenAttributes();
-            StaticJsonCaller.staticJsonCallerTap(attributes, jsonObj);
-            return org.crossasia.manifest.metadata.tap.LabelMetadata.getLabelTitle(attributes);
+            // Extract caption from JSON for title
+            if (jsonObj.has("schema:caption")) {
+                Object caption = jsonObj.get("schema:caption");
+                if (caption instanceof String) {
+                    return new I18n("en", (String) caption);
+                }
+            }
+            // Fallback to label if no caption
+            if (jsonObj.has("schema:label")) {
+                Object label = jsonObj.get("schema:label");
+                if (label instanceof String) {
+                    return new I18n("en", (String) label);
+                }
+            }
+            // Fallback to alternative
+            if (jsonObj.has("schema:alternative")) {
+                Object alt = jsonObj.get("schema:alternative");
+                if (alt instanceof String) {
+                    return new I18n("en", (String) alt);
+                }
+            }
+            // Final fallback to id
+            if (jsonObj.has("id")) {
+                return new I18n("none", String.valueOf(jsonObj.get("id")));
+            }
+            return null;
         }
 
         @Override
         public void addMetadata(JSONObject jsonObj, Manifest manifest) {
-            //KahlenAttributes attributes = new KahlenAttributes();
             TapAttributes attributes = new TapAttributes();
-            StaticJsonCaller.staticJsonCallerTap(attributes, jsonObj);
+            // Parse all TAP fields
+            JsonConnecterTap.alternative(attributes, jsonObj);
+            JsonConnecterTap.caption(attributes, jsonObj);
+            JsonConnecterTap.label(attributes, jsonObj);
+            JsonConnecterTap.organization(attributes, jsonObj);
+            JsonConnecterTap.people(attributes, jsonObj);
+            JsonConnecterTap.keywords(attributes, jsonObj);
+            JsonConnecterTap.subject(attributes, jsonObj);
+            // Add metadata to manifest
             metadataMembersTap(attributes, manifest);
         }
     }
@@ -104,11 +138,9 @@ public interface AttributeProcessor {
     class DtabProcessor implements AttributeProcessor {
         @Override
         public I18n extractTitle(JSONObject jsonObj) {
-            //DtabAttributes attributes = new DtabAttributes();
-            CollectionAttributes attributes = new CollectionAttributes();
-            //StaticJsonCallerTurfan.staticJsonCallerDtab(attributes, jsonObj);
-            //return org.crossasia.manifest.metadata.dtab.LabelMetadata.getLabelTitle(attributes);
-            return null;
+            DtabAttributes attributes = new DtabAttributes();
+            StaticJsonCaller.staticJsonCallerDtab(attributes, jsonObj);
+            return org.crossasia.manifest.metadata.dtab.LabelMetadata.getLabelTitle(attributes);
         }
 
         @Override
@@ -134,9 +166,8 @@ public interface AttributeProcessor {
         @Override
         public void addMetadata(JSONObject jsonObj, Manifest manifest) {
             CollectionAttributes attributes = new CollectionAttributes();
-            TurfanAttributes turfanAttributes = new TurfanAttributes();
             StaticJsonCaller.staticJsonCaller(attributes, jsonObj);
-            //metadataMembersTurfan(turfanAttributes, manifest);
+            metadataMembersTurfan(attributes, manifest);
         }
     }
 
