@@ -1,10 +1,9 @@
 package org.crossasia.manifest.json;
 
-import org.crossasia.manifest.attributes.CollectionAttributes;
-import org.crossasia.manifest.attributes.DtabAttributes;
-import org.crossasia.manifest.attributes.KahlenAttributes;
-import org.crossasia.manifest.attributes.SugawaraAttributes;
+import org.crossasia.manifest.attributes.*;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class StaticJsonCaller {
 
@@ -154,6 +153,16 @@ public class StaticJsonCaller {
         JsonConnecterKahlen.schemaKeyword(kahlenAttributes,jsonObj);
         JsonConnecterKahlen.kahlenLabel(kahlenAttributes,jsonObj);
         JsonConnecterKahlen.kahlenIdentifier(kahlenAttributes,jsonObj);
+
+    }
+
+    public static void staticJsonCallerTap(TapAttributes tapAttributes, JSONObject jsonObj) {
+        JsonConnecterTap.alternative(tapAttributes, jsonObj);
+        JsonConnecterTap.caption(tapAttributes, jsonObj);
+        JsonConnecterTap.organization(tapAttributes, jsonObj);
+        JsonConnecterTap.people(tapAttributes, jsonObj);
+        JsonConnecterTap.keywords(tapAttributes, jsonObj);
+        JsonConnecterTap.subject(tapAttributes,jsonObj);
 
     }
 }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import static org.crossasia.manifest.metadata.MetadataMembersDtab.metadataMembersDtab;
 import static org.crossasia.manifest.metadata.MetadataMembersKahlen.metadataMembersKahlen;
 import static org.crossasia.manifest.metadata.MetadataMembersSugawara.metadataMembersSugawara;
+import static org.crossasia.manifest.metadata.MetadataMembersTap.metadataMembersTap;
 
 /**
  * Handles collection-specific attribute parsing and metadata.
@@ -81,16 +82,18 @@ public interface AttributeProcessor {
         @Override
         public I18n extractTitle(JSONObject jsonObj) {
             // TAP uses Kahlen structure based on your original code
-            KahlenAttributes attributes = new KahlenAttributes();
-            StaticJsonCaller.staticJsonCallerKahlen(attributes, jsonObj);
-            return org.crossasia.manifest.metadata.kahlen.LabelMetadata.getLabelTitle(attributes);
+            TapAttributes attributes = new TapAttributes();
+            //KahlenAttributes attributes = new KahlenAttributes();
+            StaticJsonCaller.staticJsonCallerTap(attributes, jsonObj);
+            return org.crossasia.manifest.metadata.tap.LabelMetadata.getLabelTitle(attributes);
         }
 
         @Override
         public void addMetadata(JSONObject jsonObj, Manifest manifest) {
-            KahlenAttributes attributes = new KahlenAttributes();
-            StaticJsonCaller.staticJsonCallerKahlen(attributes, jsonObj);
-            metadataMembersKahlen(attributes, manifest);
+            //KahlenAttributes attributes = new KahlenAttributes();
+            TapAttributes attributes = new TapAttributes();
+            StaticJsonCaller.staticJsonCallerTap(attributes, jsonObj);
+            metadataMembersTap(attributes, manifest);
         }
     }
 

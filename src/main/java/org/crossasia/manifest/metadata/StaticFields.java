@@ -127,7 +127,7 @@ public class StaticFields {
      */
     @Deprecated
     public static void staticFields(String id, Manifest manifest, String title) {
-        staticFields(id, manifest, title, CollectionConfig.KAHLEN);
+        staticFields(id, manifest, title, CollectionConfig.TAP);
     }
 
     /**

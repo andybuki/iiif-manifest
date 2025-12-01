@@ -19,7 +19,7 @@ public final class ManifestConfig {
     public static final String LOGO_LINK = "https://crossasia.org/fileadmin/templates/img/xa1.png";
 
     // ========== Localization ==========
-    public static final String DEFAULT_LANGUAGE = "de";
+    public static final String DEFAULT_LANGUAGE = "en";
 
     // ========== Rights & Attribution ==========
     public static final String MANIFEST_RIGHTS = "https://creativecommons.org/licenses/by-nc-sa/4.0/";

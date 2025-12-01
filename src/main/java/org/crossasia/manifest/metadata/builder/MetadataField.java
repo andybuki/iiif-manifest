@@ -172,6 +172,32 @@ public enum MetadataField {
     }
 
     /**
+     * Create a MetadataBuilder for this field with a List, auto-detecting language.
+     * Automatically separates Chinese, Japanese, Korean, etc. from other languages.
+     *
+     * Usage:
+     *   MetadataField.SCHEMA_KEYWORD.withAutoLang(keywords)
+     *
+     * Input: ["Jiang Jingguo", "蔣經國", "visitors", "來賓"]
+     * Result: { "en": ["Jiang Jingguo", "visitors"], "zh": ["蔣經國", "來賓"] }
+     */
+    public MetadataBuilder withAutoLang(List<?> values) {
+        return MetadataBuilder.createWithAutoLang(label, values, defaultValueLang)
+                .withLabelLang(labelLang);
+    }
+
+    /**
+     * Create a MetadataBuilder for this field with a List, auto-detecting language.
+     *
+     * @param values List of mixed-language values
+     * @param defaultLang Default language for values without detected script
+     */
+    public MetadataBuilder withAutoLang(List<?> values, String defaultLang) {
+        return MetadataBuilder.createWithAutoLang(label, values, defaultLang)
+                .withLabelLang(labelLang);
+    }
+
+    /**
      * Create an empty MetadataBuilder for this field (for multi-language values)
      */
     public MetadataBuilder builder() {

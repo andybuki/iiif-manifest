@@ -94,8 +94,8 @@ public enum CollectionConfig {
     TAP(
             "tap",
             "tap+",
-            null,
-            null,
+            "https://itr02.crossasia.org/fcrepo/rest/tap",
+            "https://itr02.crossasia.org/fcrepo/rest/tap/collection",
             "https://iiif.crossasia.org/s/tap/",
             "TAP Collection",
             "TAP Collection documents.",

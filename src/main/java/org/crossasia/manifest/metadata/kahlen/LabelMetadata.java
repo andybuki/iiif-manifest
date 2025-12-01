@@ -13,6 +13,4 @@ public class LabelMetadata {
         I18n i18n_title = new I18n("en",  kahlenAttributes.getLabel());
         return i18n_title;
     }
-
-
 }

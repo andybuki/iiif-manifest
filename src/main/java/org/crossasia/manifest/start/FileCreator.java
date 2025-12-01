@@ -30,7 +30,7 @@ public class FileCreator {
      * Kept for backward compatibility with IIIFManifest.buildManifest()
      */
     public static void fileCreator(File[] filesDir, Manifestor manifestor) throws IOException {
-        processFiles(filesDir, manifestor, CollectionConfig.TAP);
+        processFiles(filesDir, manifestor, CollectionConfig.KAHLEN);
     }
 
     /**
@@ -78,10 +78,10 @@ public class FileCreator {
         // Create manifest
         Manifest manifest = createManifest(file, id, title);
 
-        // Add static fields
+        // Add static fields with collection config
         String titleString = (title != null && title.getStrings() != null &&
                 !title.getStrings().isEmpty()) ? title.getStrings().get(0) : id;
-        StaticFields.staticFields(id, manifest, titleString);
+        StaticFields.staticFields(id, manifest, titleString, config);
 
         // Add collection-specific metadata
         attributeProcessor.addMetadata(jsonObj, manifest);
@@ -107,10 +107,12 @@ public class FileCreator {
     }
 
     /**
-     * Extract ID from file, removing collection-specific prefix
+     * Extract ID from file, removing collection-specific prefix.
+     * Uses collection-aware ID transformation.
      */
     private static String extractId(File file, CollectionConfig config) {
-        String rawId = IdTransformation.idTransformator(file);
+        // Use collection-aware transformation (no dash added for TAP, etc.)
+        String rawId = IdTransformation.idTransformator(file, config);
         // Remove collection prefix (e.g., "kahlen_", "dtab_", "tap_")
         String prefix = config.getCollectionName() + "_";
         return rawId.replace(prefix, "");
