@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import org.crossasia.manifest.attributes.domain.PlaceInfo;
-
+@Deprecated
 public class PlaceDetail2 {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

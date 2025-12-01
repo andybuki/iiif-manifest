@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.domain.ScriptInfo;
-
+@Deprecated
 public class UsedScripts {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         ScriptInfo scriptInfo = dtabAttributes.getScriptInfo();

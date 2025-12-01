@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.domain.PersonRole;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class ReceiverId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         PersonRole receiver = dtabAttributes.getReceiver();

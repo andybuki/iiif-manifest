@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 import org.crossasia.manifest.attributes.KahlenAttributes;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class Place {
     public static Metadata get(KahlenAttributes kahlenAttributes, Manifest manifest) {
         Metadata metadata = null;

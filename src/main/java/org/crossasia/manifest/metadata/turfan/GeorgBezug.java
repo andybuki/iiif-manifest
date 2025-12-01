@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class GeorgBezug {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

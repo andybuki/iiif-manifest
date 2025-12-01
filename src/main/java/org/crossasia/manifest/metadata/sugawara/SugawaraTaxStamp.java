@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
+@Deprecated
 public class SugawaraTaxStamp {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         List<String> taxStamps = sugawaraAttributes.getTaxStamps();

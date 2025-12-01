@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
-
+@Deprecated
 public class NoteCreator {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

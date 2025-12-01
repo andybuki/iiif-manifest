@@ -11,7 +11,7 @@ import org.crossasia.manifest.attributes.domain.SealInfo;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
+@Deprecated
 public class SealColorNEW {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         SealInfo sealInfo = dtabAttributes.getSealInfo();

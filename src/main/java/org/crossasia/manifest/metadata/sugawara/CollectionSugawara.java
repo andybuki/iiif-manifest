@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.crossasia.manifest.statics.collection.Label.SUGAWARA;
-
+@Deprecated
 public class CollectionSugawara {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         List<String> collections = sugawaraAttributes.getCollections();

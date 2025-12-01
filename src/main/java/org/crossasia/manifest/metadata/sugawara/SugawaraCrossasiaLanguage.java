@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.ScriptInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SugawaraCrossasiaLanguage {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         ScriptInfo scriptInfo = sugawaraAttributes.getScriptInfo();

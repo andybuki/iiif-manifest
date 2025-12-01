@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
-
+@Deprecated
 public class SchemaCategory {
 
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {

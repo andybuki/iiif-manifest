@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.ScriptInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class Script {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         ScriptInfo scriptInfo = dtabAttributes.getScriptInfo();

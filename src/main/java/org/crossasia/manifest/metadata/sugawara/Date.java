@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.attributes.domain.DateInfo;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class Date {
 
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {

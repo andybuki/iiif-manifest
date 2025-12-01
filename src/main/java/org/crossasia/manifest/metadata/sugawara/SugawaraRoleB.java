@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.attributes.domain.PersonRole;
-
+@Deprecated
 public class SugawaraRoleB {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         PersonRole roleB = sugawaraAttributes.getRoleB();

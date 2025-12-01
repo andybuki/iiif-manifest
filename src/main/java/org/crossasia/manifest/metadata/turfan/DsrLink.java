@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class DsrLink {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

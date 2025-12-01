@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 import java.util.List;
-
+@Deprecated
 public class ObjID {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

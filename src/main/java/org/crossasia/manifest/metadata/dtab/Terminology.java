@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
-
+@Deprecated
 public class Terminology {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         Metadata metadata = null;

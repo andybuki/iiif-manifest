@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SugawaraPlace {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();

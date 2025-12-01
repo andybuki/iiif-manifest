@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.PersonRole;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SchemaPersonRoleB {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         PersonRole roleB = sugawaraAttributes.getRoleB();

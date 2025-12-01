@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.FileReferences;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class PreviewImageFiles {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         FileReferences fileReferences = dtabAttributes.getFileReferences();

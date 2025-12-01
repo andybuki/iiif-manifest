@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.attributes.domain.PlaceInfo;
-
+@Deprecated
 public class CrossasiaPlaceType3 {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         PlaceInfo placeInfo = sugawaraAttributes.getPlaceInfo();

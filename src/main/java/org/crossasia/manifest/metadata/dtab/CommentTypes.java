@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.DtabAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class CommentTypes {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         String commentTypes = dtabAttributes.getCommentAboutTypesOfDocument();

@@ -11,7 +11,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SugawaraSeal {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         SealInfo sealInfo = sugawaraAttributes.getSealInfo();

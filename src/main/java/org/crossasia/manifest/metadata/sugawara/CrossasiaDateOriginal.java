@@ -8,7 +8,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.SugawaraAttributes;
 import org.crossasia.manifest.attributes.domain.DateInfo;
 import org.crossasia.manifest.attributes.domain.PlaceInfo;
-
+@Deprecated
 public class CrossasiaDateOriginal {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         DateInfo dateInfo = sugawaraAttributes.getDateInfo();

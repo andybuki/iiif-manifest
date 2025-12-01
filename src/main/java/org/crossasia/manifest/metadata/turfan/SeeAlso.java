@@ -8,7 +8,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class SeeAlso {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

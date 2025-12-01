@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+@Deprecated
 public class CreditText {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

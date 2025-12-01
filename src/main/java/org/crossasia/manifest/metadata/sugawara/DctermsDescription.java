@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.SugawaraAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class DctermsDescription {
     public static Metadata get(SugawaraAttributes sugawaraAttributes, Manifest manifest) {
         List<String> descriptions = sugawaraAttributes.getDescriptions();

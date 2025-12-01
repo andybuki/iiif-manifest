@@ -8,7 +8,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.KahlenAttributes;
 
 import java.util.ArrayList;
-
+@Deprecated
 public class Index {
     public static Metadata get(KahlenAttributes kahlenAttributes, Manifest manifest) {
         Metadata metadata = null;

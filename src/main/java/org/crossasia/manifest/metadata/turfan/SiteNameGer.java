@@ -9,7 +9,7 @@ import org.crossasia.manifest.attributes.CollectionAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SiteNameGer {
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
         List<String> siteNamesGerman = turfanAttributes.getSiteNamesGerman();

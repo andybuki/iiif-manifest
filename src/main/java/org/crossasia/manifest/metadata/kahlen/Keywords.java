@@ -6,7 +6,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.KahlenAttributes;
-
+@Deprecated
 public class Keywords {
     public static Metadata get(KahlenAttributes kahlenAttributes, Manifest manifest) {
         Metadata metadata = null;

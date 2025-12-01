@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.PlaceInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+@Deprecated
 public class PlaceDetail {
 
     public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {

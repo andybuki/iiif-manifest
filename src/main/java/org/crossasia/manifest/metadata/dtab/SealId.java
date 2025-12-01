@@ -10,7 +10,7 @@ import org.crossasia.manifest.attributes.domain.SealInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public class SealId {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
 

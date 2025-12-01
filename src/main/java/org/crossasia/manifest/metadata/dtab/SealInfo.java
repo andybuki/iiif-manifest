@@ -7,7 +7,7 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.DtabAttributes;
 import java.util.List;
-
+@Deprecated
 public class SealInfo {
     public static Metadata get(DtabAttributes dtabAttributes, Manifest manifest) {
         org.crossasia.manifest.attributes.domain.SealInfo sealInfo = dtabAttributes.getSealInfo();
