@@ -10,6 +10,8 @@ import org.crossasia.manifest.statics.collection.CollectionConfig;
 import org.crossasia.manifest.statics.manifest.ManifestConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ import java.util.List;
  *   CanvasCreator.forDtab().createCanvas(file, jsonObj, manifest);
  */
 public class CanvasCreator {
+
+    private static final Logger logger = LoggerFactory.getLogger(CanvasCreator.class);
 
     protected final CollectionConfig config;
     private final CanvasBuilder canvasBuilder;
@@ -149,9 +153,8 @@ public class CanvasCreator {
      * Handle errors during page processing
      */
     private void handlePageError(File file, int pageIndex, Exception e) {
-        System.err.println("Error processing page " + pageIndex +
-                " in file " + file.getName() + ": " + e.getMessage());
-        e.printStackTrace();
+        logger.error("Error processing page {} in file {}: {}",
+                pageIndex, file.getName(), e.getMessage(), e);
     }
 
     // ========== Factory Methods ==========

@@ -1,31 +1,211 @@
-# IIIFManifestBuilder
+# IIIF Manifest Builder
 
-This app is for creating IIIF manifests, based on IIIF 3.0 presentation standards, 
-from already existing Json files.
+A Java application for creating IIIF 3.0 Presentation API manifests from JSON source files.
 
-I use predifined names in metadata block.
-You need to adapt your json file before creating a IIIF Manifest.
+## Overview
 
-As result you'll get a IIIF Manifest. If you add a folger of Json files you'll get a list of IIIF Manifests back.
+This application converts JSON files into IIIF 3.0 compliant manifests, supporting multiple collections with different metadata schemas. The builder supports:
 
+- Multiple collection types (DTAB, Kahlen, TAP, Turfan, Sugawara, and more)
+- Multi-language metadata with automatic script detection
+- Integration with IIIF Image API servers
+- Flexible configuration via properties and environment variables
 
-Hier i'll publish some examples:
+## Features
 
-First of all how should your json file look like.
+- **IIIF 3.0 Compliant**: Generates manifests following the IIIF Presentation API 3.0 specification
+- **Multi-Collection Support**: Configure and process multiple collections with different metadata requirements
+- **Language Detection**: Automatic detection and tagging of Chinese, Japanese, Korean, Thai, Tibetan, and Arabic text
+- **Flexible Configuration**: Environment variables and properties files for easy deployment
+- **Robust Error Handling**: Comprehensive logging and error recovery
+- **Batch Processing**: Process entire folders of JSON files at once
 
-I'll give you a list of possible metadata fileds, that i allready use in my IIIF Manifests.
-Before starting you need to give a URL with your IIIF Image Server.
+## Requirements
 
-I store Image files in Fedora repository and use https://ngcs-beta.staatsbibliothek-berlin.de/docs  NGCS-Chula as IIIF Image Server
-The actual version based on IIIF standard 2.1, but IIIF Presentation 3.0 works correctly with the previous version.
+- Java 17 or higher
+- Maven 3.6+
+- Access to a IIIF Image Server (e.g., NGCS-Chula)
+- Fedora Repository (optional, for storage)
 
+## Quick Start
 
-Each json file will converts in one IIIF Manifest. 
-Json file should have pages array where all the pages are. 
+### 1. Clone and Build
 
-IIIF Image Server:
-Server url : https://iiif-content.crossasia.org/xasia/ 
-Manifest collection: 
-Pages:
+```bash
+git clone <repository-url>
+cd iiif-manifest
+mvn clean install
+```
 
-Hier i give a list of all obligatorily fields in metadata and in pages level
+### 2. Configure
+
+Copy the example environment file and update with your settings:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your configuration:
+```properties
+IIIF_COLLECTIONS_BASE_PATH=/path/to/your/collections
+IIIF_SERVER_BASE_URL=https://iiif-content.crossasia.org/xasia/
+FEDORA_BASE_URL=https://itr02.crossasia.org/fcrepo/rest
+```
+
+### 3. Run
+
+```bash
+java -jar target/iiifmanifestbuilders-1.0-SNAPSHOT.jar
+```
+
+Or use the main class:
+```bash
+java org.crossasia.manifest.IIIFManifestStart
+```
+
+## Input JSON Format
+
+Each JSON file is converted into one IIIF Manifest. The JSON structure should include:
+
+### Required Fields
+
+- `id`: Unique identifier for the document
+- `pages`: Array of page objects containing image information
+
+### Example JSON Structure
+
+```json
+{
+  "id": "document_001",
+  "title": "Document Title",
+  "pages": [
+    {
+      "position": "1",
+      "name": "/path/to/image1.jpg",
+      "label": "Page 1"
+    },
+    {
+      "position": "2",
+      "name": "/path/to/image2.jpg",
+      "label": "Page 2"
+    }
+  ],
+  "metadata": {
+    "date": "2023",
+    "author": "Author Name",
+    "description": "Document description"
+  }
+}
+```
+
+## Supported Collections
+
+The application currently supports the following collections, each with specific metadata schemas:
+
+- **DTAB**: Tibetan Archives of the Berlin State Library
+- **Kahlen**: Tangtong Gyalpo Archive Wolf Kahlen
+- **TAP**: Tibetan and Himalayan Library
+- **Turfan**: Turfan Collection from Museum für Asiatische Kunst
+- **Sugawara**: Kashgar Contractual Documents Collection
+
+## Output
+
+For each input JSON file, the application generates:
+
+- A IIIF Manifest JSON file with complete metadata
+- Properly structured canvas objects for each page
+- Thumbnail references
+- Multi-language labels and metadata
+
+Output manifests are saved to the collection-specific manifest folder (configurable).
+
+## IIIF Image Server
+
+The application integrates with IIIF Image API 2.1+ servers:
+
+- **Default Server**: `https://iiif-content.crossasia.org/xasia/`
+- **Image Info**: Automatically fetches dimensions from `/info.json` endpoints
+- **Thumbnail Generation**: Creates thumbnail URIs for manifest display
+
+## Configuration
+
+### Application Properties
+
+Edit `src/main/resources/application.properties`:
+
+```properties
+# Logging
+logging.level.org.crossasia=DEBUG
+
+# Collection paths
+iiif.collections.base.path=/path/to/collections
+
+# IIIF Server
+iiif.server.base.url=https://iiif-content.crossasia.org/xasia/
+```
+
+### Collection-Specific Configuration
+
+Collections are configured in `CollectionConfig.java`. To add a new collection:
+
+1. Add an enum entry to `CollectionConfig`
+2. Specify collection name, URLs, paths, and metadata schema
+3. Optionally create a custom `AttributeProcessor` for collection-specific metadata
+
+## Development
+
+### Running Tests
+
+```bash
+mvn test
+```
+
+### Building
+
+```bash
+mvn clean package
+```
+
+### Code Structure
+
+- `org.crossasia.manifest.canvas`: Canvas creation and page handling
+- `org.crossasia.manifest.metadata`: Metadata extraction and building
+- `org.crossasia.manifest.attributes`: Collection-specific attribute handlers
+- `org.crossasia.manifest.statics`: Configuration and static resources
+- `org.crossasia.manifest.transformation`: ID and data transformations
+
+## Troubleshooting
+
+### Common Issues
+
+**No files found in directory**
+- Check that `IIIF_COLLECTIONS_BASE_PATH` is set correctly
+- Verify the collection result folder exists and contains JSON files
+
+**Image dimensions not found**
+- Verify IIIF server is accessible
+- Check that image IDs match the server's expected format
+- Review logs for specific URL errors
+
+**JSON parsing errors**
+- Validate JSON syntax using a JSON validator
+- Ensure required fields (`id`, `pages`) are present
+- Check for proper UTF-8 encoding
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
+
+## License
+
+[Add your license information here]
+
+## Contact
+
+For questions or support, please [add contact information]
