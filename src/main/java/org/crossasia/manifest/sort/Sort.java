@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Sort {
+
+    private static final Logger logger = LoggerFactory.getLogger(Sort.class);
     public static void main(String[] args) throws FileNotFoundException {
         File in = new File("C:\\Colllections\\dtab\\manifests\\split\\test\\");
         File directory = new File(String.valueOf(in));
@@ -58,7 +62,11 @@ public class Sort {
 
                     }
                     catch (JSONException e) {
-                        //do something
+                        logger.warn("Failed to extract sorting fields. Using empty strings for comparison.", e);
+                        valA = "";
+                        valB = "";
+                        albenA = "";
+                        albenB = "";
                     }
 /*
                     if (valA.contains("IMAGES")  && (albenA.contains("a") || albenA.contains("b") || albenB.contains("a")|| albenB.contains("b"))) {
@@ -110,7 +118,7 @@ public class Sort {
             jsonObj.put("pages",sortedJsonArray);
             int length = sortedJsonArray.length();
             if (length>=20 && imageName=="OK"){
-                System.out.println( jsonObj.get("id") +"-"+ length);
+                logger.info("{}-{}", jsonObj.get("id"), length);
             }
             out = new PrintStream(new FileOutputStream(f+"\\"+ file.getName()));
             out.println(jsonObj);

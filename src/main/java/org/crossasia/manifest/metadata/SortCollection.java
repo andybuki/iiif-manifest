@@ -3,6 +3,8 @@ package org.crossasia.manifest.metadata;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +14,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SortCollection {
+
+    private static final Logger logger = LoggerFactory.getLogger(SortCollection.class);
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/result3/collection2.json");
         //JSONObject jsonObj = new JSONObject(new JSONTokener(new FileInputStream(file)));
@@ -37,7 +41,9 @@ public class SortCollection {
                     valB = (String) b.get(KEY_NAME);
                 }
                 catch (JSONException e) {
-                    //do something
+                    logger.warn("Failed to extract '{}' field for comparison. Using empty string.", KEY_NAME, e);
+                    valA = "";
+                    valB = "";
                 }
 
                 return valA.compareTo(valB);
