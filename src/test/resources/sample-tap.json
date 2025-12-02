@@ -1,0 +1,28 @@
+{
+  "id": "tap_A0001",
+  "title": "Tibetan Manuscript Collection",
+  "pages": [
+    {
+      "position": "1",
+      "name": "/IMAGES/tap/A0001_1.jpg",
+      "label": "Folio 1r"
+    },
+    {
+      "position": "2",
+      "name": "/IMAGES/tap/A0001_2.jpg",
+      "label": "Folio 1v"
+    },
+    {
+      "position": "3",
+      "name": "/IMAGES/tap/A0001_3.jpg",
+      "label": "Folio 2r"
+    }
+  ],
+  "metadata": {
+    "identifier": "TAP-A0001",
+    "date": "18th century",
+    "language": ["bod", "en"],
+    "subject": ["Buddhist texts", "Tibetan manuscripts"],
+    "description": "Collection of Tibetan Buddhist manuscripts"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "kahlen_001",
+  "title": "Tangtong Gyalpo Photograph",
+  "pages": [
+    {
+      "position": "1",
+      "name": "/IMAGES/kahlen/photo_001.jpg",
+      "label": "Main photograph"
+    }
+  ],
+  "metadata": {
+    "identifier": "WK-1990-001",
+    "date": "1990",
+    "place": "Lhasa, Tibet",
+    "subject": ["Architecture", "Buddhist temples", "Tangtong Gyalpo"],
+    "keywords": ["Tibet", "西藏", "Buddhism", "Photography"],
+    "index": "Architecture > Religious Buildings"
+  }
+}
