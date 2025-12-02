@@ -2,6 +2,8 @@ package org.crossasia.manifest.start;
 
 import info.freelibrary.iiif.presentation.v3.utils.Manifestor;
 import org.crossasia.manifest.statics.collection.CollectionConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.io.IOException;
  *   IIIFManifest.buildManifest(CollectionConfig.DTAB);      // Specific collection
  */
 public class IIIFManifest {
+
+    private static final Logger logger = LoggerFactory.getLogger(IIIFManifest.class);
 
     /**
      * Build manifests using default configuration (Kahlen collection).
@@ -37,7 +41,7 @@ public class IIIFManifest {
 
         File[] filesDir = inputDir.listFiles();
         if (filesDir == null || filesDir.length == 0) {
-            System.out.println("No files found in: " + config.getResultFolder());
+            logger.warn("No files found in: {}", config.getResultFolder());
             return;
         }
 

@@ -10,6 +10,8 @@ import org.crossasia.manifest.statics.collection.CollectionConfig;
 import org.crossasia.manifest.transformation.IdTransformation;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +26,8 @@ import java.io.IOException;
  * 3. Done! No new methods needed here.
  */
 public class FileCreator {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileCreator.class);
 
     /**
      * Legacy method - processes Kahlen files (default behavior)
@@ -49,10 +53,9 @@ public class FileCreator {
         for (File file : filesDir) {
             try {
                 processFile(file, outputDir, canvasCreator, attributeProcessor, manifestor, config);
-                System.out.println("Processed: " + file.getName());
+                logger.info("Processed: {}", file.getName());
             } catch (Exception e) {
-                System.err.println("Error processing file: " + file.getName() + " - " + e.getMessage());
-                e.printStackTrace();
+                logger.error("Error processing file: {} - {}", file.getName(), e.getMessage(), e);
             }
         }
     }

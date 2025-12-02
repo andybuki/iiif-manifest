@@ -1,0 +1,45 @@
+{
+  "id": 1001,
+  "title": "Sample DTAB Document",
+  "pages": [
+    {
+      "position": "1",
+      "name": "/IMAGES/dtab/B-0001_1.jpg",
+      "label": "Page 1"
+    },
+    {
+      "position": "2",
+      "name": "/IMAGES/dtab/B-0001_2.jpg",
+      "label": "Page 2"
+    }
+  ],
+  "metadata": {
+    "document_id": "B-0001",
+    "date": "1750",
+    "place": "Lhasa",
+    "sender": {
+      "name": "Sender Name",
+      "role": "Official",
+      "comment": "High official"
+    },
+    "receiver": {
+      "name": "Receiver Name",
+      "role": "Minister",
+      "comment": "Government minister"
+    },
+    "seal": {
+      "seal_id": "SEAL001",
+      "seal_inscription": "Official Seal",
+      "seal_color": "Red",
+      "seal_form": "Round"
+    },
+    "script": {
+      "script_name": "Tibetan",
+      "script_role": "Main text"
+    },
+    "archive": {
+      "archive_name": "Berlin State Library",
+      "archive_id": "BSL-TB-001"
+    }
+  }
+}
