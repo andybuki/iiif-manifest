@@ -7,12 +7,12 @@ import info.freelibrary.iiif.presentation.v3.properties.Metadata;
 import info.freelibrary.iiif.presentation.v3.properties.Value;
 import org.crossasia.manifest.attributes.CollectionAttributes;
 
-import static org.crossasia.manifest.statics.collection.Label.TURFAN;
+//import static org.crossasia.manifest.statics.collection.Label.TURFAN;
 import java.util.ArrayList;
 import java.util.List;
 @Deprecated
 public class CollectionTurfan {
-    public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
+    /*public static Metadata get(CollectionAttributes turfanAttributes, Manifest manifest) {
         List<String> collections = turfanAttributes.getCollections();
 
         if (collections != null && !collections.isEmpty()) {
@@ -33,5 +33,5 @@ public class CollectionTurfan {
 
             return metadata;
         }
-    }
+    }*/
 }
