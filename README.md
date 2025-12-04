@@ -204,8 +204,21 @@ Contributions are welcome! Please:
 
 ## License
 
-[Add your license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The MIT License is a permissive free software license that allows anyone to:
+- Use the software for any purpose
+- Modify the software
+- Distribute the software
+- Include the software in proprietary products
+
+The only requirement is that the license and copyright notice must be included in all copies or substantial portions of the software.
 
 ## Contact
 
-For questions or support, please [add contact information]
+**Project Maintainer:**
+- Andrey Buchmann
+- Email: Andrey.Buchmann@sbb.spk-berlin.de
+- Institution: Staatsbibliothek zu Berlin - Preußischer Kulturbesitz
+
+For questions, support, or collaboration inquiries, please contact the maintainer via email.
