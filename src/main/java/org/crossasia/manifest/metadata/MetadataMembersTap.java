@@ -23,17 +23,22 @@ public class MetadataMembersTap {
     public static void metadataMembersTap(TapAttributes attrs, Manifest manifest) {
         List<Metadata> metadataList = new ArrayList<>();
 
-        // ========== From BaseCollectionAttributes (if available) ==========
-        // addIfPresent(metadataList, MetadataField.DC_IDENTIFIER.with(attrs.getIdentifier()));
-        // addIfPresent(metadataList, MetadataField.DC_TITLE.with(attrs.getTitle()));
+        // ========== dc:title - combines Chinese title + English alternative ==========
+        // dc:title has Chinese value, schema:alternative has English value
+        // Result: { "zh": ["中文標題"], "en": ["English Title"] }
+        MetadataBuilder titleBuilder = MetadataBuilder.create("dc:title").withLabelLang("en");
+        if (isNotEmpty(attrs.getTitle())) {
+            // dc:title is Chinese
+            titleBuilder.addValue("zh", attrs.getTitle());
+        }
+        if (isNotEmpty(attrs.getAlternative())) {
+            // schema:alternative is English - add to same dc:title field
+            titleBuilder.addValue("en", attrs.getAlternative());
+        }
+        addIfPresent(metadataList, titleBuilder);
 
         // ========== TAP-specific String fields ==========
-        addIfPresent(metadataList,
-                MetadataBuilder.create("dc:title", attrs.getLabel(), "zh")
-                        .withLabelLang("en"));
-        addIfPresent(metadataList,
-                MetadataBuilder.create("schema:alternative", attrs.getAlternative(), "en")
-                        .withLabelLang("en"));
+        // NOTE: schema:alternative is NOT added separately - it's part of dc:title above
         addIfPresent(metadataList,
                 MetadataBuilder.create("schema:caption", attrs.getCaption(), "en")
                         .withLabelLang("en"));
@@ -71,5 +76,9 @@ public class MetadataMembersTap {
                 list.add(metadata);
             }
         }
+    }
+
+    private static boolean isNotEmpty(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }

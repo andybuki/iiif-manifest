@@ -119,6 +119,7 @@ public interface AttributeProcessor {
         public void addMetadata(JSONObject jsonObj, Manifest manifest) {
             TapAttributes attributes = new TapAttributes();
             // Parse all TAP fields
+            JsonConnecterTap.title(attributes, jsonObj);
             JsonConnecterTap.alternative(attributes, jsonObj);
             JsonConnecterTap.caption(attributes, jsonObj);
             JsonConnecterTap.label(attributes, jsonObj);

@@ -13,6 +13,14 @@ import java.util.List;
  */
 public class JsonConnecterTap {
 
+    public static void title(TapAttributes tapAttributes, @NotNull JSONObject jsonObj) {
+        if (jsonObj.has("dc:title")) {
+            if (jsonObj.get("dc:title") instanceof String) {
+                tapAttributes.setTitle((String) jsonObj.get("dc:title"));
+            }
+        }
+    }
+
     public static void alternative(TapAttributes tapAttributes, @NotNull JSONObject jsonObj) {
         if (jsonObj.has("schema:alternative")) {
             if (jsonObj.get("schema:alternative") instanceof String) {
@@ -30,9 +38,9 @@ public class JsonConnecterTap {
     }
 
     public static void label(TapAttributes tapAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dc:title")) {
-            if (jsonObj.get("dc:title") instanceof String) {
-                tapAttributes.setLabel((String) jsonObj.get("dc:title"));
+        if (jsonObj.has("schema:label")) {
+            if (jsonObj.get("schema:label") instanceof String) {
+                tapAttributes.setLabel((String) jsonObj.get("schema:label"));
             }
         }
     }
@@ -67,8 +75,8 @@ public class JsonConnecterTap {
     }
 
     public static void subject(TapAttributes tapAttributes, @NotNull JSONObject jsonObj) {
-        if (jsonObj.has("dcterms:subject")) {
-            List<String> values = JsonConverter.getStringList(jsonObj, "dcterms:subject");
+        if (jsonObj.has("schema:subject")) {
+            List<String> values = JsonConverter.getStringList(jsonObj, "schema:subject");
             if (values != null && !values.isEmpty()) {
                 tapAttributes.setSubject(values);
             }

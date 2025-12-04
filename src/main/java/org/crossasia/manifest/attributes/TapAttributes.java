@@ -5,6 +5,7 @@ import org.crossasia.manifest.attributes.base.BaseCollectionAttributes;
 import java.util.List;
 
 public class TapAttributes extends BaseCollectionAttributes {
+    private String title;  // dc:title (Chinese)
     private String alternative;
     private String caption;
     private List<String> organization;
@@ -12,7 +13,17 @@ public class TapAttributes extends BaseCollectionAttributes {
     private List<String> keywords;
     private List<String> subject;
     private String label;
-    public TapAttributes() {super();
+
+    public TapAttributes() {
+        super();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAlternative() {
