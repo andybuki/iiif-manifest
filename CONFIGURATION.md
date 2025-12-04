@@ -271,4 +271,6 @@ For configuration help:
 1. Check logs: `logs/iiif-manifest-builder.log`
 2. Review this documentation
 3. Check GitHub issues
-4. Contact the development team
+4. Contact the project maintainer:
+   - **Andrey Buchmann** - Andrey.Buchmann@sbb.spk-berlin.de
+   - Staatsbibliothek zu Berlin - Preußischer Kulturbesitz

@@ -187,6 +187,12 @@ If you encounter issues during migration:
 | 1.0 | 2024-12 | Initial deprecation of collection-specific classes |
 | 2.0 | TBD | Planned removal of deprecated features |
 
+## Contact
+
+For migration assistance or questions about deprecated features:
+- **Andrey Buchmann** - Andrey.Buchmann@sbb.spk-berlin.de
+- Staatsbibliothek zu Berlin - Preußischer Kulturbesitz
+
 ## See Also
 
 - [CONFIGURATION.md](CONFIGURATION.md) - Configuration guide

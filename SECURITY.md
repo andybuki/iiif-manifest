@@ -12,7 +12,7 @@
 If you discover a security vulnerability in the IIIF Manifest Builder, please report it by:
 
 1. **Do NOT** open a public GitHub issue
-2. Email the security team (add appropriate email)
+2. Email the security contact: **Andrey.Buchmann@sbb.spk-berlin.de**
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce
@@ -205,9 +205,9 @@ Run `mvn dependency:tree` to see full dependency tree.
 ## Contact
 
 For security concerns:
-- Security team: [Add email]
-- General issues: GitHub Issues
-- Urgent vulnerabilities: [Add emergency contact]
+- **Security Contact**: Andrey Buchmann - Andrey.Buchmann@sbb.spk-berlin.de
+- **General Issues**: GitHub Issues
+- **Urgent Vulnerabilities**: Andrey.Buchmann@sbb.spk-berlin.de (mark as URGENT in subject)
 
 ## Acknowledgments
 
