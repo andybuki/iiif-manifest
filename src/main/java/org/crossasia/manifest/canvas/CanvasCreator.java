@@ -10,8 +10,6 @@ import org.crossasia.manifest.statics.collection.CollectionConfig;
 import org.crossasia.manifest.statics.manifest.ManifestConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,8 +32,6 @@ import java.util.List;
  *   CanvasCreator.forDtab().createCanvas(file, jsonObj, manifest);
  */
 public class CanvasCreator {
-
-    private static final Logger logger = LoggerFactory.getLogger(CanvasCreator.class);
 
     protected final CollectionConfig config;
     private final CanvasBuilder canvasBuilder;
@@ -69,6 +65,9 @@ public class CanvasCreator {
         String id = extractId(jsonObj);
         String firstPosition = "1";
 
+        // Extract canvas label from JSON (schema:caption or fallback)
+        String canvasLabel = extractCanvasLabel(jsonObj, id);
+
         for (int j = 0; j < pages.length(); j++) {
             JSONObject pageObj = pages.getJSONObject(j);
 
@@ -91,7 +90,7 @@ public class CanvasCreator {
                 );
 
                 info.freelibrary.iiif.presentation.v3.Canvas canvas =
-                        canvasBuilder.buildCanvas(id, pageData, dimensions);
+                        canvasBuilder.buildCanvas(id, pageData, dimensions, canvasLabel);
 
                 canvases.add(canvas);
 
@@ -102,6 +101,36 @@ public class CanvasCreator {
 
         manifest.setCanvases(canvases);
         setManifestThumbnail(manifest, id, firstPosition);
+    }
+
+    /**
+     * Extract canvas label from JSON.
+     * Priority: schema:caption → schema:label → schema:alternative → id
+     */
+    protected String extractCanvasLabel(JSONObject jsonObj, String id) {
+        // Try schema:caption first
+        if (jsonObj.has("schema:caption")) {
+            Object caption = jsonObj.get("schema:caption");
+            if (caption instanceof String && !((String) caption).isEmpty()) {
+                return (String) caption;
+            }
+        }
+        // Fallback to schema:label
+        if (jsonObj.has("schema:label")) {
+            Object label = jsonObj.get("schema:label");
+            if (label instanceof String && !((String) label).isEmpty()) {
+                return (String) label;
+            }
+        }
+        // Fallback to schema:alternative
+        if (jsonObj.has("schema:alternative")) {
+            Object alt = jsonObj.get("schema:alternative");
+            if (alt instanceof String && !((String) alt).isEmpty()) {
+                return (String) alt;
+            }
+        }
+        // Final fallback to id
+        return id;
     }
 
     /**
@@ -153,8 +182,9 @@ public class CanvasCreator {
      * Handle errors during page processing
      */
     private void handlePageError(File file, int pageIndex, Exception e) {
-        logger.error("Error processing page {} in file {}: {}",
-                pageIndex, file.getName(), e.getMessage(), e);
+        System.err.println("Error processing page " + pageIndex +
+                " in file " + file.getName() + ": " + e.getMessage());
+        e.printStackTrace();
     }
 
     // ========== Factory Methods ==========

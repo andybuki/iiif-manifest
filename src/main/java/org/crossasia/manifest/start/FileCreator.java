@@ -10,8 +10,6 @@ import org.crossasia.manifest.statics.collection.CollectionConfig;
 import org.crossasia.manifest.transformation.IdTransformation;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,8 +24,6 @@ import java.io.IOException;
  * 3. Done! No new methods needed here.
  */
 public class FileCreator {
-
-    private static final Logger logger = LoggerFactory.getLogger(FileCreator.class);
 
     /**
      * Legacy method - processes Kahlen files (default behavior)
@@ -53,9 +49,10 @@ public class FileCreator {
         for (File file : filesDir) {
             try {
                 processFile(file, outputDir, canvasCreator, attributeProcessor, manifestor, config);
-                logger.info("Processed: {}", file.getName());
+                System.out.println("Processed: " + file.getName());
             } catch (Exception e) {
-                logger.error("Error processing file: {} - {}", file.getName(), e.getMessage(), e);
+                System.err.println("Error processing file: " + file.getName() + " - " + e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -127,9 +124,11 @@ public class FileCreator {
     private static Manifest createManifest(File file, String id, I18n title) {
         if (title != null && title.getStrings() != null &&
                 !title.getStrings().isEmpty() && title.getStrings().get(0) != null) {
-            return new Manifest(file.getName(), new Label(new I18n[]{title}));
+            // Use "none" language for manifest label
+            return new Manifest(file.getName(), new Label(new I18n("none", title.getStrings().get(0))));
         } else {
-            return new Manifest(file.getName(), new Label(id));
+            // Use "none" language for fallback id label
+            return new Manifest(file.getName(), new Label("none", id));
         }
     }
 

@@ -3,6 +3,7 @@ package org.crossasia.manifest.canvas.builder;
 import info.freelibrary.iiif.presentation.v3.AnnotationPage;
 import info.freelibrary.iiif.presentation.v3.ImageContent;
 import info.freelibrary.iiif.presentation.v3.PaintingAnnotation;
+import info.freelibrary.iiif.presentation.v3.properties.Label;
 import info.freelibrary.iiif.presentation.v3.services.ImageService3;
 import org.crossasia.manifest.canvas.metadata.MetadataBuilder;
 import org.crossasia.manifest.canvas.model.PageData;
@@ -21,12 +22,19 @@ public class CanvasBuilder {
     }
 
     /**
-     * Builds a complete IIIF Canvas from PageData
+     * Builds a complete IIIF Canvas from PageData with custom label.
+     *
+     * @param id          Document ID
+     * @param pageData    Page data
+     * @param dimensions  Image dimensions
+     * @param canvasLabel Custom label for canvas (e.g., from schema:caption)
+     * @return Built canvas
      */
     public info.freelibrary.iiif.presentation.v3.Canvas buildCanvas(
             String id,
             PageData pageData,
-            ImageInfoFetcher.ImageDimensions dimensions) {
+            ImageInfoFetcher.ImageDimensions dimensions,
+            String canvasLabel) {
 
         String position = pageData.getPosition();
         String manifestId = serverUrl + manifestCollection + id + "+" + position;
@@ -43,14 +51,12 @@ public class CanvasBuilder {
         // Set metadata
         canvas.setMetadata(MetadataBuilder.buildMetadata(pageData));
 
-        // Set label
-        String name = pageData.getName();
-        if (name != null && name.contains("/")) {
-            String[] nameParts = name.split("/");
-            String namePart = nameParts[nameParts.length - 1];
-            canvas.setLabel("canvas: " + namePart.replace(".jpg", ""));
-        } else if (name != null) {
-            canvas.setLabel("canvas: " + name.replace(".jpg", ""));
+        // Set label - use custom label if provided, otherwise fall back to name-based label
+        if (canvasLabel != null && !canvasLabel.isEmpty()) {
+            // Use Label with "none" language
+            canvas.setLabel(new Label("none", canvasLabel));
+        } else {
+            setLabelFromName(canvas, pageData.getName());
         }
 
         // Set thumbnail
@@ -75,5 +81,30 @@ public class CanvasBuilder {
         canvas.setPaintingPages(annoPage);
 
         return canvas;
+    }
+
+    /**
+     * Builds a complete IIIF Canvas from PageData (backward compatible).
+     * Uses name-based label.
+     */
+    public info.freelibrary.iiif.presentation.v3.Canvas buildCanvas(
+            String id,
+            PageData pageData,
+            ImageInfoFetcher.ImageDimensions dimensions) {
+        // Call new method with null label to use default name-based behavior
+        return buildCanvas(id, pageData, dimensions, null);
+    }
+
+    /**
+     * Sets label from page name (original behavior).
+     */
+    private void setLabelFromName(info.freelibrary.iiif.presentation.v3.Canvas canvas, String name) {
+        if (name != null && name.contains("/")) {
+            String[] nameParts = name.split("/");
+            String namePart = nameParts[nameParts.length - 1];
+            canvas.setLabel(new Label("none", "canvas: " + namePart.replace(".jpg", "")));
+        } else if (name != null) {
+            canvas.setLabel(new Label("none", "canvas: " + name.replace(".jpg", "")));
+        }
     }
 }
