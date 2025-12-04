@@ -68,8 +68,8 @@ public class IIIFCollectionStart {
      */
     private static CollectionConfig determineConfig(String[] args) {
         if (args.length == 0) {
-            logger.info("No collection specified, using default: DTAB");
-            return CollectionConfig.DTAB;
+            logger.info("No collection specified, using default: TAP");
+            return CollectionConfig.TAP;
         }
 
         String collectionName = args[0].trim().toUpperCase();
